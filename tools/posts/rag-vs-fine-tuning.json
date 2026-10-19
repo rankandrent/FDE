@@ -1,0 +1,204 @@
+{
+  "path": "/blog/rag-vs-fine-tuning/",
+  "title": "RAG vs fine-tuning: how to choose for enterprise AI | tkxel FDE",
+  "desc": "RAG vs fine-tuning for enterprise AI: when each fits, how costs differ, what data you need, and why most teams should start with retrieval before training.",
+  "eyebrow": "Article",
+  "h1": "RAG vs fine-tuning: when to use each for enterprise AI",
+  "lede": "RAG vs fine-tuning comes down to what you need to change. Retrieval-augmented generation gives a model your current, citable knowledge at query time; fine-tuning changes how the model behaves, such as format, tone or a narrow task. Most enterprise teams should start with RAG and fine-tune only when behaviour, not knowledge, is the gap.",
+  "date": "2026-09-10",
+  "date_label": "10 September 2026",
+  "read_min": 8,
+  "sections": [
+    {
+      "h2": "The short answer: knowledge versus behaviour",
+      "paras": [
+        "RAG solves a knowledge problem and fine-tuning solves a behaviour problem. If the model gives wrong answers because it does not know your policies, products or contracts, retrieval is the fix. If it knows enough but answers in the wrong format, misses your domain’s conventions or is too slow and expensive for a narrow task, fine-tuning is worth a look.",
+        "Treating them as rivals is the most common mistake we see. They sit at different layers of the system, and many production set-ups end up using both.",
+        "A quick way to tell which problem you have: give the model the right document in the prompt and see whether the answer improves. If it does, you have a knowledge problem and retrieval will help. If the answer is still in the wrong shape or style, you are looking at behaviour."
+      ]
+    },
+    {
+      "h2": "How RAG works and where it fits",
+      "paras": [
+        "Retrieval-augmented generation fetches relevant passages from your documents or databases at query time and passes them to the model with the question. The model answers from that context, and you can show the sources it used.",
+        "RAG fits enterprise knowledge that changes often, needs to be traceable or carries access rules. Because permissions are applied when content is retrieved, a sales rep and a finance analyst can ask the same assistant and see only what they are allowed to see.",
+        "The quality of a RAG system depends mostly on retrieval, not on the model. Chunking strategy, metadata, hybrid keyword and vector search, and re-ranking usually matter more than which model writes the final answer, so that is where most tuning effort should go.",
+        "RAG also has a ceiling. If the answer depends on reasoning across hundreds of documents at once, or the source material is poorly written, retrieval alone will struggle and you may need better content, structured data or an agent that can query systems directly."
+      ],
+      "bullets": [
+        "Policy, product and support knowledge that is updated weekly or monthly.",
+        "Answers that must cite a source for audit or customer trust.",
+        "Content with role-based access that must be enforced per user.",
+        "Use cases where you need to remove information quickly, for example after a contract ends."
+      ]
+    },
+    {
+      "h2": "How fine-tuning works and where it fits",
+      "paras": [
+        "Fine-tuning continues training a model on your examples so that the patterns become part of its weights. It changes how the model responds, not what live facts it can reach.",
+        "Fine-tuning fits stable, repetitive tasks where you have hundreds or thousands of good examples. Classification, extraction into a fixed schema, consistent clinical or legal phrasing, and moving a narrow task to a smaller, cheaper model are the cases where it tends to pay off.",
+        "Fine-tuning also ties you more closely to a specific base model. When a better or cheaper model is released, you may need to repeat the training run and the evaluation before you can switch, which is a cost RAG mostly avoids."
+      ],
+      "bullets": [
+        "Strict output formats that prompting alone does not hold.",
+        "Domain language or style the base model handles poorly.",
+        "High-volume, narrow tasks where a smaller tuned model cuts latency and cost."
+      ]
+    },
+    {
+      "h2": "RAG vs fine-tuning compared",
+      "paras": [
+        "The two approaches differ most on freshness, traceability and how cost is spread over time. Use this table as a first filter, then test on your own data.",
+        "Treat the cost rows as directional. Provider pricing changes often, so model your own query volume, prompt length and update frequency against current rates before you commit to either path."
+      ],
+      "table": [
+        "RAG vs fine-tuning at a glance",
+        [
+          "Factor",
+          "RAG",
+          "Fine-tuning"
+        ],
+        [
+          [
+            "Best for",
+            "Changing, citable knowledge",
+            "Stable behaviour, format and narrow tasks"
+          ],
+          [
+            "Updating knowledge",
+            "Re-index the documents",
+            "Retrain on new data"
+          ],
+          [
+            "Traceability",
+            "Answers link to sources",
+            "Knowledge is hidden in weights"
+          ],
+          [
+            "Access control",
+            "Enforced at retrieval time",
+            "Hard to enforce once trained in"
+          ],
+          [
+            "Upfront cost",
+            "Ingestion, embeddings and a vector store",
+            "Data preparation and training runs"
+          ],
+          [
+            "Running cost",
+            "Longer prompts on every call",
+            "Leaner prompts; retraining when things change"
+          ],
+          [
+            "Typical failure",
+            "Retrieves the wrong or no passage",
+            "Confidently states outdated patterns"
+          ]
+        ]
+      ]
+    },
+    {
+      "h2": "Cost, data and maintenance",
+      "paras": [
+        "RAG spreads cost over time, while fine-tuning front-loads it. With retrieval, you pay for ingestion and a vector store, then for the extra context tokens on each request. With fine-tuning, you pay for data preparation and training up front, then again each time the knowledge or the base model changes.",
+        "The data requirements are different too. RAG needs clean, chunked, well-permissioned documents and good metadata. Fine-tuning needs a labelled set of input and output pairs that reflect the behaviour you want, which is often the slowest part to build.",
+        "Maintenance is where many teams get caught. A useful rule from practitioner guides: if your knowledge changes faster than you can retrain, retrieval wins by default. Model providers also release new base models regularly, and each one can mean re-tuning."
+      ]
+    },
+    {
+      "h2": "When to combine them",
+      "paras": [
+        "A hybrid uses fine-tuning for behaviour and RAG for knowledge. A common example is a model tuned to produce a strict claims summary format, fed by retrieval over the current policy library.",
+        "The trade-off is complexity. You now have two things to evaluate, version and monitor, and some teams find a tuned model fights the retrieved context. Only add the second technique when evaluation shows a clear gap the first one cannot close.",
+        "If you do combine them, build and prove the RAG layer first. It is easier to see what fine-tuning adds when retrieval is already measured, and you avoid tuning a model to compensate for documents it should have been given."
+      ]
+    },
+    {
+      "h2": "Common mistakes when choosing",
+      "paras": [
+        "Most failed projects we review made the choice before measuring anything. These are the patterns to watch for in your own plan."
+      ],
+      "bullets": [
+        "Fine-tuning to teach facts that change monthly, then falling behind after the first policy update.",
+        "Blaming the model for poor RAG answers when the real issue is chunking or missing metadata.",
+        "Skipping access control in the retrieval layer, so the assistant shows documents a user should not see.",
+        "Training on a small, inconsistent example set and getting inconsistent behaviour back.",
+        "Running no evaluation set, so nobody can say whether a change made things better or worse.",
+        "Choosing a hybrid on day one and doubling the work before either part is proven."
+      ]
+    },
+    {
+      "h2": "How we decide on client projects",
+      "paras": [
+        "Our pods start with a written evaluation set before choosing either technique: 50 to 200 real questions or tasks with expected answers, drawn from your process owners. We then try prompting plus RAG first, measure, and only propose fine-tuning if the failures are about format or behaviour rather than missing knowledge.",
+        "The limitation is that this takes a week or two of upfront work that feels slower than jumping straight to a demo. It is also the step that stops you spending a training budget on a problem that better retrieval would have fixed."
+      ]
+    }
+  ],
+  "related": [
+    [
+      "Agentic platforms",
+      "/services/agentic-platforms/"
+    ],
+    [
+      "AI strategy and readiness",
+      "/services/ai-strategy-readiness/"
+    ],
+    [
+      "Agentic FDE pod",
+      "/services/agentic-fde-pod/"
+    ]
+  ],
+  "cta": [
+    "Test RAG and fine-tuning on your own data first",
+    "A pod builds the evaluation set and benchmarks both before you commit budget.",
+    "Book an evaluation sprint"
+  ],
+  "faq": [
+    [
+      "Is RAG better than fine-tuning?",
+      "RAG is better than fine-tuning when the problem is missing or changing knowledge, and worse when the problem is behaviour. If the model needs your current policies, prices or documents, retrieval gives it that context and lets you cite sources. If it already knows enough but produces the wrong format or style, fine-tuning is the better tool. Most enterprise teams find RAG covers their first use cases and add fine-tuning later, if at all."
+    ],
+    [
+      "When should you use fine-tuning instead of RAG?",
+      "You should use fine-tuning instead of RAG when you need consistent behaviour on a stable, narrow task and have plenty of good examples. Typical cases are strict output schemas, classification, domain-specific phrasing, or moving a high-volume task to a smaller model to cut latency and cost. Fine-tuning is a poor choice for facts that change often, because each change means retraining."
+    ],
+    [
+      "Can you use RAG and fine-tuning together?",
+      "Yes, you can use RAG and fine-tuning together, and many production systems do. The usual split is fine-tuning for behaviour, such as output format or tone, and RAG for knowledge, such as the current policy library. The cost is extra complexity: two components to evaluate, version and monitor. Add the second technique only when testing shows a gap the first cannot close."
+    ],
+    [
+      "Is RAG cheaper than fine-tuning?",
+      "RAG is usually cheaper to start than fine-tuning, but not always cheaper to run. Retrieval has modest setup costs and adds context tokens to every request, so cost grows with volume. Fine-tuning front-loads spend on data preparation and training, then runs leaner per call, with retraining whenever knowledge or the base model changes. At very high volume on a narrow task, a tuned smaller model can come out ahead."
+    ],
+    [
+      "Does fine-tuning reduce hallucinations?",
+      "Fine-tuning does not reliably reduce hallucinations about facts. It shapes how a model responds, not whether its knowledge is current or correct. Grounding answers in retrieved sources and asking the model to cite them is a more direct way to reduce made-up answers, combined with evaluation sets that check accuracy. RAG has its own failure mode, retrieving the wrong passage, which you address with better chunking, metadata and retrieval testing."
+    ],
+    [
+      "How much data do you need to fine-tune an LLM?",
+      "You need enough high-quality input and output examples to show the model the behaviour you want, typically hundreds to a few thousand for a narrow task. Quality matters more than volume: inconsistent or noisy examples teach inconsistent behaviour. Building and labelling this set is often the slowest part of a fine-tuning project, so check whether better prompting or retrieval solves the problem first."
+    ]
+  ],
+  "form_h": "Find out which approach your use case needs before you build",
+  "research": {
+    "primary": "rag vs fine-tuning",
+    "secondary": [
+      "rag vs fine-tuning enterprise",
+      "when to use rag or fine-tuning",
+      "rag vs fine-tuning cost"
+    ],
+    "top_urls": [
+      "https://www.glean.com/blog/rag-vs-llm",
+      "https://www.cmarix.com/blog/rag-vs-fine-tuning-enterprise-ai/",
+      "https://www.artiba.org/blog/rag-vs-fine-tuning-choosing-the-right-enterprise-ai-strategy",
+      "https://petronellatech.com/blog/?p=24470",
+      "https://www.progress.com/blogs/rag-vs-fine-tuning-when-to-use-which"
+    ],
+    "gaps": "Top results agree on knowledge vs behaviour but rarely explain how to decide with an evaluation set, the data-preparation burden of fine-tuning, re-tuning when base models change, or access control at retrieval time. Adoption figures (Menlo Ventures 51%/9%) appear only second-hand, so they were left out. WebFetch was unavailable (DNS failure); research relied on search-result summaries."
+  },
+  "tags": [
+    "Data",
+    "Agents"
+  ]
+}

@@ -1,0 +1,187 @@
+{
+  "path": "/blog/forward-deployed-engineering-cost/",
+  "title": "Forward deployed engineering cost and pricing | tkxel FDE",
+  "desc": "What forward deployed engineering costs: cited FDE salary data, the hidden costs of hiring in-house, and how partner pricing models compare.",
+  "eyebrow": "Article",
+  "h1": "Forward deployed engineering cost: salaries, pricing models and trade-offs",
+  "lede": "Forward deployed engineering cost depends on whether you hire engineers or engage a partner. In-house FDEs carry senior salaries plus recruiting and overhead. Partners usually price through a fixed discovery phase, a pod per phase, time and materials, or outcome-based fees, and each model shifts risk differently between you and the partner.",
+  "date": "2026-09-10",
+  "date_label": "10 September 2026",
+  "read_min": 8,
+  "sections": [
+    {
+      "h2": "What drives the cost of forward deployed engineering",
+      "paras": [
+        "The cost of forward deployed engineering is driven by seniority, team size, duration and how much of the risk you want the provider to carry. FDEs are senior by design, because they work without close supervision inside your systems, so you are rarely paying junior rates.",
+        "Scope matters as much as rates. A single agent built on clean, accessible data costs far less than a system that needs new data pipelines, identity integration and security review before it can go live.",
+        "Your own readiness also changes the bill. If engineers wait three weeks for system access or for a subject-matter expert to define what good output looks like, you pay for that time whichever model you choose."
+      ],
+      "bullets": [
+        "Seniority and mix: lead, applied AI, data and integration engineers.",
+        "Duration: a six-week build and a six-month programme are different budgets.",
+        "Environment: regulated data, on-premise systems and strict access controls add time.",
+        "Risk transfer: fixed and outcome-based prices include a premium for the risk the provider takes on."
+      ]
+    },
+    {
+      "h2": "FDE salary data from public sources",
+      "paras": [
+        "Published FDE salary figures vary widely by source, so treat any single number as a range rather than a quote. Glassdoor reports an average US base salary of about $156,000 for forward deployed engineers, with a typical range from roughly $125,000 at the 25th percentile to $198,000 at the 75th percentile, based on self-reported data.",
+        "ZipRecruiter reports a lower average of about $110,000 a year for the title as of August 2026. The gap between the two shows how much the title still varies across companies, from integration roles to AI lab positions that also include equity. Check the current figures and date before you build a budget on them.",
+        "Base salary is also only part of compensation at many technology companies. Equity, bonuses and location can move total pay well beyond the published base, especially at AI labs and fast-growing software firms that compete for the same small pool of senior engineers."
+      ]
+    },
+    {
+      "h2": "The real cost of building an in-house FDE team",
+      "paras": [
+        "The real cost of an in-house FDE team is well above base salary. You also pay for recruiting time, benefits, payroll taxes, equipment, management attention and the months before a new hire is productive in your environment.",
+        "Team shape adds cost too. One FDE rarely covers AI, data and integration work alone, so a production system often needs two to four people. Paraform’s hiring guide estimates 8 to 12 weeks per search, which means the delay before work starts is itself a cost if the project has a business deadline.",
+        "There is also the cost of the wrong hire. A senior engineer who cannot work with stakeholders, or a consultant who cannot ship, can consume a quarter before the problem is clear. Partners absorb some of that risk by replacing people within the pod."
+      ],
+      "bullets": [
+        "Recruiting fees or internal recruiter time.",
+        "Benefits, payroll taxes, equipment and software licences.",
+        "Ramp-up time before the engineer is productive in your systems.",
+        "Management and technical leadership time.",
+        "Retention costs in a competitive market for senior AI engineers."
+      ]
+    },
+    {
+      "h2": "Partner pricing models compared",
+      "paras": [
+        "Partners price forward deployed engineering in four common ways, and the best choice depends on how well the scope is understood. Clear scope suits fixed pricing; uncertain scope suits time and materials or phased pods.",
+        "Many engagements move between models as they progress. A fixed discovery phase reduces uncertainty, which then makes a phased or fixed build price realistic. Time and materials often returns later for ongoing improvements once the first system is live."
+      ],
+      "table": [
+        "Comparison of FDE partner pricing models",
+        [
+          "Model",
+          "How it works",
+          "Best when",
+          "Watch out for"
+        ],
+        [
+          [
+            "Fixed-price discovery",
+            "A short, fixed fee to map the workflow, data and success metric",
+            "You are not yet sure what to build",
+            "Discovery that ends in a slide deck instead of a build plan"
+          ],
+          [
+            "Pod per phase",
+            "A set team at a set price for each phase, such as pilot then production",
+            "Scope is clear one phase at a time",
+            "Phase boundaries need clear exit criteria"
+          ],
+          [
+            "Time and materials",
+            "You pay for hours or days actually worked",
+            "Requirements will change as you learn",
+            "You carry the overrun risk without strong governance"
+          ],
+          [
+            "Outcome-based",
+            "Part of the fee depends on a measured business result",
+            "The outcome is measurable and the partner controls the inputs",
+            "Disputes over attribution and slower contracting"
+          ]
+        ]
+      ]
+    },
+    {
+      "h2": "When outcome-based pricing works and when it does not",
+      "paras": [
+        "Outcome-based pricing works only when the result is measurable and the partner can influence what produces it. Antoine Buteau’s analysis of forward-deployed pricing makes the point that if a provider is paid on claims processed or tickets resolved, it must understand which inputs it controls and which it does not.",
+        "Embedded teams are better placed for outcome pricing than remote vendors, because they can shape the workflow and set review gates. Even so, most enterprise engagements use a hybrid: a fixed or phased fee for delivery, with a smaller portion tied to an agreed metric. That keeps incentives aligned without turning every result into a negotiation.",
+        "Before agreeing to an outcome fee, settle three things in writing: the exact metric and how it is measured, the baseline it is compared against, and what happens if inputs you control, such as data access or user rollout, are delayed. Without those, outcome pricing tends to create disputes rather than alignment."
+      ]
+    },
+    {
+      "h2": "How to budget for your first FDE engagement",
+      "paras": [
+        "Budget for your first engagement in two parts: a fixed discovery phase, then a build phase priced once the scope is clear. This keeps your first commitment small and gives you a real plan before the larger spend.",
+        "At tkxel we usually start with a short discovery that defines the workflow, the data access needed and the production success metric, then price the pod per phase. The honest limitation is that no partner can give you a reliable full-project price before discovery; anyone who does is either padding the number or guessing."
+      ],
+      "bullets": [
+        "Agree the production success metric before any build starts.",
+        "Ask what is included: evaluation suites, security review, documentation and handover.",
+        "Price the handover and internal enablement, not just the build.",
+        "Set a decision point after the first phase so you can stop or continue."
+      ]
+    },
+    {
+      "h2": "Questions to ask before you sign",
+      "paras": [
+        "The right questions before signing reveal more about real cost than the day rate does. Ask each partner the same set so you can compare like with like."
+      ],
+      "bullets": [
+        "Who exactly is on the pod, and how senior is each person?",
+        "What happens to the price if scope changes mid-phase?",
+        "Who owns the code, data pipelines and evaluation suites at the end?",
+        "What does handover include, and how long does the partner stay on for support?",
+        "Which costs sit outside the fee, such as cloud usage, model API spend or licences?"
+      ]
+    }
+  ],
+  "related": [
+    [
+      "Engagement models",
+      "/engagement-models/"
+    ],
+    [
+      "FDE pods",
+      "/services/fde-pods/"
+    ],
+    [
+      "FDE vs staff augmentation vs consulting",
+      "/fde-vs-staff-augmentation-vs-consulting/"
+    ]
+  ],
+  "cta": [
+    "Get a scoped price for your FDE engagement",
+    "Start with a fixed discovery phase and get a phased build plan you can price.",
+    "Book a discovery call"
+  ],
+  "faq": [
+    [
+      "How much does a forward deployed engineer cost?",
+      "A forward deployed engineer in the US typically costs a senior engineering salary plus overhead. Glassdoor reports an average US base of about $156,000, while ZipRecruiter reports about $110,000, so the figure depends heavily on the company and role. Add recruiting, benefits, taxes and ramp-up time to estimate the full cost of an in-house hire."
+    ],
+    [
+      "What pricing models do FDE partners use?",
+      "FDE partners usually use fixed-price discovery, a pod priced per phase, time and materials, or outcome-based fees. Many combine them, starting with a fixed discovery phase and moving to phased pricing once the scope is clear. Outcome-based pricing is less common because it requires a measurable result and agreement on what the partner controls."
+    ],
+    [
+      "Is it cheaper to hire FDEs or use a partner?",
+      "Hiring FDEs is usually cheaper over several years if you have continuous deployment work, while a partner is usually cheaper for a defined project with an end date. A partner avoids recruiting time and long-term headcount, but its day rates are higher. Compare total cost over the life of the work, including the months spent hiring."
+    ],
+    [
+      "Does outcome-based pricing work for AI projects?",
+      "Outcome-based pricing can work for AI projects when the result is measurable and the partner can influence the inputs that drive it. Examples include tickets resolved or documents processed. It works less well when results depend on factors outside the partner’s control, such as user adoption decisions or data the client has not supplied, which is why hybrid models are common."
+    ],
+    [
+      "Why does an FDE engagement start with discovery?",
+      "An FDE engagement starts with discovery because nobody can price a production AI system accurately before seeing the workflow, data and integration points. A short fixed-price discovery phase maps those, defines the success metric and produces a build plan. It keeps your first commitment small and makes the later build estimate far more reliable."
+    ]
+  ],
+  "form_h": "Plan an FDE budget you can defend to your finance team",
+  "research": {
+    "primary": "forward deployed engineering cost",
+    "secondary": [
+      "forward deployed engineer salary",
+      "forward deployed engineering pricing model",
+      "outcome-based pricing FDE"
+    ],
+    "top_urls": [
+      "https://www.oxagile.com/article/forward-deployed-engineer-salary-vs-outsourcing/",
+      "https://www.glassdoor.com/Salaries/forward-deployed-engineer-salary-SRCH_KO0,25.htm",
+      "https://www.ziprecruiter.com/Salaries/Forward-Deployment-Engineer-Salary",
+      "https://www.secondtalent.com/cost-to-hire/forward-deployed-engineer/",
+      "https://www.antoinebuteau.com/forward-deployed-company-series-7-pricing-and-packaging-the-forward-deployed-company/"
+    ],
+    "gaps": "Results are dominated by salary aggregators and freelance rate cards. Few explain partner pricing models side by side, when outcome-based pricing is realistic, or how to structure a first engagement budget around discovery."
+  },
+  "tags": [
+    "FDE"
+  ]
+}

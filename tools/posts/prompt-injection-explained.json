@@ -1,0 +1,203 @@
+{
+  "path": "/blog/prompt-injection-explained/",
+  "title": "Prompt injection explained for business leaders | tkxel FDE",
+  "desc": "Prompt injection explained for business and security leaders: direct and indirect attacks, why OWASP ranks it first for LLM apps, and layered mitigations.",
+  "eyebrow": "Article",
+  "h1": "Prompt injection explained: what business and security leaders need to know",
+  "lede": "Prompt injection is an attack where text fed to a large language model overrides the instructions its builders gave it. It can come directly from a user or indirectly from emails, web pages and documents the model reads. OWASP ranks it first in its Top 10 for LLM Applications, and no single control fully prevents it.",
+  "date": "2026-09-24",
+  "date_label": "24 September 2026",
+  "read_min": 8,
+  "sections": [
+    {
+      "h2": "What prompt injection is, in plain terms",
+      "paras": [
+        "Prompt injection is when someone smuggles instructions into the text a model processes, and the model follows them instead of yours. The model reads your system prompt, the user’s message and any retrieved content as one stream of text, and it cannot reliably tell instructions from data.",
+        "The term was coined in 2022 by analogy to SQL injection. The key difference is that SQL injection has a structural fix, parameterised queries, while prompt injection has no equivalent today. That is why it is treated as an open problem you manage, not a bug you patch once.",
+        "For a business leader, the practical meaning is this: any text your AI system reads should be treated as potentially hostile input, just as your web team treats form fields. That includes content from inside your company, such as shared documents and tickets, not only the open internet."
+      ]
+    },
+    {
+      "h2": "Direct vs indirect prompt injection",
+      "paras": [
+        "Direct prompt injection comes from the person typing into the system; indirect prompt injection hides in content the model reads on someone’s behalf. Both matter, but indirect injection is the bigger concern once you give models tools and access to outside content.",
+        "Indirect injection can be invisible to people. Instructions can sit in white text on a white background, in image alt text, in document metadata or in a long email thread nobody reads in full, and the model will still process them."
+      ],
+      "h3s": [
+        [
+          "Direct injection",
+          "A user types something like “ignore your previous instructions” to make a chatbot reveal its system prompt, bypass content rules or produce output it should refuse. The attacker is the user."
+        ],
+        [
+          "Indirect injection",
+          "Instructions are planted in a web page, email, PDF, support ticket or calendar invite. When an agent reads that content to complete a task, it may follow the hidden instructions, such as forwarding data or calling a tool. The attacker never talks to your system directly."
+        ]
+      ]
+    },
+    {
+      "h2": "Why OWASP ranks it first for LLM applications",
+      "paras": [
+        "Prompt injection sits at LLM01 in the OWASP Top 10 for LLM Applications 2025 because it is common, hard to prevent and opens the door to other risks. OWASP’s own guidance also notes that RAG and fine-tuning do not fully mitigate it.",
+        "It connects to other entries on the list. Combined with excessive agency, where an agent has more permissions than it needs, an injected instruction can turn into a real action against your systems rather than a strange reply.",
+        "For security teams, the OWASP list is a helpful shared vocabulary. Mapping each LLM system against it gives you a checklist for design reviews and a way to explain risk to auditors without inventing a new framework."
+      ]
+    },
+    {
+      "h2": "What the business risk looks like",
+      "paras": [
+        "The risk scales with what the model can reach and do. A public FAQ bot with no tools can be embarrassed; an agent with access to email, files and payment systems can be steered into causing real harm.",
+        "The useful question for leaders is not whether a model can be tricked, because it can. It is what the worst outcome would be if it were tricked today, and whether you would know. That framing points straight to permissions, approvals and logging."
+      ],
+      "bullets": [
+        "Data leakage: the model reveals customer records, internal documents or its own system prompt.",
+        "Unauthorised actions: an agent sends emails, changes records or calls APIs on an attacker’s behalf.",
+        "Manipulated output: summaries, recommendations or reviews quietly skewed by planted text.",
+        "Reputational harm: screenshots of your assistant saying things it never should."
+      ]
+    },
+    {
+      "h2": "How an indirect attack plays out",
+      "paras": [
+        "A simple scenario shows why agents raise the stakes. Picture an assistant that reads incoming supplier emails, summarises them and can draft replies and look up purchase orders.",
+        "An attacker sends an email with a hidden line telling the assistant to search for recent invoices and include the bank details in its reply. If the assistant has broad search access and can send mail without review, the instruction may be followed and nobody notices until later.",
+        "Now apply the controls: the assistant can only read the sender’s own orders, outbound mail needs approval, and replies are checked for account numbers. The same email produces a blocked action and an alert instead of a leak."
+      ]
+    },
+    {
+      "h2": "Mitigations that reduce the risk",
+      "paras": [
+        "Defending against prompt injection takes layers, because each control catches some attacks and misses others. The most reliable controls sit outside the model, where an attacker’s text cannot argue with them.",
+        "Start with the first three layers, because they limit damage regardless of how clever the attack is. Filters and monitoring then reduce how often attacks succeed and how quickly you spot them."
+      ],
+      "table": [
+        "Layered prompt injection controls",
+        [
+          "Layer",
+          "What it does",
+          "What it will not do"
+        ],
+        [
+          [
+            "Least privilege",
+            "Gives the agent only the tools and data the task needs",
+            "Stop the model from saying odd things"
+          ],
+          [
+            "Authorisation outside the model",
+            "Checks every tool call against policy in code",
+            "Catch harmful text with no action attached"
+          ],
+          [
+            "Human approval",
+            "Requires sign-off for high-risk actions",
+            "Scale to every low-risk step"
+          ],
+          [
+            "Separate untrusted content",
+            "Delimits and labels retrieved text as data",
+            "Guarantee the model ignores it"
+          ],
+          [
+            "Input and output filtering",
+            "Flags known attack patterns and data leaks",
+            "Catch novel or obfuscated attacks"
+          ],
+          [
+            "Monitoring and red teaming",
+            "Finds attacks and drift over time",
+            "Prevent the first incident"
+          ]
+        ]
+      ]
+    },
+    {
+      "h2": "Questions to ask your team or vendor",
+      "paras": [
+        "You do not need to read model internals to judge exposure. Ask these questions about any LLM system before it reaches production, and expect specific answers.",
+        "Vague answers such as “the model is trained to resist that” are a warning sign. You want to hear about specific permissions, code-level checks, named approvers and a testing schedule you can verify."
+      ],
+      "bullets": [
+        "What untrusted content can this system read: web pages, emails, uploads, tickets?",
+        "Which tools can it call, and with whose credentials?",
+        "Which actions require human approval, and who approves them?",
+        "Are permissions enforced in code, or only described in the prompt?",
+        "How is it tested for prompt injection, and how often?",
+        "What gets logged, and who reviews it?"
+      ]
+    },
+    {
+      "h2": "The honest limitation",
+      "paras": [
+        "No current technique makes an LLM immune to prompt injection. Filters can be bypassed with rephrasing, and instructions in the system prompt are only as strong as the model’s willingness to follow them.",
+        "That is why our pods design for containment: assume some injection will get through, and make sure the agent cannot do much damage when it does. Narrow permissions, policy checks in code and approval gates on high-risk actions turn a potential breach into a logged, blocked attempt.",
+        "Budget for this work as part of delivery rather than as an afterthought. Red teaming before launch and after each significant change costs far less than an incident review, and it gives your security team evidence they can sign off on."
+      ]
+    }
+  ],
+  "related": [
+    [
+      "AI security and governance",
+      "/services/ai-security-governance/"
+    ],
+    [
+      "Agentic FDE pod",
+      "/services/agentic-fde-pod/"
+    ],
+    [
+      "AI strategy and readiness",
+      "/services/ai-strategy-readiness/"
+    ]
+  ],
+  "cta": [
+    "Find out how exposed your LLM systems are",
+    "We review tools, permissions and untrusted inputs, then fix what matters first.",
+    "Request a security review"
+  ],
+  "faq": [
+    [
+      "What is prompt injection in simple terms?",
+      "Prompt injection is when someone hides instructions in text that an AI model reads, and the model follows those instructions instead of the ones its builders gave it. It works because language models process system instructions, user messages and outside content as one stream of text and cannot reliably tell commands from data. The result can range from odd replies to leaked data or unauthorised actions."
+    ],
+    [
+      "What is the difference between direct and indirect prompt injection?",
+      "Direct prompt injection comes from the user typing malicious instructions into the system, while indirect prompt injection hides instructions in content the model reads, such as web pages, emails or documents. Indirect attacks are harder to spot because the attacker never interacts with your system directly. They become more dangerous when agents have tools, since a hidden instruction can trigger a real action."
+    ],
+    [
+      "Can prompt injection be prevented?",
+      "Prompt injection cannot be fully prevented with today’s techniques, but its impact can be sharply reduced. Effective programmes combine least-privilege access, authorisation checks in code outside the model, human approval for high-risk actions, separation of untrusted content, input and output filtering, and regular red teaming. The goal is containment: if an injection gets through, the agent should not be able to do serious damage."
+    ],
+    [
+      "Why is prompt injection number one in the OWASP LLM Top 10?",
+      "Prompt injection is ranked first, as LLM01, in the OWASP Top 10 for LLM Applications 2025 because it is widespread, difficult to prevent and enables other attacks. It exploits a basic property of language models, that instructions and data share one channel. OWASP also notes that RAG and fine-tuning do not fully mitigate it, so it must be handled through system design and controls."
+    ],
+    [
+      "Is prompt injection the same as jailbreaking?",
+      "Prompt injection and jailbreaking overlap but are not the same. Jailbreaking usually means a user crafting prompts to bypass a model’s safety rules. Prompt injection is broader: it covers any input that overrides the developer’s instructions, including hidden instructions in documents or web pages that the user never sees. For business systems, indirect injection through outside content is often the larger risk."
+    ],
+    [
+      "How do you test an AI application for prompt injection?",
+      "You test an AI application for prompt injection by red teaming it with both direct and indirect attacks against its real tools and data. Plant instructions in documents, emails and pages the system reads, try known jailbreak patterns, and check whether any tool call or data access happens that policy should block. Repeat tests after model, prompt or tool changes, and keep a regression set of past attacks."
+    ]
+  ],
+  "form_h": "Ship LLM features your security team can sign off",
+  "research": {
+    "primary": "prompt injection",
+    "secondary": [
+      "prompt injection explained",
+      "indirect prompt injection",
+      "owasp llm top 10 prompt injection",
+      "prompt injection mitigation"
+    ],
+    "top_urls": [
+      "https://genai.owasp.org/llmrisk/llm01-prompt-injection/",
+      "https://www.cyberhaven.com/infosec-essentials/prompt-injection",
+      "https://deepstrike.io/blog/prompt-injection-attacks",
+      "https://attack.mitre.org/techniques/T1698/",
+      "https://www.kunalganglani.com/blog/indirect-prompt-injection-ai-agents"
+    ],
+    "gaps": "Top results are written for security engineers; few translate risk into business impact, give leaders questions to ask vendors, or frame defence as containment rather than prevention. Little coverage of how excessive agency multiplies injection impact. WebFetch was unavailable (DNS failure); OWASP facts were cross-checked across search-result summaries."
+  },
+  "tags": [
+    "Governance"
+  ]
+}

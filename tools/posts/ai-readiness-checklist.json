@@ -1,0 +1,209 @@
+{
+  "path": "/blog/ai-readiness-checklist/",
+  "title": "AI readiness checklist: 5 areas to check | tkxel FDE",
+  "desc": "An AI readiness checklist across strategy, data, people, governance and infrastructure, with pass or fail checks to run before you fund your next AI project.",
+  "eyebrow": "Article",
+  "h1": "AI readiness checklist: strategy, data, people, governance and infrastructure",
+  "lede": "An AI readiness checklist tests whether your organisation can take an AI use case to production, not just whether it wants to. It covers five areas: strategy, data, people, governance and infrastructure. Each check should have a clear pass or fail, so gaps turn into specific actions before you fund a build.",
+  "date": "2026-10-08",
+  "date_label": "8 October 2026",
+  "read_min": 8,
+  "sections": [
+    {
+      "h2": "How to use this AI readiness checklist",
+      "paras": [
+        "Use this checklist against one specific use case, not your whole organisation in the abstract. Readiness for an invoice-processing agent looks different from readiness for a customer-facing assistant, and a general score hides that.",
+        "Score each item as pass or fail. Structured frameworks such as 8th Light’s AI readiness checklist use a similar approach, scoring each yes-or-no question as one or zero across areas including strategic alignment, data infrastructure and security. A fail is not a stop sign; it is the next task.",
+        "Involve the people who will build and run the system, not only leadership. Business leaders tend to rate strategy highly and data poorly, while engineers often see the reverse, and the truth usually sits in the specific systems the use case touches."
+      ]
+    },
+    {
+      "h2": "Strategy readiness",
+      "paras": [
+        "Strategy readiness means you know which problem AI should solve and how you will measure success. Without that, projects drift into demos that nobody funds.",
+        "A strong strategy check names one workflow, not a department. “Reduce invoice exception handling time by a third” passes; “use AI in finance” does not, because nobody can test it or tell when it is done."
+      ],
+      "bullets": [
+        "A named use case is tied to a business goal and a single accountable owner.",
+        "The success metric and target are written down, such as handling time or error rate.",
+        "You know today’s baseline for that metric.",
+        "A budget exists for production, not only for a pilot.",
+        "Leaders agree what happens if the pilot meets, or misses, its target."
+      ]
+    },
+    {
+      "h2": "Data readiness",
+      "paras": [
+        "Data readiness means the data the use case needs exists, is reachable and is good enough to act on. This is where most readiness assessments find their biggest gaps.",
+        "Do not stop at a survey answer. Ask an engineer to pull a real sample from each source and look at it. Missing fields, inconsistent formats and unclear ownership show up in an afternoon of hands-on work, and they rarely show up in interviews."
+      ],
+      "bullets": [
+        "You can name the systems that hold the data the use case needs.",
+        "Engineers can get access within days, not months, with approvals agreed.",
+        "Data quality has been checked on a real sample, including edge cases.",
+        "Sensitive data is classified, and you know what may be sent to which model.",
+        "There is an owner for each key data source who can answer questions."
+      ]
+    },
+    {
+      "h2": "People readiness",
+      "paras": [
+        "People readiness means you have the skills to build and run the system, and the users are ready to change how they work. Assessments often treat this area loosely, so make the checks concrete.",
+        "The most common people gap is expert time. An AI system needs domain experts to define good output, label examples and review results, and if their calendars are full, the project slows down regardless of how good the engineering team is."
+      ],
+      "bullets": [
+        "Subject-matter experts have protected time to define good results and review output.",
+        "Someone can own the system technically after launch.",
+        "Users affected by the change have been involved in the design.",
+        "There is a plan to train users and collect their feedback.",
+        "You know which skills you will build internally and which you will bring in."
+      ]
+    },
+    {
+      "h2": "Governance readiness",
+      "paras": [
+        "Governance readiness means you know who decides, what is allowed and how you will catch problems. It is the area most often left until after a pilot, which is exactly when it causes the longest delays.",
+        "You do not need a complete enterprise AI governance programme to start. You need clear answers for this use case: what data it may use, where a human approves, how quality is checked and who responds when something goes wrong."
+      ],
+      "bullets": [
+        "An AI use policy exists and covers approved tools and data handling.",
+        "Security and compliance reviewers are involved at design stage.",
+        "You have defined where a human must approve an AI action.",
+        "There is an agreed way to evaluate quality before release.",
+        "Incidents have an owner, a log and a rollback plan."
+      ]
+    },
+    {
+      "h2": "Infrastructure readiness",
+      "paras": [
+        "Infrastructure readiness means your platforms can host, connect and monitor an AI system securely. You do not need a new platform for a first use case, but you do need the basics.",
+        "Integration is usually the deciding factor. An agent that can read and write in the systems people already use gets adopted; one that sits in a separate window usually does not, however good its answers are."
+      ],
+      "bullets": [
+        "There is an approved environment for model access, in the cloud or on-premise.",
+        "Integration routes exist to the systems the AI must read from or write to.",
+        "Identity and access controls can be applied to agents and service accounts.",
+        "Logging and monitoring can capture model inputs, outputs and tool calls.",
+        "Costs can be tracked per use case."
+      ]
+    },
+    {
+      "h2": "Common readiness gaps and how to close them",
+      "paras": [
+        "The same few gaps appear in most readiness reviews, and each has a practical fix. None of them requires a large programme before you can start one well-chosen use case."
+      ],
+      "bullets": [
+        "No baseline for the success metric: measure the current process for two to four weeks before building.",
+        "Slow data access: agree a named approver and a standard access request for AI projects.",
+        "No owner after launch: assign a business owner and a technical owner before funding the build.",
+        "Security brought in late: invite reviewers to the first design session, not the demo.",
+        "Users left out: include two or three daily users in discovery and testing."
+      ]
+    },
+    {
+      "h2": "What to do with your results",
+      "paras": [
+        "Turn every fail into a dated action with an owner, then decide whether the remaining gaps block a pilot or only block scale. Data access and an agreed success metric usually block everything; a full governance framework usually does not need to be complete before a contained first build.",
+        "Repeat the checklist when you move from one use case to several. The gaps change: a first project often stalls on data access, while a portfolio of projects tends to stall on shared infrastructure, governance and the number of people who can own systems after launch."
+      ],
+      "table": [
+        "Readiness results and next steps",
+        [
+          "Result",
+          "What it means",
+          "Next step"
+        ],
+        [
+          [
+            "Mostly passes",
+            "Ready to build one production use case",
+            "Scope a build phase with a clear metric"
+          ],
+          [
+            "Gaps in data or people",
+            "A build would stall on access or ownership",
+            "Fix access and name owners before building"
+          ],
+          [
+            "Gaps in strategy",
+            "No agreed problem or metric yet",
+            "Run a short discovery to choose the use case"
+          ],
+          [
+            "Gaps in governance",
+            "Risk of late security blockers",
+            "Bring security into design now"
+          ]
+        ]
+      ],
+      "h3s": [
+        [
+          "The limitation of any checklist",
+          "A checklist shows where you stand, but it cannot tell you whether a use case is worth doing, or what it will return. Some gaps only appear once engineers touch real data. That is why tkxel’s AI strategy and readiness work pairs the assessment with hands-on discovery in your environment, so the plan is based on what the systems actually allow."
+        ]
+      ]
+    }
+  ],
+  "related": [
+    [
+      "AI strategy and readiness",
+      "/services/ai-strategy-readiness/"
+    ],
+    [
+      "AI security and governance",
+      "/services/ai-security-governance/"
+    ],
+    [
+      "Adoption and enablement",
+      "/services/adoption-enablement/"
+    ]
+  ],
+  "cta": [
+    "Find out if your AI use case is ready",
+    "Run a readiness discovery against one use case and leave with a build plan.",
+    "Assess my readiness"
+  ],
+  "faq": [
+    [
+      "What is an AI readiness checklist?",
+      "An AI readiness checklist is a set of pass-or-fail checks that shows whether an organisation can take an AI use case to production. It usually covers strategy, data, people, governance and infrastructure. The most useful checklists are applied to one specific use case, so each gap becomes a concrete action rather than a general score."
+    ],
+    [
+      "How do you assess AI readiness?",
+      "You assess AI readiness by choosing one use case and checking it against strategy, data, people, governance and infrastructure criteria. Score each item as pass or fail, then turn every fail into an owned action. Confirm the most important checks, especially data access and quality, with hands-on testing rather than relying on interviews alone."
+    ],
+    [
+      "What are the pillars of AI readiness?",
+      "The main pillars of AI readiness are strategy, data, people, governance and infrastructure. Some frameworks add culture or security as separate pillars. Whatever the structure, the areas that most often block progress are data access and quality, a clear success metric, and named owners for the system after launch. Check those three first."
+    ],
+    [
+      "How long does an AI readiness assessment take?",
+      "An AI readiness assessment for a single use case usually takes a few weeks. A desk-based checklist can be completed in a day, but checking data access, quality and integration routes properly takes longer because engineers need to work with real systems. Organisation-wide assessments take longer and can delay action if they are too broad."
+    ],
+    [
+      "Do you need perfect data to start with AI?",
+      "No, you do not need perfect data to start with AI, but you need data that is accessible and good enough for the specific use case. Check quality on a real sample, including edge cases, and fix the issues that affect the use case first. Waiting for organisation-wide data perfection usually means never starting."
+    ]
+  ],
+  "form_h": "Start your next AI project with a plan your systems can support",
+  "research": {
+    "primary": "AI readiness checklist",
+    "secondary": [
+      "AI readiness assessment",
+      "AI readiness framework",
+      "pillars of AI readiness"
+    ],
+    "top_urls": [
+      "https://lumenalta.com/insights/ai-readiness-checklist",
+      "https://ivee.jobs/blog/ai-readiness-checklist",
+      "https://pages.8thlight.com/hubfs/Gated%20and%20Download%20Content/8th%20Light%20AI%20Readiness%20Checklist.pdf",
+      "https://firstlinesoftware.com/blog/are-you-ready-for-ai-use-this-checklist-to-find-out/",
+      "https://www.joinleland.com/library/a/ai-readiness-assessment"
+    ],
+    "gaps": "Many top results are gated downloads or high-level frameworks. Few give ungated pass or fail checks per area, tie the checklist to one use case, or explain which gaps block a pilot versus only block scale."
+  },
+  "tags": [
+    "Strategy",
+    "Data"
+  ]
+}

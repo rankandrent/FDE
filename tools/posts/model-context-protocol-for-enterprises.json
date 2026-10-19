@@ -1,0 +1,193 @@
+{
+  "path": "/blog/model-context-protocol-for-enterprises/",
+  "title": "Model context protocol for enterprises | tkxel FDE",
+  "desc": "Model Context Protocol for enterprises: what MCP is, how servers and clients work, the security risks, governance controls to put in place, and when to use it.",
+  "eyebrow": "Article",
+  "h1": "Model context protocol for enterprises: what leaders need to know",
+  "lede": "Model Context Protocol (MCP) is an open standard that lets AI applications connect to tools and data through a common interface instead of custom integrations. For enterprises, it simplifies how agents reach systems of record, but it does not provide governance on its own. You still need identity, scoped access, approved servers and audit logs.",
+  "date": "2026-10-01",
+  "date_label": "1 October 2026",
+  "read_min": 8,
+  "sections": [
+    {
+      "h2": "What Model Context Protocol is",
+      "paras": [
+        "Model Context Protocol is an open protocol that standardises how AI applications discover and use external tools, data and prompts. Anthropic published it in November 2024 under an open licence, and it has since been adopted by many AI tools and platforms.",
+        "The simplest way to think of MCP is as a common plug. Instead of writing a separate integration for every model and every system, you expose a system once as an MCP server, and any compatible AI application can use it.",
+        "MCP is a protocol, not a model, an agent framework or a product. It describes how an AI application asks a server what it can do and how it calls those capabilities. What the agent decides to do with them, and whether it should be allowed to, is still up to you."
+      ]
+    },
+    {
+      "h2": "How MCP works: hosts, clients and servers",
+      "paras": [
+        "MCP uses a host, client and server design. According to the official MCP architecture documentation, the host is the AI application that manages one or more clients, each client keeps a connection to one server, and servers expose capabilities to the model."
+      ],
+      "h3s": [
+        [
+          "Servers",
+          "An MCP server wraps a system such as a CRM, ticketing tool or database. It advertises tools the model can call, resources it can read and prompt templates it can use."
+        ],
+        [
+          "Clients and hosts",
+          "The host is the application your users work in, such as a chat assistant, coding tool or internal agent. It runs clients that connect to servers and decides which tools the model sees."
+        ],
+        [
+          "Transport",
+          "Messages use JSON-RPC, either locally through a subprocess or remotely over HTTP. Remote servers are the ones that need the most enterprise controls, because they are reachable over the network and often shared by many users."
+        ]
+      ]
+    },
+    {
+      "h2": "Why enterprises are adopting MCP",
+      "paras": [
+        "Enterprises adopt MCP because it reduces the number of one-off integrations between AI tools and internal systems. A single well-built server for your ticketing system can serve several agents and assistants, which cuts build and maintenance work.",
+        "It also gives you one place to apply controls. When every agent reaches a system through the same server, you can log, restrict and review access consistently rather than chasing custom code in each project.",
+        "Portability is a third reason. Because the interface is shared, you can change the AI application or model on top without rebuilding every connection underneath, which reduces lock-in to any single vendor."
+      ]
+    },
+    {
+      "h2": "Security risks to plan for",
+      "paras": [
+        "MCP standardises connections but leaves authorisation, approval and audit to you. Security analyses of the protocol point to a few recurring threats, and each one maps to a control you can put in place.",
+        "Several analyses frame MCP as an identity and authorisation problem first. An MCP server sits between an agent and a system of record, so it is the point where you either constrain what the agent can do or fail to."
+      ],
+      "table": [
+        "MCP risks and matching controls",
+        [
+          "Risk",
+          "What can happen",
+          "Control"
+        ],
+        [
+          [
+            "Prompt injection",
+            "Text in a document or ticket tells the agent to misuse a tool",
+            "Limit tools per task, require approval for sensitive actions"
+          ],
+          [
+            "Malicious or unvetted servers",
+            "A third-party server exfiltrates data or misdescribes its tools",
+            "Approved server registry and security review"
+          ],
+          [
+            "Over-broad permissions",
+            "An agent can read or change far more than its task needs",
+            "Scoped tokens per server and per user"
+          ],
+          [
+            "Missing audit trail",
+            "Nobody can reconstruct what the agent did",
+            "Log every tool call with user, agent and parameters"
+          ]
+        ]
+      ]
+    },
+    {
+      "h2": "Governance controls that make MCP safe",
+      "paras": [
+        "Good MCP governance treats every server as an access point to a system of record. The MCP specification describes remote servers as OAuth 2.1 resource servers that rely on a separate authorisation server, which lets you connect them to your existing identity provider."
+      ],
+      "bullets": [
+        "Keep an inventory and registry of approved MCP servers, with an owner for each.",
+        "Authenticate users through your identity provider and pass their permissions through to the server.",
+        "Use a gateway to enforce policy, hold credentials and log calls in one place.",
+        "Separate read-only tools from tools that change data, and gate the latter with approvals.",
+        "Review third-party servers like any other software supplier.",
+        "Test servers with your agent evaluation suite before each release."
+      ]
+    },
+    {
+      "h2": "Questions to ask before approving an MCP server",
+      "paras": [
+        "A short approval checklist keeps MCP growth under control. Ask these questions of every server, whether your team built it or it came from a vendor or open-source project."
+      ],
+      "bullets": [
+        "Which system does it connect to, and who owns that system?",
+        "Which tools does it expose, and which of them can change data?",
+        "Does it act with the user’s permissions or with a shared service account?",
+        "Where are its credentials stored, and how are they rotated?",
+        "Are its tool calls logged somewhere your security team can see?",
+        "Who maintains it, and how are updates reviewed before release?"
+      ]
+    },
+    {
+      "h2": "When to use MCP and when not to",
+      "paras": [
+        "Use MCP when several AI applications need the same system, or when you want agents to discover tools in a consistent way. It is a good fit for internal platforms where many teams build assistants on shared data, and for vendors who want customers’ AI tools to reach their product without bespoke work for each one.",
+        "MCP is not always the right choice. If one fixed workflow calls one API in a known order, a direct integration can be simpler to secure and test. Highly sensitive actions, such as moving money, may also warrant a dedicated, tightly scoped service rather than a general-purpose server. The protocol is also still evolving, and newer parts of the authorisation specification are not yet supported by every identity provider, so plan for some engineering effort rather than an off-the-shelf install.",
+        "There is also an operational cost. Every server is software you must patch, monitor and eventually retire. A sprawl of small, overlapping servers can become harder to govern than the custom integrations MCP was meant to replace."
+      ]
+    },
+    {
+      "h2": "How to start with MCP in your organisation",
+      "paras": [
+        "Start with one high-value system and one agent, and build the governance pattern there before you scale. A first server for a read-only knowledge base or ticket history is a low-risk way to prove the approach.",
+        "tkxel’s FDE pods build MCP servers inside client environments, connect them to existing identity and logging, and add evaluation and approval steps before anything writes to a production system. The goal is a reusable pattern your own engineers can extend, not a one-off connector.",
+        "Once the first server works, document the pattern: how servers are requested, reviewed, registered and retired. That process matters more than any single server, because it decides whether MCP use in your company grows in a controlled way or through shadow connections nobody tracks."
+      ]
+    }
+  ],
+  "related": [
+    [
+      "Agentic platforms",
+      "/services/agentic-platforms/"
+    ],
+    [
+      "AI security and governance",
+      "/services/ai-security-governance/"
+    ],
+    [
+      "Agentic FDE pod",
+      "/services/agentic-fde-pod/"
+    ]
+  ],
+  "cta": [
+    "Build governed MCP servers on your own systems",
+    "An FDE pod builds your first MCP server with identity, logging and approvals in place.",
+    "Plan my MCP rollout"
+  ],
+  "faq": [
+    [
+      "What is Model Context Protocol in simple terms?",
+      "Model Context Protocol is a standard way for AI applications to connect to tools and data. Instead of building a custom integration for each AI tool and each system, you expose a system once as an MCP server, and any compatible AI application can discover and use its tools. Anthropic published it as an open standard in November 2024."
+    ],
+    [
+      "What is the difference between an MCP server and an MCP client?",
+      "An MCP server exposes a system’s tools, data and prompts, while an MCP client connects an AI application to that server. The client runs inside a host application, such as a chat assistant or agent, and each client keeps a connection to one server. The model uses the client to see and call the server’s tools."
+    ],
+    [
+      "Is MCP secure for enterprise use?",
+      "MCP can be used securely in an enterprise, but the protocol does not provide full security on its own. You need to add identity integration, scoped permissions, an approved server registry, approval steps for actions that change data, and audit logging. Treat each MCP server as an access point to a system of record and govern it accordingly."
+    ],
+    [
+      "Do I need MCP if I already have APIs?",
+      "You do not always need MCP if you already have APIs. MCP adds value when several AI applications need the same systems or when agents should discover tools dynamically. For a single fixed workflow that calls one API in a known order, a direct integration may be simpler to secure, test and maintain."
+    ],
+    [
+      "How does MCP handle authentication?",
+      "MCP handles authentication for remote servers through OAuth 2.1. The specification treats the MCP server as a resource server that relies on a separate authorisation server to issue tokens, so you can connect it to your existing identity provider. You still need to define which tools each user and agent may call."
+    ]
+  ],
+  "form_h": "Give your agents safe, governed access to the systems they need",
+  "research": {
+    "primary": "model context protocol for enterprises",
+    "secondary": [
+      "what is MCP",
+      "MCP security",
+      "MCP governance",
+      "MCP server vs client"
+    ],
+    "top_urls": [
+      "https://modelcontextprotocol.io/specification/2026-07-28/architecture",
+      "https://tray.ai/blog/mcp-security-governance-enterprise/",
+      "https://kiteworks.com/cybersecurity-risk-management/model-context-protocol-enterprise-security",
+      "https://nhimg.org/articles/model-context-protocol-security-exposes-a-new-governance-gap/",
+      "https://www.solo.io/blog/enterprise-challenges-with-mcp-adoption"
+    ],
+    "gaps": "Results split between developer-level spec pages and vendor security pitches. Few explain MCP for business leaders in plain terms, map each risk to a control in one place, or say when a direct API integration is the better choice."
+  },
+  "tags": [
+    "Agents",
+    "Integration"
+  ]
+}

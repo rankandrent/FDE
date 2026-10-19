@@ -178,60 +178,16 @@ SERP research without Semrush (no search volume data). Keywords chosen from SERP
   - https://azumo.com/forward-deployed-ai-engineers
 - Gaps we cover: Generic engagement-model pages compare billing models (fixed price, T&M, dedicated team) but not staged AI paths. FDE vendor pages list tiers without explaining when to skip a stage, the trade-offs of managed services, or how individual embedded engineers differ from pods. Page fetches failed in this session (DNS), so structure was inferred from search snippets and no statistics were used.
 
-## /blog/how-to-hire-forward-deployed-engineers/
-- Primary: how to hire forward deployed engineers
-- Secondary: forward deployed engineer skills, forward deployed engineer interview questions, hire FDE in-house vs partner
+## /blog/build-vs-buy-ai-agents/
+- Primary: build vs buy ai agents
+- Secondary: build vs buy agentic ai, ai agent platform vs custom, custom ai agent cost
 - Top URLs:
-  - https://www.paraform.com/insights/how-to-hire-a-forward-deployed-engineer
-  - https://www.growthaccelerationpartners.com/?p=29363
-  - https://www.entrans.ai/blog/how-to-hire-forward-deployed-engineers
-  - https://fde.academy/blog/hire-forward-deployed-engineers
-  - https://dataford.io/roles/forward-deployed-engineer
-- Gaps we cover: Top results are recruiter-led and focus on single hires. Few compare in-house, contractor and pod options side by side, explain the three FDE flavors in one place, or address handover and internal ownership after the engineer leaves.
-
-## /blog/forward-deployed-engineering-cost/
-- Primary: forward deployed engineering cost
-- Secondary: forward deployed engineer salary, forward deployed engineering pricing model, outcome-based pricing FDE
-- Top URLs:
-  - https://www.oxagile.com/article/forward-deployed-engineer-salary-vs-outsourcing/
-  - https://www.glassdoor.com/Salaries/forward-deployed-engineer-salary-SRCH_KO0,25.htm
-  - https://www.ziprecruiter.com/Salaries/Forward-Deployment-Engineer-Salary
-  - https://www.secondtalent.com/cost-to-hire/forward-deployed-engineer/
-  - https://www.antoinebuteau.com/forward-deployed-company-series-7-pricing-and-packaging-the-forward-deployed-company/
-- Gaps we cover: Results are dominated by salary aggregators and freelance rate cards. Few explain partner pricing models side by side, when outcome-based pricing is realistic, or how to structure a first engagement budget around discovery.
-
-## /blog/why-ai-pilots-fail-to-reach-production/
-- Primary: why AI pilots fail
-- Secondary: AI pilot to production, AI pilot purgatory, why AI projects fail to reach production
-- Top URLs:
-  - https://witness.ai/blog/why-ai-pilots-fail/
-  - https://www.raftlabs.com/blog/ai-pilot-to-production
-  - https://www.rhythms.ai/blog/2026-06-09-why-ai-agent-pilots-fail
-  - https://www.techtarget.com/searchenterpriseai/tip/Why-AI-pilots-fail-and-how-to-move-them-into-production
-  - https://www.softwareseni.com/why-88-to-95-percent-of-enterprise-ai-pilots-never-reach-production/
-- Gaps we cover: Most results list failure reasons but give no side-by-side of pilot versus production standards, no readiness test before scaling, and little on who should own the system after launch.
-
-## /blog/how-to-evaluate-ai-agents/
-- Primary: how to evaluate AI agents
-- Secondary: AI agent evaluation, LLM as a judge, golden dataset AI evaluation, AI agent regression testing
-- Top URLs:
-  - https://anthropic.com/engineering/demystifying-evals-for-ai-agents
-  - https://arize.com/guides/llm-as-a-judge/
-  - https://braintrust.dev/articles/how-to-test-ai-agents
-  - https://mlflow.org/articles/tags/agent-evaluation
-  - https://getwidget.dev/blog/how-to-evaluate-ai-agents/
-- Gaps we cover: Vendor results tie evaluation to their own tools. Few give a tool-neutral sequence from golden dataset to production monitoring, compare graders in one table, or are honest about the ongoing expert effort evaluation needs.
-
-## /blog/model-context-protocol-for-enterprises/
-- Primary: model context protocol for enterprises
-- Secondary: what is MCP, MCP security, MCP governance, MCP server vs client
-- Top URLs:
-  - https://modelcontextprotocol.io/specification/2026-07-28/architecture
-  - https://tray.ai/blog/mcp-security-governance-enterprise/
-  - https://kiteworks.com/cybersecurity-risk-management/model-context-protocol-enterprise-security
-  - https://nhimg.org/articles/model-context-protocol-security-exposes-a-new-governance-gap/
-  - https://www.solo.io/blog/enterprise-challenges-with-mcp-adoption
-- Gaps we cover: Results split between developer-level spec pages and vendor security pitches. Few explain MCP for business leaders in plain terms, map each risk to a control in one place, or say when a direct API integration is the better choice.
+  - https://aisera.com/blog/build-vs-buy/
+  - https://retool.com/blog/build-vs-buy-ai-agents
+  - https://www.turing.com/resources/build-vs-buy-ai-agents
+  - https://blog.dataiku.com/build-vs-buy-for-ai-agents
+  - https://www.lyzr.ai/blog/build-vs-buy-agentic-ai/
+- Gaps we cover: Top-ranking pages are mostly vendors arguing for their own model (buy or build platform). Few present the partner option as a third path, give a per-use-case scoring method, or advise owning data pipelines and evaluation sets as a hedge. Vendor cost figures were excluded as self-interested. WebFetch was unavailable (DNS failure); research relied on search-result summaries.
 
 ## /blog/ai-readiness-checklist/
 - Primary: AI readiness checklist
@@ -244,49 +200,16 @@ SERP research without Semrush (no search volume data). Keywords chosen from SERP
   - https://www.joinleland.com/library/a/ai-readiness-assessment
 - Gaps we cover: Many top results are gated downloads or high-level frameworks. Few give ungated pass or fail checks per area, tie the checklist to one use case, or explain which gaps block a pilot versus only block scale.
 
-## /blog/fde-team-structure/
-- Primary: fde team structure
-- Secondary: forward deployed engineering team structure, fde pod roles, deployment strategist vs forward deployed engineer, fde handover
+## /blog/model-context-protocol-for-enterprises/
+- Primary: model context protocol for enterprises
+- Secondary: what is MCP, MCP security, MCP governance, MCP server vs client
 - Top URLs:
-  - https://usetandem.ai/blog/fde-team-structure
-  - https://www.insightpartners.com/ideas/scaling-fde-bench/
-  - https://www.salesforce.com/blog/forward-deployed-engineer/
-  - https://posthog.com/handbook/forward-deployed-engineering/overview
-  - https://usetandem.ai/blog/fde-handoff-runbook
-- Gaps we cover: Top results describe models and roles from the vendor side; few give concrete pod ratios, weekly rituals that include client staff, or a staged handover plan. Almost none cover the client-side commitments a pod needs or the cost trade-off versus staff augmentation. WebFetch was unavailable (DNS failure), so headings were taken from search-result summaries.
-
-## /blog/rag-vs-fine-tuning/
-- Primary: rag vs fine-tuning
-- Secondary: rag vs fine-tuning enterprise, when to use rag or fine-tuning, rag vs fine-tuning cost
-- Top URLs:
-  - https://www.glean.com/blog/rag-vs-llm
-  - https://www.cmarix.com/blog/rag-vs-fine-tuning-enterprise-ai/
-  - https://www.artiba.org/blog/rag-vs-fine-tuning-choosing-the-right-enterprise-ai-strategy
-  - https://petronellatech.com/blog/?p=24470
-  - https://www.progress.com/blogs/rag-vs-fine-tuning-when-to-use-which
-- Gaps we cover: Top results agree on knowledge vs behaviour but rarely explain how to decide with an evaluation set, the data-preparation burden of fine-tuning, re-tuning when base models change, or access control at retrieval time. Adoption figures (Menlo Ventures 51%/9%) appear only second-hand, so they were left out. WebFetch was unavailable (DNS failure); research relied on search-result summaries.
-
-## /blog/human-in-the-loop-ai-agents/
-- Primary: human in the loop ai agents
-- Secondary: ai agent autonomy levels, ai agent approval workflow, human in the loop review queue, approval fatigue
-- Top URLs:
-  - https://permit.io/blog/human-in-the-loop-for-ai-agents-best-practices-frameworks-use-cases-and-demo
-  - https://pickaxe.co/post/human-in-the-loop-ai-agents
-  - https://docs.oracle.com/en/cloud/paas/application-integration/human-loop/overview-human-loop-agentic-ai.html
-  - https://knightcolumbia.org/content/levels-of-autonomy-for-ai-agents-1
-  - https://tianpan.co/blog/2026-04-23-hitl-queue-dynamics-approver-fatigue
-- Gaps we cover: Top results define HITL and list approval gates but rarely treat the review queue as an operational system (ownership, SLAs, queue metrics), rarely warn about confidence thresholds, and seldom describe how to widen autonomy with evidence. WebFetch was unavailable (DNS failure); research relied on search-result summaries.
-
-## /blog/prompt-injection-explained/
-- Primary: prompt injection
-- Secondary: prompt injection explained, indirect prompt injection, owasp llm top 10 prompt injection, prompt injection mitigation
-- Top URLs:
-  - https://genai.owasp.org/llmrisk/llm01-prompt-injection/
-  - https://www.cyberhaven.com/infosec-essentials/prompt-injection
-  - https://deepstrike.io/blog/prompt-injection-attacks
-  - https://attack.mitre.org/techniques/T1698/
-  - https://www.kunalganglani.com/blog/indirect-prompt-injection-ai-agents
-- Gaps we cover: Top results are written for security engineers; few translate risk into business impact, give leaders questions to ask vendors, or frame defence as containment rather than prevention. Little coverage of how excessive agency multiplies injection impact. WebFetch was unavailable (DNS failure); OWASP facts were cross-checked across search-result summaries.
+  - https://modelcontextprotocol.io/specification/2026-07-28/architecture
+  - https://tray.ai/blog/mcp-security-governance-enterprise/
+  - https://kiteworks.com/cybersecurity-risk-management/model-context-protocol-enterprise-security
+  - https://nhimg.org/articles/model-context-protocol-security-exposes-a-new-governance-gap/
+  - https://www.solo.io/blog/enterprise-challenges-with-mcp-adoption
+- Gaps we cover: Results split between developer-level spec pages and vendor security pitches. Few explain MCP for business leaders in plain terms, map each risk to a control in one place, or say when a direct API integration is the better choice.
 
 ## /blog/ai-agent-guardrails/
 - Primary: ai agent guardrails
@@ -299,13 +222,90 @@ SERP research without Semrush (no search volume data). Keywords chosen from SERP
   - https://clickhouse.com/resources/engineering/llm-guardrails
 - Gaps we cover: Top results list guardrail categories but give few worked examples of turning business policy into code checks, rarely address false-block rates and latency trade-offs, and under-cover per-agent identities and downstream authorisation. Gartner June 2025 forecast confirmed across multiple news reports. WebFetch was unavailable (DNS failure); research relied on search-result summaries.
 
-## /blog/build-vs-buy-ai-agents/
-- Primary: build vs buy ai agents
-- Secondary: build vs buy agentic ai, ai agent platform vs custom, custom ai agent cost
+## /blog/how-to-evaluate-ai-agents/
+- Primary: how to evaluate AI agents
+- Secondary: AI agent evaluation, LLM as a judge, golden dataset AI evaluation, AI agent regression testing
 - Top URLs:
-  - https://aisera.com/blog/build-vs-buy/
-  - https://retool.com/blog/build-vs-buy-ai-agents
-  - https://www.turing.com/resources/build-vs-buy-ai-agents
-  - https://blog.dataiku.com/build-vs-buy-for-ai-agents
-  - https://www.lyzr.ai/blog/build-vs-buy-agentic-ai/
-- Gaps we cover: Top-ranking pages are mostly vendors arguing for their own model (buy or build platform). Few present the partner option as a third path, give a per-use-case scoring method, or advise owning data pipelines and evaluation sets as a hedge. Vendor cost figures were excluded as self-interested. WebFetch was unavailable (DNS failure); research relied on search-result summaries.
+  - https://anthropic.com/engineering/demystifying-evals-for-ai-agents
+  - https://arize.com/guides/llm-as-a-judge/
+  - https://braintrust.dev/articles/how-to-test-ai-agents
+  - https://mlflow.org/articles/tags/agent-evaluation
+  - https://getwidget.dev/blog/how-to-evaluate-ai-agents/
+- Gaps we cover: Vendor results tie evaluation to their own tools. Few give a tool-neutral sequence from golden dataset to production monitoring, compare graders in one table, or are honest about the ongoing expert effort evaluation needs.
+
+## /blog/prompt-injection-explained/
+- Primary: prompt injection
+- Secondary: prompt injection explained, indirect prompt injection, owasp llm top 10 prompt injection, prompt injection mitigation
+- Top URLs:
+  - https://genai.owasp.org/llmrisk/llm01-prompt-injection/
+  - https://www.cyberhaven.com/infosec-essentials/prompt-injection
+  - https://deepstrike.io/blog/prompt-injection-attacks
+  - https://attack.mitre.org/techniques/T1698/
+  - https://www.kunalganglani.com/blog/indirect-prompt-injection-ai-agents
+- Gaps we cover: Top results are written for security engineers; few translate risk into business impact, give leaders questions to ask vendors, or frame defence as containment rather than prevention. Little coverage of how excessive agency multiplies injection impact. WebFetch was unavailable (DNS failure); OWASP facts were cross-checked across search-result summaries.
+
+## /blog/human-in-the-loop-ai-agents/
+- Primary: human in the loop ai agents
+- Secondary: ai agent autonomy levels, ai agent approval workflow, human in the loop review queue, approval fatigue
+- Top URLs:
+  - https://permit.io/blog/human-in-the-loop-for-ai-agents-best-practices-frameworks-use-cases-and-demo
+  - https://pickaxe.co/post/human-in-the-loop-ai-agents
+  - https://docs.oracle.com/en/cloud/paas/application-integration/human-loop/overview-human-loop-agentic-ai.html
+  - https://knightcolumbia.org/content/levels-of-autonomy-for-ai-agents-1
+  - https://tianpan.co/blog/2026-04-23-hitl-queue-dynamics-approver-fatigue
+- Gaps we cover: Top results define HITL and list approval gates but rarely treat the review queue as an operational system (ownership, SLAs, queue metrics), rarely warn about confidence thresholds, and seldom describe how to widen autonomy with evidence. WebFetch was unavailable (DNS failure); research relied on search-result summaries.
+
+## /blog/why-ai-pilots-fail-to-reach-production/
+- Primary: why AI pilots fail
+- Secondary: AI pilot to production, AI pilot purgatory, why AI projects fail to reach production
+- Top URLs:
+  - https://witness.ai/blog/why-ai-pilots-fail/
+  - https://www.raftlabs.com/blog/ai-pilot-to-production
+  - https://www.rhythms.ai/blog/2026-06-09-why-ai-agent-pilots-fail
+  - https://www.techtarget.com/searchenterpriseai/tip/Why-AI-pilots-fail-and-how-to-move-them-into-production
+  - https://www.softwareseni.com/why-88-to-95-percent-of-enterprise-ai-pilots-never-reach-production/
+- Gaps we cover: Most results list failure reasons but give no side-by-side of pilot versus production standards, no readiness test before scaling, and little on who should own the system after launch.
+
+## /blog/forward-deployed-engineering-cost/
+- Primary: forward deployed engineering cost
+- Secondary: forward deployed engineer salary, forward deployed engineering pricing model, outcome-based pricing FDE
+- Top URLs:
+  - https://www.oxagile.com/article/forward-deployed-engineer-salary-vs-outsourcing/
+  - https://www.glassdoor.com/Salaries/forward-deployed-engineer-salary-SRCH_KO0,25.htm
+  - https://www.ziprecruiter.com/Salaries/Forward-Deployment-Engineer-Salary
+  - https://www.secondtalent.com/cost-to-hire/forward-deployed-engineer/
+  - https://www.antoinebuteau.com/forward-deployed-company-series-7-pricing-and-packaging-the-forward-deployed-company/
+- Gaps we cover: Results are dominated by salary aggregators and freelance rate cards. Few explain partner pricing models side by side, when outcome-based pricing is realistic, or how to structure a first engagement budget around discovery.
+
+## /blog/rag-vs-fine-tuning/
+- Primary: rag vs fine-tuning
+- Secondary: rag vs fine-tuning enterprise, when to use rag or fine-tuning, rag vs fine-tuning cost
+- Top URLs:
+  - https://www.glean.com/blog/rag-vs-llm
+  - https://www.cmarix.com/blog/rag-vs-fine-tuning-enterprise-ai/
+  - https://www.artiba.org/blog/rag-vs-fine-tuning-choosing-the-right-enterprise-ai-strategy
+  - https://petronellatech.com/blog/?p=24470
+  - https://www.progress.com/blogs/rag-vs-fine-tuning-when-to-use-which
+- Gaps we cover: Top results agree on knowledge vs behaviour but rarely explain how to decide with an evaluation set, the data-preparation burden of fine-tuning, re-tuning when base models change, or access control at retrieval time. Adoption figures (Menlo Ventures 51%/9%) appear only second-hand, so they were left out. WebFetch was unavailable (DNS failure); research relied on search-result summaries.
+
+## /blog/fde-team-structure/
+- Primary: fde team structure
+- Secondary: forward deployed engineering team structure, fde pod roles, deployment strategist vs forward deployed engineer, fde handover
+- Top URLs:
+  - https://usetandem.ai/blog/fde-team-structure
+  - https://www.insightpartners.com/ideas/scaling-fde-bench/
+  - https://www.salesforce.com/blog/forward-deployed-engineer/
+  - https://posthog.com/handbook/forward-deployed-engineering/overview
+  - https://usetandem.ai/blog/fde-handoff-runbook
+- Gaps we cover: Top results describe models and roles from the vendor side; few give concrete pod ratios, weekly rituals that include client staff, or a staged handover plan. Almost none cover the client-side commitments a pod needs or the cost trade-off versus staff augmentation. WebFetch was unavailable (DNS failure), so headings were taken from search-result summaries.
+
+## /blog/how-to-hire-forward-deployed-engineers/
+- Primary: how to hire forward deployed engineers
+- Secondary: forward deployed engineer skills, forward deployed engineer interview questions, hire FDE in-house vs partner
+- Top URLs:
+  - https://www.paraform.com/insights/how-to-hire-a-forward-deployed-engineer
+  - https://www.growthaccelerationpartners.com/?p=29363
+  - https://www.entrans.ai/blog/how-to-hire-forward-deployed-engineers
+  - https://fde.academy/blog/hire-forward-deployed-engineers
+  - https://dataford.io/roles/forward-deployed-engineer
+- Gaps we cover: Top results are recruiter-led and focus on single hires. Few compare in-house, contractor and pod options side by side, explain the three FDE flavors in one place, or address handover and internal ownership after the engineer leaves.

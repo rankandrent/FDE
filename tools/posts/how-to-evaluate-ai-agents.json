@@ -1,0 +1,188 @@
+{
+  "path": "/blog/how-to-evaluate-ai-agents/",
+  "title": "How to evaluate AI agents before and after launch | tkxel FDE",
+  "desc": "How to evaluate AI agents: build a golden dataset, use LLM-as-judge with care, gate releases with regression tests in CI, add human review, monitor production.",
+  "eyebrow": "Article",
+  "h1": "How to evaluate AI agents: from golden datasets to production monitoring",
+  "lede": "Evaluating AI agents means testing both what they produce and how they get there. A reliable approach combines a golden dataset of real cases, code-based checks, an LLM judge calibrated against human labels, regression tests that gate every release, human review of risky outputs, and monitoring of live traffic that feeds new cases back into the tests.",
+  "date": "2026-09-24",
+  "date_label": "24 September 2026",
+  "read_min": 9,
+  "sections": [
+    {
+      "h2": "Why agent evaluation is different",
+      "paras": [
+        "Agent evaluation is harder than testing a single model response because agents take several steps, call tools and change state in other systems. A final answer can look correct even when the agent took a wrong or unsafe path to reach it.",
+        "Anthropic’s engineering guidance on agent evals describes an eval as giving an input to an AI system and applying grading logic to its output, and it separates the parts you need: tasks, trials, transcripts, outcomes and graders. For agents, you usually grade both the outcome and selected steps along the way.",
+        "Agents are also non-deterministic. The same input can produce different paths on different runs, so a single pass on each test case tells you less than you think. Run important cases several times and track how often the agent succeeds, not just whether it succeeded once."
+      ]
+    },
+    {
+      "h2": "Build a golden dataset first",
+      "paras": [
+        "A golden dataset is a curated set of realistic inputs with a description of what a good result looks like for each one. It is the foundation of every other evaluation method, because a judge or a CI gate is only as good as the cases it runs on.",
+        "Start small and real. Fifty to a hundred cases drawn from actual tickets, documents or requests are more useful than a thousand synthetic ones, and you should add every production failure back into the set once it is understood.",
+        "Keep a small held-out portion that the team does not tune against. If prompts are adjusted until every golden case passes, scores will look better than real-world performance, and the held-out cases are how you notice."
+      ],
+      "bullets": [
+        "Cover common cases, known edge cases and inputs the agent should refuse.",
+        "Write the expected outcome, the tools that should be called and any facts that must appear.",
+        "Have domain experts review the expected results, not only engineers.",
+        "Version the dataset alongside the code so results stay comparable."
+      ]
+    },
+    {
+      "h2": "Score the path as well as the answer",
+      "paras": [
+        "Trajectory scoring checks whether the agent took sensible steps, not only whether it reached an acceptable answer. One practitioner write-up on agent evals describes a case where task success held at 94% while tool-call accuracy was only 71%, a gap that outcome-only scoring would have hidden.",
+        "Be selective, though. Anthropic’s guidance warns against grading rigid paths, because agents sometimes find valid routes you did not anticipate. Check the steps that carry risk or cost, such as which tools were called and with what arguments, and leave the rest to outcome scoring."
+      ],
+      "bullets": [
+        "Did the agent call the right tool for the task?",
+        "Were the arguments correct and within the user’s permissions?",
+        "Did it stop and ask, or escalate, when information was missing?",
+        "Did it avoid unnecessary calls that add cost and latency?"
+      ]
+    },
+    {
+      "h2": "Choose the right grader for each check",
+      "paras": [
+        "Use the simplest grader that can judge a check reliably. Code-based checks are fast and exact; LLM judges handle meaning; humans handle judgment calls and calibrate the other two.",
+        "Most mature setups use all three together. Code checks run first because they are cheap, the judge scores what code cannot, and humans review a sample plus anything the judge marks as uncertain."
+      ],
+      "table": [
+        "Agent evaluation graders compared",
+        [
+          "Grader",
+          "Good for",
+          "Limits"
+        ],
+        [
+          [
+            "Code-based checks",
+            "Schema validity, correct tool called, latency, cost, required fields",
+            "Cannot judge tone, relevance or reasoning"
+          ],
+          [
+            "LLM-as-judge",
+            "Faithfulness to sources, helpfulness, policy compliance, step quality",
+            "Can drift or share the agent’s blind spots; needs calibration"
+          ],
+          [
+            "Human review",
+            "High-risk outputs, ambiguous cases, judge calibration",
+            "Slow and costly, so use it on samples"
+          ]
+        ]
+      ]
+    },
+    {
+      "h2": "Use LLM-as-judge without fooling yourself",
+      "paras": [
+        "An LLM judge is useful only after you have checked it against human labels on your own data. Write a clear rubric with one dimension per question, run the judge on golden cases that experts have already scored, and compare the two before you rely on it.",
+        "Several practitioner guides, including Arize’s guide to LLM-as-a-judge, suggest aiming for high agreement with human labels before scaling a judge up, and rechecking it periodically because judges drift when models or prompts change. Allow the judge to answer “unknown” when evidence is missing rather than forcing a pass or fail.",
+        "Use a different model, or at least a different prompt and context, for the judge than for the agent where you can. A judge that shares the agent’s assumptions tends to approve the same mistakes the agent makes."
+      ]
+    },
+    {
+      "h2": "Gate every release with regression tests in CI",
+      "paras": [
+        "Regression evals stop a change from quietly making the agent worse. Run the golden dataset automatically on every pull request that touches prompts, tools, retrieval or model versions, and block the merge if key scores fall below a set threshold.",
+        "Set a separate threshold for each metric. MLflow’s guidance on agent evaluation notes that a release can hold task success steady while latency doubles, so a single blended score hides problems.",
+        "Keep the CI suite fast enough that engineers do not skip it. A focused set of a few dozen cases can run on every pull request, while the full dataset runs nightly or before each release."
+      ],
+      "bullets": [
+        "Task success and tool-call accuracy.",
+        "Faithfulness to retrieved sources.",
+        "Policy and safety checks.",
+        "Latency and cost per task."
+      ]
+    },
+    {
+      "h2": "Keep humans in the loop where it matters",
+      "paras": [
+        "Human review belongs where mistakes are costly or hard to undo. Route high-risk actions, such as payments, customer commitments or record changes, to a person for approval, and sample a share of routine outputs for expert review each week.",
+        "Those reviews do double duty. They protect users today, and every correction becomes a labelled example for the golden dataset and for calibrating the judge.",
+        "Make review easy for the experts doing it. Show the input, the agent’s steps and its output on one screen, with a simple pass, fail or comment option. If reviewing takes ten minutes per case, it will stop happening within a month."
+      ]
+    },
+    {
+      "h2": "Monitor agents in production",
+      "paras": [
+        "Production monitoring catches the failures your test set did not anticipate. Standard uptime dashboards can look healthy while an agent makes poor decisions, so log full traces of each run and score a sample of live traffic with the same graders you use in CI.",
+        "At tkxel, our FDE pods hand over the evaluation suite with the agent: the golden dataset, judge prompts, CI gates and monitoring dashboards. The honest limitation is cost and effort. A good evaluation setup can take as much work as the first version of the agent, and it needs a domain expert’s time every week to stay useful."
+      ],
+      "bullets": [
+        "Track task success, escalation rate, tool errors, latency and cost over time.",
+        "Alert on sudden changes after model, prompt or data updates.",
+        "Review sampled failures weekly and add them to the golden dataset."
+      ]
+    }
+  ],
+  "related": [
+    [
+      "Agentic FDE pod",
+      "/services/agentic-fde-pod/"
+    ],
+    [
+      "AI security and governance",
+      "/services/ai-security-governance/"
+    ],
+    [
+      "Agentic platforms",
+      "/services/agentic-platforms/"
+    ]
+  ],
+  "cta": [
+    "Ship agents with an evaluation suite your team owns",
+    "We build golden datasets, CI gates and monitoring alongside the agent itself.",
+    "Plan my agent evals"
+  ],
+  "faq": [
+    [
+      "How do you evaluate an AI agent?",
+      "You evaluate an AI agent by testing it against a golden dataset of real cases, scoring both its final outcome and key steps such as tool calls. Use code-based checks for exact rules, an LLM judge calibrated against human labels for meaning, and human review for high-risk cases. Then run the same tests in CI and on sampled production traffic."
+    ],
+    [
+      "What is a golden dataset in AI evaluation?",
+      "A golden dataset is a curated set of realistic inputs paired with a description of what a correct result looks like. It is used to test an AI system consistently before and after every change. A good golden dataset includes common cases, edge cases and inputs that should be refused, and it grows as production failures are added back in."
+    ],
+    [
+      "Is LLM-as-a-judge reliable?",
+      "LLM-as-a-judge is reliable enough for many checks once you have calibrated it against human labels on your own data. Without that calibration, a judge can be confidently wrong or share the blind spots of the agent it is grading. Use a clear rubric, check agreement with expert scores, and recheck the judge whenever models or prompts change."
+    ],
+    [
+      "What metrics should you use to evaluate AI agents?",
+      "The core metrics for AI agents are task success, tool-call accuracy, faithfulness to sources, policy compliance, latency and cost per task. For customer-facing agents, add escalation rate and user satisfaction. Track each metric separately with its own threshold, because a single combined score can hide a regression in one area."
+    ],
+    [
+      "How do you test AI agents in CI/CD?",
+      "You test AI agents in CI/CD by running your golden dataset automatically on every change to prompts, tools, retrieval or models. The pipeline scores each case with code checks and an LLM judge, compares the results with thresholds, and blocks the merge if a key metric drops. Keep the dataset versioned with the code."
+    ],
+    [
+      "Do you still need human review if you use automated evals?",
+      "Yes, you still need human review, but on a smaller and more targeted share of outputs. Humans approve high-risk actions, review sampled outputs, and label cases used to calibrate the LLM judge. Automated evals scale the checking; human review keeps those checks honest and catches issues no rubric anticipated, especially in new or regulated workflows."
+    ]
+  ],
+  "form_h": "Know your agent works before your customers find out it does not",
+  "research": {
+    "primary": "how to evaluate AI agents",
+    "secondary": [
+      "AI agent evaluation",
+      "LLM as a judge",
+      "golden dataset AI evaluation",
+      "AI agent regression testing"
+    ],
+    "top_urls": [
+      "https://anthropic.com/engineering/demystifying-evals-for-ai-agents",
+      "https://arize.com/guides/llm-as-a-judge/",
+      "https://braintrust.dev/articles/how-to-test-ai-agents",
+      "https://mlflow.org/articles/tags/agent-evaluation",
+      "https://getwidget.dev/blog/how-to-evaluate-ai-agents/"
+    ],
+    "gaps": "Vendor results tie evaluation to their own tools. Few give a tool-neutral sequence from golden dataset to production monitoring, compare graders in one table, or are honest about the ongoing expert effort evaluation needs."
+  },
+  "tags": [
+    "Agents"
+  ]
+}

@@ -1,0 +1,191 @@
+{
+  "path": "/blog/ai-agent-guardrails/",
+  "title": "AI agent guardrails for production systems | tkxel FDE",
+  "desc": "AI agent guardrails for production: input and output validation, scoped tool permissions, policy checks in code, monitoring and kill switches that hold up.",
+  "eyebrow": "Article",
+  "h1": "AI agent guardrails: how to run agents safely in production",
+  "lede": "AI agent guardrails are controls that sit outside the model and limit what an agent can receive, do and return. In production that means validating inputs and outputs, scoping tool permissions, checking each action against policy in code, and monitoring behaviour with a kill switch ready. Layered guardrails catch what a single filter misses.",
+  "date": "2026-10-01",
+  "date_label": "1 October 2026",
+  "read_min": 8,
+  "sections": [
+    {
+      "h2": "What AI agent guardrails are",
+      "paras": [
+        "AI agent guardrails are enforcement code around the model that decides what goes in, what actions are allowed and what comes out. They are separate from the prompt, because a prompt is a request the model may ignore, while a guardrail is a check it cannot argue with.",
+        "Agents need more than chatbot guardrails because they act. Text filters help with what an agent says; action-level controls decide what it is allowed to do in your systems, and that is where most production risk sits.",
+        "Think of guardrails the way you think of controls around a new employee. You do not rely on a promise to follow policy; you give scoped system access, approval limits and an audit trail, and you widen them as trust builds."
+      ]
+    },
+    {
+      "h2": "Guardrails work in layers",
+      "paras": [
+        "Production guardrails run before, during and after each model step. No single layer is enough, so you design them to overlap.",
+        "The order matters. Cheap checks that reject obvious problems should run first, action checks should run immediately before any tool executes, and output checks should run before anything reaches a person or another system.",
+        "Each layer should fail closed for high-risk actions and fail open, with logging, only where a blocked request would cost more than a mistake. Decide this per action and write it down."
+      ],
+      "table": [
+        "Guardrail layers for production agents",
+        [
+          "Layer",
+          "Typical checks",
+          "Example"
+        ],
+        [
+          [
+            "Input",
+            "Injection patterns, PII, scope, size limits",
+            "Reject an upload with hidden instructions"
+          ],
+          [
+            "Tool and action",
+            "Allowlists, argument validation, permissions, budgets",
+            "Block a refund above the agent’s limit"
+          ],
+          [
+            "Policy",
+            "Business rules expressed in code",
+            "No discounts for accounts in collections"
+          ],
+          [
+            "Output",
+            "Schema, safety, data leakage, grounding",
+            "Strip an account number from a reply"
+          ],
+          [
+            "Runtime",
+            "Rate limits, loop detection, cost caps, kill switch",
+            "Pause an agent making repeated failed calls"
+          ]
+        ]
+      ]
+    },
+    {
+      "h2": "Input and output validation",
+      "paras": [
+        "Input validation screens what reaches the model; output validation checks what leaves it. On the way in, check for prompt injection patterns, sensitive data that should not be sent to a model, out-of-scope requests and oversized inputs.",
+        "On the way out, enforce a schema for anything a system will consume, check for leaked personal or confidential data, and for knowledge tasks, check that claims trace back to retrieved sources. Reject and retry on failure rather than passing malformed output downstream.",
+        "Run cheap, deterministic checks first and model-based classifiers only where they add value. A regular expression or schema check costs almost nothing, while a second model call on every request adds latency and spend.",
+        "Validation should also cover what the agent reads mid-task, not just the first user message. Tool results, search results and retrieved files can all carry injected instructions or unexpected data, so check them before they go back into the model."
+      ],
+      "bullets": [
+        "Use typed schemas for structured output and validate them strictly.",
+        "Redact or block personal data in both directions, based on your data policy.",
+        "Treat retrieved documents, emails and web content as untrusted input too."
+      ]
+    },
+    {
+      "h2": "Scope tool permissions tightly",
+      "paras": [
+        "Tool permissions are the most important guardrail for agents. OWASP lists excessive agency, giving a model more functions, permissions or autonomy than its task needs, as one of its top LLM risks, and many agents still run with the same broad credentials as the application around them.",
+        "Give each agent its own identity with the narrowest scopes that work. Prefer specific tools, such as “create draft reply”, over open-ended ones, such as “run any API call”, and validate arguments before execution.",
+        "Review permissions whenever you add a tool. Agents tend to gain capabilities one convenient addition at a time, and a quarterly access review catches scopes nobody remembers granting."
+      ],
+      "bullets": [
+        "Allowlist the tools each agent can call; deny everything else.",
+        "Validate arguments: record IDs, amounts and recipients within expected ranges.",
+        "Set per-action and per-day limits on value and volume.",
+        "Enforce authorisation in the downstream system, not only in the agent."
+      ]
+    },
+    {
+      "h2": "Turn policy into checks in code",
+      "paras": [
+        "Written policies only protect you once they are machine-checkable. Translate each rule that matters into a check that runs before the action, using data the agent cannot change.",
+        "A policy like “never offer a discount to accounts in collections” becomes a lookup against the billing system before any discount tool runs. The model can still suggest the discount; the check blocks it and logs why, and high-risk actions route to a human for approval.",
+        "Keep policy rules in a place the business can read, such as a versioned rules file or policy engine, rather than buried in agent code. When a rule changes, the business owner approves the change and the test set confirms it behaves as intended."
+      ]
+    },
+    {
+      "h2": "Design guardrails into the build, not after it",
+      "paras": [
+        "Guardrails are far cheaper to design in than to bolt on. When you list an agent’s tools during design, list the limits for each one at the same time: who it acts as, what values are allowed and when a human must approve.",
+        "Build a test set that includes adversarial cases from day one: injected documents, out-of-range amounts, requests for other customers’ data. Run it on every change, the same way you run unit tests, so a prompt tweak cannot quietly remove a protection.",
+        "Agree ownership early. Security usually owns the guardrail framework and the logs, the business owns the policy rules, and the engineering team owns the code that enforces them. Unowned guardrails go stale fast."
+      ]
+    },
+    {
+      "h2": "Monitor agents and keep a kill switch",
+      "paras": [
+        "Guardrails are not finished at launch; you need to see what they catch. Log every tool call, guardrail decision and escalation with enough context to replay it, and review blocked actions weekly to find new attack patterns and over-strict rules.",
+        "Make the logs useful for people outside engineering. A compliance reviewer should be able to see, for a given customer or date, what the agent did, which checks ran and who approved any high-risk step."
+      ],
+      "bullets": [
+        "Start new actions in observe-only mode before enabling them.",
+        "Alert on spikes in blocked actions, cost, error rates or loops.",
+        "Keep a kill switch that disables tools without taking the whole service down.",
+        "Re-run evaluation and red-team tests after model, prompt or tool changes."
+      ]
+    },
+    {
+      "h2": "Trade-offs to plan for",
+      "paras": [
+        "Every guardrail adds latency, cost and the chance of blocking a legitimate request. Classifier-based checks can also be wrong in both directions, and over-strict rules push users to work around the agent entirely.",
+        "Our pods tune guardrails against a test set of real and adversarial cases, so you can see the false-block rate before launch. Expect to adjust thresholds in the first weeks of production; Gartner predicted in June 2025 that over 40% of agentic AI projects will be cancelled by the end of 2027, citing costs, unclear value and inadequate risk controls, and guardrails you can measure are part of avoiding that list."
+      ]
+    }
+  ],
+  "related": [
+    [
+      "AI security and governance",
+      "/services/ai-security-governance/"
+    ],
+    [
+      "Agentic platforms",
+      "/services/agentic-platforms/"
+    ],
+    [
+      "Agentic FDE pod",
+      "/services/agentic-fde-pod/"
+    ]
+  ],
+  "cta": [
+    "Put measurable guardrails around your production agents",
+    "A pod adds permissions, policy checks and monitoring inside your environment.",
+    "Scope your guardrails"
+  ],
+  "faq": [
+    [
+      "What are guardrails for AI agents?",
+      "Guardrails for AI agents are controls outside the model that limit what the agent can receive, do and return. They include input checks for prompt injection and sensitive data, tool allowlists and argument validation, business-policy checks in code, output schema and safety checks, and runtime limits such as rate caps and kill switches. Unlike prompt instructions, guardrails are enforced by code the model cannot override."
+    ],
+    [
+      "What is the difference between guardrails and prompt engineering?",
+      "Guardrails enforce rules in code, while prompt engineering asks the model to follow rules. A prompt can tell an agent never to issue refunds over a set value, but the model may still try under the right input. A guardrail checks the refund amount before the tool runs and blocks it. Use prompts to guide behaviour and guardrails to guarantee the limits that matter."
+    ],
+    [
+      "How do you implement guardrails for LLM agents in production?",
+      "You implement guardrails for LLM agents in layers. Validate inputs for injection and sensitive data, scope each agent’s tools and credentials to the minimum, validate tool arguments, express business policies as code checks, validate outputs against schemas and data rules, and add runtime limits and monitoring. Start new actions in observe-only mode and tune thresholds against a test set before enabling them."
+    ],
+    [
+      "Do guardrails slow down AI agents?",
+      "Guardrails add some latency and cost, but usually far less than the risk they remove. Simple checks like schema validation, allowlists and policy lookups take milliseconds. Model-based classifiers add more, so run them only where needed, such as on untrusted input or high-risk actions. Measure guardrail latency and false-block rates as part of your evaluation so you can trade speed against safety deliberately."
+    ],
+    [
+      "What tools are used for LLM guardrails?",
+      "Common tools for LLM guardrails include open-source libraries such as NeMo Guardrails, Guardrails AI, LLM Guard and LlamaFirewall, alongside cloud provider safety filters. Most production set-ups combine more than one, because no single tool covers input, output, tool permissions and policy. Action-level controls, like scoped credentials and authorisation in downstream systems, are often custom code specific to your environment."
+    ]
+  ],
+  "form_h": "Run agents in production with controls you can prove",
+  "research": {
+    "primary": "ai agent guardrails",
+    "secondary": [
+      "ai agent guardrails production",
+      "llm guardrails",
+      "guardrails for ai agents",
+      "excessive agency"
+    ],
+    "top_urls": [
+      "https://galileo.ai/blog/ai-agent-guardrails-guide",
+      "https://blaxel.ai/blog/guardrails-for-ai-agents",
+      "https://mer.vin/2026/05/essential-guardrails-for-ai-agents-in-production-a-practical-multi-layer-blueprint/",
+      "https://lucaberton.com/blog/ai-agent-guardrails-production/",
+      "https://clickhouse.com/resources/engineering/llm-guardrails"
+    ],
+    "gaps": "Top results list guardrail categories but give few worked examples of turning business policy into code checks, rarely address false-block rates and latency trade-offs, and under-cover per-agent identities and downstream authorisation. Gartner June 2025 forecast confirmed across multiple news reports. WebFetch was unavailable (DNS failure); research relied on search-result summaries."
+  },
+  "tags": [
+    "Governance",
+    "Agents"
+  ]
+}

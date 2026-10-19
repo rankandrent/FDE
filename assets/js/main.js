@@ -97,3 +97,18 @@ document.querySelectorAll('[data-lead-form]').forEach((form) => {
     }
   });
 });
+
+// Blog index: filter article cards by topic
+document.querySelectorAll('.blog__filters').forEach((rail) => {
+  const cards = [...document.querySelectorAll('[data-blog-grid] .idx__card')];
+  rail.addEventListener('click', (e) => {
+    const btn = e.target.closest('[data-filter]');
+    if (!btn) return;
+    rail.querySelectorAll('[data-filter]').forEach((b) => {
+      b.classList.toggle('is-active', b === btn);
+      b.setAttribute('aria-pressed', String(b === btn));
+    });
+    const tag = btn.dataset.filter;
+    cards.forEach((c) => { c.hidden = tag !== 'all' && !c.dataset.tags.split(' ').includes(tag); });
+  });
+});

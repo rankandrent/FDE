@@ -1,0 +1,198 @@
+{
+  "path": "/blog/fde-team-structure/",
+  "title": "FDE team structure: roles, ratios and rituals | tkxel FDE",
+  "desc": "How to structure a forward deployed engineering team: the roles in a pod, sensible ratios, weekly rituals and a handover plan your own engineers can run.",
+  "eyebrow": "Article",
+  "h1": "FDE team structure: how to build a forward deployed engineering pod",
+  "lede": "FDE team structure works best as a small, embedded pod: one technical lead, two to three engineers matched to the problem, and a delivery owner who manages scope and adoption. The pod ships to production inside your environment on a weekly cadence, writes the runbooks as it goes and plans the handover from week one.",
+  "date": "2026-09-03",
+  "date_label": "3 September 2026",
+  "read_min": 8,
+  "sections": [
+    {
+      "h2": "What a forward deployed engineering team actually is",
+      "paras": [
+        "A forward deployed engineering team is a group of engineers who build production software inside a customer’s systems, rather than handing over specs from a distance. They sit with the people who own the problem, work in the real data and ship code that runs on day one.",
+        "The label covers different set-ups. Some companies run lone engineers attached to accounts, others run pods, and some treat FDE as a full function next to product engineering. Practitioner write-ups agree on the core idea but disagree on where the team reports and how long engagements last, so you should design the structure around your goal rather than copy one company’s model.",
+        "For a client engagement, the question is simpler than it is for a vendor building an FDE function. You need a team that can work inside your security rules, reach production on a real use case and leave your engineers able to run what was built. Everything in the structure below serves those three goals."
+      ]
+    },
+    {
+      "h2": "The four common FDE team models",
+      "paras": [
+        "Most FDE teams fall into one of four models, and each breaks at a different scale. Pick the one that matches how many projects you need to run in parallel and how much product work you expect the team to absorb."
+      ],
+      "table": [
+        "FDE team models compared",
+        [
+          "Model",
+          "How it works",
+          "Where it breaks"
+        ],
+        [
+          [
+            "Lone engineer",
+            "One FDE per account, wearing every hat",
+            "Knowledge sits in one head; burnout and slow handover"
+          ],
+          [
+            "Embedded pod",
+            "3–5 people with clear roles, one client at a time",
+            "Needs a repeatable playbook to scale beyond a few pods"
+          ],
+          [
+            "PS-adjacent",
+            "FDEs sit inside professional services",
+            "Drifts into billable customisation with no product feedback"
+          ],
+          [
+            "FDE as a function",
+            "A standing team with its own leadership and tooling",
+            "Heavy to stand up; overkill for a first use case"
+          ]
+        ]
+      ]
+    },
+    {
+      "h2": "Core roles in an FDE pod",
+      "paras": [
+        "An FDE pod needs one person who owns the technical design, engineers who build, and one person who owns the outcome with the business. Industry write-ups describe a common split: the deployment strategist decides what the code should solve and drives adoption, while forward deployed engineers own the build.",
+        "At tkxel we keep the pod at three to five engineers and add specialists only when the work calls for them. Here is how the roles usually break down."
+      ],
+      "h3s": [
+        [
+          "Tech lead (forward deployed lead)",
+          "Owns architecture, security review and the production bar. Writes code most days and is the single technical point of contact for your platform and security teams."
+        ],
+        [
+          "Forward deployed engineers",
+          "Two to three engineers matched to the problem: agent and LLM engineering, data engineering, or integration work against your systems of record. They ship, test and document."
+        ],
+        [
+          "Delivery owner or deployment strategist",
+          "Owns scope, the success metric and adoption. Runs discovery with process owners, keeps the backlog honest and reports progress in business terms."
+        ],
+        [
+          "Rotating specialists",
+          "A data scientist, security engineer or domain expert who joins for a sprint or two when the work needs them, then rolls off."
+        ]
+      ]
+    },
+    {
+      "h2": "Ratios and pod size",
+      "paras": [
+        "The right ratio is roughly one tech lead and one delivery owner for every two to three builders. Below three people, the pod has no slack for reviews, on-call or a sick day; above five, coordination overhead starts to eat the speed that made the model worth using.",
+        "Run one pod per use case rather than stretching one pod across several. If you have two unrelated workflows to automate, two small pods with separate success metrics will usually beat one large team juggling both."
+      ],
+      "bullets": [
+        "3 people: tech lead, one engineer, part-time delivery owner. Good for a narrow proof of value.",
+        "4 people: tech lead, two engineers, delivery owner. The default for one production agent or integration.",
+        "5 people: adds a data or security specialist when the data is messy or the workflow is regulated."
+      ]
+    },
+    {
+      "h2": "Where your own people fit in the pod",
+      "paras": [
+        "Your people are part of the pod, not an audience for it. At minimum you need a process owner who knows the workflow, a platform or security contact who can grant access, and one or two engineers who will own the system afterwards.",
+        "The process owner should give the pod three to five hours a week: discovery interviews, weekly demos and quick answers on edge cases. The platform contact unblocks environments, credentials and reviews, which is often the slowest dependency in the first fortnight.",
+        "Your future owners should join stand-ups and code reviews from the start and take tickets from the second or third sprint. That is the cheapest handover you will ever get, because knowledge moves while the work is happening rather than in a rushed final week."
+      ]
+    },
+    {
+      "h2": "Rituals that keep an embedded pod shipping",
+      "paras": [
+        "Embedded pods stay effective through a short weekly loop: plan, ship, demo, review. The rituals are ordinary, but the difference is that your people attend them, so decisions get made in the room rather than in a status report."
+      ],
+      "bullets": [
+        "Weekly demo with the process owner, using real data, not slides.",
+        "Daily 15-minute stand-up that includes at least one engineer from your team.",
+        "Fortnightly risk and security review with your platform or security lead.",
+        "A running decision log so nobody has to rediscover why something was built a certain way.",
+        "A metric review every two weeks against the baseline agreed in discovery."
+      ]
+    },
+    {
+      "h2": "Plan the handover from week one",
+      "paras": [
+        "Handover works when you treat it as a deliverable from the start, not a farewell meeting. Practitioner accounts of FDE handoffs point out that the real cost is the weeks of rediscovery afterwards, because so much account knowledge lives in the engineers’ heads.",
+        "We write an ownership schedule before the first sprint, pair your engineers into the code from early on and write symptom-first runbooks as features ship. The final weeks are a reverse shadow, where your team runs the system and on-call while the pod watches.",
+        "Write the handover criteria into the statement of work: which runbooks exist, who has been on call, which incidents your team has resolved alone. When those are met, the pod rolls off, whatever the calendar says."
+      ],
+      "bullets": [
+        "Name the internal owner of each component before build starts.",
+        "Write runbooks by symptom: what you see, what to check first, where to look.",
+        "Test portability at milestones by having someone who did not build it fix a staged issue.",
+        "Move on-call last, once your team has handled real incidents with support."
+      ]
+    },
+    {
+      "h2": "Trade-offs to plan for",
+      "paras": [
+        "The honest limitation of a pod model is that it depends on your side showing up. If the process owner cannot give a few hours a week, or access to systems takes a month, a small pod will stall faster than a large outsourced team that can work around gaps.",
+        "Pods also cost more per head than staff augmentation because you are paying for a lead and a delivery owner, not just hands. The return comes from fewer handoffs and a system your team can run, so the model fits work that needs to reach production, not open-ended capacity."
+      ]
+    }
+  ],
+  "related": [
+    [
+      "FDE pods",
+      "/services/fde-pods/"
+    ],
+    [
+      "What is forward deployed engineering?",
+      "/what-is-forward-deployed-engineering/"
+    ],
+    [
+      "FDE vs staff augmentation vs consulting",
+      "/fde-vs-staff-augmentation-vs-consulting/"
+    ]
+  ],
+  "cta": [
+    "Get a pod shaped around your first use case",
+    "We’ll map roles, ratio and handover plan to your systems in one working session.",
+    "Plan your pod"
+  ],
+  "faq": [
+    [
+      "How big should a forward deployed engineering team be?",
+      "A forward deployed engineering pod should usually be three to five people. That gives you a tech lead, two or three engineers and a delivery owner, which is enough for reviews and on-call cover without the coordination overhead of a large team. Start at the smaller end for a narrow proof of value and add a data or security specialist when the data is messy or the workflow is regulated. If you need more capacity, run a second pod on a separate use case rather than growing one pod past five."
+    ],
+    [
+      "What is the difference between a forward deployed engineer and a deployment strategist?",
+      "A forward deployed engineer builds and ships the code, while a deployment strategist decides what the code should solve and makes sure people use it. The engineer owns architecture, data work and integration. The strategist owns discovery, the success metric, change management and reporting results to executives. Some companies combine the roles, but most practitioner accounts say one person rarely does both well across a full engagement, which is why pods separate them."
+    ],
+    [
+      "Who should an FDE team report to?",
+      "An FDE team should report to whoever owns the outcome it is accountable for. Companies place the function under product, engineering or customer success, and each choice shapes behaviour: under product it feeds learnings back into the roadmap, under services it tends to drift towards billable customisation. For a client-side engagement, the pod should have one named sponsor on your side who can unblock access and accept the work."
+    ],
+    [
+      "How long does an FDE pod engagement last?",
+      "Most FDE pod engagements run around 10 to 16 weeks for one production use case. That covers a short discovery, several weekly build cycles and a reverse-shadow handover. Narrow proofs of value can finish faster, and multi-system integrations take longer. The length matters less than having a fixed success metric and a handover date agreed before build starts, so the engagement ends with a system your team owns."
+    ],
+    [
+      "How do you hand over a system built by forward deployed engineers?",
+      "You hand over an FDE-built system by planning ownership from week one and moving operations to your team in stages. Name internal owners per component, pair your engineers into the code early, and write symptom-first runbooks as each feature ships. In the final weeks, your team runs the system and on-call while the pod supports, and on-call moves only after your team has handled real incidents."
+    ]
+  ],
+  "form_h": "Design the pod that gets your first agent into production",
+  "research": {
+    "primary": "fde team structure",
+    "secondary": [
+      "forward deployed engineering team structure",
+      "fde pod roles",
+      "deployment strategist vs forward deployed engineer",
+      "fde handover"
+    ],
+    "top_urls": [
+      "https://usetandem.ai/blog/fde-team-structure",
+      "https://www.insightpartners.com/ideas/scaling-fde-bench/",
+      "https://www.salesforce.com/blog/forward-deployed-engineer/",
+      "https://posthog.com/handbook/forward-deployed-engineering/overview",
+      "https://usetandem.ai/blog/fde-handoff-runbook"
+    ],
+    "gaps": "Top results describe models and roles from the vendor side; few give concrete pod ratios, weekly rituals that include client staff, or a staged handover plan. Almost none cover the client-side commitments a pod needs or the cost trade-off versus staff augmentation. WebFetch was unavailable (DNS failure), so headings were taken from search-result summaries."
+  },
+  "tags": [
+    "FDE"
+  ]
+}

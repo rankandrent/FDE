@@ -1,0 +1,209 @@
+{
+  "path": "/blog/why-ai-pilots-fail-to-reach-production/",
+  "title": "Why AI pilots fail to reach production | tkxel FDE",
+  "desc": "Why AI pilots fail to reach production: no success metric, curated data, no owner, skipped integration and monitoring, plus a practical path to a live system.",
+  "eyebrow": "Article",
+  "h1": "Why AI pilots fail to reach production, and how to get yours over the line",
+  "lede": "AI pilots fail to reach production mainly because they are built to impress, not to operate. They run on curated data, lack a production success metric, have no owner after launch, and skip integration, security and monitoring work. Fixing those gaps before the build starts matters more than choosing a better model.",
+  "date": "2026-09-17",
+  "date_label": "17 September 2026",
+  "read_min": 8,
+  "sections": [
+    {
+      "h2": "How often AI pilots stall",
+      "paras": [
+        "AI pilots stall far more often than they ship. RAND’s research on AI projects found that more than 80% fail, roughly twice the failure rate of IT projects that do not involve AI.",
+        "The figure most often quoted for generative AI comes from MIT’s NANDA initiative, whose 2025 report found that about 95% of enterprise generative AI pilots delivered no measurable impact on profit and loss. Treat these as directional, since definitions of failure differ, but the pattern is consistent: the model is rarely the problem.",
+        "Summaries of the MIT NANDA report describe the cause as a learning gap: generic tools that never integrate with company systems or adapt to real workflows. That is an engineering and operating problem, which is good news, because it is one you can fix."
+      ]
+    },
+    {
+      "h2": "What the projects that ship do differently",
+      "paras": [
+        "Projects that reach production tend to start narrow, sit inside an existing workflow and have a clear owner. They aim at a process with a measurable cost rather than at a broad ambition such as “use AI in customer service”.",
+        "Secondary summaries of the MIT NANDA report also say that companies buying from specialised partners succeeded far more often than those building alone, and that back-office automation produced stronger returns than the sales and marketing uses that attracted most budgets. Vendors, tkxel included, have an interest in that finding, so weigh it alongside your own team’s capacity."
+      ]
+    },
+    {
+      "h2": "The six reasons pilots never ship",
+      "paras": [
+        "Most stalled pilots fail for the same organisational and engineering reasons. You can usually spot them in the first week if you know what to look for."
+      ],
+      "h3s": [
+        [
+          "No production success metric",
+          "The pilot is judged on whether the demo looks good, not on a business number such as handling time or error rate. Without that metric, nobody can make the case to fund production, and the pilot keeps running as an experiment with no decision date."
+        ],
+        [
+          "Curated data",
+          "Pilots often run on a clean sample. Real inputs are messier, and problems that were invisible in the pilot become systematic failures at scale."
+        ],
+        [
+          "No owner after launch",
+          "Nobody is accountable for running the system, fixing errors or deciding what happens when the AI is wrong. When it errs, it gets switched off."
+        ],
+        [
+          "Skipped integration",
+          "The pilot sits beside the real workflow instead of inside it. Users must copy and paste between tools, so adoption fades. A system that is not part of daily work never builds the usage data needed to justify scaling it."
+        ],
+        [
+          "Security and governance arrive late",
+          "Security review starts after the pilot succeeds, then finds issues with data access, logging or approvals that take months to resolve."
+        ],
+        [
+          "No evaluation or monitoring",
+          "There is no test suite to prove quality and no monitoring to catch drift, so leaders cannot trust the system enough to scale it."
+        ]
+      ]
+    },
+    {
+      "h2": "Pilot thinking versus production thinking",
+      "paras": [
+        "The difference between a pilot and a production system is the work around the model. A pilot proves something is possible; production proves it is reliable, secure and owned.",
+        "That surrounding work is often larger than the model work itself. Plan for it in the budget and timeline from the start, so success in the pilot does not trigger a second, unplanned project."
+      ],
+      "table": [
+        "How pilot and production approaches differ",
+        [
+          "Area",
+          "Typical pilot",
+          "Production-ready approach"
+        ],
+        [
+          [
+            "Success measure",
+            "Demo impresses a committee",
+            "A business metric agreed before build"
+          ],
+          [
+            "Data",
+            "Curated sample",
+            "Live data with access controls and edge cases"
+          ],
+          [
+            "Integration",
+            "Stand-alone tool",
+            "Inside the systems people already use"
+          ],
+          [
+            "Quality",
+            "Spot checks",
+            "Evaluation suite run on every change"
+          ],
+          [
+            "Ownership",
+            "Innovation team",
+            "Named business and technical owners"
+          ],
+          [
+            "Operations",
+            "None",
+            "Monitoring, alerting and a support runbook"
+          ]
+        ]
+      ]
+    },
+    {
+      "h2": "How to get an AI pilot into production",
+      "paras": [
+        "You get an AI pilot into production by treating it as a production project from the first day. That means defining the outcome, the owner and the operating standards before writing any code.",
+        "If you already have a stalled pilot, do not start again from scratch. Review it against the steps below, keep what works, and close the gaps in order: metric and owner first, then data and integration, then evaluation and monitoring."
+      ],
+      "bullets": [
+        "Pick one workflow with a measurable cost, such as invoice exceptions or support triage.",
+        "Agree the success metric and the threshold that justifies production spend.",
+        "Name a business owner and a technical owner who will run the system after launch.",
+        "Build against production-like data and real integrations, not a sandbox.",
+        "Bring security and compliance in during design, not after the demo.",
+        "Build an evaluation suite alongside the agent and run it on every change.",
+        "Launch with monitoring, alerting and a support runbook already in place.",
+        "Plan adoption: train users, collect feedback and adjust the workflow."
+      ]
+    },
+    {
+      "h2": "Where forward deployed engineers help",
+      "paras": [
+        "Forward deployed engineers close the gap between a working demo and a working system because they build inside your environment. They deal with your real data, your identity provider and your approval process from the start, so the hard problems surface early.",
+        "tkxel’s FDE pods are designed for this stage: a small team embeds with your people, ships one production workflow against an agreed metric, and hands over the code, evaluation suite and runbooks. The trade-off is that embedded work needs real access and time from your subject-matter experts. If you cannot give that, no outside team will get the system to production.",
+        "Handover is the other half of the job. An FDE pod should leave your team able to run, change and improve the system without the pod, which means documentation, runbooks, evaluation suites and time spent pairing with the engineers who will own it."
+      ]
+    },
+    {
+      "h2": "Signs your pilot is ready to scale",
+      "paras": [
+        "A pilot is ready to scale when it meets its agreed metric on real data and someone is ready to own it. If any of the checks below fail, fix that first rather than adding more users.",
+        "Scale in stages even when every check passes. Expand to one more team or a larger share of traffic, watch the metrics for a few weeks, then expand again. Staged rollout keeps a surprise from becoming an incident.",
+        "Keep the original process available during early rollout so users have a fallback. Remove it only when the new system has met its metric for long enough that the business owner is confident signing off, and record that decision so the next project can follow the same path."
+      ],
+      "bullets": [
+        "It beats the agreed metric on a representative sample of live inputs.",
+        "It passes its evaluation suite, and the suite runs automatically.",
+        "Security has approved data access, logging and human review points.",
+        "A named owner has a runbook and knows how to roll back.",
+        "Users are using it inside their normal tools, not in a separate demo."
+      ]
+    }
+  ],
+  "related": [
+    [
+      "Agentic FDE pod",
+      "/services/agentic-fde-pod/"
+    ],
+    [
+      "AI strategy and readiness",
+      "/services/ai-strategy-readiness/"
+    ],
+    [
+      "Adoption and enablement",
+      "/services/adoption-enablement/"
+    ]
+  ],
+  "cta": [
+    "Move your stalled AI pilot into production",
+    "An FDE pod embeds with your team and ships one workflow against a real metric.",
+    "Review my pilot"
+  ],
+  "faq": [
+    [
+      "Why do most AI pilots fail?",
+      "Most AI pilots fail because of missing business metrics, unrepresentative data and unclear ownership, not weak models. RAND found that more than 80% of AI projects fail. Pilots are often built to demonstrate what is possible, then lack the integration, security review and monitoring needed to run safely in production, so nobody is willing to fund or own the next step."
+    ],
+    [
+      "What percentage of AI pilots make it to production?",
+      "Only a small share of AI pilots make it to production with measurable value. MIT’s NANDA initiative reported in 2025 that about 95% of enterprise generative AI pilots delivered no measurable profit-and-loss impact. Definitions vary between studies, so treat the exact number with care, but every major source points to a large gap between pilots and production."
+    ],
+    [
+      "How do you move an AI project from pilot to production?",
+      "You move an AI project from pilot to production by setting a business metric, naming owners and building on real data and integrations from the start. Add an evaluation suite, bring security in during design, and launch with monitoring and a support runbook. Scale only after the system meets its metric on live inputs."
+    ],
+    [
+      "What is pilot purgatory in AI?",
+      "Pilot purgatory is when an AI project keeps running as an experiment but never gets funded or approved for production. It usually happens because the pilot cannot show a business result, has no owner, or fails security review late. The fix is to define production criteria at the start so the pilot either earns its way to production or stops."
+    ],
+    [
+      "How long should an AI pilot take?",
+      "An AI pilot should usually take weeks, not quarters, if the scope is one workflow with accessible data. Long pilots are often a sign of unclear goals or blocked data access. A better approach is a short discovery to remove those blockers, then a build phase aimed at production rather than a demo."
+    ]
+  ],
+  "form_h": "Turn your next AI pilot into a system your team runs every day",
+  "research": {
+    "primary": "why AI pilots fail",
+    "secondary": [
+      "AI pilot to production",
+      "AI pilot purgatory",
+      "why AI projects fail to reach production"
+    ],
+    "top_urls": [
+      "https://witness.ai/blog/why-ai-pilots-fail/",
+      "https://www.raftlabs.com/blog/ai-pilot-to-production",
+      "https://www.rhythms.ai/blog/2026-06-09-why-ai-agent-pilots-fail",
+      "https://www.techtarget.com/searchenterpriseai/tip/Why-AI-pilots-fail-and-how-to-move-them-into-production",
+      "https://www.softwareseni.com/why-88-to-95-percent-of-enterprise-ai-pilots-never-reach-production/"
+    ],
+    "gaps": "Most results list failure reasons but give no side-by-side of pilot versus production standards, no readiness test before scaling, and little on who should own the system after launch."
+  },
+  "tags": [
+    "Agents",
+    "Strategy"
+  ]
+}

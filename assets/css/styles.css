@@ -1160,3 +1160,8 @@ p {
 .art__body, .art__toc { min-width: 0; }
 .art__h1, .art__h2, .art__h3 { overflow-wrap: break-word; }
 @media (max-width: 1023px) { .art__layout { grid-template-columns: minmax(0, 1fr); } }
+/* Blog topic filter — tab rail treatment (§2.4): sans, sentence case, underline only */
+.blog__filters { display: flex; gap: 32px; margin-bottom: 40px; border-bottom: 1px solid var(--tk-border); overflow-x: auto; scrollbar-width: none; }
+.blog__filter { background: none; border: 0; border-bottom: 2px solid transparent; padding: 14px 0; font: 500 16px var(--tk-sans); color: var(--tk-text-muted); cursor: pointer; white-space: nowrap; }
+.blog__filter.is-active { color: var(--tk-text); border-color: var(--tk-accent); }
+.idx__card[hidden] { display: none; }

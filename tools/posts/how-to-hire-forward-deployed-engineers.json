@@ -1,0 +1,202 @@
+{
+  "path": "/blog/how-to-hire-forward-deployed-engineers/",
+  "title": "How to hire forward deployed engineers | tkxel FDE",
+  "desc": "How to hire forward deployed engineers: in-house versus partner pods, the skills that matter, interview signals to test for, and the mistakes that cost months.",
+  "eyebrow": "Article",
+  "h1": "How to hire forward deployed engineers without wasting a quarter",
+  "lede": "Hiring forward deployed engineers means finding people who can ship production code inside a customer’s systems and also run the conversation with that customer. You can hire them in-house, contract individuals, or bring in a partner pod. The right route depends on how soon you need results and whether the work is ongoing.",
+  "date": "2026-09-03",
+  "date_label": "3 September 2026",
+  "read_min": 8,
+  "sections": [
+    {
+      "h2": "What a forward deployed engineer actually does",
+      "paras": [
+        "A forward deployed engineer (FDE) is a senior engineer who works inside a customer’s environment to scope, build and ship working software against a real business outcome. The role sits between a software engineer, who builds for a product roadmap, and a solutions engineer, who demonstrates a product before the sale.",
+        "Most hiring problems start here. Paraform’s hiring guide says the most common reason searches fail is misalignment on which kind of FDE you need, and it separates enterprise integration specialists, post-sales AI implementation engineers and product-embedded FDEs into three distinct roles. If your job description blurs them, the wrong people apply and the right ones skip it."
+      ],
+      "bullets": [
+        "Integration-heavy FDE: connects your platform or agent to ERPs, CRMs, data warehouses and identity systems.",
+        "AI implementation FDE: builds agents, retrieval pipelines and evaluation suites on top of a customer’s data.",
+        "Product-embedded FDE: works with one customer but feeds reusable patterns back into your core product."
+      ]
+    },
+    {
+      "h2": "In-house hire, contractor or partner pod",
+      "paras": [
+        "You have three realistic ways to get FDE capacity: build an in-house team, contract individual engineers, or engage a partner that supplies a full pod. Each trades speed against long-term control.",
+        "An in-house team makes sense when forward deployment is part of your business model, such as a software company that deploys into every customer. A partner pod makes more sense when you need one or two production systems built inside your own company and then handed to your internal team.",
+        "Individual contractors sit in between. They can be a good fit for a narrow build, but one person rarely covers AI, data, integration and stakeholder work at once, and the knowledge leaves when the contract ends unless you plan for it."
+      ],
+      "table": [
+        "Comparison of FDE sourcing options",
+        [
+          "Option",
+          "Time to first engineer",
+          "Best for",
+          "Main trade-off"
+        ],
+        [
+          [
+            "In-house hire",
+            "Paraform estimates 8 to 12 weeks per search",
+            "Ongoing deployment across many customers",
+            "Slow to staff and hard to scale down"
+          ],
+          [
+            "Individual contractor",
+            "Days to weeks",
+            "Narrow, well-defined build",
+            "One person carries every skill and all the risk"
+          ],
+          [
+            "Partner pod (3 to 5 engineers)",
+            "Usually weeks",
+            "A defined outcome with a handover date",
+            "You depend on the partner’s bench and must plan the handover"
+          ]
+        ]
+      ]
+    },
+    {
+      "h2": "Skills to look for in an FDE",
+      "paras": [
+        "The FDE skill set is production engineering plus customer judgment, and you need both in the same person. A strong coder who will not talk to stakeholders fails in the field, and so does a consultant who cannot ship.",
+        "Weigh evidence of past deployments over pedigree. A candidate who has stood up a system in a messy client environment, with partial documentation and changing requirements, has already passed the hardest part of the job."
+      ],
+      "bullets": [
+        "Full-stack production skill: APIs, data pipelines, cloud infrastructure and enough front end to ship a usable tool.",
+        "Applied AI fluency: retrieval, tool calling, prompt and context design, and how to evaluate model output.",
+        "Integration experience: authentication, rate limits, data mapping and working with legacy systems.",
+        "Discovery skill: turning a vague request into a scoped, testable specification.",
+        "Written and spoken communication with non-technical stakeholders.",
+        "Ownership: comfort being the person accountable for whether the system works in production."
+      ]
+    },
+    {
+      "h2": "Interview signals that predict success",
+      "paras": [
+        "The best FDE interview tests deployment judgment, not algorithm puzzles. Several hiring guides warn that a standard software engineering loop misses the signal, because it never tests customer communication or tolerance for ambiguity.",
+        "Build your loop around realistic work. Ask candidates to explain a past deployment from end to end, then give them a scoping exercise with incomplete information and watch how they ask questions before they design."
+      ],
+      "h3s": [
+        [
+          "Deployment walkthrough",
+          "Ask the candidate to explain the architecture of a recent customer deployment. Listen for trade-offs they chose, constraints they worked around, and what broke after launch. Vague answers about “the team” usually mean they were not hands-on."
+        ],
+        [
+          "Live scoping exercise",
+          "Give a brief such as triaging a large backlog of support tickets with messy data that contains personal information. Strong candidates ask about data access, privacy and success metrics before proposing a model."
+        ],
+        [
+          "Customer roleplay",
+          "Have an interviewer play a stakeholder who changes a requirement halfway through. You are testing whether the candidate can push back clearly, reset scope and keep trust."
+        ],
+        [
+          "Paid trial sprint",
+          "For senior hires, a short paid trial on a real but contained problem shows more than any interview. Treat it as a two-way test of fit."
+        ]
+      ]
+    },
+    {
+      "h2": "Writing a job description that attracts real FDEs",
+      "paras": [
+        "A good FDE job description describes the deployments the person will own, not a generic list of languages. Strong candidates want to know whose systems they will work in, what outcome they will be measured on and how much travel or on-site time is involved.",
+        "State the seniority plainly and say who owns generalisation. One job description template warns that without an owner for turning field work into reusable product, you have written a consulting role with an engineering title, and experienced FDEs notice."
+      ],
+      "bullets": [
+        "The deployment context: industries, typical systems and data types.",
+        "The outcome the role is measured on, such as systems shipped to production.",
+        "Expected time with customers, on site or remote.",
+        "The team around the role, including who handles sales and support.",
+        "How field learnings flow back into the product or internal platform."
+      ]
+    },
+    {
+      "h2": "Common hiring mistakes",
+      "paras": [
+        "Most failed FDE searches repeat a handful of mistakes, and each one is avoidable. The cost is usually months of pipeline, not just one bad hire."
+      ],
+      "bullets": [
+        "Posting the role at junior or mid level when it needs senior judgment.",
+        "Hiring a pre-sales engineer who demos well but has never shipped to production.",
+        "Running slow interview loops; Paraform notes that top candidates accept faster offers elsewhere.",
+        "Skipping agreement on system access, code ownership and handover before the engineer starts.",
+        "Leaving no internal owner, so the system has nobody to maintain it after the FDE moves on."
+      ]
+    },
+    {
+      "h2": "How a partner pod changes the hiring problem",
+      "paras": [
+        "A partner pod replaces several individual hires with one accountable team. At tkxel, an FDE pod is three to five engineers, typically a lead, applied AI and data engineers, and an integration specialist, who work inside your environment against an agreed outcome and then hand over code, runbooks and evaluation suites.",
+        "The honest trade-off is that you do not build permanent headcount. If forward deployment is your core business, you will still need your own team, and a pod is best used to ship the first systems while you hire. If you need one production agent or integration delivered and owned internally, a pod is usually faster than a search.",
+        "Whichever route you choose, set up the first weeks properly. Give engineers access to systems and data before day one, name the internal owner who will run the system afterwards, and agree the production success metric in writing. Most delays in early FDE work come from waiting on access, not from engineering."
+      ]
+    }
+  ],
+  "related": [
+    [
+      "What is forward deployed engineering?",
+      "/what-is-forward-deployed-engineering/"
+    ],
+    [
+      "FDE vs staff augmentation vs consulting",
+      "/fde-vs-staff-augmentation-vs-consulting/"
+    ],
+    [
+      "FDE pods",
+      "/services/fde-pods/"
+    ]
+  ],
+  "cta": [
+    "Need FDE capacity before your next hire lands?",
+    "A tkxel pod can start inside your environment within weeks and hand over cleanly.",
+    "Talk to an FDE lead"
+  ],
+  "faq": [
+    [
+      "How do you hire a forward deployed engineer?",
+      "You hire a forward deployed engineer by defining which kind of FDE you need, then testing for production skill and customer judgment together. Write a job description that names the deployment context, run a loop with a deployment walkthrough, a live scoping exercise and a customer roleplay, and move quickly. If you need results before a search can finish, a partner pod is a practical alternative."
+    ],
+    [
+      "What skills does a forward deployed engineer need?",
+      "A forward deployed engineer needs senior full-stack engineering skill, applied AI fluency, integration experience and strong communication. In practice that means building APIs and data pipelines, working with retrieval and tool-calling agents, connecting to legacy systems, and turning a vague business request into a testable specification. Ownership matters as much as any technical skill, because the FDE is accountable for production results."
+    ],
+    [
+      "Is a forward deployed engineer the same as a solutions engineer?",
+      "No, a forward deployed engineer builds and ships production software, while a solutions engineer usually supports the sale with demos and technical answers. Some solutions engineers make good FDEs, but you should test whether a candidate has shipped and maintained real systems. Hiring a strong presenter who has never owned production code is one of the most common FDE hiring mistakes."
+    ],
+    [
+      "How long does it take to hire a forward deployed engineer?",
+      "Hiring a forward deployed engineer often takes two to three months. Paraform’s guide estimates 8 to 12 weeks for a full search, and slow interview loops make it longer because strong candidates accept other offers. A contractor or partner pod can usually start in weeks, which is why many companies use one to deliver the first project while the permanent search runs."
+    ],
+    [
+      "Should I hire FDEs in-house or use a partner?",
+      "You should hire in-house when forward deployment is an ongoing part of your business, and use a partner when you need a defined outcome delivered and handed over. In-house teams give long-term control but take time to staff. A partner pod gives you a full team quickly, with the trade-off that you must plan the handover to your own engineers."
+    ],
+    [
+      "What questions should I ask in an FDE interview?",
+      "Ask questions that show deployment judgment. Good examples are “Walk me through the architecture of your last customer deployment and what broke after launch,” “How would you scope this request with incomplete data?” and “Tell me about a time a client changed requirements midway.” Listen for trade-offs, clarifying questions before design, and clear ownership of results."
+    ]
+  ],
+  "form_h": "Get your first production system shipped while you build the team",
+  "research": {
+    "primary": "how to hire forward deployed engineers",
+    "secondary": [
+      "forward deployed engineer skills",
+      "forward deployed engineer interview questions",
+      "hire FDE in-house vs partner"
+    ],
+    "top_urls": [
+      "https://www.paraform.com/insights/how-to-hire-a-forward-deployed-engineer",
+      "https://www.growthaccelerationpartners.com/?p=29363",
+      "https://www.entrans.ai/blog/how-to-hire-forward-deployed-engineers",
+      "https://fde.academy/blog/hire-forward-deployed-engineers",
+      "https://dataford.io/roles/forward-deployed-engineer"
+    ],
+    "gaps": "Top results are recruiter-led and focus on single hires. Few compare in-house, contractor and pod options side by side, explain the three FDE flavors in one place, or address handover and internal ownership after the engineer leaves."
+  },
+  "tags": [
+    "FDE"
+  ]
+}

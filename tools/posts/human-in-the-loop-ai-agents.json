@@ -1,0 +1,204 @@
+{
+  "path": "/blog/human-in-the-loop-ai-agents/",
+  "title": "Human-in-the-loop AI agents: a design guide | tkxel FDE",
+  "desc": "Human-in-the-loop design for AI agents: choosing autonomy levels per action, building review queues people actually read, and escalation paths that hold up.",
+  "eyebrow": "Article",
+  "h1": "Human-in-the-loop AI agents: autonomy levels, review queues and escalation",
+  "lede": "Human-in-the-loop AI agents keep a person inside the decision cycle for actions that matter. You set autonomy per action based on reversibility and cost of error, route risky steps to a review queue with enough context to decide, and define escalation paths for anything outside the agent’s scope. Routine, reversible work runs on its own.",
+  "date": "2026-09-17",
+  "date_label": "17 September 2026",
+  "read_min": 8,
+  "sections": [
+    {
+      "h2": "What human-in-the-loop means for AI agents",
+      "paras": [
+        "Human-in-the-loop means a person approves, edits or rejects certain agent actions before they take effect. It differs from human-on-the-loop, where people monitor a running system and step in after the fact.",
+        "For agents, the distinction matters because agents act: they send emails, update records and move money. A chatbot that drafts an answer is low risk. An agent that issues the refund is not, and the design has to reflect that difference.",
+        "Human-in-the-loop is not a sign that the agent is weak. It is how you put an agent into production while you gather evidence about its accuracy, and how you keep accountability with a named person for decisions the business cares about."
+      ]
+    },
+    {
+      "h2": "Set autonomy per action, not per agent",
+      "paras": [
+        "The right autonomy level depends on the action, not on how smart the agent is. One agent can draft freely, update a CRM field on its own, and still need sign-off before sending a quote.",
+        "Research and practitioner frameworks describe levels from operator, where the human does the work with suggestions, up to observer, where the agent acts and humans watch. The middle levels are where most enterprise agents should live.",
+        "Write the level for each action into the agent’s configuration, not only into a design document. That way a change in autonomy is a reviewed code change with an owner and a date, rather than a quiet prompt edit."
+      ],
+      "table": [
+        "Autonomy levels for agent actions",
+        [
+          "Level",
+          "What the agent does",
+          "Example actions"
+        ],
+        [
+          [
+            "Suggest",
+            "Proposes; a human acts",
+            "Draft a reply, recommend a next step"
+          ],
+          [
+            "Act with approval",
+            "Prepares the action; a human approves",
+            "Send a customer email, issue a credit"
+          ],
+          [
+            "Act and notify",
+            "Acts, then logs and notifies",
+            "Update a ticket status, tag a record"
+          ],
+          [
+            "Act within policy",
+            "Acts inside pre-set limits without step review",
+            "Refunds under a set value, routine data fixes"
+          ]
+        ]
+      ]
+    },
+    {
+      "h2": "Decide what needs approval",
+      "paras": [
+        "Gate actions by consequence: reversibility, who it reaches, and how much it costs if wrong. A useful test is whether you could undo the action quietly in five minutes; if not, it probably needs a human.",
+        "Write this list with the business owner and your risk or compliance lead, not only with engineers. They know which mistakes are tolerable and which ones end up in front of a regulator or a key customer.",
+        "Revisit the list every quarter. As edit rates fall and validators improve, some actions can move down a tier, while new tools or new customer segments may need tighter gates than before."
+      ],
+      "bullets": [
+        "Anything that reaches a customer, supplier or regulator.",
+        "Anything that moves money or changes pricing.",
+        "Bulk changes to many records at once.",
+        "Access to sensitive personal or financial data.",
+        "Actions that cannot be undone, such as deletions or contract submissions."
+      ]
+    },
+    {
+      "h2": "Design review queues people actually read",
+      "paras": [
+        "A review queue is an operational system, not a stream of notifications. If every item looks equally urgent, reviewers start approving without reading, and the human becomes a rubber stamp rather than a safeguard.",
+        "Each queue item should show the proposed action itself, not a model-written summary of it, plus the evidence the agent used and the risk tier. Give the queue an owner, a target time to decision and a fallback when that time passes."
+      ],
+      "h3s": [
+        [
+          "Show the real action",
+          "Display the exact email, record change or payment, with a diff where possible, so the reviewer judges what will happen rather than a description."
+        ],
+        [
+          "Include the evidence",
+          "Link the source documents, prior messages or data the agent relied on, so the reviewer can check reasoning in seconds."
+        ],
+        [
+          "Make edit as easy as approve",
+          "Let reviewers correct the draft in place. Edits are your best training signal for tightening prompts and policies."
+        ],
+        [
+          "Track queue health",
+          "Watch arrival rate, backlog depth and time in queue. An approval rate near 100% usually means the gate is in the wrong place."
+        ]
+      ]
+    },
+    {
+      "h2": "Build escalation paths for the edge cases",
+      "paras": [
+        "Escalation covers what approval cannot: cases the agent should not attempt at all. Define explicit triggers, such as ambiguous intent, missing data, a customer asking for a person, or policy conflicts, and route each to a named team.",
+        "The agent should hand over with full context so the person does not start from zero. That means the conversation so far, what the agent tried, and why it stopped.",
+        "Escalation also needs a destination that is staffed. Agree service hours and response targets with the receiving team before launch, and decide what the agent tells the customer while it waits, so a handover never feels like a dead end."
+      ],
+      "bullets": [
+        "Write escalation criteria down and test them with real cases.",
+        "Use a template so every handover carries the same fields.",
+        "Log every escalation and review patterns weekly to find gaps in policy or tooling."
+      ]
+    },
+    {
+      "h2": "State, context and audit trail",
+      "paras": [
+        "Pausing an agent for approval is harder than it looks. The agent’s progress has to be saved while it waits, sometimes for hours, and resumed cleanly whether the reviewer approves, edits or rejects.",
+        "Record who approved what, when, and what they changed. That audit trail answers compliance questions, settles disputes with customers and shows you where the agent keeps getting things wrong."
+      ],
+      "bullets": [
+        "Persist agent state outside the model session so approvals survive restarts.",
+        "Expire stale approvals when the underlying data has changed since the request.",
+        "Keep separation of duties: an agent must never approve its own action.",
+        "Log the reviewer, decision, edits and time to decision for every item."
+      ]
+    },
+    {
+      "h2": "Be careful with confidence thresholds",
+      "paras": [
+        "Auto-approving above a confidence score sounds tidy but can let the worst mistakes through. Models are often most confident when they have misunderstood the request, so a high score is not proof of a correct action.",
+        "Combine confidence with rules you control: action type, value, customer segment and whether validators passed. Treat the model’s own score as one signal among several, never the only gate.",
+        "If you do use a threshold, calibrate it on your own data. Sample auto-approved items every week and have a person check them, so you find out whether the score still matches reality as inputs drift."
+      ]
+    },
+    {
+      "h2": "Widen autonomy as trust builds",
+      "paras": [
+        "Start narrow and earn autonomy with evidence. Our pods typically launch agents in suggest or approval mode, measure how often reviewers change the output, and move an action up a level only when edit rates stay low over a defined period.",
+        "The trade-off is speed. Human review adds latency and staffing cost, and if volume outgrows reviewers, the queue becomes the bottleneck. The fix is usually better upstream validation and tighter policy on what needs eyes, not more reviewers.",
+        "Expect the first month to feel slow. That is the cost of building the evidence you need to hand the agent more autonomy safely, and it is far cheaper than recovering from an unreviewed mistake that reached a customer."
+      ]
+    }
+  ],
+  "related": [
+    [
+      "Agentic FDE pod",
+      "/services/agentic-fde-pod/"
+    ],
+    [
+      "AI security and governance",
+      "/services/ai-security-governance/"
+    ],
+    [
+      "Adoption and enablement",
+      "/services/adoption-enablement/"
+    ]
+  ],
+  "cta": [
+    "Design approval gates your reviewers will actually use",
+    "We map each agent action to an autonomy level and build the queue around it.",
+    "Map your agent actions"
+  ],
+  "faq": [
+    [
+      "What is human-in-the-loop in AI agents?",
+      "Human-in-the-loop in AI agents is a design where a person approves, edits or rejects specific agent actions before they take effect. It keeps humans inside the decision cycle for consequential steps, such as sending customer emails or issuing refunds, while routine work runs automatically. It differs from human-on-the-loop, where people monitor a running system and intervene only after something has happened."
+    ],
+    [
+      "When should an AI agent require human approval?",
+      "An AI agent should require human approval when an action is hard to reverse, reaches a customer, moves money, touches sensitive data or changes many records at once. Small, reversible actions, like tagging a ticket or drafting a document, can usually run on their own. Decide per action rather than per agent, and revisit the list as evidence about the agent’s accuracy builds up."
+    ],
+    [
+      "What are the levels of autonomy for AI agents?",
+      "The levels of autonomy for AI agents usually run from suggest-only, through act-with-approval and act-and-notify, to acting within pre-set policy limits without step-by-step review. Academic frameworks describe similar tiers by the role the human plays, from operator to observer. Most enterprise agents work best in the middle levels, with different actions in the same agent sitting at different levels."
+    ],
+    [
+      "How do you prevent approval fatigue in human-in-the-loop systems?",
+      "You prevent approval fatigue by sending fewer, better items to reviewers. Gate only consequential actions, show the exact proposed change with its evidence, and let reviewers edit in place. Track approval rates: if nearly everything gets approved, the gate is probably in the wrong place. When volume grows, strengthen validators and policies upstream before adding more reviewers."
+    ],
+    [
+      "What is the difference between human-in-the-loop and human-on-the-loop?",
+      "Human-in-the-loop means a person must act before the agent’s step takes effect, while human-on-the-loop means the agent acts and a person monitors and can intervene. In-the-loop suits high-risk, irreversible actions. On-the-loop suits routine actions where speed matters and mistakes can be caught and undone. Most production agents use both, depending on the action."
+    ]
+  ],
+  "form_h": "Give your agents the right amount of autonomy from day one",
+  "research": {
+    "primary": "human in the loop ai agents",
+    "secondary": [
+      "ai agent autonomy levels",
+      "ai agent approval workflow",
+      "human in the loop review queue",
+      "approval fatigue"
+    ],
+    "top_urls": [
+      "https://permit.io/blog/human-in-the-loop-for-ai-agents-best-practices-frameworks-use-cases-and-demo",
+      "https://pickaxe.co/post/human-in-the-loop-ai-agents",
+      "https://docs.oracle.com/en/cloud/paas/application-integration/human-loop/overview-human-loop-agentic-ai.html",
+      "https://knightcolumbia.org/content/levels-of-autonomy-for-ai-agents-1",
+      "https://tianpan.co/blog/2026-04-23-hitl-queue-dynamics-approver-fatigue"
+    ],
+    "gaps": "Top results define HITL and list approval gates but rarely treat the review queue as an operational system (ownership, SLAs, queue metrics), rarely warn about confidence thresholds, and seldom describe how to widen autonomy with evidence. WebFetch was unavailable (DNS failure); research relied on search-result summaries."
+  },
+  "tags": [
+    "Agents",
+    "Governance"
+  ]
+}

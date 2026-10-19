@@ -1,0 +1,203 @@
+{
+  "path": "/blog/build-vs-buy-ai-agents/",
+  "title": "Build vs buy AI agents: a decision framework | tkxel FDE",
+  "desc": "Build vs buy AI agents: when an off-the-shelf platform fits, when a custom build pays off, where a partner helps, and the criteria to decide for each use case.",
+  "eyebrow": "Article",
+  "h1": "Build vs buy AI agents: platforms, custom builds or a partner",
+  "lede": "Build vs buy AI agents is a per-use-case decision, not a company-wide one. Buy a platform when the workflow is common and the vendor already integrates with your systems. Build when the agent depends on your proprietary data, unusual integrations or differentiating logic. Bring in a partner when you need to build but lack the team.",
+  "date": "2026-10-08",
+  "date_label": "8 October 2026",
+  "read_min": 8,
+  "sections": [
+    {
+      "h2": "The three real options",
+      "paras": [
+        "You are choosing between three paths, not two: buy a platform, build in-house, or build with a partner who hands the system over. Each trades speed, control and long-term cost differently.",
+        "Most enterprises end up with a mix. Common workflows like IT helpdesk or meeting notes go to platforms, while agents tied to core processes, such as underwriting, claims or pricing, get built.",
+        "The question has shifted as tools have matured. Building an agent is no longer the hard part; models, frameworks and cloud services make a demo easy. Getting it to work reliably with your data, systems and controls is where the effort and the risk now sit, whichever path you choose."
+      ],
+      "table": [
+        "Build vs buy vs partner",
+        [
+          "Option",
+          "Best when",
+          "Main trade-off"
+        ],
+        [
+          [
+            "Buy a platform",
+            "Common workflow, standard systems, speed matters",
+            "Customisation ceiling and per-use pricing"
+          ],
+          [
+            "Build in-house",
+            "Core process, proprietary data, strong AI team",
+            "Slow to staff; you own all maintenance"
+          ],
+          [
+            "Build with a partner",
+            "Need custom, lack capacity or experience",
+            "Requires a clear handover to avoid dependence"
+          ]
+        ]
+      ]
+    },
+    {
+      "h2": "When buying an AI agent platform makes sense",
+      "paras": [
+        "Buying makes sense when the work is common across companies and does not set you apart. Customer support deflection, internal knowledge search and scheduling are mature categories with vendors who have already solved the hard integration work for standard tools.",
+        "You get speed and avoid running infrastructure. The catch is that prebuilt agents follow the vendor’s idea of the process, and pricing per conversation, action or resolution can climb as volume grows.",
+        "Before signing, run a short pilot on your own data and edge cases, not the vendor’s demo set. Ask how the platform handles your access rules, what you can export if you leave, and how pricing changes at two and five times your expected volume."
+      ],
+      "bullets": [
+        "The vendor already integrates with your core systems out of the box.",
+        "Your process is close to the industry standard.",
+        "You need something live in weeks, not months.",
+        "The vendor meets your data residency and security requirements."
+      ]
+    },
+    {
+      "h2": "When building a custom AI agent pays off",
+      "paras": [
+        "Building pays off when the agent’s value comes from your data, your rules or your integrations. If a competitor could buy the same agent and get the same result, it is not giving you an advantage.",
+        "Custom builds also win when integrations are unusual, such as legacy ERP systems, on-premises databases or industry-specific platforms that vendors do not support. You keep control of prompts, models, data handling and the roadmap, but you also carry the evaluation and maintenance work.",
+        "Building does not mean building everything. You can still buy model access, vector databases, observability and guardrail libraries, and spend your own effort on the workflow logic and integrations that make the agent yours."
+      ],
+      "bullets": [
+        "The workflow encodes proprietary logic or pricing.",
+        "Data is sensitive or regulated and must stay in your environment.",
+        "You need integrations no platform supports well.",
+        "You want freedom to switch models as they improve."
+      ]
+    },
+    {
+      "h2": "Decision criteria to score each use case",
+      "paras": [
+        "Score each use case on the same criteria rather than making one call for the whole company. A simple one-to-five score per factor makes the trade-offs visible to finance, security and the business owner.",
+        "Run the scoring with the people who will live with the result: the business owner, a security lead, an architect and someone from finance. Disagreements in the scores are useful, because they surface assumptions about data, integrations or volume that would otherwise appear mid-project."
+      ],
+      "h3s": [
+        [
+          "Differentiation",
+          "Does the agent embody something competitors cannot copy by buying the same tool? High scores point to building."
+        ],
+        [
+          "Integration complexity",
+          "How many systems does it touch, and are they standard? Practitioner guides consistently say integration effort is underestimated."
+        ],
+        [
+          "Data sensitivity",
+          "Can the data leave your environment? Regulated data favours a build inside your cloud or a vendor with matching controls."
+        ],
+        [
+          "Volume and pricing",
+          "Model your expected volume against per-action pricing and against build and run costs over three years."
+        ],
+        [
+          "Team capacity",
+          "Do you have engineers with production LLM experience who can also maintain it? If not, factor in a partner or the hiring timeline."
+        ],
+        [
+          "Time to value",
+          "How soon must this deliver? Platforms usually win the first quarter; builds often win the third year."
+        ]
+      ]
+    },
+    {
+      "h2": "Where a partner fits",
+      "paras": [
+        "A partner fits when the scores say build but your team cannot staff it yet. The model matters here: you want engineers who build inside your environment, in your repositories and cloud, and hand over a system your team can run.",
+        "This is how our FDE pods work. A pod of three to five engineers builds the agent, its integrations and guardrails alongside your people, then transfers ownership with runbooks and a reverse-shadow period. Avoid arrangements where the partner keeps the code or runs it on their own platform indefinitely, unless that is what you want.",
+        "Ask any partner to show how a previous handover worked: what documentation was left, who ran on-call afterwards and how long support lasted. If they cannot describe it plainly, plan for a longer dependence than the proposal suggests."
+      ]
+    },
+    {
+      "h2": "A worked example",
+      "paras": [
+        "Take two use cases at a hypothetical insurer. The first is an internal IT helpdesk agent that resets passwords and answers questions about common tools. The second is a claims triage agent that reads first notice of loss, checks policy terms and routes claims.",
+        "The helpdesk agent scores low on differentiation and data sensitivity, and platforms already integrate with the usual identity and ticketing tools. Buying is the sensible call.",
+        "The claims agent scores high on differentiation, touches a legacy policy system and handles regulated personal data. It points to a build, and if the internal AI team is already committed elsewhere, to a partner who builds inside the insurer’s cloud and hands it over."
+      ]
+    },
+    {
+      "h2": "Hidden costs on both sides",
+      "paras": [
+        "Both paths carry costs that rarely appear in the first quote. Gartner predicted in June 2025 that over 40% of agentic AI projects will be cancelled by the end of 2027, pointing to escalating costs, unclear business value and inadequate risk controls, so it pays to model the full picture early."
+      ],
+      "bullets": [
+        "Buy: per-use fees at scale, customisation work, vendor lock-in, and integrations outside the vendor’s catalogue.",
+        "Build: evaluation sets, monitoring, guardrails, model upgrades and on-call support.",
+        "Both: change management, process redesign and the time your experts spend reviewing output."
+      ]
+    },
+    {
+      "h2": "An honest limitation",
+      "paras": [
+        "No framework removes the uncertainty of a fast-moving market. A platform that lacks a feature today may ship it next quarter, and a custom agent can be overtaken by a better product.",
+        "The practical hedge is to keep options open. Own your data pipelines, evaluation sets and integration layer whichever way you go, so you can swap a platform for a build, or the reverse, without starting over."
+      ]
+    }
+  ],
+  "related": [
+    [
+      "Agentic FDE pod",
+      "/services/agentic-fde-pod/"
+    ],
+    [
+      "AI strategy and readiness",
+      "/services/ai-strategy-readiness/"
+    ],
+    [
+      "Engagement models",
+      "/engagement-models/"
+    ]
+  ],
+  "cta": [
+    "Score your agent use cases before you sign anything",
+    "We run the build vs buy scoring with your team and model three-year costs.",
+    "Book a scoring session"
+  ],
+  "faq": [
+    [
+      "Should I build or buy an AI agent?",
+      "You should buy an AI agent when the workflow is common, the vendor integrates with your systems and speed matters most. You should build when the agent depends on proprietary data, unusual integrations or logic that sets you apart. Make the decision per use case rather than company-wide, and score each on differentiation, integration complexity, data sensitivity, volume, team capacity and time to value."
+    ],
+    [
+      "How much does it cost to build a custom AI agent?",
+      "The cost of a custom AI agent depends mostly on integration complexity, data preparation and the controls the use case needs, not on the model itself. A narrow agent touching one or two systems costs far less than one spanning legacy ERP, approvals and regulated data. Budget beyond the build for evaluation, monitoring, guardrails, model upgrades and support, which continue for as long as the agent runs."
+    ],
+    [
+      "What are the risks of buying an AI agent platform?",
+      "The main risks of buying an AI agent platform are a customisation ceiling, rising per-use costs and vendor lock-in. Prebuilt agents follow the vendor’s view of the process, which may not match yours. Integrations outside the vendor’s catalogue can be slow or unsupported. Check data residency, security controls, pricing at your expected volume and how easily you can export your data and configurations."
+    ],
+    [
+      "Is it better to build AI agents in-house or with a partner?",
+      "Building AI agents in-house is better when you already have engineers with production LLM experience and capacity to maintain the system. Building with a partner is better when you need a custom agent soon but lack that team. Choose a partner who works inside your environment and hands over the code, runbooks and operations, so you are not dependent on them afterwards."
+    ],
+    [
+      "Can you combine bought and custom AI agents?",
+      "Yes, most enterprises combine bought and custom AI agents. A common pattern is platforms for routine, high-volume workflows and custom agents for core processes where data, rules or integrations make the difference. To make this work, keep shared foundations under your control, such as identity, data access, logging and evaluation, so agents from different sources follow the same policies."
+    ]
+  ],
+  "form_h": "Make the build vs buy call with numbers, not guesswork",
+  "research": {
+    "primary": "build vs buy ai agents",
+    "secondary": [
+      "build vs buy agentic ai",
+      "ai agent platform vs custom",
+      "custom ai agent cost"
+    ],
+    "top_urls": [
+      "https://aisera.com/blog/build-vs-buy/",
+      "https://retool.com/blog/build-vs-buy-ai-agents",
+      "https://www.turing.com/resources/build-vs-buy-ai-agents",
+      "https://blog.dataiku.com/build-vs-buy-for-ai-agents",
+      "https://www.lyzr.ai/blog/build-vs-buy-agentic-ai/"
+    ],
+    "gaps": "Top-ranking pages are mostly vendors arguing for their own model (buy or build platform). Few present the partner option as a third path, give a per-use-case scoring method, or advise owning data pipelines and evaluation sets as a hedge. Vendor cost figures were excluded as self-interested. WebFetch was unavailable (DNS failure); research relied on search-result summaries."
+  },
+  "tags": [
+    "Strategy",
+    "Agents"
+  ]
+}
