@@ -16,7 +16,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is prompt injection in simple terms?", "acceptedAnswer": {"@type": "Answer", "text": "Prompt injection is when someone hides instructions in text that an AI model reads, and the model follows those instructions instead of the ones its builders gave it. It works because language models process system instructions, user messages and outside content as one stream of text and cannot reliably tell commands from data. The result can range from odd replies to leaked data or unauthorised actions."}}, {"@type": "Question", "name": "What is the difference between direct and indirect prompt injection?", "acceptedAnswer": {"@type": "Answer", "text": "Direct prompt injection comes from the user typing malicious instructions into the system, while indirect prompt injection hides instructions in content the model reads, such as web pages, emails or documents. Indirect attacks are harder to spot because the attacker never interacts with your system directly. They become more dangerous when agents have tools, since a hidden instruction can trigger a real action."}}, {"@type": "Question", "name": "Can prompt injection be prevented?", "acceptedAnswer": {"@type": "Answer", "text": "Prompt injection cannot be fully prevented with today’s techniques, but its impact can be sharply reduced. Effective programmes combine least-privilege access, authorisation checks in code outside the model, human approval for high-risk actions, separation of untrusted content, input and output filtering, and regular red teaming. The goal is containment: if an injection gets through, the agent should not be able to do serious damage."}}, {"@type": "Question", "name": "Why is prompt injection number one in the OWASP LLM Top 10?", "acceptedAnswer": {"@type": "Answer", "text": "Prompt injection is ranked first, as LLM01, in the OWASP Top 10 for LLM Applications 2025 because it is widespread, difficult to prevent and enables other attacks. It exploits a basic property of language models, that instructions and data share one channel. OWASP also notes that RAG and fine-tuning do not fully mitigate it, so it must be handled through system design and controls."}}, {"@type": "Question", "name": "Is prompt injection the same as jailbreaking?", "acceptedAnswer": {"@type": "Answer", "text": "Prompt injection and jailbreaking overlap but are not the same. Jailbreaking usually means a user crafting prompts to bypass a model’s safety rules. Prompt injection is broader: it covers any input that overrides the developer’s instructions, including hidden instructions in documents or web pages that the user never sees. For business systems, indirect injection through outside content is often the larger risk."}}, {"@type": "Question", "name": "How do you test an AI application for prompt injection?", "acceptedAnswer": {"@type": "Answer", "text": "You test an AI application for prompt injection by red teaming it with both direct and indirect attacks against its real tools and data. Plant instructions in documents, emails and pages the system reads, try known jailbreak patterns, and check whether any tool call or data access happens that policy should block. Repeat tests after model, prompt or tool changes, and keep a regression set of past attacks."}}]}</script>
-    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Prompt injection explained: what business and security leaders need to know", "description": "Prompt injection explained for business and security leaders: direct and indirect attacks, why OWASP ranks it first for LLM apps, and layered mitigations.", "author": {"@type": "Organization", "name": "tkxel"}, "publisher": {"@type": "Organization", "name": "tkxel"}, "datePublished": "2026-09-24", "mainEntityOfPage": "https://fde.tkxel.com/blog/prompt-injection-explained/"}</script>
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Prompt injection explained: what business and security leaders need to know", "description": "Prompt injection explained for business and security leaders: direct and indirect attacks, why OWASP ranks it first for LLM apps, and layered mitigations.", "author": {"@type": "Organization", "name": "tkxel"}, "publisher": {"@type": "Organization", "name": "tkxel"}, "datePublished": "2026-09-24", "image": "https://fde.tkxel.com/blog/prompt-injection-explained/cover.svg", "mainEntityOfPage": "https://fde.tkxel.com/blog/prompt-injection-explained/"}</script>
     <link rel="stylesheet" href="/assets/css/styles.css" />
   </head>
   <body>
@@ -96,10 +96,13 @@
     </header>
     <main id="main">
       <section class="art__hero section--gradient on-dark" data-hero>
-        <div class="container art__narrow">
-          <span class="eyebrow">Article</span>
-          <h1 class="display art__h1">Prompt injection explained: what business and security leaders need to know</h1>
-          <p class="caption art__meta">24 September 2026 · 8 min read</p>
+        <div class="container art__hero-grid">
+          <div>
+            <span class="eyebrow">Article</span>
+            <h1 class="display art__h1">Prompt injection explained: what business and security leaders need to know</h1>
+            <p class="caption art__meta">24 September 2026 · 8 min read</p>
+          </div>
+          <img class="art__cover" src="/blog/prompt-injection-explained/cover.svg" alt="" width="1200" height="630" />
         </div>
       </section>
       <article class="section">
@@ -190,18 +193,6 @@
         <div class="container fc">
           <div class="fc__left">
             <h2 class="h2">Ship LLM features your security team can sign off</h2>
-            <div class="fc__clutch">
-              <span class="eyebrow">Clutch</span
-              ><span class="caption">[Placeholder] Clutch badge and rating — add the official widget</span>
-            </div>
-            <blockquote class="fc__quote">
-              “Placeholder testimonial — replace with the global set from tkxel.com.”
-              <footer class="caption">— Knowles</footer>
-            </blockquote>
-            <blockquote class="fc__quote">
-              “Placeholder testimonial — replace with the global set from tkxel.com.”
-              <footer class="caption">— Sterne Kessler</footer>
-            </blockquote>
           </div>
           <form class="fc__form" method="post" action="/api/lead" data-lead-form>
             <label class="fc__full"
@@ -309,19 +300,19 @@
         <div class="ftr__offices">
           <div>
             <span class="eyebrow">USA</span>
-            <p>Placeholder — confirm from tkxel.com footer</p>
+            <p>11921 Freedom Drive, Two Fountain Square, Suite 550, Reston, VA 20190</p>
           </div>
           <div>
             <span class="eyebrow">Saudi Arabia</span>
-            <p>Placeholder — confirm from tkxel.com footer</p>
+            <p>Building 4236, King Saud St., An Nawras District, Dammam 32214</p>
           </div>
           <div>
             <span class="eyebrow">Portugal</span>
-            <p>Placeholder — confirm from tkxel.com footer</p>
+            <p>Avenida D. João II, 50, 1990-095 Lisbon</p>
           </div>
           <div>
             <span class="eyebrow">Pakistan</span>
-            <p>Placeholder — confirm from tkxel.com footer</p>
+            <p>One World Building, Babar Block, Garden Town, Lahore 54000</p>
           </div>
         </div>
         <div class="ftr__legal">

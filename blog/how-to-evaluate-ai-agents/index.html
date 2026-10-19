@@ -16,7 +16,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How do you evaluate an AI agent?", "acceptedAnswer": {"@type": "Answer", "text": "You evaluate an AI agent by testing it against a golden dataset of real cases, scoring both its final outcome and key steps such as tool calls. Use code-based checks for exact rules, an LLM judge calibrated against human labels for meaning, and human review for high-risk cases. Then run the same tests in CI and on sampled production traffic."}}, {"@type": "Question", "name": "What is a golden dataset in AI evaluation?", "acceptedAnswer": {"@type": "Answer", "text": "A golden dataset is a curated set of realistic inputs paired with a description of what a correct result looks like. It is used to test an AI system consistently before and after every change. A good golden dataset includes common cases, edge cases and inputs that should be refused, and it grows as production failures are added back in."}}, {"@type": "Question", "name": "Is LLM-as-a-judge reliable?", "acceptedAnswer": {"@type": "Answer", "text": "LLM-as-a-judge is reliable enough for many checks once you have calibrated it against human labels on your own data. Without that calibration, a judge can be confidently wrong or share the blind spots of the agent it is grading. Use a clear rubric, check agreement with expert scores, and recheck the judge whenever models or prompts change."}}, {"@type": "Question", "name": "What metrics should you use to evaluate AI agents?", "acceptedAnswer": {"@type": "Answer", "text": "The core metrics for AI agents are task success, tool-call accuracy, faithfulness to sources, policy compliance, latency and cost per task. For customer-facing agents, add escalation rate and user satisfaction. Track each metric separately with its own threshold, because a single combined score can hide a regression in one area."}}, {"@type": "Question", "name": "How do you test AI agents in CI/CD?", "acceptedAnswer": {"@type": "Answer", "text": "You test AI agents in CI/CD by running your golden dataset automatically on every change to prompts, tools, retrieval or models. The pipeline scores each case with code checks and an LLM judge, compares the results with thresholds, and blocks the merge if a key metric drops. Keep the dataset versioned with the code."}}, {"@type": "Question", "name": "Do you still need human review if you use automated evals?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, you still need human review, but on a smaller and more targeted share of outputs. Humans approve high-risk actions, review sampled outputs, and label cases used to calibrate the LLM judge. Automated evals scale the checking; human review keeps those checks honest and catches issues no rubric anticipated, especially in new or regulated workflows."}}]}</script>
-    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "How to evaluate AI agents: from golden datasets to production monitoring", "description": "How to evaluate AI agents: build a golden dataset, use LLM-as-judge with care, gate releases with regression tests in CI, add human review, monitor production.", "author": {"@type": "Organization", "name": "tkxel"}, "publisher": {"@type": "Organization", "name": "tkxel"}, "datePublished": "2026-09-24", "mainEntityOfPage": "https://fde.tkxel.com/blog/how-to-evaluate-ai-agents/"}</script>
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "How to evaluate AI agents: from golden datasets to production monitoring", "description": "How to evaluate AI agents: build a golden dataset, use LLM-as-judge with care, gate releases with regression tests in CI, add human review, monitor production.", "author": {"@type": "Organization", "name": "tkxel"}, "publisher": {"@type": "Organization", "name": "tkxel"}, "datePublished": "2026-09-24", "image": "https://fde.tkxel.com/blog/how-to-evaluate-ai-agents/cover.svg", "mainEntityOfPage": "https://fde.tkxel.com/blog/how-to-evaluate-ai-agents/"}</script>
     <link rel="stylesheet" href="/assets/css/styles.css" />
   </head>
   <body>
@@ -96,10 +96,13 @@
     </header>
     <main id="main">
       <section class="art__hero section--gradient on-dark" data-hero>
-        <div class="container art__narrow">
-          <span class="eyebrow">Article</span>
-          <h1 class="display art__h1">How to evaluate AI agents: from golden datasets to production monitoring</h1>
-          <p class="caption art__meta">24 September 2026 · 9 min read</p>
+        <div class="container art__hero-grid">
+          <div>
+            <span class="eyebrow">Article</span>
+            <h1 class="display art__h1">How to evaluate AI agents: from golden datasets to production monitoring</h1>
+            <p class="caption art__meta">24 September 2026 · 9 min read</p>
+          </div>
+          <img class="art__cover" src="/blog/how-to-evaluate-ai-agents/cover.svg" alt="" width="1200" height="630" />
         </div>
       </section>
       <article class="section">
@@ -189,18 +192,6 @@
         <div class="container fc">
           <div class="fc__left">
             <h2 class="h2">Know your agent works before your customers find out it does not</h2>
-            <div class="fc__clutch">
-              <span class="eyebrow">Clutch</span
-              ><span class="caption">[Placeholder] Clutch badge and rating — add the official widget</span>
-            </div>
-            <blockquote class="fc__quote">
-              “Placeholder testimonial — replace with the global set from tkxel.com.”
-              <footer class="caption">— Knowles</footer>
-            </blockquote>
-            <blockquote class="fc__quote">
-              “Placeholder testimonial — replace with the global set from tkxel.com.”
-              <footer class="caption">— Sterne Kessler</footer>
-            </blockquote>
           </div>
           <form class="fc__form" method="post" action="/api/lead" data-lead-form>
             <label class="fc__full"
@@ -308,19 +299,19 @@
         <div class="ftr__offices">
           <div>
             <span class="eyebrow">USA</span>
-            <p>Placeholder — confirm from tkxel.com footer</p>
+            <p>11921 Freedom Drive, Two Fountain Square, Suite 550, Reston, VA 20190</p>
           </div>
           <div>
             <span class="eyebrow">Saudi Arabia</span>
-            <p>Placeholder — confirm from tkxel.com footer</p>
+            <p>Building 4236, King Saud St., An Nawras District, Dammam 32214</p>
           </div>
           <div>
             <span class="eyebrow">Portugal</span>
-            <p>Placeholder — confirm from tkxel.com footer</p>
+            <p>Avenida D. João II, 50, 1990-095 Lisbon</p>
           </div>
           <div>
             <span class="eyebrow">Pakistan</span>
-            <p>Placeholder — confirm from tkxel.com footer</p>
+            <p>One World Building, Babar Block, Garden Town, Lahore 54000</p>
           </div>
         </div>
         <div class="ftr__legal">

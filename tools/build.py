@@ -42,6 +42,20 @@ def link_children(block_html):
 HEADER = link_children(HEADER)
 FOOTER = link_children(FOOTER)
 
+# Office addresses as listed on https://tkxel.com/contact-us/
+OFFICES = {
+  'USA': '11921 Freedom Drive, Two Fountain Square, Suite 550, Reston, VA 20190',
+  'Saudi Arabia': 'Building 4236, King Saud St., An Nawras District, Dammam 32214',
+  'Portugal': 'Avenida D. João II, 50, 1990-095 Lisbon',
+  'Pakistan': 'One World Building, Babar Block, Garden Town, Lahore 54000',
+}
+for region, addr in OFFICES.items():
+    FOOTER = re.sub(rf'(<span class="eyebrow">{region}</span>\s*<p>)[^<]*(</p>)', lambda m: m.group(1) + html.escape(addr) + m.group(2), FOOTER)
+
+# Final form: hide the Clutch and testimonial blocks until real ones are supplied.
+FORM = re.sub(r'\s*<div class="fc__clutch">.*?</div>', '', FORM, flags=re.S)
+FORM = re.sub(r'\s*<blockquote class="fc__quote">[^<]*Placeholder.*?</blockquote>', '', FORM, flags=re.S)
+
 # Legal pages live on the main site.
 LEGAL = {'href="/privacy-policy/"': 'href="https://tkxel.com/privacy-policy/"', 'href="/terms/"': 'href="https://tkxel.com/terms-of-use/"'}
 for a, b in LEGAL.items():
@@ -52,7 +66,7 @@ e = html.escape
 import importlib.util as _ilu
 _spec = _ilu.spec_from_file_location('art', pathlib.Path(__file__).parent / 'art.py'); ART = _ilu.module_from_spec(_spec); _spec.loader.exec_module(ART)
 PAGE = {'path': '/'}
-LOGOS = ['Knowles', 'Sterne Kessler', 'Replenium', 'ABB', 'Client five', 'Client six', 'Client seven', 'Client eight']
+LOGOS = ['Knowles', 'Sterne Kessler', 'Replenium', 'ABB', 'Barclays', 'Signal', 'Canvs AI', 'AutoConX', 'BBJ La Tavola']  # tkxel clients listed on tkxel.com
 
 def headline(text, tag='h2', cls='h2'):
     parts = [e(p) for p in text.split(' | ')]
@@ -210,19 +224,39 @@ def comparison(h, intro, cols, rows):
         </div>
       </section>'''
 
-def cases(tag):
-    roles = ['Chief Operating Officer', 'VP Engineering', 'Head of Data']
-    cards = ''.join(f'''
+# Case-study tags per page, on top of the blog-topic tags in PATH_TAGS.
+CASE_EXTRA = {
+  '/industries/financial-services/': ['Financial'], '/industries/technology-saas/': ['SaaS'],
+  '/industries/logistics-manufacturing/': ['Manufacturing'], '/industries/healthcare/': ['Healthcare'],
+  '/services/fde-for-saas-isvs/': ['SaaS'],
+}
+
+def pick_cases(path):
+    if path == '/':
+        return CASES[:3]
+    want = set(PATH_TAGS.get(path, [])) | set(CASE_EXTRA.get(path, []))
+    if path.startswith('/industries/') and CASE_EXTRA.get(path):
+        want = set(CASE_EXTRA[path])  # industry pages only show same-industry work
+    return [c for c in CASES if want & set(c['tags'])][:3]
+
+def case_card(c):
+    return f'''
             <article class="csc__card reveal">
-              <div class="csc__tags"><span class="eyebrow">Industry</span><span class="eyebrow">{e(tag)}</span></div>
-              <h3 class="csc__result">[Placeholder] {n} case study headline that leads with the metric, then the mechanism.</h3>
-              <blockquote class="csc__quote">“Placeholder quote — replace with a real client quote.”<footer class="caption">— {r}</footer></blockquote>
-            </article>''' for n, r in zip(['First', 'Second', 'Third'], roles))
+              <div class="csc__tags"><span class="eyebrow">{e(c['client'])}</span><span class="eyebrow">{e(c['industry'])}</span></div>
+              <h3 class="csc__result">{e(c['result'])}</h3>
+              <a href="{c['url']}" class="link-arrow" target="_blank" rel="noopener">Read the case study on tkxel.com</a>
+            </article>'''
+
+def cases(path):
+    """CASE_STUDY_CAROUSEL (§4.14) with real tkxel.com case studies; omitted when none match."""
+    picks = pick_cases(path)
+    if not picks:
+        return ''
     return f'''
       <section class="section" id="case-studies">
         <div class="container">
-          <div class="csc__head reveal"><h2 class="h2">Featured success stories</h2></div>
-          <div class="csc">{cards}
+          <div class="csc__head reveal"><h2 class="h2">Featured success stories</h2><a href="/case-studies/" class="link-arrow">All case studies</a></div>
+          <div class="csc">{''.join(case_card(c) for c in picks)}
           </div>
         </div>
       </section>'''
@@ -269,7 +303,7 @@ def pillar(p):
             + challenges(p['ch_h'], p['ch'])
             + process(p['pr_h'], p['steps'])
             + (comparison(*p['cmp']) if p.get('cmp') else '')
-            + cases(p['eyebrow'])
+            + cases(p['path'])
             + '\n      ' + WHY + '\n      ' + AWARDS + '\n      ' + form(p['form_h'])
             + faq(p['faq']))
     write(p['path'], body, p['title'], p['desc'], [faq_schema(p['faq'])])
@@ -306,7 +340,7 @@ def service(p):
     PAGE['path'] = p['path']
     nav = [('Challenges', 'challenges'), ('Services', 'services'), ('Process', 'process'), ('Benefits', 'benefits')]
     if p.get('cmp'): nav.append(('Comparison', 'comparison'))
-    nav += [('Case studies', 'case-studies'), ('Why tkxel', 'why-tkxel'), ('FAQ', 'faq')]
+    nav += ([('Case studies', 'case-studies')] if pick_cases(p['path']) else []) + [('Why tkxel', 'why-tkxel'), ('FAQ', 'faq')]
     body = (hero(p['eyebrow'], p['hero'], p['sub'])
             + snav(nav)
             + challenges(p['ch_h'], p['ch'])
@@ -315,7 +349,7 @@ def service(p):
             + process(p['pr_h'], p['steps'])
             + benefits(p['bn_h'], p['benefits'])
             + (comparison(*p['cmp']) if p.get('cmp') else '')
-            + cases(p['eyebrow'])
+            + cases(p['path'])
             + '\n      ' + WHY + '\n      ' + AWARDS + '\n      ' + form(p['form_h'])
             + faq(p['faq']))
     schema = [faq_schema(p['faq']), {'@context': 'https://schema.org', '@type': 'Service', 'name': p['eyebrow'],
@@ -348,13 +382,22 @@ def article(p):
     related = ''
     if links:
         related = '<aside class="art__related"><span class="eyebrow">Related</span><ul>' + ''.join(f'<li><a href="{h}" class="link-arrow">{e(l)}</a></li>' for l, h in links) + '</ul></aside>'
+    slug = p['path'].strip('/').split('/')[-1]
+    cover = ''
+    if p.get('tags'):
+        (ROOT / p['path'].strip('/')).mkdir(parents=True, exist_ok=True)
+        (ROOT / p['path'].strip('/') / 'cover.svg').write_text(COVERS[p['path']])
+        cover = f'<img class="art__cover" src="{p["path"]}cover.svg" alt="" width="1200" height="630" />'
     meta = f'<p class="caption art__meta">{e(p["date_label"])} · {p["read_min"]} min read</p>' if p.get('date_label') else ''
     body = f'''
       <section class="art__hero section--gradient on-dark" data-hero>
-        <div class="container art__narrow">
-          <span class="eyebrow">{e(p['eyebrow'])}</span>
-          <h1 class="display art__h1">{e(p['h1'])}</h1>
-          {meta}
+        <div class="container{' art__hero-grid' if cover else ' art__narrow'}">
+          <div>
+            <span class="eyebrow">{e(p['eyebrow'])}</span>
+            <h1 class="display art__h1">{e(p['h1'])}</h1>
+            {meta}
+          </div>
+          {cover}
         </div>
       </section>
       <article class="section">
@@ -368,7 +411,8 @@ def article(p):
       </article>''' + icb(*p['cta']) + faq(p['faq']) + '\n      ' + form(p.get('form_h', 'Talk to an FDE lead about your project'))
     schema = [faq_schema(p['faq']), {'@context': 'https://schema.org', '@type': 'Article', 'headline': p['h1'], 'description': p['desc'],
               'author': {'@type': 'Organization', 'name': 'tkxel'}, 'publisher': {'@type': 'Organization', 'name': 'tkxel'},
-              **({'datePublished': p['date']} if p.get('date') else {}), 'mainEntityOfPage': f"https://fde.tkxel.com{p['path']}"}]
+              **({'datePublished': p['date']} if p.get('date') else {}),
+              **({'image': f"https://fde.tkxel.com{p['path']}cover.svg"} if p.get('tags') else {}), 'mainEntityOfPage': f"https://fde.tkxel.com{p['path']}"}]
     write(p['path'], body, p['title'], p['desc'], schema)
 
 def index_page(path, title, desc, eyebrow, h, sub, cards, form_h, intro_h=None):
@@ -412,6 +456,7 @@ def contact(faq_items):
     write('/contact/', body, 'Contact tkxel FDE | Book a discovery call', 'Book a free 30-minute discovery call with a tkxel forward deployed engineering lead to discuss your AI, data, or integration project.', [faq_schema(faq_items)])
 
 POSTS = []  # filled in main, newest first
+CASES = []  # tkxel.com case studies, filled in main
 
 # Which blog topics are relevant to each service / pillar / industry page.
 PATH_TAGS = {
@@ -429,6 +474,7 @@ def resources(posts, h='Latest insights & resources'):
     """RESOURCES_GRID (§4.21): type label, title, link."""
     cards = ''.join(f'''
             <a class="idx__card reveal" href="{q['path']}">
+              <img class="idx__thumb" src="{q['path']}cover.svg" alt="" width="1200" height="630" loading="lazy" />
               <span class="eyebrow">{e(', '.join(q.get('tags', [])) or 'Article')}</span>
               <h3 class="idx__title">{e(q['h1'])}</h3>
               <p class="caption">{e(q.get('date_label', ''))} · {q.get('read_min', '')} min read</p>
@@ -449,7 +495,8 @@ def blog_index(meta, guides, posts):
     buttons = '<button class="blog__filter is-active" data-filter="all" aria-pressed="true">All</button>' + ''.join(f'<button class="blog__filter" data-filter="{e(t)}" aria-pressed="false">{e(t)}</button>' for t in tags)
     def card(q, label):
         return (f'<a class="idx__card reveal" href="{q["path"]}" data-tags="{e(" ".join(q.get("tags", ["Guide"])))}">'
-                f'<span class="eyebrow">{e(label)}</span><h2 class="idx__title">{e(q["h1"])}</h2><p class="muted">{e(q["desc"])}</p>'
+                + (f'<img class="idx__thumb" src="{q["path"]}cover.svg" alt="" width="1200" height="630" loading="lazy" />' if q.get('tags') else '')
+                + f'<span class="eyebrow">{e(label)}</span><h2 class="idx__title">{e(q["h1"])}</h2><p class="muted">{e(q["desc"])}</p>'
                 f'<span class="link-arrow">Read more</span></a>')
     items = ''.join(card(g, 'Guide') for g in guides) + ''.join(card(q, f"{', '.join(q.get('tags', []))} · {q['date_label']}") for q in posts)
     body = (hero(meta['eyebrow'], meta['h'], meta['sub'])
@@ -485,6 +532,12 @@ def load_posts():
 
 if __name__ == '__main__':
     POSTS[:] = load_posts()
+    # Assign covers oldest-first so existing posts keep their art when new posts are added.
+    COVERS, recent = {}, []
+    for q in sorted(POSTS, key=lambda q: (q['date'], q['path'])):
+        COVERS[q['path']] = ART.cover_svg(q['path'].strip('/').split('/')[-1], q.get('tags'), avoid=recent[-6:])
+        recent.append(ART.cover_svg.last)
+    CASES[:] = load('case_studies', 'CASES')
     written = []
     for p in load('content', 'PILLARS'):
         pillar(p); written.append(p['path'])
@@ -506,7 +559,8 @@ if __name__ == '__main__':
     ii = C.INDUSTRIES_INDEX
     index_page(ii['path'], ii['title'], ii['desc'], ii['eyebrow'], ii['h'], ii['sub'], ii['cards'], ii['form_h']); written.append(ii['path'])
     ci = C.CASES_INDEX
-    index_page(ci['path'], ci['title'], ci['desc'], ci['eyebrow'], ci['h'], ci['sub'], ci['cards'], ci['form_h']); written.append(ci['path'])
+    case_cards = [(c['industry'], c['client'], c['result'], c['url']) for c in CASES]
+    index_page(ci['path'], ci['title'], ci['desc'], ci['eyebrow'], ci['h'], ci['sub'], case_cards, ci['form_h']); written.append(ci['path'])
     blog_index(C.BLOG_INDEX, guides, POSTS); written.append(C.BLOG_INDEX['path'])
     not_found()
 
@@ -518,7 +572,11 @@ if __name__ == '__main__':
         for a, b in LEGAL.items(): t = t.replace(a, b)
         page_path = '/' if f == 'index.html' else '/' + f.replace('index.html', '')
         t = re.sub(r'<svg class="hero__graphic".*?</svg>', lambda m: ART.svg_for(page_path), t, count=1, flags=re.S)
-        t = re.sub(r'\s*<a href="/case-studies/" class="link-arrow">All case studies</a>', '', t)
+        track = ''.join(f'<span class="hero__logo">{e(l)}</span>' for l in LOGOS) + ''.join(f'<span class="hero__logo" aria-hidden="true">{e(l)}</span>' for l in LOGOS)
+        t = re.sub(r'<div class="hero__track">.*?</div>', lambda m: f'<div class="hero__track">{track}</div>', t, count=1, flags=re.S)
+        t = re.sub(r'\s*<div class="fc__clutch">.*?</div>', '', t, count=1, flags=re.S)
+        t = re.sub(r'\s*<blockquote class="fc__quote">[^<]*Placeholder.*?</blockquote>', '', t, flags=re.S)
+        t = re.sub(r'\n[ \t]*<section class="section" id="case-studies">.*?</section>', lambda m: cases(page_path), t, count=1, flags=re.S)
         t = re.sub(r'\s*<!-- resources:start -->.*?<!-- resources:end -->', '', t, flags=re.S)
         picks = POSTS[:3] if f == 'index.html' else [q for q in POSTS if set(q.get('tags', [])) & set(PATH_TAGS.get(page_path, []))][:3]
         title = 'Latest insights & resources' if f == 'index.html' else 'Related insights'

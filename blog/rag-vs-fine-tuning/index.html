@@ -16,7 +16,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is RAG better than fine-tuning?", "acceptedAnswer": {"@type": "Answer", "text": "RAG is better than fine-tuning when the problem is missing or changing knowledge, and worse when the problem is behaviour. If the model needs your current policies, prices or documents, retrieval gives it that context and lets you cite sources. If it already knows enough but produces the wrong format or style, fine-tuning is the better tool. Most enterprise teams find RAG covers their first use cases and add fine-tuning later, if at all."}}, {"@type": "Question", "name": "When should you use fine-tuning instead of RAG?", "acceptedAnswer": {"@type": "Answer", "text": "You should use fine-tuning instead of RAG when you need consistent behaviour on a stable, narrow task and have plenty of good examples. Typical cases are strict output schemas, classification, domain-specific phrasing, or moving a high-volume task to a smaller model to cut latency and cost. Fine-tuning is a poor choice for facts that change often, because each change means retraining."}}, {"@type": "Question", "name": "Can you use RAG and fine-tuning together?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, you can use RAG and fine-tuning together, and many production systems do. The usual split is fine-tuning for behaviour, such as output format or tone, and RAG for knowledge, such as the current policy library. The cost is extra complexity: two components to evaluate, version and monitor. Add the second technique only when testing shows a gap the first cannot close."}}, {"@type": "Question", "name": "Is RAG cheaper than fine-tuning?", "acceptedAnswer": {"@type": "Answer", "text": "RAG is usually cheaper to start than fine-tuning, but not always cheaper to run. Retrieval has modest setup costs and adds context tokens to every request, so cost grows with volume. Fine-tuning front-loads spend on data preparation and training, then runs leaner per call, with retraining whenever knowledge or the base model changes. At very high volume on a narrow task, a tuned smaller model can come out ahead."}}, {"@type": "Question", "name": "Does fine-tuning reduce hallucinations?", "acceptedAnswer": {"@type": "Answer", "text": "Fine-tuning does not reliably reduce hallucinations about facts. It shapes how a model responds, not whether its knowledge is current or correct. Grounding answers in retrieved sources and asking the model to cite them is a more direct way to reduce made-up answers, combined with evaluation sets that check accuracy. RAG has its own failure mode, retrieving the wrong passage, which you address with better chunking, metadata and retrieval testing."}}, {"@type": "Question", "name": "How much data do you need to fine-tune an LLM?", "acceptedAnswer": {"@type": "Answer", "text": "You need enough high-quality input and output examples to show the model the behaviour you want, typically hundreds to a few thousand for a narrow task. Quality matters more than volume: inconsistent or noisy examples teach inconsistent behaviour. Building and labelling this set is often the slowest part of a fine-tuning project, so check whether better prompting or retrieval solves the problem first."}}]}</script>
-    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "RAG vs fine-tuning: when to use each for enterprise AI", "description": "RAG vs fine-tuning for enterprise AI: when each fits, how costs differ, what data you need, and why most teams should start with retrieval before training.", "author": {"@type": "Organization", "name": "tkxel"}, "publisher": {"@type": "Organization", "name": "tkxel"}, "datePublished": "2026-09-10", "mainEntityOfPage": "https://fde.tkxel.com/blog/rag-vs-fine-tuning/"}</script>
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "RAG vs fine-tuning: when to use each for enterprise AI", "description": "RAG vs fine-tuning for enterprise AI: when each fits, how costs differ, what data you need, and why most teams should start with retrieval before training.", "author": {"@type": "Organization", "name": "tkxel"}, "publisher": {"@type": "Organization", "name": "tkxel"}, "datePublished": "2026-09-10", "image": "https://fde.tkxel.com/blog/rag-vs-fine-tuning/cover.svg", "mainEntityOfPage": "https://fde.tkxel.com/blog/rag-vs-fine-tuning/"}</script>
     <link rel="stylesheet" href="/assets/css/styles.css" />
   </head>
   <body>
@@ -96,10 +96,13 @@
     </header>
     <main id="main">
       <section class="art__hero section--gradient on-dark" data-hero>
-        <div class="container art__narrow">
-          <span class="eyebrow">Article</span>
-          <h1 class="display art__h1">RAG vs fine-tuning: when to use each for enterprise AI</h1>
-          <p class="caption art__meta">10 September 2026 · 8 min read</p>
+        <div class="container art__hero-grid">
+          <div>
+            <span class="eyebrow">Article</span>
+            <h1 class="display art__h1">RAG vs fine-tuning: when to use each for enterprise AI</h1>
+            <p class="caption art__meta">10 September 2026 · 8 min read</p>
+          </div>
+          <img class="art__cover" src="/blog/rag-vs-fine-tuning/cover.svg" alt="" width="1200" height="630" />
         </div>
       </section>
       <article class="section">
@@ -188,18 +191,6 @@
         <div class="container fc">
           <div class="fc__left">
             <h2 class="h2">Find out which approach your use case needs before you build</h2>
-            <div class="fc__clutch">
-              <span class="eyebrow">Clutch</span
-              ><span class="caption">[Placeholder] Clutch badge and rating — add the official widget</span>
-            </div>
-            <blockquote class="fc__quote">
-              “Placeholder testimonial — replace with the global set from tkxel.com.”
-              <footer class="caption">— Knowles</footer>
-            </blockquote>
-            <blockquote class="fc__quote">
-              “Placeholder testimonial — replace with the global set from tkxel.com.”
-              <footer class="caption">— Sterne Kessler</footer>
-            </blockquote>
           </div>
           <form class="fc__form" method="post" action="/api/lead" data-lead-form>
             <label class="fc__full"
@@ -307,19 +298,19 @@
         <div class="ftr__offices">
           <div>
             <span class="eyebrow">USA</span>
-            <p>Placeholder — confirm from tkxel.com footer</p>
+            <p>11921 Freedom Drive, Two Fountain Square, Suite 550, Reston, VA 20190</p>
           </div>
           <div>
             <span class="eyebrow">Saudi Arabia</span>
-            <p>Placeholder — confirm from tkxel.com footer</p>
+            <p>Building 4236, King Saud St., An Nawras District, Dammam 32214</p>
           </div>
           <div>
             <span class="eyebrow">Portugal</span>
-            <p>Placeholder — confirm from tkxel.com footer</p>
+            <p>Avenida D. João II, 50, 1990-095 Lisbon</p>
           </div>
           <div>
             <span class="eyebrow">Pakistan</span>
-            <p>Placeholder — confirm from tkxel.com footer</p>
+            <p>One World Building, Babar Block, Garden Town, Lahore 54000</p>
           </div>
         </div>
         <div class="ftr__legal">

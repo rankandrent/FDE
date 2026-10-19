@@ -225,3 +225,25 @@ RULES = [  # first match wins
 def svg_for(path):
     fn = next((f for key, f in RULES if key in path), network if path == '/' else cube)
     return f'<svg class="hero__graphic" viewBox="0 0 400 400" aria-hidden="true">{fn(_rng(path))}</svg>'
+
+# Blog cover images: standalone SVG (gradient background + topic motif), one per post.
+COVER_MOTIFS = {
+    'Agents': [network, hierarchy, flow, platform], 'Governance': [shield, target, ledger],
+    'Data': [pipeline, docs, dashboard], 'Integration': [connector, blocks, route],
+    'Strategy': [bars, gauge, milestones, quad], 'FDE': [pod, cycle, rings, stack3],
+}
+
+def cover_svg(slug, tags, avoid=()):
+    """avoid: motif names used by the most recent posts, so neighbouring cards differ."""
+    r = _rng('/blog/' + slug)
+    pool = [m for t in (tags or ['FDE']) for m in COVER_MOTIFS.get(t, [])] or [cube]
+    r.shuffle(pool)
+    every = [m for ms in COVER_MOTIFS.values() for m in ms]
+    motif = next((m for m in pool + every if m.__name__ not in avoid), pool[0])
+    cover_svg.last = motif.__name__
+    gx, gy = r.choice([(10, 0), (90, 0), (10, 100), (50, 0)])
+    return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Illustration">'
+            f'<defs><radialGradient id="g" cx="{gx}%" cy="{gy}%" r="140%"><stop offset="0" stop-color="#10347E"/><stop offset="1" stop-color="#0755E9"/></radialGradient></defs>'
+            f'<rect width="1200" height="630" fill="url(#g)"/>'
+            f'<g stroke="rgba(255,255,255,.06)" stroke-width="1">' + ''.join(f'<line x1="{x}" y1="0" x2="{x}" y2="630"/>' for x in range(0, 1200, 60)) + ''.join(f'<line x1="0" y1="{y}" x2="1200" y2="{y}"/>' for y in range(0, 630, 60)) + '</g>'
+            f'<g transform="translate(330 45) scale(1.35)">{motif(r)}</g></svg>')

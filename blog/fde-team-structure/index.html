@@ -16,7 +16,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How big should a forward deployed engineering team be?", "acceptedAnswer": {"@type": "Answer", "text": "A forward deployed engineering pod should usually be three to five people. That gives you a tech lead, two or three engineers and a delivery owner, which is enough for reviews and on-call cover without the coordination overhead of a large team. Start at the smaller end for a narrow proof of value and add a data or security specialist when the data is messy or the workflow is regulated. If you need more capacity, run a second pod on a separate use case rather than growing one pod past five."}}, {"@type": "Question", "name": "What is the difference between a forward deployed engineer and a deployment strategist?", "acceptedAnswer": {"@type": "Answer", "text": "A forward deployed engineer builds and ships the code, while a deployment strategist decides what the code should solve and makes sure people use it. The engineer owns architecture, data work and integration. The strategist owns discovery, the success metric, change management and reporting results to executives. Some companies combine the roles, but most practitioner accounts say one person rarely does both well across a full engagement, which is why pods separate them."}}, {"@type": "Question", "name": "Who should an FDE team report to?", "acceptedAnswer": {"@type": "Answer", "text": "An FDE team should report to whoever owns the outcome it is accountable for. Companies place the function under product, engineering or customer success, and each choice shapes behaviour: under product it feeds learnings back into the roadmap, under services it tends to drift towards billable customisation. For a client-side engagement, the pod should have one named sponsor on your side who can unblock access and accept the work."}}, {"@type": "Question", "name": "How long does an FDE pod engagement last?", "acceptedAnswer": {"@type": "Answer", "text": "Most FDE pod engagements run around 10 to 16 weeks for one production use case. That covers a short discovery, several weekly build cycles and a reverse-shadow handover. Narrow proofs of value can finish faster, and multi-system integrations take longer. The length matters less than having a fixed success metric and a handover date agreed before build starts, so the engagement ends with a system your team owns."}}, {"@type": "Question", "name": "How do you hand over a system built by forward deployed engineers?", "acceptedAnswer": {"@type": "Answer", "text": "You hand over an FDE-built system by planning ownership from week one and moving operations to your team in stages. Name internal owners per component, pair your engineers into the code early, and write symptom-first runbooks as each feature ships. In the final weeks, your team runs the system and on-call while the pod supports, and on-call moves only after your team has handled real incidents."}}]}</script>
-    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "FDE team structure: how to build a forward deployed engineering pod", "description": "How to structure a forward deployed engineering team: the roles in a pod, sensible ratios, weekly rituals and a handover plan your own engineers can run.", "author": {"@type": "Organization", "name": "tkxel"}, "publisher": {"@type": "Organization", "name": "tkxel"}, "datePublished": "2026-09-03", "mainEntityOfPage": "https://fde.tkxel.com/blog/fde-team-structure/"}</script>
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "FDE team structure: how to build a forward deployed engineering pod", "description": "How to structure a forward deployed engineering team: the roles in a pod, sensible ratios, weekly rituals and a handover plan your own engineers can run.", "author": {"@type": "Organization", "name": "tkxel"}, "publisher": {"@type": "Organization", "name": "tkxel"}, "datePublished": "2026-09-03", "image": "https://fde.tkxel.com/blog/fde-team-structure/cover.svg", "mainEntityOfPage": "https://fde.tkxel.com/blog/fde-team-structure/"}</script>
     <link rel="stylesheet" href="/assets/css/styles.css" />
   </head>
   <body>
@@ -96,10 +96,13 @@
     </header>
     <main id="main">
       <section class="art__hero section--gradient on-dark" data-hero>
-        <div class="container art__narrow">
-          <span class="eyebrow">Article</span>
-          <h1 class="display art__h1">FDE team structure: how to build a forward deployed engineering pod</h1>
-          <p class="caption art__meta">3 September 2026 · 8 min read</p>
+        <div class="container art__hero-grid">
+          <div>
+            <span class="eyebrow">Article</span>
+            <h1 class="display art__h1">FDE team structure: how to build a forward deployed engineering pod</h1>
+            <p class="caption art__meta">3 September 2026 · 8 min read</p>
+          </div>
+          <img class="art__cover" src="/blog/fde-team-structure/cover.svg" alt="" width="1200" height="630" />
         </div>
       </section>
       <article class="section">
@@ -188,18 +191,6 @@
         <div class="container fc">
           <div class="fc__left">
             <h2 class="h2">Design the pod that gets your first agent into production</h2>
-            <div class="fc__clutch">
-              <span class="eyebrow">Clutch</span
-              ><span class="caption">[Placeholder] Clutch badge and rating — add the official widget</span>
-            </div>
-            <blockquote class="fc__quote">
-              “Placeholder testimonial — replace with the global set from tkxel.com.”
-              <footer class="caption">— Knowles</footer>
-            </blockquote>
-            <blockquote class="fc__quote">
-              “Placeholder testimonial — replace with the global set from tkxel.com.”
-              <footer class="caption">— Sterne Kessler</footer>
-            </blockquote>
           </div>
           <form class="fc__form" method="post" action="/api/lead" data-lead-form>
             <label class="fc__full"
@@ -307,19 +298,19 @@
         <div class="ftr__offices">
           <div>
             <span class="eyebrow">USA</span>
-            <p>Placeholder — confirm from tkxel.com footer</p>
+            <p>11921 Freedom Drive, Two Fountain Square, Suite 550, Reston, VA 20190</p>
           </div>
           <div>
             <span class="eyebrow">Saudi Arabia</span>
-            <p>Placeholder — confirm from tkxel.com footer</p>
+            <p>Building 4236, King Saud St., An Nawras District, Dammam 32214</p>
           </div>
           <div>
             <span class="eyebrow">Portugal</span>
-            <p>Placeholder — confirm from tkxel.com footer</p>
+            <p>Avenida D. João II, 50, 1990-095 Lisbon</p>
           </div>
           <div>
             <span class="eyebrow">Pakistan</span>
-            <p>Placeholder — confirm from tkxel.com footer</p>
+            <p>One World Building, Babar Block, Garden Town, Lahore 54000</p>
           </div>
         </div>
         <div class="ftr__legal">

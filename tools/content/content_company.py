@@ -70,7 +70,7 @@ CASES_INDEX = {
   'desc': 'Case studies from tkxel forward deployed engineering engagements: production AI agents, data platforms, and integrations delivered inside client environments.',
   'eyebrow': 'Case studies',
   'h': 'Results from engineers | who worked inside the business',
-  'sub': 'Detailed FDE case studies are being prepared with client approval. Until they are published, we can walk you through relevant engagements on a discovery call.',
+  'sub': 'Selected results from tkxel engagements, as published on tkxel.com. Ask us on a discovery call about work closest to your situation.',
   'cards': [
     ('[Placeholder]', 'Agentic FDE pod case study', 'To be replaced with an approved client case study: metric-led result, the workflow, and how the pod delivered it.', None),
     ('[Placeholder]', 'Data engineering FDE pod case study', 'To be replaced with an approved client case study: metric-led result, the workflow, and how the pod delivered it.', None),

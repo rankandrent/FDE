@@ -16,7 +16,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What are guardrails for AI agents?", "acceptedAnswer": {"@type": "Answer", "text": "Guardrails for AI agents are controls outside the model that limit what the agent can receive, do and return. They include input checks for prompt injection and sensitive data, tool allowlists and argument validation, business-policy checks in code, output schema and safety checks, and runtime limits such as rate caps and kill switches. Unlike prompt instructions, guardrails are enforced by code the model cannot override."}}, {"@type": "Question", "name": "What is the difference between guardrails and prompt engineering?", "acceptedAnswer": {"@type": "Answer", "text": "Guardrails enforce rules in code, while prompt engineering asks the model to follow rules. A prompt can tell an agent never to issue refunds over a set value, but the model may still try under the right input. A guardrail checks the refund amount before the tool runs and blocks it. Use prompts to guide behaviour and guardrails to guarantee the limits that matter."}}, {"@type": "Question", "name": "How do you implement guardrails for LLM agents in production?", "acceptedAnswer": {"@type": "Answer", "text": "You implement guardrails for LLM agents in layers. Validate inputs for injection and sensitive data, scope each agent’s tools and credentials to the minimum, validate tool arguments, express business policies as code checks, validate outputs against schemas and data rules, and add runtime limits and monitoring. Start new actions in observe-only mode and tune thresholds against a test set before enabling them."}}, {"@type": "Question", "name": "Do guardrails slow down AI agents?", "acceptedAnswer": {"@type": "Answer", "text": "Guardrails add some latency and cost, but usually far less than the risk they remove. Simple checks like schema validation, allowlists and policy lookups take milliseconds. Model-based classifiers add more, so run them only where needed, such as on untrusted input or high-risk actions. Measure guardrail latency and false-block rates as part of your evaluation so you can trade speed against safety deliberately."}}, {"@type": "Question", "name": "What tools are used for LLM guardrails?", "acceptedAnswer": {"@type": "Answer", "text": "Common tools for LLM guardrails include open-source libraries such as NeMo Guardrails, Guardrails AI, LLM Guard and LlamaFirewall, alongside cloud provider safety filters. Most production set-ups combine more than one, because no single tool covers input, output, tool permissions and policy. Action-level controls, like scoped credentials and authorisation in downstream systems, are often custom code specific to your environment."}}]}</script>
-    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "AI agent guardrails: how to run agents safely in production", "description": "AI agent guardrails for production: input and output validation, scoped tool permissions, policy checks in code, monitoring and kill switches that hold up.", "author": {"@type": "Organization", "name": "tkxel"}, "publisher": {"@type": "Organization", "name": "tkxel"}, "datePublished": "2026-10-01", "mainEntityOfPage": "https://fde.tkxel.com/blog/ai-agent-guardrails/"}</script>
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "AI agent guardrails: how to run agents safely in production", "description": "AI agent guardrails for production: input and output validation, scoped tool permissions, policy checks in code, monitoring and kill switches that hold up.", "author": {"@type": "Organization", "name": "tkxel"}, "publisher": {"@type": "Organization", "name": "tkxel"}, "datePublished": "2026-10-01", "image": "https://fde.tkxel.com/blog/ai-agent-guardrails/cover.svg", "mainEntityOfPage": "https://fde.tkxel.com/blog/ai-agent-guardrails/"}</script>
     <link rel="stylesheet" href="/assets/css/styles.css" />
   </head>
   <body>
@@ -96,10 +96,13 @@
     </header>
     <main id="main">
       <section class="art__hero section--gradient on-dark" data-hero>
-        <div class="container art__narrow">
-          <span class="eyebrow">Article</span>
-          <h1 class="display art__h1">AI agent guardrails: how to run agents safely in production</h1>
-          <p class="caption art__meta">1 October 2026 · 8 min read</p>
+        <div class="container art__hero-grid">
+          <div>
+            <span class="eyebrow">Article</span>
+            <h1 class="display art__h1">AI agent guardrails: how to run agents safely in production</h1>
+            <p class="caption art__meta">1 October 2026 · 8 min read</p>
+          </div>
+          <img class="art__cover" src="/blog/ai-agent-guardrails/cover.svg" alt="" width="1200" height="630" />
         </div>
       </section>
       <article class="section">
@@ -186,18 +189,6 @@
         <div class="container fc">
           <div class="fc__left">
             <h2 class="h2">Run agents in production with controls you can prove</h2>
-            <div class="fc__clutch">
-              <span class="eyebrow">Clutch</span
-              ><span class="caption">[Placeholder] Clutch badge and rating — add the official widget</span>
-            </div>
-            <blockquote class="fc__quote">
-              “Placeholder testimonial — replace with the global set from tkxel.com.”
-              <footer class="caption">— Knowles</footer>
-            </blockquote>
-            <blockquote class="fc__quote">
-              “Placeholder testimonial — replace with the global set from tkxel.com.”
-              <footer class="caption">— Sterne Kessler</footer>
-            </blockquote>
           </div>
           <form class="fc__form" method="post" action="/api/lead" data-lead-form>
             <label class="fc__full"
@@ -305,19 +296,19 @@
         <div class="ftr__offices">
           <div>
             <span class="eyebrow">USA</span>
-            <p>Placeholder — confirm from tkxel.com footer</p>
+            <p>11921 Freedom Drive, Two Fountain Square, Suite 550, Reston, VA 20190</p>
           </div>
           <div>
             <span class="eyebrow">Saudi Arabia</span>
-            <p>Placeholder — confirm from tkxel.com footer</p>
+            <p>Building 4236, King Saud St., An Nawras District, Dammam 32214</p>
           </div>
           <div>
             <span class="eyebrow">Portugal</span>
-            <p>Placeholder — confirm from tkxel.com footer</p>
+            <p>Avenida D. João II, 50, 1990-095 Lisbon</p>
           </div>
           <div>
             <span class="eyebrow">Pakistan</span>
-            <p>Placeholder — confirm from tkxel.com footer</p>
+            <p>One World Building, Babar Block, Garden Town, Lahore 54000</p>
           </div>
         </div>
         <div class="ftr__legal">

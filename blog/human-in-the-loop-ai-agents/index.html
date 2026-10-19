@@ -16,7 +16,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is human-in-the-loop in AI agents?", "acceptedAnswer": {"@type": "Answer", "text": "Human-in-the-loop in AI agents is a design where a person approves, edits or rejects specific agent actions before they take effect. It keeps humans inside the decision cycle for consequential steps, such as sending customer emails or issuing refunds, while routine work runs automatically. It differs from human-on-the-loop, where people monitor a running system and intervene only after something has happened."}}, {"@type": "Question", "name": "When should an AI agent require human approval?", "acceptedAnswer": {"@type": "Answer", "text": "An AI agent should require human approval when an action is hard to reverse, reaches a customer, moves money, touches sensitive data or changes many records at once. Small, reversible actions, like tagging a ticket or drafting a document, can usually run on their own. Decide per action rather than per agent, and revisit the list as evidence about the agent’s accuracy builds up."}}, {"@type": "Question", "name": "What are the levels of autonomy for AI agents?", "acceptedAnswer": {"@type": "Answer", "text": "The levels of autonomy for AI agents usually run from suggest-only, through act-with-approval and act-and-notify, to acting within pre-set policy limits without step-by-step review. Academic frameworks describe similar tiers by the role the human plays, from operator to observer. Most enterprise agents work best in the middle levels, with different actions in the same agent sitting at different levels."}}, {"@type": "Question", "name": "How do you prevent approval fatigue in human-in-the-loop systems?", "acceptedAnswer": {"@type": "Answer", "text": "You prevent approval fatigue by sending fewer, better items to reviewers. Gate only consequential actions, show the exact proposed change with its evidence, and let reviewers edit in place. Track approval rates: if nearly everything gets approved, the gate is probably in the wrong place. When volume grows, strengthen validators and policies upstream before adding more reviewers."}}, {"@type": "Question", "name": "What is the difference between human-in-the-loop and human-on-the-loop?", "acceptedAnswer": {"@type": "Answer", "text": "Human-in-the-loop means a person must act before the agent’s step takes effect, while human-on-the-loop means the agent acts and a person monitors and can intervene. In-the-loop suits high-risk, irreversible actions. On-the-loop suits routine actions where speed matters and mistakes can be caught and undone. Most production agents use both, depending on the action."}}]}</script>
-    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Human-in-the-loop AI agents: autonomy levels, review queues and escalation", "description": "Human-in-the-loop design for AI agents: choosing autonomy levels per action, building review queues people actually read, and escalation paths that hold up.", "author": {"@type": "Organization", "name": "tkxel"}, "publisher": {"@type": "Organization", "name": "tkxel"}, "datePublished": "2026-09-17", "mainEntityOfPage": "https://fde.tkxel.com/blog/human-in-the-loop-ai-agents/"}</script>
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Human-in-the-loop AI agents: autonomy levels, review queues and escalation", "description": "Human-in-the-loop design for AI agents: choosing autonomy levels per action, building review queues people actually read, and escalation paths that hold up.", "author": {"@type": "Organization", "name": "tkxel"}, "publisher": {"@type": "Organization", "name": "tkxel"}, "datePublished": "2026-09-17", "image": "https://fde.tkxel.com/blog/human-in-the-loop-ai-agents/cover.svg", "mainEntityOfPage": "https://fde.tkxel.com/blog/human-in-the-loop-ai-agents/"}</script>
     <link rel="stylesheet" href="/assets/css/styles.css" />
   </head>
   <body>
@@ -96,10 +96,13 @@
     </header>
     <main id="main">
       <section class="art__hero section--gradient on-dark" data-hero>
-        <div class="container art__narrow">
-          <span class="eyebrow">Article</span>
-          <h1 class="display art__h1">Human-in-the-loop AI agents: autonomy levels, review queues and escalation</h1>
-          <p class="caption art__meta">17 September 2026 · 8 min read</p>
+        <div class="container art__hero-grid">
+          <div>
+            <span class="eyebrow">Article</span>
+            <h1 class="display art__h1">Human-in-the-loop AI agents: autonomy levels, review queues and escalation</h1>
+            <p class="caption art__meta">17 September 2026 · 8 min read</p>
+          </div>
+          <img class="art__cover" src="/blog/human-in-the-loop-ai-agents/cover.svg" alt="" width="1200" height="630" />
         </div>
       </section>
       <article class="section">
@@ -193,18 +196,6 @@
         <div class="container fc">
           <div class="fc__left">
             <h2 class="h2">Give your agents the right amount of autonomy from day one</h2>
-            <div class="fc__clutch">
-              <span class="eyebrow">Clutch</span
-              ><span class="caption">[Placeholder] Clutch badge and rating — add the official widget</span>
-            </div>
-            <blockquote class="fc__quote">
-              “Placeholder testimonial — replace with the global set from tkxel.com.”
-              <footer class="caption">— Knowles</footer>
-            </blockquote>
-            <blockquote class="fc__quote">
-              “Placeholder testimonial — replace with the global set from tkxel.com.”
-              <footer class="caption">— Sterne Kessler</footer>
-            </blockquote>
           </div>
           <form class="fc__form" method="post" action="/api/lead" data-lead-form>
             <label class="fc__full"
@@ -312,19 +303,19 @@
         <div class="ftr__offices">
           <div>
             <span class="eyebrow">USA</span>
-            <p>Placeholder — confirm from tkxel.com footer</p>
+            <p>11921 Freedom Drive, Two Fountain Square, Suite 550, Reston, VA 20190</p>
           </div>
           <div>
             <span class="eyebrow">Saudi Arabia</span>
-            <p>Placeholder — confirm from tkxel.com footer</p>
+            <p>Building 4236, King Saud St., An Nawras District, Dammam 32214</p>
           </div>
           <div>
             <span class="eyebrow">Portugal</span>
-            <p>Placeholder — confirm from tkxel.com footer</p>
+            <p>Avenida D. João II, 50, 1990-095 Lisbon</p>
           </div>
           <div>
             <span class="eyebrow">Pakistan</span>
-            <p>Placeholder — confirm from tkxel.com footer</p>
+            <p>One World Building, Babar Block, Garden Town, Lahore 54000</p>
           </div>
         </div>
         <div class="ftr__legal">

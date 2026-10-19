@@ -16,7 +16,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is Model Context Protocol in simple terms?", "acceptedAnswer": {"@type": "Answer", "text": "Model Context Protocol is a standard way for AI applications to connect to tools and data. Instead of building a custom integration for each AI tool and each system, you expose a system once as an MCP server, and any compatible AI application can discover and use its tools. Anthropic published it as an open standard in November 2024."}}, {"@type": "Question", "name": "What is the difference between an MCP server and an MCP client?", "acceptedAnswer": {"@type": "Answer", "text": "An MCP server exposes a system’s tools, data and prompts, while an MCP client connects an AI application to that server. The client runs inside a host application, such as a chat assistant or agent, and each client keeps a connection to one server. The model uses the client to see and call the server’s tools."}}, {"@type": "Question", "name": "Is MCP secure for enterprise use?", "acceptedAnswer": {"@type": "Answer", "text": "MCP can be used securely in an enterprise, but the protocol does not provide full security on its own. You need to add identity integration, scoped permissions, an approved server registry, approval steps for actions that change data, and audit logging. Treat each MCP server as an access point to a system of record and govern it accordingly."}}, {"@type": "Question", "name": "Do I need MCP if I already have APIs?", "acceptedAnswer": {"@type": "Answer", "text": "You do not always need MCP if you already have APIs. MCP adds value when several AI applications need the same systems or when agents should discover tools dynamically. For a single fixed workflow that calls one API in a known order, a direct integration may be simpler to secure, test and maintain."}}, {"@type": "Question", "name": "How does MCP handle authentication?", "acceptedAnswer": {"@type": "Answer", "text": "MCP handles authentication for remote servers through OAuth 2.1. The specification treats the MCP server as a resource server that relies on a separate authorisation server to issue tokens, so you can connect it to your existing identity provider. You still need to define which tools each user and agent may call."}}]}</script>
-    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Model context protocol for enterprises: what leaders need to know", "description": "Model Context Protocol for enterprises: what MCP is, how servers and clients work, the security risks, governance controls to put in place, and when to use it.", "author": {"@type": "Organization", "name": "tkxel"}, "publisher": {"@type": "Organization", "name": "tkxel"}, "datePublished": "2026-10-01", "mainEntityOfPage": "https://fde.tkxel.com/blog/model-context-protocol-for-enterprises/"}</script>
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Model context protocol for enterprises: what leaders need to know", "description": "Model Context Protocol for enterprises: what MCP is, how servers and clients work, the security risks, governance controls to put in place, and when to use it.", "author": {"@type": "Organization", "name": "tkxel"}, "publisher": {"@type": "Organization", "name": "tkxel"}, "datePublished": "2026-10-01", "image": "https://fde.tkxel.com/blog/model-context-protocol-for-enterprises/cover.svg", "mainEntityOfPage": "https://fde.tkxel.com/blog/model-context-protocol-for-enterprises/"}</script>
     <link rel="stylesheet" href="/assets/css/styles.css" />
   </head>
   <body>
@@ -96,10 +96,13 @@
     </header>
     <main id="main">
       <section class="art__hero section--gradient on-dark" data-hero>
-        <div class="container art__narrow">
-          <span class="eyebrow">Article</span>
-          <h1 class="display art__h1">Model context protocol for enterprises: what leaders need to know</h1>
-          <p class="caption art__meta">1 October 2026 · 8 min read</p>
+        <div class="container art__hero-grid">
+          <div>
+            <span class="eyebrow">Article</span>
+            <h1 class="display art__h1">Model context protocol for enterprises: what leaders need to know</h1>
+            <p class="caption art__meta">1 October 2026 · 8 min read</p>
+          </div>
+          <img class="art__cover" src="/blog/model-context-protocol-for-enterprises/cover.svg" alt="" width="1200" height="630" />
         </div>
       </section>
       <article class="section">
@@ -185,18 +188,6 @@
         <div class="container fc">
           <div class="fc__left">
             <h2 class="h2">Give your agents safe, governed access to the systems they need</h2>
-            <div class="fc__clutch">
-              <span class="eyebrow">Clutch</span
-              ><span class="caption">[Placeholder] Clutch badge and rating — add the official widget</span>
-            </div>
-            <blockquote class="fc__quote">
-              “Placeholder testimonial — replace with the global set from tkxel.com.”
-              <footer class="caption">— Knowles</footer>
-            </blockquote>
-            <blockquote class="fc__quote">
-              “Placeholder testimonial — replace with the global set from tkxel.com.”
-              <footer class="caption">— Sterne Kessler</footer>
-            </blockquote>
           </div>
           <form class="fc__form" method="post" action="/api/lead" data-lead-form>
             <label class="fc__full"
@@ -304,19 +295,19 @@
         <div class="ftr__offices">
           <div>
             <span class="eyebrow">USA</span>
-            <p>Placeholder — confirm from tkxel.com footer</p>
+            <p>11921 Freedom Drive, Two Fountain Square, Suite 550, Reston, VA 20190</p>
           </div>
           <div>
             <span class="eyebrow">Saudi Arabia</span>
-            <p>Placeholder — confirm from tkxel.com footer</p>
+            <p>Building 4236, King Saud St., An Nawras District, Dammam 32214</p>
           </div>
           <div>
             <span class="eyebrow">Portugal</span>
-            <p>Placeholder — confirm from tkxel.com footer</p>
+            <p>Avenida D. João II, 50, 1990-095 Lisbon</p>
           </div>
           <div>
             <span class="eyebrow">Pakistan</span>
-            <p>Placeholder — confirm from tkxel.com footer</p>
+            <p>One World Building, Babar Block, Garden Town, Lahore 54000</p>
           </div>
         </div>
         <div class="ftr__legal">
