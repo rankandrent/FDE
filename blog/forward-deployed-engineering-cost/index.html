@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Forward deployed engineering cost and pricing | tkxel FDE</title>
+    <meta name="description" content="What forward deployed engineering costs: cited FDE salary data, the hidden costs of hiring in-house, and how partner pricing models compare." />
+    <link rel="canonical" href="https://fde.tkxel.com/blog/forward-deployed-engineering-cost/" />
+    <meta property="og:title" content="Forward deployed engineering cost and pricing | tkxel FDE" />
+    <meta property="og:description" content="What forward deployed engineering costs: cited FDE salary data, the hidden costs of hiring in-house, and how partner pricing models compare." />
+    <meta property="og:url" content="https://fde.tkxel.com/blog/forward-deployed-engineering-cost/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://fde.tkxel.com/og-default.png" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How much does a forward deployed engineer cost?", "acceptedAnswer": {"@type": "Answer", "text": "A forward deployed engineer in the US typically costs a senior engineering salary plus overhead. Glassdoor reports an average US base of about $156,000, while ZipRecruiter reports about $110,000, so the figure depends heavily on the company and role. Add recruiting, benefits, taxes and ramp-up time to estimate the full cost of an in-house hire."}}, {"@type": "Question", "name": "What pricing models do FDE partners use?", "acceptedAnswer": {"@type": "Answer", "text": "FDE partners usually use fixed-price discovery, a pod priced per phase, time and materials, or outcome-based fees. Many combine them, starting with a fixed discovery phase and moving to phased pricing once the scope is clear. Outcome-based pricing is less common because it requires a measurable result and agreement on what the partner controls."}}, {"@type": "Question", "name": "Is it cheaper to hire FDEs or use a partner?", "acceptedAnswer": {"@type": "Answer", "text": "Hiring FDEs is usually cheaper over several years if you have continuous deployment work, while a partner is usually cheaper for a defined project with an end date. A partner avoids recruiting time and long-term headcount, but its day rates are higher. Compare total cost over the life of the work, including the months spent hiring."}}, {"@type": "Question", "name": "Does outcome-based pricing work for AI projects?", "acceptedAnswer": {"@type": "Answer", "text": "Outcome-based pricing can work for AI projects when the result is measurable and the partner can influence the inputs that drive it. Examples include tickets resolved or documents processed. It works less well when results depend on factors outside the partner’s control, such as user adoption decisions or data the client has not supplied, which is why hybrid models are common."}}, {"@type": "Question", "name": "Why does an FDE engagement start with discovery?", "acceptedAnswer": {"@type": "Answer", "text": "An FDE engagement starts with discovery because nobody can price a production AI system accurately before seeing the workflow, data and integration points. A short fixed-price discovery phase maps those, defines the success metric and produces a build plan. It keeps your first commitment small and makes the later build estimate far more reliable."}}]}</script>
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Forward deployed engineering cost: salaries, pricing models and trade-offs", "description": "What forward deployed engineering costs: cited FDE salary data, the hidden costs of hiring in-house, and how partner pricing models compare.", "author": {"@type": "Organization", "name": "tkxel"}, "publisher": {"@type": "Organization", "name": "tkxel"}, "datePublished": "2026-09-10", "mainEntityOfPage": "https://fde.tkxel.com/blog/forward-deployed-engineering-cost/"}</script>
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+  </head>
+  <body>
+                                                                                                                                                                                                                                                                    <header class="hdr" data-hdr>
+      <div class="container hdr__bar">
+        <a href="/" class="hdr__logo" aria-label="tkxel FDE home">tkxel<span>FDE</span></a>
+        <nav class="hdr__nav" aria-label="Primary">
+          <div class="hdr__mega-wrap">
+            <button class="hdr__link" aria-expanded="false" aria-controls="mega" data-mega-btn>Services</button>
+            <div class="hdr__mega" id="mega" hidden data-mega>
+              <div class="container hdr__mega-grid">
+                <div>
+                  <a href="/services/ai-strategy-readiness/" class="hdr__mega-title">AI strategy &amp; readiness</a>
+                  <ul>
+                    <li><a href="/services/ai-readiness-assessment/">AI maturity assessment</a></li>
+                    <li>Process mapping &amp; use-case prioritization</li>
+                    <li>Use-case portfolio &amp; ROI tracking</li>
+                    <li>Data readiness audit</li>
+                  </ul>
+                </div>
+                <div>
+                  <a href="/services/fde-pods/" class="hdr__mega-title">FDE pods</a>
+                  <ul>
+                    <li><a href="/services/full-stack-fde-pod/">Full-stack FDE pod</a></li>
+                    <li><a href="/services/agentic-fde-pod/">Agentic FDE pod</a></li>
+                    <li><a href="/services/data-engineering-fde-pod/">Data engineering FDE pod</a></li>
+                    <li><a href="/services/integration-legacy-modernization-pod/">Integration &amp; legacy modernization pod</a></li>
+                  </ul>
+                </div>
+                <div>
+                  <a href="/services/agentic-platforms/" class="hdr__mega-title"
+                    >Agentic platforms &amp; integrations</a
+                  <ul>
+                    <li><a href="/services/mcp-enterprise-integrations/">Enterprise connectors &amp; MCP integrations</a></li>
+                    <li><a href="/services/enterprise-knowledge-assistant/">Enterprise knowledge assistant</a></li>
+                    <li><a href="/services/workflow-agentification/">Workflow agentification</a></li>
+                    <li>Managed AI operations</li>
+                  </ul>
+                </div>
+                <div>
+                  <a href="/services/adoption-enablement/" class="hdr__mega-title">Adoption &amp; enablement</a>
+                  <ul>
+                    <li>Role-based AI training</li>
+                    <li>AI champions program</li>
+                    <li>Train-the-trainer</li>
+                    <li>AI center of excellence</li>
+                  </ul>
+                </div>
+                <div>
+                  <a href="/services/ai-security-governance/" class="hdr__mega-title">AI security &amp; governance</a>
+                  <ul>
+                    <li>Agent security &amp; permissions review</li>
+                    <li><a href="/services/ai-penetration-testing/">AI penetration testing</a></li>
+                    <li>AI governance council setup</li>
+                  </ul>
+                </div>
+                <div>
+                  <a href="/services/product-engineering/" class="hdr__mega-title"
+                    >Product &amp; engineering transformation</a
+                  <ul>
+                    <li>Product AI strategy</li>
+                    <li>Rapid prototype sprint</li>
+                    <li>AI-enabled SDLC redesign</li>
+                    <li>Legacy SaaS modernization</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        <a href="/services/fde-pods/" class="hdr__link">FDE pods</a><a href="/industries/" class="hdr__link">Industries</a><a href="/case-studies/" class="hdr__link">Case studies</a><a href="/blog/" class="hdr__link">Resources</a>
+      </nav>
+        <a href="#cta-form" class="btn btn--invert hdr__cta">Book discovery call</a>
+        <button class="hdr__burger" aria-label="Open menu" aria-expanded="false" data-burger>
+          <span></span><span></span>
+        </button>
+      </div>
+    </header>
+    <main id="main">
+      <section class="art__hero section--gradient on-dark" data-hero>
+        <div class="container art__narrow">
+          <span class="eyebrow">Article</span>
+          <h1 class="display art__h1">Forward deployed engineering cost: salaries, pricing models and trade-offs</h1>
+          <p class="caption art__meta">10 September 2026 · 8 min read</p>
+        </div>
+      </section>
+      <article class="section">
+        <div class="container art__layout">
+          <nav class="art__toc" aria-label="Contents"><span class="eyebrow">Contents</span><ol><li><a href="#what-drives-the-cost-of-forward-deployed-enginee">What drives the cost of forward deployed engineering</a></li><li><a href="#fde-salary-data-from-public-sources">FDE salary data from public sources</a></li><li><a href="#the-real-cost-of-building-an-in-house-fde-team">The real cost of building an in-house FDE team</a></li><li><a href="#partner-pricing-models-compared">Partner pricing models compared</a></li><li><a href="#when-outcome-based-pricing-works-and-when-it-doe">When outcome-based pricing works and when it does not</a></li><li><a href="#how-to-budget-for-your-first-fde-engagement">How to budget for your first FDE engagement</a></li><li><a href="#questions-to-ask-before-you-sign">Questions to ask before you sign</a></li></ol></nav>
+          <div class="art__body">
+          <p class="art__lede">Forward deployed engineering cost depends on whether you hire engineers or engage a partner. In-house FDEs carry senior salaries plus recruiting and overhead. Partners usually price through a fixed discovery phase, a pod per phase, time and materials, or outcome-based fees, and each model shifts risk differently between you and the partner.</p>
+          <h2 class="art__h2" id="what-drives-the-cost-of-forward-deployed-enginee">What drives the cost of forward deployed engineering</h2>
+          <p>The cost of forward deployed engineering is driven by seniority, team size, duration and how much of the risk you want the provider to carry. FDEs are senior by design, because they work without close supervision inside your systems, so you are rarely paying junior rates.</p>
+          <p>Scope matters as much as rates. A single agent built on clean, accessible data costs far less than a system that needs new data pipelines, identity integration and security review before it can go live.</p>
+          <p>Your own readiness also changes the bill. If engineers wait three weeks for system access or for a subject-matter expert to define what good output looks like, you pay for that time whichever model you choose.</p>
+          <ul><li>Seniority and mix: lead, applied AI, data and integration engineers.</li><li>Duration: a six-week build and a six-month programme are different budgets.</li><li>Environment: regulated data, on-premise systems and strict access controls add time.</li><li>Risk transfer: fixed and outcome-based prices include a premium for the risk the provider takes on.</li></ul>
+          <h2 class="art__h2" id="fde-salary-data-from-public-sources">FDE salary data from public sources</h2>
+          <p>Published FDE salary figures vary widely by source, so treat any single number as a range rather than a quote. Glassdoor reports an average US base salary of about $156,000 for forward deployed engineers, with a typical range from roughly $125,000 at the 25th percentile to $198,000 at the 75th percentile, based on self-reported data.</p>
+          <p>ZipRecruiter reports a lower average of about $110,000 a year for the title as of August 2026. The gap between the two shows how much the title still varies across companies, from integration roles to AI lab positions that also include equity. Check the current figures and date before you build a budget on them.</p>
+          <p>Base salary is also only part of compensation at many technology companies. Equity, bonuses and location can move total pay well beyond the published base, especially at AI labs and fast-growing software firms that compete for the same small pool of senior engineers.</p>
+          <h2 class="art__h2" id="the-real-cost-of-building-an-in-house-fde-team">The real cost of building an in-house FDE team</h2>
+          <p>The real cost of an in-house FDE team is well above base salary. You also pay for recruiting time, benefits, payroll taxes, equipment, management attention and the months before a new hire is productive in your environment.</p>
+          <p>Team shape adds cost too. One FDE rarely covers AI, data and integration work alone, so a production system often needs two to four people. Paraform’s hiring guide estimates 8 to 12 weeks per search, which means the delay before work starts is itself a cost if the project has a business deadline.</p>
+          <p>There is also the cost of the wrong hire. A senior engineer who cannot work with stakeholders, or a consultant who cannot ship, can consume a quarter before the problem is clear. Partners absorb some of that risk by replacing people within the pod.</p>
+          <ul><li>Recruiting fees or internal recruiter time.</li><li>Benefits, payroll taxes, equipment and software licences.</li><li>Ramp-up time before the engineer is productive in your systems.</li><li>Management and technical leadership time.</li><li>Retention costs in a competitive market for senior AI engineers.</li></ul>
+          <h2 class="art__h2" id="partner-pricing-models-compared">Partner pricing models compared</h2>
+          <p>Partners price forward deployed engineering in four common ways, and the best choice depends on how well the scope is understood. Clear scope suits fixed pricing; uncertain scope suits time and materials or phased pods.</p>
+          <p>Many engagements move between models as they progress. A fixed discovery phase reduces uncertainty, which then makes a phased or fixed build price realistic. Time and materials often returns later for ongoing improvements once the first system is live.</p>
+          <div class="ct__scroll" tabindex="0" role="region" aria-label="Comparison of FDE partner pricing models"><table class="ct art__table"><caption class="sr-only">Comparison of FDE partner pricing models</caption><thead><tr><th scope="col">Model</th><th scope="col">How it works</th><th scope="col">Best when</th><th scope="col">Watch out for</th></tr></thead><tbody><tr><th scope="row">Fixed-price discovery</th><td>A short, fixed fee to map the workflow, data and success metric</td><td>You are not yet sure what to build</td><td>Discovery that ends in a slide deck instead of a build plan</td></tr><tr><th scope="row">Pod per phase</th><td>A set team at a set price for each phase, such as pilot then production</td><td>Scope is clear one phase at a time</td><td>Phase boundaries need clear exit criteria</td></tr><tr><th scope="row">Time and materials</th><td>You pay for hours or days actually worked</td><td>Requirements will change as you learn</td><td>You carry the overrun risk without strong governance</td></tr><tr><th scope="row">Outcome-based</th><td>Part of the fee depends on a measured business result</td><td>The outcome is measurable and the partner controls the inputs</td><td>Disputes over attribution and slower contracting</td></tr></tbody></table></div>
+          <h2 class="art__h2" id="when-outcome-based-pricing-works-and-when-it-doe">When outcome-based pricing works and when it does not</h2>
+          <p>Outcome-based pricing works only when the result is measurable and the partner can influence what produces it. Antoine Buteau’s analysis of forward-deployed pricing makes the point that if a provider is paid on claims processed or tickets resolved, it must understand which inputs it controls and which it does not.</p>
+          <p>Embedded teams are better placed for outcome pricing than remote vendors, because they can shape the workflow and set review gates. Even so, most enterprise engagements use a hybrid: a fixed or phased fee for delivery, with a smaller portion tied to an agreed metric. That keeps incentives aligned without turning every result into a negotiation.</p>
+          <p>Before agreeing to an outcome fee, settle three things in writing: the exact metric and how it is measured, the baseline it is compared against, and what happens if inputs you control, such as data access or user rollout, are delayed. Without those, outcome pricing tends to create disputes rather than alignment.</p>
+          <h2 class="art__h2" id="how-to-budget-for-your-first-fde-engagement">How to budget for your first FDE engagement</h2>
+          <p>Budget for your first engagement in two parts: a fixed discovery phase, then a build phase priced once the scope is clear. This keeps your first commitment small and gives you a real plan before the larger spend.</p>
+          <p>At tkxel we usually start with a short discovery that defines the workflow, the data access needed and the production success metric, then price the pod per phase. The honest limitation is that no partner can give you a reliable full-project price before discovery; anyone who does is either padding the number or guessing.</p>
+          <ul><li>Agree the production success metric before any build starts.</li><li>Ask what is included: evaluation suites, security review, documentation and handover.</li><li>Price the handover and internal enablement, not just the build.</li><li>Set a decision point after the first phase so you can stop or continue.</li></ul>
+          <h2 class="art__h2" id="questions-to-ask-before-you-sign">Questions to ask before you sign</h2>
+          <p>The right questions before signing reveal more about real cost than the day rate does. Ask each partner the same set so you can compare like with like.</p>
+          <ul><li>Who exactly is on the pod, and how senior is each person?</li><li>What happens to the price if scope changes mid-phase?</li><li>Who owns the code, data pipelines and evaluation suites at the end?</li><li>What does handover include, and how long does the partner stay on for support?</li><li>Which costs sit outside the fee, such as cloud usage, model API spend or licences?</li></ul>
+          <aside class="art__related"><span class="eyebrow">Related</span><ul><li><a href="/engagement-models/" class="link-arrow">Engagement models</a></li><li><a href="/services/fde-pods/" class="link-arrow">FDE pods</a></li><li><a href="/fde-vs-staff-augmentation-vs-consulting/" class="link-arrow">FDE vs staff augmentation vs consulting</a></li></ul></aside>
+          </div>
+        </div>
+      </article>
+      <section class="icb section--gradient on-dark">
+        <div class="container icb__row">
+          <h2 class="h2">Get a scoped price for your FDE engagement</h2>
+          <div class="icb__right">
+            <p>Start with a fixed discovery phase and get a phased build plan you can price.</p>
+            <a href="#cta-form" class="btn btn--invert">Book a discovery call</a>
+          </div>
+        </div>
+      </section>
+      <section class="section" id="faq">
+        <div class="container faq">
+          <h2 class="h2 reveal">Frequently asked questions</h2>
+          <div>
+            <details class="faq__item" open>
+              <summary><span>How much does a forward deployed engineer cost?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>A forward deployed engineer in the US typically costs a senior engineering salary plus overhead. Glassdoor reports an average US base of about $156,000, while ZipRecruiter reports about $110,000, so the figure depends heavily on the company and role. Add recruiting, benefits, taxes and ramp-up time to estimate the full cost of an in-house hire.</p>
+            </details>
+            <details class="faq__item">
+              <summary><span>What pricing models do FDE partners use?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>FDE partners usually use fixed-price discovery, a pod priced per phase, time and materials, or outcome-based fees. Many combine them, starting with a fixed discovery phase and moving to phased pricing once the scope is clear. Outcome-based pricing is less common because it requires a measurable result and agreement on what the partner controls.</p>
+            </details>
+            <details class="faq__item">
+              <summary><span>Is it cheaper to hire FDEs or use a partner?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>Hiring FDEs is usually cheaper over several years if you have continuous deployment work, while a partner is usually cheaper for a defined project with an end date. A partner avoids recruiting time and long-term headcount, but its day rates are higher. Compare total cost over the life of the work, including the months spent hiring.</p>
+            </details>
+            <details class="faq__item">
+              <summary><span>Does outcome-based pricing work for AI projects?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>Outcome-based pricing can work for AI projects when the result is measurable and the partner can influence the inputs that drive it. Examples include tickets resolved or documents processed. It works less well when results depend on factors outside the partner’s control, such as user adoption decisions or data the client has not supplied, which is why hybrid models are common.</p>
+            </details>
+            <details class="faq__item">
+              <summary><span>Why does an FDE engagement start with discovery?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>An FDE engagement starts with discovery because nobody can price a production AI system accurately before seeing the workflow, data and integration points. A short fixed-price discovery phase maps those, defines the success metric and produces a build plan. It keeps your first commitment small and makes the later build estimate far more reliable.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+            <section class="section section--dark on-dark" id="cta-form">
+        <div class="container fc">
+          <div class="fc__left">
+            <h2 class="h2">Plan an FDE budget you can defend to your finance team</h2>
+            <div class="fc__clutch">
+              <span class="eyebrow">Clutch</span
+              ><span class="caption">[Placeholder] Clutch badge and rating — add the official widget</span>
+            </div>
+            <blockquote class="fc__quote">
+              “Placeholder testimonial — replace with the global set from tkxel.com.”
+              <footer class="caption">— Knowles</footer>
+            </blockquote>
+            <blockquote class="fc__quote">
+              “Placeholder testimonial — replace with the global set from tkxel.com.”
+              <footer class="caption">— Sterne Kessler</footer>
+            </blockquote>
+          </div>
+          <form class="fc__form" method="post" action="/api/lead" data-lead-form>
+            <label class="fc__full"
+              >I'm interested in
+              <select name="interest" required>
+                <option>FDE pod</option>
+                <option>AI strategy &amp; readiness</option>
+                <option>Agentic platforms &amp; integrations</option>
+                <option>Adoption &amp; enablement</option>
+                <option>AI security &amp; governance</option>
+                <option>Product &amp; engineering transformation</option>
+                <option>Something else</option>
+              </select>
+            </label>
+            <label>First name*<input name="first_name" required autocomplete="given-name" /></label>
+            <label>Last name*<input name="last_name" required autocomplete="family-name" /></label>
+            <label>Work email*<input name="email" type="email" required autocomplete="email" /></label>
+            <label>Job title*<input name="job_title" required autocomplete="organization-title" /></label>
+            <label class="fc__full">Phone<input name="phone" type="tel" autocomplete="tel" /></label>
+            <label class="fc__full">Project description<textarea name="message" rows="4"></textarea></label>
+            <label class="fc__check fc__full"
+              ><input type="checkbox" name="marketing_consent" /> I agree to receive marketing communications from
+              tkxel.</label
+            >
+            <label class="fc__check fc__full"
+              ><input type="checkbox" name="sms_consent" /> I agree to receive SMS messages from tkxel.</label
+            >
+            <button class="btn btn--invert fc__full" type="submit">Book discovery call</button>
+            <p class="caption fc__full">
+              By submitting, you agree to our <a href="https://tkxel.com/terms-of-use/">Terms</a> and
+              <a href="https://tkxel.com/privacy-policy/">Privacy policy</a>.
+            </p>
+            <p class="fc__status fc__full" role="status" data-lead-status></p>
+          </form>
+        </div>
+      </section>
+    </main>
+                                                                                                                                    <footer class="ftr">
+      <div class="container">
+        <div class="ftr__top">
+          <div class="ftr__brand">
+            <a href="/" class="ftr__logo">tkxel<span>FDE</span></a>
+            <p class="ftr__tag">
+              Forward deployed engineering teams that build production AI inside your environment, then hand it over to
+              your team.
+            </p>
+            <a href="https://tkxel.com" class="ftr__main">Visit tkxel.com →</a>
+          </div>
+          <div class="ftr__cols">
+            <div>
+              <a href="/services/ai-strategy-readiness/" class="ftr__head">AI strategy &amp; readiness</a>
+              <ul>
+                <li><a href="/services/ai-readiness-assessment/">AI maturity assessment</a></li>
+                <li>Process mapping &amp; use-case prioritization</li>
+                <li>Use-case portfolio &amp; ROI tracking</li>
+                <li>Data readiness audit</li>
+              </ul>
+            </div>
+            <div>
+              <a href="/services/fde-pods/" class="ftr__head">FDE pods</a>
+              <ul>
+                <li><a href="/services/full-stack-fde-pod/">Full-stack FDE pod</a></li>
+                <li><a href="/services/agentic-fde-pod/">Agentic FDE pod</a></li>
+                <li><a href="/services/data-engineering-fde-pod/">Data engineering FDE pod</a></li>
+                <li><a href="/services/integration-legacy-modernization-pod/">Integration &amp; legacy modernization pod</a></li>
+              </ul>
+            </div>
+            <div>
+              <a href="/services/agentic-platforms/" class="ftr__head">Agentic platforms &amp; integrations</a>
+              <ul>
+                <li><a href="/services/mcp-enterprise-integrations/">Enterprise connectors &amp; MCP integrations</a></li>
+                <li><a href="/services/enterprise-knowledge-assistant/">Enterprise knowledge assistant</a></li>
+                <li><a href="/services/workflow-agentification/">Workflow agentification</a></li>
+                <li>Managed AI operations</li>
+              </ul>
+            </div>
+            <div>
+              <a href="/services/adoption-enablement/" class="ftr__head">Adoption &amp; enablement</a>
+              <ul>
+                <li>Role-based AI training</li>
+                <li>AI champions program</li>
+                <li>Train-the-trainer</li>
+                <li>AI center of excellence</li>
+              </ul>
+            </div>
+            <div>
+              <a href="/services/ai-security-governance/" class="ftr__head">AI security &amp; governance</a>
+              <ul>
+                <li>Agent security &amp; permissions review</li>
+                <li><a href="/services/ai-penetration-testing/">AI penetration testing</a></li>
+                <li>AI governance council setup</li>
+              </ul>
+            </div>
+            <div>
+              <a href="/services/product-engineering/" class="ftr__head">Product &amp; engineering transformation</a>
+              <ul>
+                <li>Product AI strategy</li>
+                <li>Rapid prototype sprint</li>
+                <li>AI-enabled SDLC redesign</li>
+                <li>Legacy SaaS modernization</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="ftr__offices">
+          <div>
+            <span class="eyebrow">USA</span>
+            <p>Placeholder — confirm from tkxel.com footer</p>
+          </div>
+          <div>
+            <span class="eyebrow">Saudi Arabia</span>
+            <p>Placeholder — confirm from tkxel.com footer</p>
+          </div>
+          <div>
+            <span class="eyebrow">Portugal</span>
+            <p>Placeholder — confirm from tkxel.com footer</p>
+          </div>
+          <div>
+            <span class="eyebrow">Pakistan</span>
+            <p>Placeholder — confirm from tkxel.com footer</p>
+          </div>
+        </div>
+        <div class="ftr__legal">
+          <span>© 2026 tkxel. All rights reserved.</span>
+          <nav aria-label="Legal"><a href="https://tkxel.com/privacy-policy/">Privacy policy</a><a href="https://tkxel.com/terms-of-use/">Terms of use</a></nav>
+        </div>
+      </div>
+    </footer>
+    <script src="/assets/js/main.js" defer></script>
+  </body>
+</html>

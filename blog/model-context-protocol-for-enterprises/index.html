@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Model context protocol for enterprises | tkxel FDE</title>
+    <meta name="description" content="Model Context Protocol for enterprises: what MCP is, how servers and clients work, the security risks, governance controls to put in place, and when to use it." />
+    <link rel="canonical" href="https://fde.tkxel.com/blog/model-context-protocol-for-enterprises/" />
+    <meta property="og:title" content="Model context protocol for enterprises | tkxel FDE" />
+    <meta property="og:description" content="Model Context Protocol for enterprises: what MCP is, how servers and clients work, the security risks, governance controls to put in place, and when to use it." />
+    <meta property="og:url" content="https://fde.tkxel.com/blog/model-context-protocol-for-enterprises/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://fde.tkxel.com/og-default.png" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is Model Context Protocol in simple terms?", "acceptedAnswer": {"@type": "Answer", "text": "Model Context Protocol is a standard way for AI applications to connect to tools and data. Instead of building a custom integration for each AI tool and each system, you expose a system once as an MCP server, and any compatible AI application can discover and use its tools. Anthropic published it as an open standard in November 2024."}}, {"@type": "Question", "name": "What is the difference between an MCP server and an MCP client?", "acceptedAnswer": {"@type": "Answer", "text": "An MCP server exposes a system’s tools, data and prompts, while an MCP client connects an AI application to that server. The client runs inside a host application, such as a chat assistant or agent, and each client keeps a connection to one server. The model uses the client to see and call the server’s tools."}}, {"@type": "Question", "name": "Is MCP secure for enterprise use?", "acceptedAnswer": {"@type": "Answer", "text": "MCP can be used securely in an enterprise, but the protocol does not provide full security on its own. You need to add identity integration, scoped permissions, an approved server registry, approval steps for actions that change data, and audit logging. Treat each MCP server as an access point to a system of record and govern it accordingly."}}, {"@type": "Question", "name": "Do I need MCP if I already have APIs?", "acceptedAnswer": {"@type": "Answer", "text": "You do not always need MCP if you already have APIs. MCP adds value when several AI applications need the same systems or when agents should discover tools dynamically. For a single fixed workflow that calls one API in a known order, a direct integration may be simpler to secure, test and maintain."}}, {"@type": "Question", "name": "How does MCP handle authentication?", "acceptedAnswer": {"@type": "Answer", "text": "MCP handles authentication for remote servers through OAuth 2.1. The specification treats the MCP server as a resource server that relies on a separate authorisation server to issue tokens, so you can connect it to your existing identity provider. You still need to define which tools each user and agent may call."}}]}</script>
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Model context protocol for enterprises: what leaders need to know", "description": "Model Context Protocol for enterprises: what MCP is, how servers and clients work, the security risks, governance controls to put in place, and when to use it.", "author": {"@type": "Organization", "name": "tkxel"}, "publisher": {"@type": "Organization", "name": "tkxel"}, "datePublished": "2026-10-01", "mainEntityOfPage": "https://fde.tkxel.com/blog/model-context-protocol-for-enterprises/"}</script>
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+  </head>
+  <body>
+                                                                                                                                                                                                                                                                    <header class="hdr" data-hdr>
+      <div class="container hdr__bar">
+        <a href="/" class="hdr__logo" aria-label="tkxel FDE home">tkxel<span>FDE</span></a>
+        <nav class="hdr__nav" aria-label="Primary">
+          <div class="hdr__mega-wrap">
+            <button class="hdr__link" aria-expanded="false" aria-controls="mega" data-mega-btn>Services</button>
+            <div class="hdr__mega" id="mega" hidden data-mega>
+              <div class="container hdr__mega-grid">
+                <div>
+                  <a href="/services/ai-strategy-readiness/" class="hdr__mega-title">AI strategy &amp; readiness</a>
+                  <ul>
+                    <li><a href="/services/ai-readiness-assessment/">AI maturity assessment</a></li>
+                    <li>Process mapping &amp; use-case prioritization</li>
+                    <li>Use-case portfolio &amp; ROI tracking</li>
+                    <li>Data readiness audit</li>
+                  </ul>
+                </div>
+                <div>
+                  <a href="/services/fde-pods/" class="hdr__mega-title">FDE pods</a>
+                  <ul>
+                    <li><a href="/services/full-stack-fde-pod/">Full-stack FDE pod</a></li>
+                    <li><a href="/services/agentic-fde-pod/">Agentic FDE pod</a></li>
+                    <li><a href="/services/data-engineering-fde-pod/">Data engineering FDE pod</a></li>
+                    <li><a href="/services/integration-legacy-modernization-pod/">Integration &amp; legacy modernization pod</a></li>
+                  </ul>
+                </div>
+                <div>
+                  <a href="/services/agentic-platforms/" class="hdr__mega-title"
+                    >Agentic platforms &amp; integrations</a
+                  <ul>
+                    <li><a href="/services/mcp-enterprise-integrations/">Enterprise connectors &amp; MCP integrations</a></li>
+                    <li><a href="/services/enterprise-knowledge-assistant/">Enterprise knowledge assistant</a></li>
+                    <li><a href="/services/workflow-agentification/">Workflow agentification</a></li>
+                    <li>Managed AI operations</li>
+                  </ul>
+                </div>
+                <div>
+                  <a href="/services/adoption-enablement/" class="hdr__mega-title">Adoption &amp; enablement</a>
+                  <ul>
+                    <li>Role-based AI training</li>
+                    <li>AI champions program</li>
+                    <li>Train-the-trainer</li>
+                    <li>AI center of excellence</li>
+                  </ul>
+                </div>
+                <div>
+                  <a href="/services/ai-security-governance/" class="hdr__mega-title">AI security &amp; governance</a>
+                  <ul>
+                    <li>Agent security &amp; permissions review</li>
+                    <li><a href="/services/ai-penetration-testing/">AI penetration testing</a></li>
+                    <li>AI governance council setup</li>
+                  </ul>
+                </div>
+                <div>
+                  <a href="/services/product-engineering/" class="hdr__mega-title"
+                    >Product &amp; engineering transformation</a
+                  <ul>
+                    <li>Product AI strategy</li>
+                    <li>Rapid prototype sprint</li>
+                    <li>AI-enabled SDLC redesign</li>
+                    <li>Legacy SaaS modernization</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        <a href="/services/fde-pods/" class="hdr__link">FDE pods</a><a href="/industries/" class="hdr__link">Industries</a><a href="/case-studies/" class="hdr__link">Case studies</a><a href="/blog/" class="hdr__link">Resources</a>
+      </nav>
+        <a href="#cta-form" class="btn btn--invert hdr__cta">Book discovery call</a>
+        <button class="hdr__burger" aria-label="Open menu" aria-expanded="false" data-burger>
+          <span></span><span></span>
+        </button>
+      </div>
+    </header>
+    <main id="main">
+      <section class="art__hero section--gradient on-dark" data-hero>
+        <div class="container art__narrow">
+          <span class="eyebrow">Article</span>
+          <h1 class="display art__h1">Model context protocol for enterprises: what leaders need to know</h1>
+          <p class="caption art__meta">1 October 2026 · 8 min read</p>
+        </div>
+      </section>
+      <article class="section">
+        <div class="container art__layout">
+          <nav class="art__toc" aria-label="Contents"><span class="eyebrow">Contents</span><ol><li><a href="#what-model-context-protocol-is">What Model Context Protocol is</a></li><li><a href="#how-mcp-works-hosts-clients-and-servers">How MCP works: hosts, clients and servers</a></li><li><a href="#why-enterprises-are-adopting-mcp">Why enterprises are adopting MCP</a></li><li><a href="#security-risks-to-plan-for">Security risks to plan for</a></li><li><a href="#governance-controls-that-make-mcp-safe">Governance controls that make MCP safe</a></li><li><a href="#questions-to-ask-before-approving-an-mcp-server">Questions to ask before approving an MCP server</a></li><li><a href="#when-to-use-mcp-and-when-not-to">When to use MCP and when not to</a></li><li><a href="#how-to-start-with-mcp-in-your-organisation">How to start with MCP in your organisation</a></li></ol></nav>
+          <div class="art__body">
+          <p class="art__lede">Model Context Protocol (MCP) is an open standard that lets AI applications connect to tools and data through a common interface instead of custom integrations. For enterprises, it simplifies how agents reach systems of record, but it does not provide governance on its own. You still need identity, scoped access, approved servers and audit logs.</p>
+          <h2 class="art__h2" id="what-model-context-protocol-is">What Model Context Protocol is</h2>
+          <p>Model Context Protocol is an open protocol that standardises how AI applications discover and use external tools, data and prompts. Anthropic published it in November 2024 under an open licence, and it has since been adopted by many AI tools and platforms.</p>
+          <p>The simplest way to think of MCP is as a common plug. Instead of writing a separate integration for every model and every system, you expose a system once as an MCP server, and any compatible AI application can use it.</p>
+          <p>MCP is a protocol, not a model, an agent framework or a product. It describes how an AI application asks a server what it can do and how it calls those capabilities. What the agent decides to do with them, and whether it should be allowed to, is still up to you.</p>
+          <h2 class="art__h2" id="how-mcp-works-hosts-clients-and-servers">How MCP works: hosts, clients and servers</h2>
+          <p>MCP uses a host, client and server design. According to the official MCP architecture documentation, the host is the AI application that manages one or more clients, each client keeps a connection to one server, and servers expose capabilities to the model.</p>
+          <h3 class="art__h3">Servers</h3>
+          <p>An MCP server wraps a system such as a CRM, ticketing tool or database. It advertises tools the model can call, resources it can read and prompt templates it can use.</p>
+          <h3 class="art__h3">Clients and hosts</h3>
+          <p>The host is the application your users work in, such as a chat assistant, coding tool or internal agent. It runs clients that connect to servers and decides which tools the model sees.</p>
+          <h3 class="art__h3">Transport</h3>
+          <p>Messages use JSON-RPC, either locally through a subprocess or remotely over HTTP. Remote servers are the ones that need the most enterprise controls, because they are reachable over the network and often shared by many users.</p>
+          <h2 class="art__h2" id="why-enterprises-are-adopting-mcp">Why enterprises are adopting MCP</h2>
+          <p>Enterprises adopt MCP because it reduces the number of one-off integrations between AI tools and internal systems. A single well-built server for your ticketing system can serve several agents and assistants, which cuts build and maintenance work.</p>
+          <p>It also gives you one place to apply controls. When every agent reaches a system through the same server, you can log, restrict and review access consistently rather than chasing custom code in each project.</p>
+          <p>Portability is a third reason. Because the interface is shared, you can change the AI application or model on top without rebuilding every connection underneath, which reduces lock-in to any single vendor.</p>
+          <h2 class="art__h2" id="security-risks-to-plan-for">Security risks to plan for</h2>
+          <p>MCP standardises connections but leaves authorisation, approval and audit to you. Security analyses of the protocol point to a few recurring threats, and each one maps to a control you can put in place.</p>
+          <p>Several analyses frame MCP as an identity and authorisation problem first. An MCP server sits between an agent and a system of record, so it is the point where you either constrain what the agent can do or fail to.</p>
+          <div class="ct__scroll" tabindex="0" role="region" aria-label="MCP risks and matching controls"><table class="ct art__table"><caption class="sr-only">MCP risks and matching controls</caption><thead><tr><th scope="col">Risk</th><th scope="col">What can happen</th><th scope="col">Control</th></tr></thead><tbody><tr><th scope="row">Prompt injection</th><td>Text in a document or ticket tells the agent to misuse a tool</td><td>Limit tools per task, require approval for sensitive actions</td></tr><tr><th scope="row">Malicious or unvetted servers</th><td>A third-party server exfiltrates data or misdescribes its tools</td><td>Approved server registry and security review</td></tr><tr><th scope="row">Over-broad permissions</th><td>An agent can read or change far more than its task needs</td><td>Scoped tokens per server and per user</td></tr><tr><th scope="row">Missing audit trail</th><td>Nobody can reconstruct what the agent did</td><td>Log every tool call with user, agent and parameters</td></tr></tbody></table></div>
+          <h2 class="art__h2" id="governance-controls-that-make-mcp-safe">Governance controls that make MCP safe</h2>
+          <p>Good MCP governance treats every server as an access point to a system of record. The MCP specification describes remote servers as OAuth 2.1 resource servers that rely on a separate authorisation server, which lets you connect them to your existing identity provider.</p>
+          <ul><li>Keep an inventory and registry of approved MCP servers, with an owner for each.</li><li>Authenticate users through your identity provider and pass their permissions through to the server.</li><li>Use a gateway to enforce policy, hold credentials and log calls in one place.</li><li>Separate read-only tools from tools that change data, and gate the latter with approvals.</li><li>Review third-party servers like any other software supplier.</li><li>Test servers with your agent evaluation suite before each release.</li></ul>
+          <h2 class="art__h2" id="questions-to-ask-before-approving-an-mcp-server">Questions to ask before approving an MCP server</h2>
+          <p>A short approval checklist keeps MCP growth under control. Ask these questions of every server, whether your team built it or it came from a vendor or open-source project.</p>
+          <ul><li>Which system does it connect to, and who owns that system?</li><li>Which tools does it expose, and which of them can change data?</li><li>Does it act with the user’s permissions or with a shared service account?</li><li>Where are its credentials stored, and how are they rotated?</li><li>Are its tool calls logged somewhere your security team can see?</li><li>Who maintains it, and how are updates reviewed before release?</li></ul>
+          <h2 class="art__h2" id="when-to-use-mcp-and-when-not-to">When to use MCP and when not to</h2>
+          <p>Use MCP when several AI applications need the same system, or when you want agents to discover tools in a consistent way. It is a good fit for internal platforms where many teams build assistants on shared data, and for vendors who want customers’ AI tools to reach their product without bespoke work for each one.</p>
+          <p>MCP is not always the right choice. If one fixed workflow calls one API in a known order, a direct integration can be simpler to secure and test. Highly sensitive actions, such as moving money, may also warrant a dedicated, tightly scoped service rather than a general-purpose server. The protocol is also still evolving, and newer parts of the authorisation specification are not yet supported by every identity provider, so plan for some engineering effort rather than an off-the-shelf install.</p>
+          <p>There is also an operational cost. Every server is software you must patch, monitor and eventually retire. A sprawl of small, overlapping servers can become harder to govern than the custom integrations MCP was meant to replace.</p>
+          <h2 class="art__h2" id="how-to-start-with-mcp-in-your-organisation">How to start with MCP in your organisation</h2>
+          <p>Start with one high-value system and one agent, and build the governance pattern there before you scale. A first server for a read-only knowledge base or ticket history is a low-risk way to prove the approach.</p>
+          <p>tkxel’s FDE pods build MCP servers inside client environments, connect them to existing identity and logging, and add evaluation and approval steps before anything writes to a production system. The goal is a reusable pattern your own engineers can extend, not a one-off connector.</p>
+          <p>Once the first server works, document the pattern: how servers are requested, reviewed, registered and retired. That process matters more than any single server, because it decides whether MCP use in your company grows in a controlled way or through shadow connections nobody tracks.</p>
+          <aside class="art__related"><span class="eyebrow">Related</span><ul><li><a href="/services/agentic-platforms/" class="link-arrow">Agentic platforms</a></li><li><a href="/services/ai-security-governance/" class="link-arrow">AI security and governance</a></li><li><a href="/services/agentic-fde-pod/" class="link-arrow">Agentic FDE pod</a></li></ul></aside>
+          </div>
+        </div>
+      </article>
+      <section class="icb section--gradient on-dark">
+        <div class="container icb__row">
+          <h2 class="h2">Build governed MCP servers on your own systems</h2>
+          <div class="icb__right">
+            <p>An FDE pod builds your first MCP server with identity, logging and approvals in place.</p>
+            <a href="#cta-form" class="btn btn--invert">Plan my MCP rollout</a>
+          </div>
+        </div>
+      </section>
+      <section class="section" id="faq">
+        <div class="container faq">
+          <h2 class="h2 reveal">Frequently asked questions</h2>
+          <div>
+            <details class="faq__item" open>
+              <summary><span>What is Model Context Protocol in simple terms?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>Model Context Protocol is a standard way for AI applications to connect to tools and data. Instead of building a custom integration for each AI tool and each system, you expose a system once as an MCP server, and any compatible AI application can discover and use its tools. Anthropic published it as an open standard in November 2024.</p>
+            </details>
+            <details class="faq__item">
+              <summary><span>What is the difference between an MCP server and an MCP client?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>An MCP server exposes a system’s tools, data and prompts, while an MCP client connects an AI application to that server. The client runs inside a host application, such as a chat assistant or agent, and each client keeps a connection to one server. The model uses the client to see and call the server’s tools.</p>
+            </details>
+            <details class="faq__item">
+              <summary><span>Is MCP secure for enterprise use?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>MCP can be used securely in an enterprise, but the protocol does not provide full security on its own. You need to add identity integration, scoped permissions, an approved server registry, approval steps for actions that change data, and audit logging. Treat each MCP server as an access point to a system of record and govern it accordingly.</p>
+            </details>
+            <details class="faq__item">
+              <summary><span>Do I need MCP if I already have APIs?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>You do not always need MCP if you already have APIs. MCP adds value when several AI applications need the same systems or when agents should discover tools dynamically. For a single fixed workflow that calls one API in a known order, a direct integration may be simpler to secure, test and maintain.</p>
+            </details>
+            <details class="faq__item">
+              <summary><span>How does MCP handle authentication?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>MCP handles authentication for remote servers through OAuth 2.1. The specification treats the MCP server as a resource server that relies on a separate authorisation server to issue tokens, so you can connect it to your existing identity provider. You still need to define which tools each user and agent may call.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+            <section class="section section--dark on-dark" id="cta-form">
+        <div class="container fc">
+          <div class="fc__left">
+            <h2 class="h2">Give your agents safe, governed access to the systems they need</h2>
+            <div class="fc__clutch">
+              <span class="eyebrow">Clutch</span
+              ><span class="caption">[Placeholder] Clutch badge and rating — add the official widget</span>
+            </div>
+            <blockquote class="fc__quote">
+              “Placeholder testimonial — replace with the global set from tkxel.com.”
+              <footer class="caption">— Knowles</footer>
+            </blockquote>
+            <blockquote class="fc__quote">
+              “Placeholder testimonial — replace with the global set from tkxel.com.”
+              <footer class="caption">— Sterne Kessler</footer>
+            </blockquote>
+          </div>
+          <form class="fc__form" method="post" action="/api/lead" data-lead-form>
+            <label class="fc__full"
+              >I'm interested in
+              <select name="interest" required>
+                <option>FDE pod</option>
+                <option>AI strategy &amp; readiness</option>
+                <option>Agentic platforms &amp; integrations</option>
+                <option>Adoption &amp; enablement</option>
+                <option>AI security &amp; governance</option>
+                <option>Product &amp; engineering transformation</option>
+                <option>Something else</option>
+              </select>
+            </label>
+            <label>First name*<input name="first_name" required autocomplete="given-name" /></label>
+            <label>Last name*<input name="last_name" required autocomplete="family-name" /></label>
+            <label>Work email*<input name="email" type="email" required autocomplete="email" /></label>
+            <label>Job title*<input name="job_title" required autocomplete="organization-title" /></label>
+            <label class="fc__full">Phone<input name="phone" type="tel" autocomplete="tel" /></label>
+            <label class="fc__full">Project description<textarea name="message" rows="4"></textarea></label>
+            <label class="fc__check fc__full"
+              ><input type="checkbox" name="marketing_consent" /> I agree to receive marketing communications from
+              tkxel.</label
+            >
+            <label class="fc__check fc__full"
+              ><input type="checkbox" name="sms_consent" /> I agree to receive SMS messages from tkxel.</label
+            >
+            <button class="btn btn--invert fc__full" type="submit">Book discovery call</button>
+            <p class="caption fc__full">
+              By submitting, you agree to our <a href="https://tkxel.com/terms-of-use/">Terms</a> and
+              <a href="https://tkxel.com/privacy-policy/">Privacy policy</a>.
+            </p>
+            <p class="fc__status fc__full" role="status" data-lead-status></p>
+          </form>
+        </div>
+      </section>
+    </main>
+                                                                                                                                    <footer class="ftr">
+      <div class="container">
+        <div class="ftr__top">
+          <div class="ftr__brand">
+            <a href="/" class="ftr__logo">tkxel<span>FDE</span></a>
+            <p class="ftr__tag">
+              Forward deployed engineering teams that build production AI inside your environment, then hand it over to
+              your team.
+            </p>
+            <a href="https://tkxel.com" class="ftr__main">Visit tkxel.com →</a>
+          </div>
+          <div class="ftr__cols">
+            <div>
+              <a href="/services/ai-strategy-readiness/" class="ftr__head">AI strategy &amp; readiness</a>
+              <ul>
+                <li><a href="/services/ai-readiness-assessment/">AI maturity assessment</a></li>
+                <li>Process mapping &amp; use-case prioritization</li>
+                <li>Use-case portfolio &amp; ROI tracking</li>
+                <li>Data readiness audit</li>
+              </ul>
+            </div>
+            <div>
+              <a href="/services/fde-pods/" class="ftr__head">FDE pods</a>
+              <ul>
+                <li><a href="/services/full-stack-fde-pod/">Full-stack FDE pod</a></li>
+                <li><a href="/services/agentic-fde-pod/">Agentic FDE pod</a></li>
+                <li><a href="/services/data-engineering-fde-pod/">Data engineering FDE pod</a></li>
+                <li><a href="/services/integration-legacy-modernization-pod/">Integration &amp; legacy modernization pod</a></li>
+              </ul>
+            </div>
+            <div>
+              <a href="/services/agentic-platforms/" class="ftr__head">Agentic platforms &amp; integrations</a>
+              <ul>
+                <li><a href="/services/mcp-enterprise-integrations/">Enterprise connectors &amp; MCP integrations</a></li>
+                <li><a href="/services/enterprise-knowledge-assistant/">Enterprise knowledge assistant</a></li>
+                <li><a href="/services/workflow-agentification/">Workflow agentification</a></li>
+                <li>Managed AI operations</li>
+              </ul>
+            </div>
+            <div>
+              <a href="/services/adoption-enablement/" class="ftr__head">Adoption &amp; enablement</a>
+              <ul>
+                <li>Role-based AI training</li>
+                <li>AI champions program</li>
+                <li>Train-the-trainer</li>
+                <li>AI center of excellence</li>
+              </ul>
+            </div>
+            <div>
+              <a href="/services/ai-security-governance/" class="ftr__head">AI security &amp; governance</a>
+              <ul>
+                <li>Agent security &amp; permissions review</li>
+                <li><a href="/services/ai-penetration-testing/">AI penetration testing</a></li>
+                <li>AI governance council setup</li>
+              </ul>
+            </div>
+            <div>
+              <a href="/services/product-engineering/" class="ftr__head">Product &amp; engineering transformation</a>
+              <ul>
+                <li>Product AI strategy</li>
+                <li>Rapid prototype sprint</li>
+                <li>AI-enabled SDLC redesign</li>
+                <li>Legacy SaaS modernization</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="ftr__offices">
+          <div>
+            <span class="eyebrow">USA</span>
+            <p>Placeholder — confirm from tkxel.com footer</p>
+          </div>
+          <div>
+            <span class="eyebrow">Saudi Arabia</span>
+            <p>Placeholder — confirm from tkxel.com footer</p>
+          </div>
+          <div>
+            <span class="eyebrow">Portugal</span>
+            <p>Placeholder — confirm from tkxel.com footer</p>
+          </div>
+          <div>
+            <span class="eyebrow">Pakistan</span>
+            <p>Placeholder — confirm from tkxel.com footer</p>
+          </div>
+        </div>
+        <div class="ftr__legal">
+          <span>© 2026 tkxel. All rights reserved.</span>
+          <nav aria-label="Legal"><a href="https://tkxel.com/privacy-policy/">Privacy policy</a><a href="https://tkxel.com/terms-of-use/">Terms of use</a></nav>
+        </div>
+      </div>
+    </footer>
+    <script src="/assets/js/main.js" defer></script>
+  </body>
+</html>

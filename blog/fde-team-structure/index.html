@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FDE team structure: roles, ratios and rituals | tkxel FDE</title>
+    <meta name="description" content="How to structure a forward deployed engineering team: the roles in a pod, sensible ratios, weekly rituals and a handover plan your own engineers can run." />
+    <link rel="canonical" href="https://fde.tkxel.com/blog/fde-team-structure/" />
+    <meta property="og:title" content="FDE team structure: roles, ratios and rituals | tkxel FDE" />
+    <meta property="og:description" content="How to structure a forward deployed engineering team: the roles in a pod, sensible ratios, weekly rituals and a handover plan your own engineers can run." />
+    <meta property="og:url" content="https://fde.tkxel.com/blog/fde-team-structure/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://fde.tkxel.com/og-default.png" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How big should a forward deployed engineering team be?", "acceptedAnswer": {"@type": "Answer", "text": "A forward deployed engineering pod should usually be three to five people. That gives you a tech lead, two or three engineers and a delivery owner, which is enough for reviews and on-call cover without the coordination overhead of a large team. Start at the smaller end for a narrow proof of value and add a data or security specialist when the data is messy or the workflow is regulated. If you need more capacity, run a second pod on a separate use case rather than growing one pod past five."}}, {"@type": "Question", "name": "What is the difference between a forward deployed engineer and a deployment strategist?", "acceptedAnswer": {"@type": "Answer", "text": "A forward deployed engineer builds and ships the code, while a deployment strategist decides what the code should solve and makes sure people use it. The engineer owns architecture, data work and integration. The strategist owns discovery, the success metric, change management and reporting results to executives. Some companies combine the roles, but most practitioner accounts say one person rarely does both well across a full engagement, which is why pods separate them."}}, {"@type": "Question", "name": "Who should an FDE team report to?", "acceptedAnswer": {"@type": "Answer", "text": "An FDE team should report to whoever owns the outcome it is accountable for. Companies place the function under product, engineering or customer success, and each choice shapes behaviour: under product it feeds learnings back into the roadmap, under services it tends to drift towards billable customisation. For a client-side engagement, the pod should have one named sponsor on your side who can unblock access and accept the work."}}, {"@type": "Question", "name": "How long does an FDE pod engagement last?", "acceptedAnswer": {"@type": "Answer", "text": "Most FDE pod engagements run around 10 to 16 weeks for one production use case. That covers a short discovery, several weekly build cycles and a reverse-shadow handover. Narrow proofs of value can finish faster, and multi-system integrations take longer. The length matters less than having a fixed success metric and a handover date agreed before build starts, so the engagement ends with a system your team owns."}}, {"@type": "Question", "name": "How do you hand over a system built by forward deployed engineers?", "acceptedAnswer": {"@type": "Answer", "text": "You hand over an FDE-built system by planning ownership from week one and moving operations to your team in stages. Name internal owners per component, pair your engineers into the code early, and write symptom-first runbooks as each feature ships. In the final weeks, your team runs the system and on-call while the pod supports, and on-call moves only after your team has handled real incidents."}}]}</script>
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "FDE team structure: how to build a forward deployed engineering pod", "description": "How to structure a forward deployed engineering team: the roles in a pod, sensible ratios, weekly rituals and a handover plan your own engineers can run.", "author": {"@type": "Organization", "name": "tkxel"}, "publisher": {"@type": "Organization", "name": "tkxel"}, "datePublished": "2026-09-03", "mainEntityOfPage": "https://fde.tkxel.com/blog/fde-team-structure/"}</script>
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+  </head>
+  <body>
+                                                                                                                                                                                                                                                                    <header class="hdr" data-hdr>
+      <div class="container hdr__bar">
+        <a href="/" class="hdr__logo" aria-label="tkxel FDE home">tkxel<span>FDE</span></a>
+        <nav class="hdr__nav" aria-label="Primary">
+          <div class="hdr__mega-wrap">
+            <button class="hdr__link" aria-expanded="false" aria-controls="mega" data-mega-btn>Services</button>
+            <div class="hdr__mega" id="mega" hidden data-mega>
+              <div class="container hdr__mega-grid">
+                <div>
+                  <a href="/services/ai-strategy-readiness/" class="hdr__mega-title">AI strategy &amp; readiness</a>
+                  <ul>
+                    <li><a href="/services/ai-readiness-assessment/">AI maturity assessment</a></li>
+                    <li>Process mapping &amp; use-case prioritization</li>
+                    <li>Use-case portfolio &amp; ROI tracking</li>
+                    <li>Data readiness audit</li>
+                  </ul>
+                </div>
+                <div>
+                  <a href="/services/fde-pods/" class="hdr__mega-title">FDE pods</a>
+                  <ul>
+                    <li><a href="/services/full-stack-fde-pod/">Full-stack FDE pod</a></li>
+                    <li><a href="/services/agentic-fde-pod/">Agentic FDE pod</a></li>
+                    <li><a href="/services/data-engineering-fde-pod/">Data engineering FDE pod</a></li>
+                    <li><a href="/services/integration-legacy-modernization-pod/">Integration &amp; legacy modernization pod</a></li>
+                  </ul>
+                </div>
+                <div>
+                  <a href="/services/agentic-platforms/" class="hdr__mega-title"
+                    >Agentic platforms &amp; integrations</a
+                  <ul>
+                    <li><a href="/services/mcp-enterprise-integrations/">Enterprise connectors &amp; MCP integrations</a></li>
+                    <li><a href="/services/enterprise-knowledge-assistant/">Enterprise knowledge assistant</a></li>
+                    <li><a href="/services/workflow-agentification/">Workflow agentification</a></li>
+                    <li>Managed AI operations</li>
+                  </ul>
+                </div>
+                <div>
+                  <a href="/services/adoption-enablement/" class="hdr__mega-title">Adoption &amp; enablement</a>
+                  <ul>
+                    <li>Role-based AI training</li>
+                    <li>AI champions program</li>
+                    <li>Train-the-trainer</li>
+                    <li>AI center of excellence</li>
+                  </ul>
+                </div>
+                <div>
+                  <a href="/services/ai-security-governance/" class="hdr__mega-title">AI security &amp; governance</a>
+                  <ul>
+                    <li>Agent security &amp; permissions review</li>
+                    <li><a href="/services/ai-penetration-testing/">AI penetration testing</a></li>
+                    <li>AI governance council setup</li>
+                  </ul>
+                </div>
+                <div>
+                  <a href="/services/product-engineering/" class="hdr__mega-title"
+                    >Product &amp; engineering transformation</a
+                  <ul>
+                    <li>Product AI strategy</li>
+                    <li>Rapid prototype sprint</li>
+                    <li>AI-enabled SDLC redesign</li>
+                    <li>Legacy SaaS modernization</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        <a href="/services/fde-pods/" class="hdr__link">FDE pods</a><a href="/industries/" class="hdr__link">Industries</a><a href="/case-studies/" class="hdr__link">Case studies</a><a href="/blog/" class="hdr__link">Resources</a>
+      </nav>
+        <a href="#cta-form" class="btn btn--invert hdr__cta">Book discovery call</a>
+        <button class="hdr__burger" aria-label="Open menu" aria-expanded="false" data-burger>
+          <span></span><span></span>
+        </button>
+      </div>
+    </header>
+    <main id="main">
+      <section class="art__hero section--gradient on-dark" data-hero>
+        <div class="container art__narrow">
+          <span class="eyebrow">Article</span>
+          <h1 class="display art__h1">FDE team structure: how to build a forward deployed engineering pod</h1>
+          <p class="caption art__meta">3 September 2026 · 8 min read</p>
+        </div>
+      </section>
+      <article class="section">
+        <div class="container art__layout">
+          <nav class="art__toc" aria-label="Contents"><span class="eyebrow">Contents</span><ol><li><a href="#what-a-forward-deployed-engineering-team-actuall">What a forward deployed engineering team actually is</a></li><li><a href="#the-four-common-fde-team-models">The four common FDE team models</a></li><li><a href="#core-roles-in-an-fde-pod">Core roles in an FDE pod</a></li><li><a href="#ratios-and-pod-size">Ratios and pod size</a></li><li><a href="#where-your-own-people-fit-in-the-pod">Where your own people fit in the pod</a></li><li><a href="#rituals-that-keep-an-embedded-pod-shipping">Rituals that keep an embedded pod shipping</a></li><li><a href="#plan-the-handover-from-week-one">Plan the handover from week one</a></li><li><a href="#trade-offs-to-plan-for">Trade-offs to plan for</a></li></ol></nav>
+          <div class="art__body">
+          <p class="art__lede">FDE team structure works best as a small, embedded pod: one technical lead, two to three engineers matched to the problem, and a delivery owner who manages scope and adoption. The pod ships to production inside your environment on a weekly cadence, writes the runbooks as it goes and plans the handover from week one.</p>
+          <h2 class="art__h2" id="what-a-forward-deployed-engineering-team-actuall">What a forward deployed engineering team actually is</h2>
+          <p>A forward deployed engineering team is a group of engineers who build production software inside a customer’s systems, rather than handing over specs from a distance. They sit with the people who own the problem, work in the real data and ship code that runs on day one.</p>
+          <p>The label covers different set-ups. Some companies run lone engineers attached to accounts, others run pods, and some treat FDE as a full function next to product engineering. Practitioner write-ups agree on the core idea but disagree on where the team reports and how long engagements last, so you should design the structure around your goal rather than copy one company’s model.</p>
+          <p>For a client engagement, the question is simpler than it is for a vendor building an FDE function. You need a team that can work inside your security rules, reach production on a real use case and leave your engineers able to run what was built. Everything in the structure below serves those three goals.</p>
+          <h2 class="art__h2" id="the-four-common-fde-team-models">The four common FDE team models</h2>
+          <p>Most FDE teams fall into one of four models, and each breaks at a different scale. Pick the one that matches how many projects you need to run in parallel and how much product work you expect the team to absorb.</p>
+          <div class="ct__scroll" tabindex="0" role="region" aria-label="FDE team models compared"><table class="ct art__table"><caption class="sr-only">FDE team models compared</caption><thead><tr><th scope="col">Model</th><th scope="col">How it works</th><th scope="col">Where it breaks</th></tr></thead><tbody><tr><th scope="row">Lone engineer</th><td>One FDE per account, wearing every hat</td><td>Knowledge sits in one head; burnout and slow handover</td></tr><tr><th scope="row">Embedded pod</th><td>3–5 people with clear roles, one client at a time</td><td>Needs a repeatable playbook to scale beyond a few pods</td></tr><tr><th scope="row">PS-adjacent</th><td>FDEs sit inside professional services</td><td>Drifts into billable customisation with no product feedback</td></tr><tr><th scope="row">FDE as a function</th><td>A standing team with its own leadership and tooling</td><td>Heavy to stand up; overkill for a first use case</td></tr></tbody></table></div>
+          <h2 class="art__h2" id="core-roles-in-an-fde-pod">Core roles in an FDE pod</h2>
+          <p>An FDE pod needs one person who owns the technical design, engineers who build, and one person who owns the outcome with the business. Industry write-ups describe a common split: the deployment strategist decides what the code should solve and drives adoption, while forward deployed engineers own the build.</p>
+          <p>At tkxel we keep the pod at three to five engineers and add specialists only when the work calls for them. Here is how the roles usually break down.</p>
+          <h3 class="art__h3">Tech lead (forward deployed lead)</h3>
+          <p>Owns architecture, security review and the production bar. Writes code most days and is the single technical point of contact for your platform and security teams.</p>
+          <h3 class="art__h3">Forward deployed engineers</h3>
+          <p>Two to three engineers matched to the problem: agent and LLM engineering, data engineering, or integration work against your systems of record. They ship, test and document.</p>
+          <h3 class="art__h3">Delivery owner or deployment strategist</h3>
+          <p>Owns scope, the success metric and adoption. Runs discovery with process owners, keeps the backlog honest and reports progress in business terms.</p>
+          <h3 class="art__h3">Rotating specialists</h3>
+          <p>A data scientist, security engineer or domain expert who joins for a sprint or two when the work needs them, then rolls off.</p>
+          <h2 class="art__h2" id="ratios-and-pod-size">Ratios and pod size</h2>
+          <p>The right ratio is roughly one tech lead and one delivery owner for every two to three builders. Below three people, the pod has no slack for reviews, on-call or a sick day; above five, coordination overhead starts to eat the speed that made the model worth using.</p>
+          <p>Run one pod per use case rather than stretching one pod across several. If you have two unrelated workflows to automate, two small pods with separate success metrics will usually beat one large team juggling both.</p>
+          <ul><li>3 people: tech lead, one engineer, part-time delivery owner. Good for a narrow proof of value.</li><li>4 people: tech lead, two engineers, delivery owner. The default for one production agent or integration.</li><li>5 people: adds a data or security specialist when the data is messy or the workflow is regulated.</li></ul>
+          <h2 class="art__h2" id="where-your-own-people-fit-in-the-pod">Where your own people fit in the pod</h2>
+          <p>Your people are part of the pod, not an audience for it. At minimum you need a process owner who knows the workflow, a platform or security contact who can grant access, and one or two engineers who will own the system afterwards.</p>
+          <p>The process owner should give the pod three to five hours a week: discovery interviews, weekly demos and quick answers on edge cases. The platform contact unblocks environments, credentials and reviews, which is often the slowest dependency in the first fortnight.</p>
+          <p>Your future owners should join stand-ups and code reviews from the start and take tickets from the second or third sprint. That is the cheapest handover you will ever get, because knowledge moves while the work is happening rather than in a rushed final week.</p>
+          <h2 class="art__h2" id="rituals-that-keep-an-embedded-pod-shipping">Rituals that keep an embedded pod shipping</h2>
+          <p>Embedded pods stay effective through a short weekly loop: plan, ship, demo, review. The rituals are ordinary, but the difference is that your people attend them, so decisions get made in the room rather than in a status report.</p>
+          <ul><li>Weekly demo with the process owner, using real data, not slides.</li><li>Daily 15-minute stand-up that includes at least one engineer from your team.</li><li>Fortnightly risk and security review with your platform or security lead.</li><li>A running decision log so nobody has to rediscover why something was built a certain way.</li><li>A metric review every two weeks against the baseline agreed in discovery.</li></ul>
+          <h2 class="art__h2" id="plan-the-handover-from-week-one">Plan the handover from week one</h2>
+          <p>Handover works when you treat it as a deliverable from the start, not a farewell meeting. Practitioner accounts of FDE handoffs point out that the real cost is the weeks of rediscovery afterwards, because so much account knowledge lives in the engineers’ heads.</p>
+          <p>We write an ownership schedule before the first sprint, pair your engineers into the code from early on and write symptom-first runbooks as features ship. The final weeks are a reverse shadow, where your team runs the system and on-call while the pod watches.</p>
+          <p>Write the handover criteria into the statement of work: which runbooks exist, who has been on call, which incidents your team has resolved alone. When those are met, the pod rolls off, whatever the calendar says.</p>
+          <ul><li>Name the internal owner of each component before build starts.</li><li>Write runbooks by symptom: what you see, what to check first, where to look.</li><li>Test portability at milestones by having someone who did not build it fix a staged issue.</li><li>Move on-call last, once your team has handled real incidents with support.</li></ul>
+          <h2 class="art__h2" id="trade-offs-to-plan-for">Trade-offs to plan for</h2>
+          <p>The honest limitation of a pod model is that it depends on your side showing up. If the process owner cannot give a few hours a week, or access to systems takes a month, a small pod will stall faster than a large outsourced team that can work around gaps.</p>
+          <p>Pods also cost more per head than staff augmentation because you are paying for a lead and a delivery owner, not just hands. The return comes from fewer handoffs and a system your team can run, so the model fits work that needs to reach production, not open-ended capacity.</p>
+          <aside class="art__related"><span class="eyebrow">Related</span><ul><li><a href="/services/fde-pods/" class="link-arrow">FDE pods</a></li><li><a href="/what-is-forward-deployed-engineering/" class="link-arrow">What is forward deployed engineering?</a></li><li><a href="/fde-vs-staff-augmentation-vs-consulting/" class="link-arrow">FDE vs staff augmentation vs consulting</a></li></ul></aside>
+          </div>
+        </div>
+      </article>
+      <section class="icb section--gradient on-dark">
+        <div class="container icb__row">
+          <h2 class="h2">Get a pod shaped around your first use case</h2>
+          <div class="icb__right">
+            <p>We’ll map roles, ratio and handover plan to your systems in one working session.</p>
+            <a href="#cta-form" class="btn btn--invert">Plan your pod</a>
+          </div>
+        </div>
+      </section>
+      <section class="section" id="faq">
+        <div class="container faq">
+          <h2 class="h2 reveal">Frequently asked questions</h2>
+          <div>
+            <details class="faq__item" open>
+              <summary><span>How big should a forward deployed engineering team be?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>A forward deployed engineering pod should usually be three to five people. That gives you a tech lead, two or three engineers and a delivery owner, which is enough for reviews and on-call cover without the coordination overhead of a large team. Start at the smaller end for a narrow proof of value and add a data or security specialist when the data is messy or the workflow is regulated. If you need more capacity, run a second pod on a separate use case rather than growing one pod past five.</p>
+            </details>
+            <details class="faq__item">
+              <summary><span>What is the difference between a forward deployed engineer and a deployment strategist?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>A forward deployed engineer builds and ships the code, while a deployment strategist decides what the code should solve and makes sure people use it. The engineer owns architecture, data work and integration. The strategist owns discovery, the success metric, change management and reporting results to executives. Some companies combine the roles, but most practitioner accounts say one person rarely does both well across a full engagement, which is why pods separate them.</p>
+            </details>
+            <details class="faq__item">
+              <summary><span>Who should an FDE team report to?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>An FDE team should report to whoever owns the outcome it is accountable for. Companies place the function under product, engineering or customer success, and each choice shapes behaviour: under product it feeds learnings back into the roadmap, under services it tends to drift towards billable customisation. For a client-side engagement, the pod should have one named sponsor on your side who can unblock access and accept the work.</p>
+            </details>
+            <details class="faq__item">
+              <summary><span>How long does an FDE pod engagement last?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>Most FDE pod engagements run around 10 to 16 weeks for one production use case. That covers a short discovery, several weekly build cycles and a reverse-shadow handover. Narrow proofs of value can finish faster, and multi-system integrations take longer. The length matters less than having a fixed success metric and a handover date agreed before build starts, so the engagement ends with a system your team owns.</p>
+            </details>
+            <details class="faq__item">
+              <summary><span>How do you hand over a system built by forward deployed engineers?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>You hand over an FDE-built system by planning ownership from week one and moving operations to your team in stages. Name internal owners per component, pair your engineers into the code early, and write symptom-first runbooks as each feature ships. In the final weeks, your team runs the system and on-call while the pod supports, and on-call moves only after your team has handled real incidents.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+            <section class="section section--dark on-dark" id="cta-form">
+        <div class="container fc">
+          <div class="fc__left">
+            <h2 class="h2">Design the pod that gets your first agent into production</h2>
+            <div class="fc__clutch">
+              <span class="eyebrow">Clutch</span
+              ><span class="caption">[Placeholder] Clutch badge and rating — add the official widget</span>
+            </div>
+            <blockquote class="fc__quote">
+              “Placeholder testimonial — replace with the global set from tkxel.com.”
+              <footer class="caption">— Knowles</footer>
+            </blockquote>
+            <blockquote class="fc__quote">
+              “Placeholder testimonial — replace with the global set from tkxel.com.”
+              <footer class="caption">— Sterne Kessler</footer>
+            </blockquote>
+          </div>
+          <form class="fc__form" method="post" action="/api/lead" data-lead-form>
+            <label class="fc__full"
+              >I'm interested in
+              <select name="interest" required>
+                <option>FDE pod</option>
+                <option>AI strategy &amp; readiness</option>
+                <option>Agentic platforms &amp; integrations</option>
+                <option>Adoption &amp; enablement</option>
+                <option>AI security &amp; governance</option>
+                <option>Product &amp; engineering transformation</option>
+                <option>Something else</option>
+              </select>
+            </label>
+            <label>First name*<input name="first_name" required autocomplete="given-name" /></label>
+            <label>Last name*<input name="last_name" required autocomplete="family-name" /></label>
+            <label>Work email*<input name="email" type="email" required autocomplete="email" /></label>
+            <label>Job title*<input name="job_title" required autocomplete="organization-title" /></label>
+            <label class="fc__full">Phone<input name="phone" type="tel" autocomplete="tel" /></label>
+            <label class="fc__full">Project description<textarea name="message" rows="4"></textarea></label>
+            <label class="fc__check fc__full"
+              ><input type="checkbox" name="marketing_consent" /> I agree to receive marketing communications from
+              tkxel.</label
+            >
+            <label class="fc__check fc__full"
+              ><input type="checkbox" name="sms_consent" /> I agree to receive SMS messages from tkxel.</label
+            >
+            <button class="btn btn--invert fc__full" type="submit">Book discovery call</button>
+            <p class="caption fc__full">
+              By submitting, you agree to our <a href="https://tkxel.com/terms-of-use/">Terms</a> and
+              <a href="https://tkxel.com/privacy-policy/">Privacy policy</a>.
+            </p>
+            <p class="fc__status fc__full" role="status" data-lead-status></p>
+          </form>
+        </div>
+      </section>
+    </main>
+                                                                                                                                    <footer class="ftr">
+      <div class="container">
+        <div class="ftr__top">
+          <div class="ftr__brand">
+            <a href="/" class="ftr__logo">tkxel<span>FDE</span></a>
+            <p class="ftr__tag">
+              Forward deployed engineering teams that build production AI inside your environment, then hand it over to
+              your team.
+            </p>
+            <a href="https://tkxel.com" class="ftr__main">Visit tkxel.com →</a>
+          </div>
+          <div class="ftr__cols">
+            <div>
+              <a href="/services/ai-strategy-readiness/" class="ftr__head">AI strategy &amp; readiness</a>
+              <ul>
+                <li><a href="/services/ai-readiness-assessment/">AI maturity assessment</a></li>
+                <li>Process mapping &amp; use-case prioritization</li>
+                <li>Use-case portfolio &amp; ROI tracking</li>
+                <li>Data readiness audit</li>
+              </ul>
+            </div>
+            <div>
+              <a href="/services/fde-pods/" class="ftr__head">FDE pods</a>
+              <ul>
+                <li><a href="/services/full-stack-fde-pod/">Full-stack FDE pod</a></li>
+                <li><a href="/services/agentic-fde-pod/">Agentic FDE pod</a></li>
+                <li><a href="/services/data-engineering-fde-pod/">Data engineering FDE pod</a></li>
+                <li><a href="/services/integration-legacy-modernization-pod/">Integration &amp; legacy modernization pod</a></li>
+              </ul>
+            </div>
+            <div>
+              <a href="/services/agentic-platforms/" class="ftr__head">Agentic platforms &amp; integrations</a>
+              <ul>
+                <li><a href="/services/mcp-enterprise-integrations/">Enterprise connectors &amp; MCP integrations</a></li>
+                <li><a href="/services/enterprise-knowledge-assistant/">Enterprise knowledge assistant</a></li>
+                <li><a href="/services/workflow-agentification/">Workflow agentification</a></li>
+                <li>Managed AI operations</li>
+              </ul>
+            </div>
+            <div>
+              <a href="/services/adoption-enablement/" class="ftr__head">Adoption &amp; enablement</a>
+              <ul>
+                <li>Role-based AI training</li>
+                <li>AI champions program</li>
+                <li>Train-the-trainer</li>
+                <li>AI center of excellence</li>
+              </ul>
+            </div>
+            <div>
+              <a href="/services/ai-security-governance/" class="ftr__head">AI security &amp; governance</a>
+              <ul>
+                <li>Agent security &amp; permissions review</li>
+                <li><a href="/services/ai-penetration-testing/">AI penetration testing</a></li>
+                <li>AI governance council setup</li>
+              </ul>
+            </div>
+            <div>
+              <a href="/services/product-engineering/" class="ftr__head">Product &amp; engineering transformation</a>
+              <ul>
+                <li>Product AI strategy</li>
+                <li>Rapid prototype sprint</li>
+                <li>AI-enabled SDLC redesign</li>
+                <li>Legacy SaaS modernization</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="ftr__offices">
+          <div>
+            <span class="eyebrow">USA</span>
+            <p>Placeholder — confirm from tkxel.com footer</p>
+          </div>
+          <div>
+            <span class="eyebrow">Saudi Arabia</span>
+            <p>Placeholder — confirm from tkxel.com footer</p>
+          </div>
+          <div>
+            <span class="eyebrow">Portugal</span>
+            <p>Placeholder — confirm from tkxel.com footer</p>
+          </div>
+          <div>
+            <span class="eyebrow">Pakistan</span>
+            <p>Placeholder — confirm from tkxel.com footer</p>
+          </div>
+        </div>
+        <div class="ftr__legal">
+          <span>© 2026 tkxel. All rights reserved.</span>
+          <nav aria-label="Legal"><a href="https://tkxel.com/privacy-policy/">Privacy policy</a><a href="https://tkxel.com/terms-of-use/">Terms of use</a></nav>
+        </div>
+      </div>
+    </footer>
+    <script src="/assets/js/main.js" defer></script>
+  </body>
+</html>

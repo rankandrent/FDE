@@ -1,11 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://fde.tkxel.com/</loc></url>
-  <url><loc>https://fde.tkxel.com/services/fde-pods/</loc></url>
   <url><loc>https://fde.tkxel.com/services/agentic-fde-pod/</loc></url>
+  <url><loc>https://fde.tkxel.com/services/fde-pods/</loc></url>
   <url><loc>https://fde.tkxel.com/services/ai-strategy-readiness/</loc></url>
   <url><loc>https://fde.tkxel.com/services/agentic-platforms/</loc></url>
   <url><loc>https://fde.tkxel.com/services/adoption-enablement/</loc></url>
   <url><loc>https://fde.tkxel.com/services/ai-security-governance/</loc></url>
   <url><loc>https://fde.tkxel.com/services/product-engineering/</loc></url>
+  <url><loc>https://fde.tkxel.com/services/full-stack-fde-pod/</loc></url>
+  <url><loc>https://fde.tkxel.com/services/data-engineering-fde-pod/</loc></url>
+  <url><loc>https://fde.tkxel.com/services/integration-legacy-modernization-pod/</loc></url>
+  <url><loc>https://fde.tkxel.com/services/workflow-agentification/</loc></url>
+  <url><loc>https://fde.tkxel.com/services/enterprise-knowledge-assistant/</loc></url>
+  <url><loc>https://fde.tkxel.com/services/mcp-enterprise-integrations/</loc></url>
+  <url><loc>https://fde.tkxel.com/services/ai-readiness-assessment/</loc></url>
+  <url><loc>https://fde.tkxel.com/services/ai-penetration-testing/</loc></url>
+  <url><loc>https://fde.tkxel.com/services/fde-for-saas-isvs/</loc></url>
+  <url><loc>https://fde.tkxel.com/industries/financial-services/</loc></url>
+  <url><loc>https://fde.tkxel.com/industries/healthcare/</loc></url>
+  <url><loc>https://fde.tkxel.com/industries/technology-saas/</loc></url>
+  <url><loc>https://fde.tkxel.com/industries/logistics-manufacturing/</loc></url>
+  <url><loc>https://fde.tkxel.com/what-is-forward-deployed-engineering/</loc></url>
+  <url><loc>https://fde.tkxel.com/fde-vs-staff-augmentation-vs-consulting/</loc></url>
+  <url><loc>https://fde.tkxel.com/engagement-models/</loc></url>
+  <url><loc>https://fde.tkxel.com/blog/how-to-hire-forward-deployed-engineers/</loc></url>
+  <url><loc>https://fde.tkxel.com/blog/forward-deployed-engineering-cost/</loc></url>
+  <url><loc>https://fde.tkxel.com/blog/why-ai-pilots-fail-to-reach-production/</loc></url>
+  <url><loc>https://fde.tkxel.com/blog/how-to-evaluate-ai-agents/</loc></url>
+  <url><loc>https://fde.tkxel.com/blog/model-context-protocol-for-enterprises/</loc></url>
+  <url><loc>https://fde.tkxel.com/blog/ai-readiness-checklist/</loc></url>
+  <url><loc>https://fde.tkxel.com/blog/fde-team-structure/</loc></url>
+  <url><loc>https://fde.tkxel.com/blog/rag-vs-fine-tuning/</loc></url>
+  <url><loc>https://fde.tkxel.com/blog/human-in-the-loop-ai-agents/</loc></url>
+  <url><loc>https://fde.tkxel.com/blog/prompt-injection-explained/</loc></url>
+  <url><loc>https://fde.tkxel.com/blog/ai-agent-guardrails/</loc></url>
+  <url><loc>https://fde.tkxel.com/blog/build-vs-buy-ai-agents/</loc></url>
+  <url><loc>https://fde.tkxel.com/how-fde-works/</loc></url>
+  <url><loc>https://fde.tkxel.com/contact/</loc></url>
+  <url><loc>https://fde.tkxel.com/industries/</loc></url>
+  <url><loc>https://fde.tkxel.com/case-studies/</loc></url>
+  <url><loc>https://fde.tkxel.com/blog/</loc></url>
 </urlset>

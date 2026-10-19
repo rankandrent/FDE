@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Prompt injection explained for business leaders | tkxel FDE</title>
+    <meta name="description" content="Prompt injection explained for business and security leaders: direct and indirect attacks, why OWASP ranks it first for LLM apps, and layered mitigations." />
+    <link rel="canonical" href="https://fde.tkxel.com/blog/prompt-injection-explained/" />
+    <meta property="og:title" content="Prompt injection explained for business leaders | tkxel FDE" />
+    <meta property="og:description" content="Prompt injection explained for business and security leaders: direct and indirect attacks, why OWASP ranks it first for LLM apps, and layered mitigations." />
+    <meta property="og:url" content="https://fde.tkxel.com/blog/prompt-injection-explained/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://fde.tkxel.com/og-default.png" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is prompt injection in simple terms?", "acceptedAnswer": {"@type": "Answer", "text": "Prompt injection is when someone hides instructions in text that an AI model reads, and the model follows those instructions instead of the ones its builders gave it. It works because language models process system instructions, user messages and outside content as one stream of text and cannot reliably tell commands from data. The result can range from odd replies to leaked data or unauthorised actions."}}, {"@type": "Question", "name": "What is the difference between direct and indirect prompt injection?", "acceptedAnswer": {"@type": "Answer", "text": "Direct prompt injection comes from the user typing malicious instructions into the system, while indirect prompt injection hides instructions in content the model reads, such as web pages, emails or documents. Indirect attacks are harder to spot because the attacker never interacts with your system directly. They become more dangerous when agents have tools, since a hidden instruction can trigger a real action."}}, {"@type": "Question", "name": "Can prompt injection be prevented?", "acceptedAnswer": {"@type": "Answer", "text": "Prompt injection cannot be fully prevented with today’s techniques, but its impact can be sharply reduced. Effective programmes combine least-privilege access, authorisation checks in code outside the model, human approval for high-risk actions, separation of untrusted content, input and output filtering, and regular red teaming. The goal is containment: if an injection gets through, the agent should not be able to do serious damage."}}, {"@type": "Question", "name": "Why is prompt injection number one in the OWASP LLM Top 10?", "acceptedAnswer": {"@type": "Answer", "text": "Prompt injection is ranked first, as LLM01, in the OWASP Top 10 for LLM Applications 2025 because it is widespread, difficult to prevent and enables other attacks. It exploits a basic property of language models, that instructions and data share one channel. OWASP also notes that RAG and fine-tuning do not fully mitigate it, so it must be handled through system design and controls."}}, {"@type": "Question", "name": "Is prompt injection the same as jailbreaking?", "acceptedAnswer": {"@type": "Answer", "text": "Prompt injection and jailbreaking overlap but are not the same. Jailbreaking usually means a user crafting prompts to bypass a model’s safety rules. Prompt injection is broader: it covers any input that overrides the developer’s instructions, including hidden instructions in documents or web pages that the user never sees. For business systems, indirect injection through outside content is often the larger risk."}}, {"@type": "Question", "name": "How do you test an AI application for prompt injection?", "acceptedAnswer": {"@type": "Answer", "text": "You test an AI application for prompt injection by red teaming it with both direct and indirect attacks against its real tools and data. Plant instructions in documents, emails and pages the system reads, try known jailbreak patterns, and check whether any tool call or data access happens that policy should block. Repeat tests after model, prompt or tool changes, and keep a regression set of past attacks."}}]}</script>
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Prompt injection explained: what business and security leaders need to know", "description": "Prompt injection explained for business and security leaders: direct and indirect attacks, why OWASP ranks it first for LLM apps, and layered mitigations.", "author": {"@type": "Organization", "name": "tkxel"}, "publisher": {"@type": "Organization", "name": "tkxel"}, "datePublished": "2026-09-24", "mainEntityOfPage": "https://fde.tkxel.com/blog/prompt-injection-explained/"}</script>
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+  </head>
+  <body>
+                                                                                                                                                                                                                                                                    <header class="hdr" data-hdr>
+      <div class="container hdr__bar">
+        <a href="/" class="hdr__logo" aria-label="tkxel FDE home">tkxel<span>FDE</span></a>
+        <nav class="hdr__nav" aria-label="Primary">
+          <div class="hdr__mega-wrap">
+            <button class="hdr__link" aria-expanded="false" aria-controls="mega" data-mega-btn>Services</button>
+            <div class="hdr__mega" id="mega" hidden data-mega>
+              <div class="container hdr__mega-grid">
+                <div>
+                  <a href="/services/ai-strategy-readiness/" class="hdr__mega-title">AI strategy &amp; readiness</a>
+                  <ul>
+                    <li><a href="/services/ai-readiness-assessment/">AI maturity assessment</a></li>
+                    <li>Process mapping &amp; use-case prioritization</li>
+                    <li>Use-case portfolio &amp; ROI tracking</li>
+                    <li>Data readiness audit</li>
+                  </ul>
+                </div>
+                <div>
+                  <a href="/services/fde-pods/" class="hdr__mega-title">FDE pods</a>
+                  <ul>
+                    <li><a href="/services/full-stack-fde-pod/">Full-stack FDE pod</a></li>
+                    <li><a href="/services/agentic-fde-pod/">Agentic FDE pod</a></li>
+                    <li><a href="/services/data-engineering-fde-pod/">Data engineering FDE pod</a></li>
+                    <li><a href="/services/integration-legacy-modernization-pod/">Integration &amp; legacy modernization pod</a></li>
+                  </ul>
+                </div>
+                <div>
+                  <a href="/services/agentic-platforms/" class="hdr__mega-title"
+                    >Agentic platforms &amp; integrations</a
+                  <ul>
+                    <li><a href="/services/mcp-enterprise-integrations/">Enterprise connectors &amp; MCP integrations</a></li>
+                    <li><a href="/services/enterprise-knowledge-assistant/">Enterprise knowledge assistant</a></li>
+                    <li><a href="/services/workflow-agentification/">Workflow agentification</a></li>
+                    <li>Managed AI operations</li>
+                  </ul>
+                </div>
+                <div>
+                  <a href="/services/adoption-enablement/" class="hdr__mega-title">Adoption &amp; enablement</a>
+                  <ul>
+                    <li>Role-based AI training</li>
+                    <li>AI champions program</li>
+                    <li>Train-the-trainer</li>
+                    <li>AI center of excellence</li>
+                  </ul>
+                </div>
+                <div>
+                  <a href="/services/ai-security-governance/" class="hdr__mega-title">AI security &amp; governance</a>
+                  <ul>
+                    <li>Agent security &amp; permissions review</li>
+                    <li><a href="/services/ai-penetration-testing/">AI penetration testing</a></li>
+                    <li>AI governance council setup</li>
+                  </ul>
+                </div>
+                <div>
+                  <a href="/services/product-engineering/" class="hdr__mega-title"
+                    >Product &amp; engineering transformation</a
+                  <ul>
+                    <li>Product AI strategy</li>
+                    <li>Rapid prototype sprint</li>
+                    <li>AI-enabled SDLC redesign</li>
+                    <li>Legacy SaaS modernization</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        <a href="/services/fde-pods/" class="hdr__link">FDE pods</a><a href="/industries/" class="hdr__link">Industries</a><a href="/case-studies/" class="hdr__link">Case studies</a><a href="/blog/" class="hdr__link">Resources</a>
+      </nav>
+        <a href="#cta-form" class="btn btn--invert hdr__cta">Book discovery call</a>
+        <button class="hdr__burger" aria-label="Open menu" aria-expanded="false" data-burger>
+          <span></span><span></span>
+        </button>
+      </div>
+    </header>
+    <main id="main">
+      <section class="art__hero section--gradient on-dark" data-hero>
+        <div class="container art__narrow">
+          <span class="eyebrow">Article</span>
+          <h1 class="display art__h1">Prompt injection explained: what business and security leaders need to know</h1>
+          <p class="caption art__meta">24 September 2026 · 8 min read</p>
+        </div>
+      </section>
+      <article class="section">
+        <div class="container art__layout">
+          <nav class="art__toc" aria-label="Contents"><span class="eyebrow">Contents</span><ol><li><a href="#what-prompt-injection-is-in-plain-terms">What prompt injection is, in plain terms</a></li><li><a href="#direct-vs-indirect-prompt-injection">Direct vs indirect prompt injection</a></li><li><a href="#why-owasp-ranks-it-first-for-llm-applications">Why OWASP ranks it first for LLM applications</a></li><li><a href="#what-the-business-risk-looks-like">What the business risk looks like</a></li><li><a href="#how-an-indirect-attack-plays-out">How an indirect attack plays out</a></li><li><a href="#mitigations-that-reduce-the-risk">Mitigations that reduce the risk</a></li><li><a href="#questions-to-ask-your-team-or-vendor">Questions to ask your team or vendor</a></li><li><a href="#the-honest-limitation">The honest limitation</a></li></ol></nav>
+          <div class="art__body">
+          <p class="art__lede">Prompt injection is an attack where text fed to a large language model overrides the instructions its builders gave it. It can come directly from a user or indirectly from emails, web pages and documents the model reads. OWASP ranks it first in its Top 10 for LLM Applications, and no single control fully prevents it.</p>
+          <h2 class="art__h2" id="what-prompt-injection-is-in-plain-terms">What prompt injection is, in plain terms</h2>
+          <p>Prompt injection is when someone smuggles instructions into the text a model processes, and the model follows them instead of yours. The model reads your system prompt, the user’s message and any retrieved content as one stream of text, and it cannot reliably tell instructions from data.</p>
+          <p>The term was coined in 2022 by analogy to SQL injection. The key difference is that SQL injection has a structural fix, parameterised queries, while prompt injection has no equivalent today. That is why it is treated as an open problem you manage, not a bug you patch once.</p>
+          <p>For a business leader, the practical meaning is this: any text your AI system reads should be treated as potentially hostile input, just as your web team treats form fields. That includes content from inside your company, such as shared documents and tickets, not only the open internet.</p>
+          <h2 class="art__h2" id="direct-vs-indirect-prompt-injection">Direct vs indirect prompt injection</h2>
+          <p>Direct prompt injection comes from the person typing into the system; indirect prompt injection hides in content the model reads on someone’s behalf. Both matter, but indirect injection is the bigger concern once you give models tools and access to outside content.</p>
+          <p>Indirect injection can be invisible to people. Instructions can sit in white text on a white background, in image alt text, in document metadata or in a long email thread nobody reads in full, and the model will still process them.</p>
+          <h3 class="art__h3">Direct injection</h3>
+          <p>A user types something like “ignore your previous instructions” to make a chatbot reveal its system prompt, bypass content rules or produce output it should refuse. The attacker is the user.</p>
+          <h3 class="art__h3">Indirect injection</h3>
+          <p>Instructions are planted in a web page, email, PDF, support ticket or calendar invite. When an agent reads that content to complete a task, it may follow the hidden instructions, such as forwarding data or calling a tool. The attacker never talks to your system directly.</p>
+          <h2 class="art__h2" id="why-owasp-ranks-it-first-for-llm-applications">Why OWASP ranks it first for LLM applications</h2>
+          <p>Prompt injection sits at LLM01 in the OWASP Top 10 for LLM Applications 2025 because it is common, hard to prevent and opens the door to other risks. OWASP’s own guidance also notes that RAG and fine-tuning do not fully mitigate it.</p>
+          <p>It connects to other entries on the list. Combined with excessive agency, where an agent has more permissions than it needs, an injected instruction can turn into a real action against your systems rather than a strange reply.</p>
+          <p>For security teams, the OWASP list is a helpful shared vocabulary. Mapping each LLM system against it gives you a checklist for design reviews and a way to explain risk to auditors without inventing a new framework.</p>
+          <h2 class="art__h2" id="what-the-business-risk-looks-like">What the business risk looks like</h2>
+          <p>The risk scales with what the model can reach and do. A public FAQ bot with no tools can be embarrassed; an agent with access to email, files and payment systems can be steered into causing real harm.</p>
+          <p>The useful question for leaders is not whether a model can be tricked, because it can. It is what the worst outcome would be if it were tricked today, and whether you would know. That framing points straight to permissions, approvals and logging.</p>
+          <ul><li>Data leakage: the model reveals customer records, internal documents or its own system prompt.</li><li>Unauthorised actions: an agent sends emails, changes records or calls APIs on an attacker’s behalf.</li><li>Manipulated output: summaries, recommendations or reviews quietly skewed by planted text.</li><li>Reputational harm: screenshots of your assistant saying things it never should.</li></ul>
+          <h2 class="art__h2" id="how-an-indirect-attack-plays-out">How an indirect attack plays out</h2>
+          <p>A simple scenario shows why agents raise the stakes. Picture an assistant that reads incoming supplier emails, summarises them and can draft replies and look up purchase orders.</p>
+          <p>An attacker sends an email with a hidden line telling the assistant to search for recent invoices and include the bank details in its reply. If the assistant has broad search access and can send mail without review, the instruction may be followed and nobody notices until later.</p>
+          <p>Now apply the controls: the assistant can only read the sender’s own orders, outbound mail needs approval, and replies are checked for account numbers. The same email produces a blocked action and an alert instead of a leak.</p>
+          <h2 class="art__h2" id="mitigations-that-reduce-the-risk">Mitigations that reduce the risk</h2>
+          <p>Defending against prompt injection takes layers, because each control catches some attacks and misses others. The most reliable controls sit outside the model, where an attacker’s text cannot argue with them.</p>
+          <p>Start with the first three layers, because they limit damage regardless of how clever the attack is. Filters and monitoring then reduce how often attacks succeed and how quickly you spot them.</p>
+          <div class="ct__scroll" tabindex="0" role="region" aria-label="Layered prompt injection controls"><table class="ct art__table"><caption class="sr-only">Layered prompt injection controls</caption><thead><tr><th scope="col">Layer</th><th scope="col">What it does</th><th scope="col">What it will not do</th></tr></thead><tbody><tr><th scope="row">Least privilege</th><td>Gives the agent only the tools and data the task needs</td><td>Stop the model from saying odd things</td></tr><tr><th scope="row">Authorisation outside the model</th><td>Checks every tool call against policy in code</td><td>Catch harmful text with no action attached</td></tr><tr><th scope="row">Human approval</th><td>Requires sign-off for high-risk actions</td><td>Scale to every low-risk step</td></tr><tr><th scope="row">Separate untrusted content</th><td>Delimits and labels retrieved text as data</td><td>Guarantee the model ignores it</td></tr><tr><th scope="row">Input and output filtering</th><td>Flags known attack patterns and data leaks</td><td>Catch novel or obfuscated attacks</td></tr><tr><th scope="row">Monitoring and red teaming</th><td>Finds attacks and drift over time</td><td>Prevent the first incident</td></tr></tbody></table></div>
+          <h2 class="art__h2" id="questions-to-ask-your-team-or-vendor">Questions to ask your team or vendor</h2>
+          <p>You do not need to read model internals to judge exposure. Ask these questions about any LLM system before it reaches production, and expect specific answers.</p>
+          <p>Vague answers such as “the model is trained to resist that” are a warning sign. You want to hear about specific permissions, code-level checks, named approvers and a testing schedule you can verify.</p>
+          <ul><li>What untrusted content can this system read: web pages, emails, uploads, tickets?</li><li>Which tools can it call, and with whose credentials?</li><li>Which actions require human approval, and who approves them?</li><li>Are permissions enforced in code, or only described in the prompt?</li><li>How is it tested for prompt injection, and how often?</li><li>What gets logged, and who reviews it?</li></ul>
+          <h2 class="art__h2" id="the-honest-limitation">The honest limitation</h2>
+          <p>No current technique makes an LLM immune to prompt injection. Filters can be bypassed with rephrasing, and instructions in the system prompt are only as strong as the model’s willingness to follow them.</p>
+          <p>That is why our pods design for containment: assume some injection will get through, and make sure the agent cannot do much damage when it does. Narrow permissions, policy checks in code and approval gates on high-risk actions turn a potential breach into a logged, blocked attempt.</p>
+          <p>Budget for this work as part of delivery rather than as an afterthought. Red teaming before launch and after each significant change costs far less than an incident review, and it gives your security team evidence they can sign off on.</p>
+          <aside class="art__related"><span class="eyebrow">Related</span><ul><li><a href="/services/ai-security-governance/" class="link-arrow">AI security and governance</a></li><li><a href="/services/agentic-fde-pod/" class="link-arrow">Agentic FDE pod</a></li><li><a href="/services/ai-strategy-readiness/" class="link-arrow">AI strategy and readiness</a></li></ul></aside>
+          </div>
+        </div>
+      </article>
+      <section class="icb section--gradient on-dark">
+        <div class="container icb__row">
+          <h2 class="h2">Find out how exposed your LLM systems are</h2>
+          <div class="icb__right">
+            <p>We review tools, permissions and untrusted inputs, then fix what matters first.</p>
+            <a href="#cta-form" class="btn btn--invert">Request a security review</a>
+          </div>
+        </div>
+      </section>
+      <section class="section" id="faq">
+        <div class="container faq">
+          <h2 class="h2 reveal">Frequently asked questions</h2>
+          <div>
+            <details class="faq__item" open>
+              <summary><span>What is prompt injection in simple terms?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>Prompt injection is when someone hides instructions in text that an AI model reads, and the model follows those instructions instead of the ones its builders gave it. It works because language models process system instructions, user messages and outside content as one stream of text and cannot reliably tell commands from data. The result can range from odd replies to leaked data or unauthorised actions.</p>
+            </details>
+            <details class="faq__item">
+              <summary><span>What is the difference between direct and indirect prompt injection?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>Direct prompt injection comes from the user typing malicious instructions into the system, while indirect prompt injection hides instructions in content the model reads, such as web pages, emails or documents. Indirect attacks are harder to spot because the attacker never interacts with your system directly. They become more dangerous when agents have tools, since a hidden instruction can trigger a real action.</p>
+            </details>
+            <details class="faq__item">
+              <summary><span>Can prompt injection be prevented?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>Prompt injection cannot be fully prevented with today’s techniques, but its impact can be sharply reduced. Effective programmes combine least-privilege access, authorisation checks in code outside the model, human approval for high-risk actions, separation of untrusted content, input and output filtering, and regular red teaming. The goal is containment: if an injection gets through, the agent should not be able to do serious damage.</p>
+            </details>
+            <details class="faq__item">
+              <summary><span>Why is prompt injection number one in the OWASP LLM Top 10?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>Prompt injection is ranked first, as LLM01, in the OWASP Top 10 for LLM Applications 2025 because it is widespread, difficult to prevent and enables other attacks. It exploits a basic property of language models, that instructions and data share one channel. OWASP also notes that RAG and fine-tuning do not fully mitigate it, so it must be handled through system design and controls.</p>
+            </details>
+            <details class="faq__item">
+              <summary><span>Is prompt injection the same as jailbreaking?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>Prompt injection and jailbreaking overlap but are not the same. Jailbreaking usually means a user crafting prompts to bypass a model’s safety rules. Prompt injection is broader: it covers any input that overrides the developer’s instructions, including hidden instructions in documents or web pages that the user never sees. For business systems, indirect injection through outside content is often the larger risk.</p>
+            </details>
+            <details class="faq__item">
+              <summary><span>How do you test an AI application for prompt injection?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>You test an AI application for prompt injection by red teaming it with both direct and indirect attacks against its real tools and data. Plant instructions in documents, emails and pages the system reads, try known jailbreak patterns, and check whether any tool call or data access happens that policy should block. Repeat tests after model, prompt or tool changes, and keep a regression set of past attacks.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+            <section class="section section--dark on-dark" id="cta-form">
+        <div class="container fc">
+          <div class="fc__left">
+            <h2 class="h2">Ship LLM features your security team can sign off</h2>
+            <div class="fc__clutch">
+              <span class="eyebrow">Clutch</span
+              ><span class="caption">[Placeholder] Clutch badge and rating — add the official widget</span>
+            </div>
+            <blockquote class="fc__quote">
+              “Placeholder testimonial — replace with the global set from tkxel.com.”
+              <footer class="caption">— Knowles</footer>
+            </blockquote>
+            <blockquote class="fc__quote">
+              “Placeholder testimonial — replace with the global set from tkxel.com.”
+              <footer class="caption">— Sterne Kessler</footer>
+            </blockquote>
+          </div>
+          <form class="fc__form" method="post" action="/api/lead" data-lead-form>
+            <label class="fc__full"
+              >I'm interested in
+              <select name="interest" required>
+                <option>FDE pod</option>
+                <option>AI strategy &amp; readiness</option>
+                <option>Agentic platforms &amp; integrations</option>
+                <option>Adoption &amp; enablement</option>
+                <option>AI security &amp; governance</option>
+                <option>Product &amp; engineering transformation</option>
+                <option>Something else</option>
+              </select>
+            </label>
+            <label>First name*<input name="first_name" required autocomplete="given-name" /></label>
+            <label>Last name*<input name="last_name" required autocomplete="family-name" /></label>
+            <label>Work email*<input name="email" type="email" required autocomplete="email" /></label>
+            <label>Job title*<input name="job_title" required autocomplete="organization-title" /></label>
+            <label class="fc__full">Phone<input name="phone" type="tel" autocomplete="tel" /></label>
+            <label class="fc__full">Project description<textarea name="message" rows="4"></textarea></label>
+            <label class="fc__check fc__full"
+              ><input type="checkbox" name="marketing_consent" /> I agree to receive marketing communications from
+              tkxel.</label
+            >
+            <label class="fc__check fc__full"
+              ><input type="checkbox" name="sms_consent" /> I agree to receive SMS messages from tkxel.</label
+            >
+            <button class="btn btn--invert fc__full" type="submit">Book discovery call</button>
+            <p class="caption fc__full">
+              By submitting, you agree to our <a href="https://tkxel.com/terms-of-use/">Terms</a> and
+              <a href="https://tkxel.com/privacy-policy/">Privacy policy</a>.
+            </p>
+            <p class="fc__status fc__full" role="status" data-lead-status></p>
+          </form>
+        </div>
+      </section>
+    </main>
+                                                                                                                                    <footer class="ftr">
+      <div class="container">
+        <div class="ftr__top">
+          <div class="ftr__brand">
+            <a href="/" class="ftr__logo">tkxel<span>FDE</span></a>
+            <p class="ftr__tag">
+              Forward deployed engineering teams that build production AI inside your environment, then hand it over to
+              your team.
+            </p>
+            <a href="https://tkxel.com" class="ftr__main">Visit tkxel.com →</a>
+          </div>
+          <div class="ftr__cols">
+            <div>
+              <a href="/services/ai-strategy-readiness/" class="ftr__head">AI strategy &amp; readiness</a>
+              <ul>
+                <li><a href="/services/ai-readiness-assessment/">AI maturity assessment</a></li>
+                <li>Process mapping &amp; use-case prioritization</li>
+                <li>Use-case portfolio &amp; ROI tracking</li>
+                <li>Data readiness audit</li>
+              </ul>
+            </div>
+            <div>
+              <a href="/services/fde-pods/" class="ftr__head">FDE pods</a>
+              <ul>
+                <li><a href="/services/full-stack-fde-pod/">Full-stack FDE pod</a></li>
+                <li><a href="/services/agentic-fde-pod/">Agentic FDE pod</a></li>
+                <li><a href="/services/data-engineering-fde-pod/">Data engineering FDE pod</a></li>
+                <li><a href="/services/integration-legacy-modernization-pod/">Integration &amp; legacy modernization pod</a></li>
+              </ul>
+            </div>
+            <div>
+              <a href="/services/agentic-platforms/" class="ftr__head">Agentic platforms &amp; integrations</a>
+              <ul>
+                <li><a href="/services/mcp-enterprise-integrations/">Enterprise connectors &amp; MCP integrations</a></li>
+                <li><a href="/services/enterprise-knowledge-assistant/">Enterprise knowledge assistant</a></li>
+                <li><a href="/services/workflow-agentification/">Workflow agentification</a></li>
+                <li>Managed AI operations</li>
+              </ul>
+            </div>
+            <div>
+              <a href="/services/adoption-enablement/" class="ftr__head">Adoption &amp; enablement</a>
+              <ul>
+                <li>Role-based AI training</li>
+                <li>AI champions program</li>
+                <li>Train-the-trainer</li>
+                <li>AI center of excellence</li>
+              </ul>
+            </div>
+            <div>
+              <a href="/services/ai-security-governance/" class="ftr__head">AI security &amp; governance</a>
+              <ul>
+                <li>Agent security &amp; permissions review</li>
+                <li><a href="/services/ai-penetration-testing/">AI penetration testing</a></li>
+                <li>AI governance council setup</li>
+              </ul>
+            </div>
+            <div>
+              <a href="/services/product-engineering/" class="ftr__head">Product &amp; engineering transformation</a>
+              <ul>
+                <li>Product AI strategy</li>
+                <li>Rapid prototype sprint</li>
+                <li>AI-enabled SDLC redesign</li>
+                <li>Legacy SaaS modernization</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="ftr__offices">
+          <div>
+            <span class="eyebrow">USA</span>
+            <p>Placeholder — confirm from tkxel.com footer</p>
+          </div>
+          <div>
+            <span class="eyebrow">Saudi Arabia</span>
+            <p>Placeholder — confirm from tkxel.com footer</p>
+          </div>
+          <div>
+            <span class="eyebrow">Portugal</span>
+            <p>Placeholder — confirm from tkxel.com footer</p>
+          </div>
+          <div>
+            <span class="eyebrow">Pakistan</span>
+            <p>Placeholder — confirm from tkxel.com footer</p>
+          </div>
+        </div>
+        <div class="ftr__legal">
+          <span>© 2026 tkxel. All rights reserved.</span>
+          <nav aria-label="Legal"><a href="https://tkxel.com/privacy-policy/">Privacy policy</a><a href="https://tkxel.com/terms-of-use/">Terms of use</a></nav>
+        </div>
+      </div>
+    </footer>
+    <script src="/assets/js/main.js" defer></script>
+  </body>
+</html>

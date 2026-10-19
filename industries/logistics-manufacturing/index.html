@@ -1,0 +1,502 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI agents for logistics and manufacturing | tkxel FDE</title>
+    <meta name="description" content="Embedded engineers who build AI agents for freight and customs documents, shipment exceptions and maintenance, connected to your ERP, TMS, WMS and MES." />
+    <link rel="canonical" href="https://fde.tkxel.com/industries/logistics-manufacturing/" />
+    <meta property="og:title" content="AI agents for logistics and manufacturing | tkxel FDE" />
+    <meta property="og:description" content="Embedded engineers who build AI agents for freight and customs documents, shipment exceptions and maintenance, connected to your ERP, TMS, WMS and MES." />
+    <meta property="og:url" content="https://fde.tkxel.com/industries/logistics-manufacturing/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://fde.tkxel.com/og-default.png" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How are AI agents used in logistics and manufacturing?", "acceptedAnswer": {"@type": "Answer", "text": "Mostly on the paperwork and coordination between systems: reading freight and customs documents, working shipment exceptions, auditing carrier invoices, following up with suppliers and turning maintenance alerts into draft work orders. Agents pull data from your ERP, TMS, WMS, MES and email, prepare the next step and ask a person to approve it. They work alongside your planning and control systems rather than replacing them."}}, {"@type": "Question", "name": "Can AI read bills of lading and customs documents accurately?", "acceptedAnswer": {"@type": "Answer", "text": "Current models handle varied layouts, stamps and handwriting far better than template OCR, but accuracy still depends on scan quality and how unusual a carrier’s format is. That is why we cross-check fields across the bill of lading, commercial invoice and packing list and route mismatches to a person. For customs, the agent prepares and suggests; a licensed customs broker reviews and files, because classification errors carry penalties the broker answers for."}}, {"@type": "Question", "name": "Do AI agents connect directly to PLCs or control systems?", "acceptedAnswer": {"@type": "Answer", "text": "No, and we advise against it. Our agents read operational data through historians, MES or approved gateways and write only to business systems such as your CMMS or ERP. Sending commands to PLCs or SCADA would put a probabilistic model inside a safety-critical loop, which IEC 62443-style network segmentation exists to prevent. If you want closed-loop process optimization, that is a controls engineering project, and an agent build is the wrong tool for it."}}, {"@type": "Question", "name": "Which ERP, WMS and TMS systems can you integrate with?", "acceptedAnswer": {"@type": "Answer", "text": "We integrate with common platforms such as SAP, Oracle, Microsoft Dynamics, NetSuite, Manhattan, Blue Yonder and Maximo, using whatever APIs, EDI feeds, database views or file drops your systems expose. Where an older system has no API, we use your approved integration middleware or, as a last resort, controlled screen automation. We confirm the integration path for each system during scoping, before committing to a timeline."}}, {"@type": "Question", "name": "How do you handle multiple sites, carriers and languages?", "acceptedAnswer": {"@type": "Answer", "text": "We start with one lane, warehouse or plant so the agent is tested on real volume, then add sites with a rollout playbook covering new document types, carrier formats, languages and local approval rules. Each addition gets its own test set before going live. Agents can read documents in the major trade languages, but customs and labour rules differ by country, so each new country needs a review with your compliance team."}}, {"@type": "Question", "name": "How long does it take to deploy an AI agent in logistics operations?", "acceptedAnswer": {"@type": "Answer", "text": "About 12–16 weeks for the first workflow at one site or lane, including a pilot with human approval on every action. The main variables are integration access, particularly to older ERP or WMS instances, and OT security review when plant data is involved. Expanding to further sites is usually faster because integrations, test sets and approval workflows are reused rather than rebuilt."}}]}</script>
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+  </head>
+  <body>
+                                                                                                                                                                                                                                                                    <header class="hdr" data-hdr>
+      <div class="container hdr__bar">
+        <a href="/" class="hdr__logo" aria-label="tkxel FDE home">tkxel<span>FDE</span></a>
+        <nav class="hdr__nav" aria-label="Primary">
+          <div class="hdr__mega-wrap">
+            <button class="hdr__link" aria-expanded="false" aria-controls="mega" data-mega-btn>Services</button>
+            <div class="hdr__mega" id="mega" hidden data-mega>
+              <div class="container hdr__mega-grid">
+                <div>
+                  <a href="/services/ai-strategy-readiness/" class="hdr__mega-title">AI strategy &amp; readiness</a>
+                  <ul>
+                    <li><a href="/services/ai-readiness-assessment/">AI maturity assessment</a></li>
+                    <li>Process mapping &amp; use-case prioritization</li>
+                    <li>Use-case portfolio &amp; ROI tracking</li>
+                    <li>Data readiness audit</li>
+                  </ul>
+                </div>
+                <div>
+                  <a href="/services/fde-pods/" class="hdr__mega-title">FDE pods</a>
+                  <ul>
+                    <li><a href="/services/full-stack-fde-pod/">Full-stack FDE pod</a></li>
+                    <li><a href="/services/agentic-fde-pod/">Agentic FDE pod</a></li>
+                    <li><a href="/services/data-engineering-fde-pod/">Data engineering FDE pod</a></li>
+                    <li><a href="/services/integration-legacy-modernization-pod/">Integration &amp; legacy modernization pod</a></li>
+                  </ul>
+                </div>
+                <div>
+                  <a href="/services/agentic-platforms/" class="hdr__mega-title"
+                    >Agentic platforms &amp; integrations</a
+                  <ul>
+                    <li><a href="/services/mcp-enterprise-integrations/">Enterprise connectors &amp; MCP integrations</a></li>
+                    <li><a href="/services/enterprise-knowledge-assistant/">Enterprise knowledge assistant</a></li>
+                    <li><a href="/services/workflow-agentification/">Workflow agentification</a></li>
+                    <li>Managed AI operations</li>
+                  </ul>
+                </div>
+                <div>
+                  <a href="/services/adoption-enablement/" class="hdr__mega-title">Adoption &amp; enablement</a>
+                  <ul>
+                    <li>Role-based AI training</li>
+                    <li>AI champions program</li>
+                    <li>Train-the-trainer</li>
+                    <li>AI center of excellence</li>
+                  </ul>
+                </div>
+                <div>
+                  <a href="/services/ai-security-governance/" class="hdr__mega-title">AI security &amp; governance</a>
+                  <ul>
+                    <li>Agent security &amp; permissions review</li>
+                    <li><a href="/services/ai-penetration-testing/">AI penetration testing</a></li>
+                    <li>AI governance council setup</li>
+                  </ul>
+                </div>
+                <div>
+                  <a href="/services/product-engineering/" class="hdr__mega-title"
+                    >Product &amp; engineering transformation</a
+                  <ul>
+                    <li>Product AI strategy</li>
+                    <li>Rapid prototype sprint</li>
+                    <li>AI-enabled SDLC redesign</li>
+                    <li>Legacy SaaS modernization</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        <a href="/services/fde-pods/" class="hdr__link">FDE pods</a><a href="/industries/" class="hdr__link">Industries</a><a href="/case-studies/" class="hdr__link">Case studies</a><a href="/blog/" class="hdr__link">Resources</a>
+      </nav>
+        <a href="#cta-form" class="btn btn--invert hdr__cta">Book discovery call</a>
+        <button class="hdr__burger" aria-label="Open menu" aria-expanded="false" data-burger>
+          <span></span><span></span>
+        </button>
+      </div>
+    </header>
+    <main id="main">
+      <section class="hero section--gradient on-dark" data-hero>
+        <div class="container hero__inner">
+          <div class="hero__copy">
+            <span class="eyebrow">Logistics and manufacturing</span>
+            <h1 class="display">AI agents for freight, warehouses and plants,<span class="br"><br /></span> wired into your ERP</h1>
+            <p class="hero__sub">A forward deployed pod of 3–5 tkxel engineers builds AI agents that read freight and customs documents, work shipment exceptions and support maintenance, connected to your ERP, TMS, WMS and MES, with people approving every filing and work order.</p>
+            <a href="#cta-form" class="btn btn--invert">Book discovery call</a>
+          </div>
+          <svg class="hero__graphic" viewBox="0 0 400 400" aria-hidden="true"><g fill="none" stroke="rgba(255,255,255,.35)" stroke-width="1.5"><path d="M70 300 L150 200 L250 280 L330 100" stroke-dasharray="6 6"/><rect x="52" y="282" width="36" height="36"/><rect x="132" y="182" width="36" height="36"/><rect x="232" y="262" width="36" height="36"/><line x1="40" y1="350" x2="360" y2="350"/></g><rect x="232" y="262" width="36" height="36" fill="rgba(255,255,255,.12)" stroke="#fff" stroke-width="1.5"/><circle cx="330" cy="100" r="8" fill="#fff"/></svg>
+        </div>
+        <div class="container hero__logos">
+          <span class="eyebrow">Our clients</span>
+          <div class="hero__marquee"><div class="hero__track"><span class="hero__logo">Knowles</span><span class="hero__logo">Sterne Kessler</span><span class="hero__logo">Replenium</span><span class="hero__logo">ABB</span><span class="hero__logo">Client five</span><span class="hero__logo">Client six</span><span class="hero__logo">Client seven</span><span class="hero__logo">Client eight</span><span class="hero__logo" aria-hidden="true">Knowles</span><span class="hero__logo" aria-hidden="true">Sterne Kessler</span><span class="hero__logo" aria-hidden="true">Replenium</span><span class="hero__logo" aria-hidden="true">ABB</span><span class="hero__logo" aria-hidden="true">Client five</span><span class="hero__logo" aria-hidden="true">Client six</span><span class="hero__logo" aria-hidden="true">Client seven</span><span class="hero__logo" aria-hidden="true">Client eight</span></div></div>
+        </div>
+      </section>
+      <section class="section sg" id="services">
+        <div class="container sg__head">
+          <div class="section-head reveal"><h2 class="h2">Where agents fit<span class="br"><br /></span> in freight, warehouse and plant operations</h2></div>
+          <div class="sg__arrows">
+            <button aria-label="Previous" data-sg-prev>←</button>
+            <button aria-label="Next" data-sg-next>→</button>
+          </div>
+        </div>
+        <div class="sg__row" data-sg-row tabindex="0" aria-label="Where agents fit in freight, warehouse and plant operations">
+          <article class="sg__card" tabindex="0">
+            <span class="eyebrow">Logistics and manufacturing</span>
+            <h3 class="sg__title">Freight and customs document processing</h3>
+            <p class="sg__body">Agents extract data from bills of lading, commercial invoices, packing lists and certificates of origin, cross-check them against each other and the booking, suggest HS codes for unclassified lines and stage the entry in your customs system for a licensed broker to file.</p>
+            <span class="sg__icon" aria-hidden="true"></span>
+          </article>
+          <article class="sg__card" tabindex="0">
+            <span class="eyebrow">Logistics and manufacturing</span>
+            <h3 class="sg__title">Shipment exception handling</h3>
+            <p class="sg__body">Agents watch carrier EDI, telematics and TMS milestones for missed pickups, dwell and delays, find the affected orders, draft the customer notification and propose a rebooking. Dispatchers approve the action, and each exception is tagged by cause for carrier scorecards.</p>
+            <span class="sg__icon" aria-hidden="true"></span>
+          </article>
+          <article class="sg__card" tabindex="0">
+            <span class="eyebrow">Logistics and manufacturing</span>
+            <h3 class="sg__title">Freight audit and invoice matching</h3>
+            <p class="sg__body">Agents compare carrier invoices with rate confirmations, contracts and proof of delivery, flag accessorial charges such as detention or lumper fees that lack support, and queue disputes for your freight audit team with the evidence attached.</p>
+            <span class="sg__icon" aria-hidden="true"></span>
+          </article>
+          <article class="sg__card" tabindex="0">
+            <span class="eyebrow">Logistics and manufacturing</span>
+            <h3 class="sg__title">Maintenance triage and work orders</h3>
+            <p class="sg__body">Agents read sensor alerts, operator logs and equipment manuals, suggest a likely cause and procedure, and draft a work order in SAP PM, Maximo or Fiix with parts availability checked. Planners approve, and agents never send commands to control systems.</p>
+            <span class="sg__icon" aria-hidden="true"></span>
+          </article>
+          <article class="sg__card" tabindex="0">
+            <span class="eyebrow">Logistics and manufacturing</span>
+            <h3 class="sg__title">ERP, MES and WMS integration</h3>
+            <p class="sg__body">The pod builds the integrations agents and people both need: order, inventory and production data moving between SAP, Oracle or Dynamics, your MES and your WMS, with reconciliation reports so planners stop rekeying data between screens.</p>
+            <span class="sg__icon" aria-hidden="true"></span>
+          </article>
+          <article class="sg__card" tabindex="0">
+            <span class="eyebrow">Logistics and manufacturing</span>
+            <h3 class="sg__title">Supplier and purchase order follow-up</h3>
+            <p class="sg__body">Agents read supplier acknowledgements, ASNs and email replies, compare promised dates with MRP requirements, chase late confirmations and warn buyers of shortages before they stop a line. Buyers keep authority over expedites, substitutions and price changes.</p>
+            <span class="sg__icon" aria-hidden="true"></span>
+          </article>
+        </div>
+      </section>
+      <section class="icb section--gradient on-dark">
+        <div class="container icb__row">
+          <h2 class="h2">Show us one exception queue and we’ll scope it</h2>
+          <div class="icb__right">
+            <p>We’ll map the documents, systems and approvals for one workflow in 30 minutes.</p>
+            <a href="#cta-form" class="btn btn--invert">Book a scoping call</a>
+          </div>
+        </div>
+      </section>
+      <section class="section" id="challenges">
+        <div class="container">
+          <div class="section-head reveal"><h2 class="h2">Why does operations AI stall<span class="br"><br /></span> between pilot and floor?</h2></div>
+          <div class="cp" style="--n: 4">
+            <div class="cp__item reveal">
+              <h3 class="cp__title">Documents arrive in every format</h3>
+              <p class="muted">Scanned, stamped and carrier-specific paperwork defeats template OCR, so pilots tuned on clean samples fail at real volume.</p>
+            </div>
+            <div class="cp__item reveal">
+              <h3 class="cp__title">Systems of record don’t talk</h3>
+              <p class="muted">ERP, TMS, WMS and MES each hold part of the picture, and an agent without access to all of them guesses.</p>
+            </div>
+            <div class="cp__item reveal">
+              <h3 class="cp__title">OT security rules are strict</h3>
+              <p class="muted">Plant networks are segmented for good reason, and any connection near control systems needs review against standards such as IEC 62443.</p>
+            </div>
+            <div class="cp__item reveal">
+              <h3 class="cp__title">Operators need answers in minutes</h3>
+              <p class="muted">A dispatcher or planner will not wait on a slow tool, so latency and clear escalation matter as much as accuracy.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="section pt" id="process" data-pt>
+        <div class="container">
+          <div class="section-head reveal"><h2 class="h2">How an engagement runs<span class="br"><br /></span> across your sites and systems</h2></div>
+          <div class="pt__grid">
+            <div class="pt__left" aria-hidden="true">
+              <span class="pt__num" data-pt-num>01</span>
+              <svg viewBox="0 0 300 260" class="pt__stack"><polygon data-pt-layer="0" class="pt__layer is-active" points="150,148 280,188 150,228 20,188"></polygon><polygon data-pt-layer="1" class="pt__layer" points="150,112 280,152 150,192 20,152"></polygon><polygon data-pt-layer="2" class="pt__layer" points="150,76 280,116 150,156 20,116"></polygon><polygon data-pt-layer="3" class="pt__layer" points="150,40 280,80 150,120 20,80"></polygon></svg>
+            </div>
+            <ol class="pt__list">
+              <li class="pt__step is-active" data-pt-step="0">
+                <button class="pt__btn" aria-expanded="true">
+                  <span class="pt__n">01</span><span class="pt__title">Map one workflow</span>
+                  <span class="caption pt__time">Weeks 1–2</span>
+                </button>
+                <div class="pt__body">
+                  <p>We sit with brokers, dispatchers or maintenance planners to trace the documents, systems and approvals in one workflow, and collect a sample of real paperwork. Your IT and OT security teams agree which networks and systems the pod may touch.</p>
+                  <p class="caption"><strong>Deliverables:</strong> workflow map, document sample set, integration plan, network access approval</p>
+                </div>
+              </li>
+              <li class="pt__step" data-pt-step="1">
+                <button class="pt__btn" aria-expanded="false">
+                  <span class="pt__n">02</span><span class="pt__title">Build and integrate</span>
+                  <span class="caption pt__time">Weeks 3–8</span>
+                </button>
+                <div class="pt__body">
+                  <p>The pod builds the agent and its integrations to your ERP, TMS, WMS or CMMS in your environment, reading plant data only through approved historians or gateways. We test against historical shipments or work orders your team has already resolved.</p>
+                  <p class="caption"><strong>Deliverables:</strong> working agent, system integrations, evaluation set, exception taxonomy</p>
+                </div>
+              </li>
+              <li class="pt__step" data-pt-step="2">
+                <button class="pt__btn" aria-expanded="false">
+                  <span class="pt__n">03</span><span class="pt__title">Pilot one site</span>
+                  <span class="caption pt__time">Weeks 7–12</span>
+                </button>
+                <div class="pt__body">
+                  <p>The agent runs on one lane, warehouse or production line with people approving every filing, booking or work order. Their corrections become test cases, and we measure accuracy by document type and exception class.</p>
+                  <p class="caption"><strong>Deliverables:</strong> pilot results, error analysis, approval workflow, monitoring dashboard</p>
+                </div>
+              </li>
+              <li class="pt__step" data-pt-step="3">
+                <button class="pt__btn" aria-expanded="false">
+                  <span class="pt__n">04</span><span class="pt__title">Hand over and scale</span>
+                  <span class="caption pt__time">Weeks 12–16</span>
+                </button>
+                <div class="pt__body">
+                  <p>Your team takes ownership with runbooks and a playbook for adding sites, carriers or document types. Code and configuration stay in your repositories, with no per-document licence tied to tkxel.</p>
+                  <p class="caption"><strong>Deliverables:</strong> runbooks, rollout playbook, source repositories, training sessions</p>
+                </div>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </section>
+      <section class="section" id="case-studies">
+        <div class="container">
+          <div class="csc__head reveal"><h2 class="h2">Featured success stories</h2></div>
+          <div class="csc">
+            <article class="csc__card reveal">
+              <div class="csc__tags"><span class="eyebrow">Industry</span><span class="eyebrow">Logistics and manufacturing</span></div>
+              <h3 class="csc__result">[Placeholder] First case study headline that leads with the metric, then the mechanism.</h3>
+              <blockquote class="csc__quote">“Placeholder quote — replace with a real client quote.”<footer class="caption">— Chief Operating Officer</footer></blockquote>
+            </article>
+            <article class="csc__card reveal">
+              <div class="csc__tags"><span class="eyebrow">Industry</span><span class="eyebrow">Logistics and manufacturing</span></div>
+              <h3 class="csc__result">[Placeholder] Second case study headline that leads with the metric, then the mechanism.</h3>
+              <blockquote class="csc__quote">“Placeholder quote — replace with a real client quote.”<footer class="caption">— VP Engineering</footer></blockquote>
+            </article>
+            <article class="csc__card reveal">
+              <div class="csc__tags"><span class="eyebrow">Industry</span><span class="eyebrow">Logistics and manufacturing</span></div>
+              <h3 class="csc__result">[Placeholder] Third case study headline that leads with the metric, then the mechanism.</h3>
+              <blockquote class="csc__quote">“Placeholder quote — replace with a real client quote.”<footer class="caption">— Head of Data</footer></blockquote>
+            </article>
+          </div>
+        </div>
+      </section>
+            <section class="section section--gradient on-dark" id="why-tkxel">
+        <div class="container">
+          <div class="df__head reveal">
+            <h2 class="h2">
+              Engineers who ship inside your systems,<span class="br"><br /></span> not isolated AI demos
+            </h2>
+            <a href="#cta-form" class="btn btn--invert">Talk to an FDE lead</a>
+          </div>
+          <div class="df">
+            <div class="df__card reveal">
+              <h3 class="df__title">Production from the first sprint</h3>
+              <p>
+                We build in your repositories and environments from day one, so there is no separate rebuild between
+                proof of concept and release.
+              </p>
+            </div>
+            <div class="df__card reveal">
+              <h3 class="df__title">Senior pods, not rotating benches</h3>
+              <p>
+                Each pod is led by an engineer who has shipped AI systems before, drawn from tkxel’s team of around 150
+                AI professionals. The same people stay through delivery.
+              </p>
+            </div>
+            <div class="df__card reveal">
+              <h3 class="df__title">Governance built in, not bolted on</h3>
+              <p>
+                Autonomy matrices, audit trails, and human review are designed with your risk and security teams before
+                release, backed by ISO 27001 controls.
+              </p>
+            </div>
+            <div class="df__card reveal">
+              <h3 class="df__title">Measured against your metrics</h3>
+              <p>
+                Every engagement starts with agreed business metrics and evaluation sets. We report against them
+                throughout, and the pod exits when your team can run the system.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+            <section class="section aw">
+        <div class="container">
+          <h2 class="h2 aw__h reveal">We've been recognized by the best, year after year</h2>
+          <ul class="aw__list">
+            <li class="aw__badge"><span class="aw__dot" aria-hidden="true"></span>Inc. 5000</li>
+            <li class="aw__badge"><span class="aw__dot" aria-hidden="true"></span>Top 15 Inspiring Workplaces</li>
+            <li class="aw__badge">
+              <span class="aw__dot" aria-hidden="true"></span>Titan Business Platinum (AI &amp; Automation)
+            </li>
+            <li class="aw__badge"><span class="aw__dot" aria-hidden="true"></span>Financial Times</li>
+            <li class="aw__badge"><span class="aw__dot" aria-hidden="true"></span>Mogul People Leader</li>
+            <li class="aw__badge"><span class="aw__dot" aria-hidden="true"></span>Forbes Coaches Council</li>
+            <li class="aw__badge"><span class="aw__dot" aria-hidden="true"></span>ISO 27001</li>
+            <li class="aw__badge"><span class="aw__dot" aria-hidden="true"></span>ISO 20000</li>
+            <li class="aw__badge"><span class="aw__dot" aria-hidden="true"></span>ISO 9001</li>
+            <li class="aw__badge"><span class="aw__dot" aria-hidden="true"></span>CMMI DEV 3</li>
+          </ul>
+        </div>
+      </section>
+            <section class="section section--dark on-dark" id="cta-form">
+        <div class="container fc">
+          <div class="fc__left">
+            <h2 class="h2">Tell us which exception queue you want under control next</h2>
+            <div class="fc__clutch">
+              <span class="eyebrow">Clutch</span
+              ><span class="caption">[Placeholder] Clutch badge and rating — add the official widget</span>
+            </div>
+            <blockquote class="fc__quote">
+              “Placeholder testimonial — replace with the global set from tkxel.com.”
+              <footer class="caption">— Knowles</footer>
+            </blockquote>
+            <blockquote class="fc__quote">
+              “Placeholder testimonial — replace with the global set from tkxel.com.”
+              <footer class="caption">— Sterne Kessler</footer>
+            </blockquote>
+          </div>
+          <form class="fc__form" method="post" action="/api/lead" data-lead-form>
+            <label class="fc__full"
+              >I'm interested in
+              <select name="interest" required>
+                <option>FDE pod</option>
+                <option>AI strategy &amp; readiness</option>
+                <option>Agentic platforms &amp; integrations</option>
+                <option>Adoption &amp; enablement</option>
+                <option>AI security &amp; governance</option>
+                <option>Product &amp; engineering transformation</option>
+                <option>Something else</option>
+              </select>
+            </label>
+            <label>First name*<input name="first_name" required autocomplete="given-name" /></label>
+            <label>Last name*<input name="last_name" required autocomplete="family-name" /></label>
+            <label>Work email*<input name="email" type="email" required autocomplete="email" /></label>
+            <label>Job title*<input name="job_title" required autocomplete="organization-title" /></label>
+            <label class="fc__full">Phone<input name="phone" type="tel" autocomplete="tel" /></label>
+            <label class="fc__full">Project description<textarea name="message" rows="4"></textarea></label>
+            <label class="fc__check fc__full"
+              ><input type="checkbox" name="marketing_consent" /> I agree to receive marketing communications from
+              tkxel.</label
+            >
+            <label class="fc__check fc__full"
+              ><input type="checkbox" name="sms_consent" /> I agree to receive SMS messages from tkxel.</label
+            >
+            <button class="btn btn--invert fc__full" type="submit">Book discovery call</button>
+            <p class="caption fc__full">
+              By submitting, you agree to our <a href="https://tkxel.com/terms-of-use/">Terms</a> and
+              <a href="https://tkxel.com/privacy-policy/">Privacy policy</a>.
+            </p>
+            <p class="fc__status fc__full" role="status" data-lead-status></p>
+          </form>
+        </div>
+      </section>
+      <section class="section" id="faq">
+        <div class="container faq">
+          <h2 class="h2 reveal">Frequently asked questions</h2>
+          <div>
+            <details class="faq__item" open>
+              <summary><span>How are AI agents used in logistics and manufacturing?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>Mostly on the paperwork and coordination between systems: reading freight and customs documents, working shipment exceptions, auditing carrier invoices, following up with suppliers and turning maintenance alerts into draft work orders. Agents pull data from your ERP, TMS, WMS, MES and email, prepare the next step and ask a person to approve it. They work alongside your planning and control systems rather than replacing them.</p>
+            </details>
+            <details class="faq__item">
+              <summary><span>Can AI read bills of lading and customs documents accurately?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>Current models handle varied layouts, stamps and handwriting far better than template OCR, but accuracy still depends on scan quality and how unusual a carrier’s format is. That is why we cross-check fields across the bill of lading, commercial invoice and packing list and route mismatches to a person. For customs, the agent prepares and suggests; a licensed customs broker reviews and files, because classification errors carry penalties the broker answers for.</p>
+            </details>
+            <details class="faq__item">
+              <summary><span>Do AI agents connect directly to PLCs or control systems?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>No, and we advise against it. Our agents read operational data through historians, MES or approved gateways and write only to business systems such as your CMMS or ERP. Sending commands to PLCs or SCADA would put a probabilistic model inside a safety-critical loop, which IEC 62443-style network segmentation exists to prevent. If you want closed-loop process optimization, that is a controls engineering project, and an agent build is the wrong tool for it.</p>
+            </details>
+            <details class="faq__item">
+              <summary><span>Which ERP, WMS and TMS systems can you integrate with?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>We integrate with common platforms such as SAP, Oracle, Microsoft Dynamics, NetSuite, Manhattan, Blue Yonder and Maximo, using whatever APIs, EDI feeds, database views or file drops your systems expose. Where an older system has no API, we use your approved integration middleware or, as a last resort, controlled screen automation. We confirm the integration path for each system during scoping, before committing to a timeline.</p>
+            </details>
+            <details class="faq__item">
+              <summary><span>How do you handle multiple sites, carriers and languages?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>We start with one lane, warehouse or plant so the agent is tested on real volume, then add sites with a rollout playbook covering new document types, carrier formats, languages and local approval rules. Each addition gets its own test set before going live. Agents can read documents in the major trade languages, but customs and labour rules differ by country, so each new country needs a review with your compliance team.</p>
+            </details>
+            <details class="faq__item">
+              <summary><span>How long does it take to deploy an AI agent in logistics operations?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>About 12–16 weeks for the first workflow at one site or lane, including a pilot with human approval on every action. The main variables are integration access, particularly to older ERP or WMS instances, and OT security review when plant data is involved. Expanding to further sites is usually faster because integrations, test sets and approval workflows are reused rather than rebuilt.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+    </main>
+                                                                                                                                    <footer class="ftr">
+      <div class="container">
+        <div class="ftr__top">
+          <div class="ftr__brand">
+            <a href="/" class="ftr__logo">tkxel<span>FDE</span></a>
+            <p class="ftr__tag">
+              Forward deployed engineering teams that build production AI inside your environment, then hand it over to
+              your team.
+            </p>
+            <a href="https://tkxel.com" class="ftr__main">Visit tkxel.com →</a>
+          </div>
+          <div class="ftr__cols">
+            <div>
+              <a href="/services/ai-strategy-readiness/" class="ftr__head">AI strategy &amp; readiness</a>
+              <ul>
+                <li><a href="/services/ai-readiness-assessment/">AI maturity assessment</a></li>
+                <li>Process mapping &amp; use-case prioritization</li>
+                <li>Use-case portfolio &amp; ROI tracking</li>
+                <li>Data readiness audit</li>
+              </ul>
+            </div>
+            <div>
+              <a href="/services/fde-pods/" class="ftr__head">FDE pods</a>
+              <ul>
+                <li><a href="/services/full-stack-fde-pod/">Full-stack FDE pod</a></li>
+                <li><a href="/services/agentic-fde-pod/">Agentic FDE pod</a></li>
+                <li><a href="/services/data-engineering-fde-pod/">Data engineering FDE pod</a></li>
+                <li><a href="/services/integration-legacy-modernization-pod/">Integration &amp; legacy modernization pod</a></li>
+              </ul>
+            </div>
+            <div>
+              <a href="/services/agentic-platforms/" class="ftr__head">Agentic platforms &amp; integrations</a>
+              <ul>
+                <li><a href="/services/mcp-enterprise-integrations/">Enterprise connectors &amp; MCP integrations</a></li>
+                <li><a href="/services/enterprise-knowledge-assistant/">Enterprise knowledge assistant</a></li>
+                <li><a href="/services/workflow-agentification/">Workflow agentification</a></li>
+                <li>Managed AI operations</li>
+              </ul>
+            </div>
+            <div>
+              <a href="/services/adoption-enablement/" class="ftr__head">Adoption &amp; enablement</a>
+              <ul>
+                <li>Role-based AI training</li>
+                <li>AI champions program</li>
+                <li>Train-the-trainer</li>
+                <li>AI center of excellence</li>
+              </ul>
+            </div>
+            <div>
+              <a href="/services/ai-security-governance/" class="ftr__head">AI security &amp; governance</a>
+              <ul>
+                <li>Agent security &amp; permissions review</li>
+                <li><a href="/services/ai-penetration-testing/">AI penetration testing</a></li>
+                <li>AI governance council setup</li>
+              </ul>
+            </div>
+            <div>
+              <a href="/services/product-engineering/" class="ftr__head">Product &amp; engineering transformation</a>
+              <ul>
+                <li>Product AI strategy</li>
+                <li>Rapid prototype sprint</li>
+                <li>AI-enabled SDLC redesign</li>
+                <li>Legacy SaaS modernization</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="ftr__offices">
+          <div>
+            <span class="eyebrow">USA</span>
+            <p>Placeholder — confirm from tkxel.com footer</p>
+          </div>
+          <div>
+            <span class="eyebrow">Saudi Arabia</span>
+            <p>Placeholder — confirm from tkxel.com footer</p>
+          </div>
+          <div>
+            <span class="eyebrow">Portugal</span>
+            <p>Placeholder — confirm from tkxel.com footer</p>
+          </div>
+          <div>
+            <span class="eyebrow">Pakistan</span>
+            <p>Placeholder — confirm from tkxel.com footer</p>
+          </div>
+        </div>
+        <div class="ftr__legal">
+          <span>© 2026 tkxel. All rights reserved.</span>
+          <nav aria-label="Legal"><a href="https://tkxel.com/privacy-policy/">Privacy policy</a><a href="https://tkxel.com/terms-of-use/">Terms of use</a></nav>
+        </div>
+      </div>
+    </footer>
+    <script src="/assets/js/main.js" defer></script>
+  </body>
+</html>

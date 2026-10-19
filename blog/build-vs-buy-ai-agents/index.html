@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Build vs buy AI agents: a decision framework | tkxel FDE</title>
+    <meta name="description" content="Build vs buy AI agents: when an off-the-shelf platform fits, when a custom build pays off, where a partner helps, and the criteria to decide for each use case." />
+    <link rel="canonical" href="https://fde.tkxel.com/blog/build-vs-buy-ai-agents/" />
+    <meta property="og:title" content="Build vs buy AI agents: a decision framework | tkxel FDE" />
+    <meta property="og:description" content="Build vs buy AI agents: when an off-the-shelf platform fits, when a custom build pays off, where a partner helps, and the criteria to decide for each use case." />
+    <meta property="og:url" content="https://fde.tkxel.com/blog/build-vs-buy-ai-agents/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://fde.tkxel.com/og-default.png" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Should I build or buy an AI agent?", "acceptedAnswer": {"@type": "Answer", "text": "You should buy an AI agent when the workflow is common, the vendor integrates with your systems and speed matters most. You should build when the agent depends on proprietary data, unusual integrations or logic that sets you apart. Make the decision per use case rather than company-wide, and score each on differentiation, integration complexity, data sensitivity, volume, team capacity and time to value."}}, {"@type": "Question", "name": "How much does it cost to build a custom AI agent?", "acceptedAnswer": {"@type": "Answer", "text": "The cost of a custom AI agent depends mostly on integration complexity, data preparation and the controls the use case needs, not on the model itself. A narrow agent touching one or two systems costs far less than one spanning legacy ERP, approvals and regulated data. Budget beyond the build for evaluation, monitoring, guardrails, model upgrades and support, which continue for as long as the agent runs."}}, {"@type": "Question", "name": "What are the risks of buying an AI agent platform?", "acceptedAnswer": {"@type": "Answer", "text": "The main risks of buying an AI agent platform are a customisation ceiling, rising per-use costs and vendor lock-in. Prebuilt agents follow the vendor’s view of the process, which may not match yours. Integrations outside the vendor’s catalogue can be slow or unsupported. Check data residency, security controls, pricing at your expected volume and how easily you can export your data and configurations."}}, {"@type": "Question", "name": "Is it better to build AI agents in-house or with a partner?", "acceptedAnswer": {"@type": "Answer", "text": "Building AI agents in-house is better when you already have engineers with production LLM experience and capacity to maintain the system. Building with a partner is better when you need a custom agent soon but lack that team. Choose a partner who works inside your environment and hands over the code, runbooks and operations, so you are not dependent on them afterwards."}}, {"@type": "Question", "name": "Can you combine bought and custom AI agents?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, most enterprises combine bought and custom AI agents. A common pattern is platforms for routine, high-volume workflows and custom agents for core processes where data, rules or integrations make the difference. To make this work, keep shared foundations under your control, such as identity, data access, logging and evaluation, so agents from different sources follow the same policies."}}]}</script>
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Build vs buy AI agents: platforms, custom builds or a partner", "description": "Build vs buy AI agents: when an off-the-shelf platform fits, when a custom build pays off, where a partner helps, and the criteria to decide for each use case.", "author": {"@type": "Organization", "name": "tkxel"}, "publisher": {"@type": "Organization", "name": "tkxel"}, "datePublished": "2026-10-08", "mainEntityOfPage": "https://fde.tkxel.com/blog/build-vs-buy-ai-agents/"}</script>
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+  </head>
+  <body>
+                                                                                                                                                                                                                                                                    <header class="hdr" data-hdr>
+      <div class="container hdr__bar">
+        <a href="/" class="hdr__logo" aria-label="tkxel FDE home">tkxel<span>FDE</span></a>
+        <nav class="hdr__nav" aria-label="Primary">
+          <div class="hdr__mega-wrap">
+            <button class="hdr__link" aria-expanded="false" aria-controls="mega" data-mega-btn>Services</button>
+            <div class="hdr__mega" id="mega" hidden data-mega>
+              <div class="container hdr__mega-grid">
+                <div>
+                  <a href="/services/ai-strategy-readiness/" class="hdr__mega-title">AI strategy &amp; readiness</a>
+                  <ul>
+                    <li><a href="/services/ai-readiness-assessment/">AI maturity assessment</a></li>
+                    <li>Process mapping &amp; use-case prioritization</li>
+                    <li>Use-case portfolio &amp; ROI tracking</li>
+                    <li>Data readiness audit</li>
+                  </ul>
+                </div>
+                <div>
+                  <a href="/services/fde-pods/" class="hdr__mega-title">FDE pods</a>
+                  <ul>
+                    <li><a href="/services/full-stack-fde-pod/">Full-stack FDE pod</a></li>
+                    <li><a href="/services/agentic-fde-pod/">Agentic FDE pod</a></li>
+                    <li><a href="/services/data-engineering-fde-pod/">Data engineering FDE pod</a></li>
+                    <li><a href="/services/integration-legacy-modernization-pod/">Integration &amp; legacy modernization pod</a></li>
+                  </ul>
+                </div>
+                <div>
+                  <a href="/services/agentic-platforms/" class="hdr__mega-title"
+                    >Agentic platforms &amp; integrations</a
+                  <ul>
+                    <li><a href="/services/mcp-enterprise-integrations/">Enterprise connectors &amp; MCP integrations</a></li>
+                    <li><a href="/services/enterprise-knowledge-assistant/">Enterprise knowledge assistant</a></li>
+                    <li><a href="/services/workflow-agentification/">Workflow agentification</a></li>
+                    <li>Managed AI operations</li>
+                  </ul>
+                </div>
+                <div>
+                  <a href="/services/adoption-enablement/" class="hdr__mega-title">Adoption &amp; enablement</a>
+                  <ul>
+                    <li>Role-based AI training</li>
+                    <li>AI champions program</li>
+                    <li>Train-the-trainer</li>
+                    <li>AI center of excellence</li>
+                  </ul>
+                </div>
+                <div>
+                  <a href="/services/ai-security-governance/" class="hdr__mega-title">AI security &amp; governance</a>
+                  <ul>
+                    <li>Agent security &amp; permissions review</li>
+                    <li><a href="/services/ai-penetration-testing/">AI penetration testing</a></li>
+                    <li>AI governance council setup</li>
+                  </ul>
+                </div>
+                <div>
+                  <a href="/services/product-engineering/" class="hdr__mega-title"
+                    >Product &amp; engineering transformation</a
+                  <ul>
+                    <li>Product AI strategy</li>
+                    <li>Rapid prototype sprint</li>
+                    <li>AI-enabled SDLC redesign</li>
+                    <li>Legacy SaaS modernization</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        <a href="/services/fde-pods/" class="hdr__link">FDE pods</a><a href="/industries/" class="hdr__link">Industries</a><a href="/case-studies/" class="hdr__link">Case studies</a><a href="/blog/" class="hdr__link">Resources</a>
+      </nav>
+        <a href="#cta-form" class="btn btn--invert hdr__cta">Book discovery call</a>
+        <button class="hdr__burger" aria-label="Open menu" aria-expanded="false" data-burger>
+          <span></span><span></span>
+        </button>
+      </div>
+    </header>
+    <main id="main">
+      <section class="art__hero section--gradient on-dark" data-hero>
+        <div class="container art__narrow">
+          <span class="eyebrow">Article</span>
+          <h1 class="display art__h1">Build vs buy AI agents: platforms, custom builds or a partner</h1>
+          <p class="caption art__meta">8 October 2026 · 8 min read</p>
+        </div>
+      </section>
+      <article class="section">
+        <div class="container art__layout">
+          <nav class="art__toc" aria-label="Contents"><span class="eyebrow">Contents</span><ol><li><a href="#the-three-real-options">The three real options</a></li><li><a href="#when-buying-an-ai-agent-platform-makes-sense">When buying an AI agent platform makes sense</a></li><li><a href="#when-building-a-custom-ai-agent-pays-off">When building a custom AI agent pays off</a></li><li><a href="#decision-criteria-to-score-each-use-case">Decision criteria to score each use case</a></li><li><a href="#where-a-partner-fits">Where a partner fits</a></li><li><a href="#a-worked-example">A worked example</a></li><li><a href="#hidden-costs-on-both-sides">Hidden costs on both sides</a></li><li><a href="#an-honest-limitation">An honest limitation</a></li></ol></nav>
+          <div class="art__body">
+          <p class="art__lede">Build vs buy AI agents is a per-use-case decision, not a company-wide one. Buy a platform when the workflow is common and the vendor already integrates with your systems. Build when the agent depends on your proprietary data, unusual integrations or differentiating logic. Bring in a partner when you need to build but lack the team.</p>
+          <h2 class="art__h2" id="the-three-real-options">The three real options</h2>
+          <p>You are choosing between three paths, not two: buy a platform, build in-house, or build with a partner who hands the system over. Each trades speed, control and long-term cost differently.</p>
+          <p>Most enterprises end up with a mix. Common workflows like IT helpdesk or meeting notes go to platforms, while agents tied to core processes, such as underwriting, claims or pricing, get built.</p>
+          <p>The question has shifted as tools have matured. Building an agent is no longer the hard part; models, frameworks and cloud services make a demo easy. Getting it to work reliably with your data, systems and controls is where the effort and the risk now sit, whichever path you choose.</p>
+          <div class="ct__scroll" tabindex="0" role="region" aria-label="Build vs buy vs partner"><table class="ct art__table"><caption class="sr-only">Build vs buy vs partner</caption><thead><tr><th scope="col">Option</th><th scope="col">Best when</th><th scope="col">Main trade-off</th></tr></thead><tbody><tr><th scope="row">Buy a platform</th><td>Common workflow, standard systems, speed matters</td><td>Customisation ceiling and per-use pricing</td></tr><tr><th scope="row">Build in-house</th><td>Core process, proprietary data, strong AI team</td><td>Slow to staff; you own all maintenance</td></tr><tr><th scope="row">Build with a partner</th><td>Need custom, lack capacity or experience</td><td>Requires a clear handover to avoid dependence</td></tr></tbody></table></div>
+          <h2 class="art__h2" id="when-buying-an-ai-agent-platform-makes-sense">When buying an AI agent platform makes sense</h2>
+          <p>Buying makes sense when the work is common across companies and does not set you apart. Customer support deflection, internal knowledge search and scheduling are mature categories with vendors who have already solved the hard integration work for standard tools.</p>
+          <p>You get speed and avoid running infrastructure. The catch is that prebuilt agents follow the vendor’s idea of the process, and pricing per conversation, action or resolution can climb as volume grows.</p>
+          <p>Before signing, run a short pilot on your own data and edge cases, not the vendor’s demo set. Ask how the platform handles your access rules, what you can export if you leave, and how pricing changes at two and five times your expected volume.</p>
+          <ul><li>The vendor already integrates with your core systems out of the box.</li><li>Your process is close to the industry standard.</li><li>You need something live in weeks, not months.</li><li>The vendor meets your data residency and security requirements.</li></ul>
+          <h2 class="art__h2" id="when-building-a-custom-ai-agent-pays-off">When building a custom AI agent pays off</h2>
+          <p>Building pays off when the agent’s value comes from your data, your rules or your integrations. If a competitor could buy the same agent and get the same result, it is not giving you an advantage.</p>
+          <p>Custom builds also win when integrations are unusual, such as legacy ERP systems, on-premises databases or industry-specific platforms that vendors do not support. You keep control of prompts, models, data handling and the roadmap, but you also carry the evaluation and maintenance work.</p>
+          <p>Building does not mean building everything. You can still buy model access, vector databases, observability and guardrail libraries, and spend your own effort on the workflow logic and integrations that make the agent yours.</p>
+          <ul><li>The workflow encodes proprietary logic or pricing.</li><li>Data is sensitive or regulated and must stay in your environment.</li><li>You need integrations no platform supports well.</li><li>You want freedom to switch models as they improve.</li></ul>
+          <h2 class="art__h2" id="decision-criteria-to-score-each-use-case">Decision criteria to score each use case</h2>
+          <p>Score each use case on the same criteria rather than making one call for the whole company. A simple one-to-five score per factor makes the trade-offs visible to finance, security and the business owner.</p>
+          <p>Run the scoring with the people who will live with the result: the business owner, a security lead, an architect and someone from finance. Disagreements in the scores are useful, because they surface assumptions about data, integrations or volume that would otherwise appear mid-project.</p>
+          <h3 class="art__h3">Differentiation</h3>
+          <p>Does the agent embody something competitors cannot copy by buying the same tool? High scores point to building.</p>
+          <h3 class="art__h3">Integration complexity</h3>
+          <p>How many systems does it touch, and are they standard? Practitioner guides consistently say integration effort is underestimated.</p>
+          <h3 class="art__h3">Data sensitivity</h3>
+          <p>Can the data leave your environment? Regulated data favours a build inside your cloud or a vendor with matching controls.</p>
+          <h3 class="art__h3">Volume and pricing</h3>
+          <p>Model your expected volume against per-action pricing and against build and run costs over three years.</p>
+          <h3 class="art__h3">Team capacity</h3>
+          <p>Do you have engineers with production LLM experience who can also maintain it? If not, factor in a partner or the hiring timeline.</p>
+          <h3 class="art__h3">Time to value</h3>
+          <p>How soon must this deliver? Platforms usually win the first quarter; builds often win the third year.</p>
+          <h2 class="art__h2" id="where-a-partner-fits">Where a partner fits</h2>
+          <p>A partner fits when the scores say build but your team cannot staff it yet. The model matters here: you want engineers who build inside your environment, in your repositories and cloud, and hand over a system your team can run.</p>
+          <p>This is how our FDE pods work. A pod of three to five engineers builds the agent, its integrations and guardrails alongside your people, then transfers ownership with runbooks and a reverse-shadow period. Avoid arrangements where the partner keeps the code or runs it on their own platform indefinitely, unless that is what you want.</p>
+          <p>Ask any partner to show how a previous handover worked: what documentation was left, who ran on-call afterwards and how long support lasted. If they cannot describe it plainly, plan for a longer dependence than the proposal suggests.</p>
+          <h2 class="art__h2" id="a-worked-example">A worked example</h2>
+          <p>Take two use cases at a hypothetical insurer. The first is an internal IT helpdesk agent that resets passwords and answers questions about common tools. The second is a claims triage agent that reads first notice of loss, checks policy terms and routes claims.</p>
+          <p>The helpdesk agent scores low on differentiation and data sensitivity, and platforms already integrate with the usual identity and ticketing tools. Buying is the sensible call.</p>
+          <p>The claims agent scores high on differentiation, touches a legacy policy system and handles regulated personal data. It points to a build, and if the internal AI team is already committed elsewhere, to a partner who builds inside the insurer’s cloud and hands it over.</p>
+          <h2 class="art__h2" id="hidden-costs-on-both-sides">Hidden costs on both sides</h2>
+          <p>Both paths carry costs that rarely appear in the first quote. Gartner predicted in June 2025 that over 40% of agentic AI projects will be cancelled by the end of 2027, pointing to escalating costs, unclear business value and inadequate risk controls, so it pays to model the full picture early.</p>
+          <ul><li>Buy: per-use fees at scale, customisation work, vendor lock-in, and integrations outside the vendor’s catalogue.</li><li>Build: evaluation sets, monitoring, guardrails, model upgrades and on-call support.</li><li>Both: change management, process redesign and the time your experts spend reviewing output.</li></ul>
+          <h2 class="art__h2" id="an-honest-limitation">An honest limitation</h2>
+          <p>No framework removes the uncertainty of a fast-moving market. A platform that lacks a feature today may ship it next quarter, and a custom agent can be overtaken by a better product.</p>
+          <p>The practical hedge is to keep options open. Own your data pipelines, evaluation sets and integration layer whichever way you go, so you can swap a platform for a build, or the reverse, without starting over.</p>
+          <aside class="art__related"><span class="eyebrow">Related</span><ul><li><a href="/services/agentic-fde-pod/" class="link-arrow">Agentic FDE pod</a></li><li><a href="/services/ai-strategy-readiness/" class="link-arrow">AI strategy and readiness</a></li><li><a href="/engagement-models/" class="link-arrow">Engagement models</a></li></ul></aside>
+          </div>
+        </div>
+      </article>
+      <section class="icb section--gradient on-dark">
+        <div class="container icb__row">
+          <h2 class="h2">Score your agent use cases before you sign anything</h2>
+          <div class="icb__right">
+            <p>We run the build vs buy scoring with your team and model three-year costs.</p>
+            <a href="#cta-form" class="btn btn--invert">Book a scoring session</a>
+          </div>
+        </div>
+      </section>
+      <section class="section" id="faq">
+        <div class="container faq">
+          <h2 class="h2 reveal">Frequently asked questions</h2>
+          <div>
+            <details class="faq__item" open>
+              <summary><span>Should I build or buy an AI agent?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>You should buy an AI agent when the workflow is common, the vendor integrates with your systems and speed matters most. You should build when the agent depends on proprietary data, unusual integrations or logic that sets you apart. Make the decision per use case rather than company-wide, and score each on differentiation, integration complexity, data sensitivity, volume, team capacity and time to value.</p>
+            </details>
+            <details class="faq__item">
+              <summary><span>How much does it cost to build a custom AI agent?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>The cost of a custom AI agent depends mostly on integration complexity, data preparation and the controls the use case needs, not on the model itself. A narrow agent touching one or two systems costs far less than one spanning legacy ERP, approvals and regulated data. Budget beyond the build for evaluation, monitoring, guardrails, model upgrades and support, which continue for as long as the agent runs.</p>
+            </details>
+            <details class="faq__item">
+              <summary><span>What are the risks of buying an AI agent platform?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>The main risks of buying an AI agent platform are a customisation ceiling, rising per-use costs and vendor lock-in. Prebuilt agents follow the vendor’s view of the process, which may not match yours. Integrations outside the vendor’s catalogue can be slow or unsupported. Check data residency, security controls, pricing at your expected volume and how easily you can export your data and configurations.</p>
+            </details>
+            <details class="faq__item">
+              <summary><span>Is it better to build AI agents in-house or with a partner?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>Building AI agents in-house is better when you already have engineers with production LLM experience and capacity to maintain the system. Building with a partner is better when you need a custom agent soon but lack that team. Choose a partner who works inside your environment and hands over the code, runbooks and operations, so you are not dependent on them afterwards.</p>
+            </details>
+            <details class="faq__item">
+              <summary><span>Can you combine bought and custom AI agents?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>Yes, most enterprises combine bought and custom AI agents. A common pattern is platforms for routine, high-volume workflows and custom agents for core processes where data, rules or integrations make the difference. To make this work, keep shared foundations under your control, such as identity, data access, logging and evaluation, so agents from different sources follow the same policies.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+            <section class="section section--dark on-dark" id="cta-form">
+        <div class="container fc">
+          <div class="fc__left">
+            <h2 class="h2">Make the build vs buy call with numbers, not guesswork</h2>
+            <div class="fc__clutch">
+              <span class="eyebrow">Clutch</span
+              ><span class="caption">[Placeholder] Clutch badge and rating — add the official widget</span>
+            </div>
+            <blockquote class="fc__quote">
+              “Placeholder testimonial — replace with the global set from tkxel.com.”
+              <footer class="caption">— Knowles</footer>
+            </blockquote>
+            <blockquote class="fc__quote">
+              “Placeholder testimonial — replace with the global set from tkxel.com.”
+              <footer class="caption">— Sterne Kessler</footer>
+            </blockquote>
+          </div>
+          <form class="fc__form" method="post" action="/api/lead" data-lead-form>
+            <label class="fc__full"
+              >I'm interested in
+              <select name="interest" required>
+                <option>FDE pod</option>
+                <option>AI strategy &amp; readiness</option>
+                <option>Agentic platforms &amp; integrations</option>
+                <option>Adoption &amp; enablement</option>
+                <option>AI security &amp; governance</option>
+                <option>Product &amp; engineering transformation</option>
+                <option>Something else</option>
+              </select>
+            </label>
+            <label>First name*<input name="first_name" required autocomplete="given-name" /></label>
+            <label>Last name*<input name="last_name" required autocomplete="family-name" /></label>
+            <label>Work email*<input name="email" type="email" required autocomplete="email" /></label>
+            <label>Job title*<input name="job_title" required autocomplete="organization-title" /></label>
+            <label class="fc__full">Phone<input name="phone" type="tel" autocomplete="tel" /></label>
+            <label class="fc__full">Project description<textarea name="message" rows="4"></textarea></label>
+            <label class="fc__check fc__full"
+              ><input type="checkbox" name="marketing_consent" /> I agree to receive marketing communications from
+              tkxel.</label
+            >
+            <label class="fc__check fc__full"
+              ><input type="checkbox" name="sms_consent" /> I agree to receive SMS messages from tkxel.</label
+            >
+            <button class="btn btn--invert fc__full" type="submit">Book discovery call</button>
+            <p class="caption fc__full">
+              By submitting, you agree to our <a href="https://tkxel.com/terms-of-use/">Terms</a> and
+              <a href="https://tkxel.com/privacy-policy/">Privacy policy</a>.
+            </p>
+            <p class="fc__status fc__full" role="status" data-lead-status></p>
+          </form>
+        </div>
+      </section>
+    </main>
+                                                                                                                                    <footer class="ftr">
+      <div class="container">
+        <div class="ftr__top">
+          <div class="ftr__brand">
+            <a href="/" class="ftr__logo">tkxel<span>FDE</span></a>
+            <p class="ftr__tag">
+              Forward deployed engineering teams that build production AI inside your environment, then hand it over to
+              your team.
+            </p>
+            <a href="https://tkxel.com" class="ftr__main">Visit tkxel.com →</a>
+          </div>
+          <div class="ftr__cols">
+            <div>
+              <a href="/services/ai-strategy-readiness/" class="ftr__head">AI strategy &amp; readiness</a>
+              <ul>
+                <li><a href="/services/ai-readiness-assessment/">AI maturity assessment</a></li>
+                <li>Process mapping &amp; use-case prioritization</li>
+                <li>Use-case portfolio &amp; ROI tracking</li>
+                <li>Data readiness audit</li>
+              </ul>
+            </div>
+            <div>
+              <a href="/services/fde-pods/" class="ftr__head">FDE pods</a>
+              <ul>
+                <li><a href="/services/full-stack-fde-pod/">Full-stack FDE pod</a></li>
+                <li><a href="/services/agentic-fde-pod/">Agentic FDE pod</a></li>
+                <li><a href="/services/data-engineering-fde-pod/">Data engineering FDE pod</a></li>
+                <li><a href="/services/integration-legacy-modernization-pod/">Integration &amp; legacy modernization pod</a></li>
+              </ul>
+            </div>
+            <div>
+              <a href="/services/agentic-platforms/" class="ftr__head">Agentic platforms &amp; integrations</a>
+              <ul>
+                <li><a href="/services/mcp-enterprise-integrations/">Enterprise connectors &amp; MCP integrations</a></li>
+                <li><a href="/services/enterprise-knowledge-assistant/">Enterprise knowledge assistant</a></li>
+                <li><a href="/services/workflow-agentification/">Workflow agentification</a></li>
+                <li>Managed AI operations</li>
+              </ul>
+            </div>
+            <div>
+              <a href="/services/adoption-enablement/" class="ftr__head">Adoption &amp; enablement</a>
+              <ul>
+                <li>Role-based AI training</li>
+                <li>AI champions program</li>
+                <li>Train-the-trainer</li>
+                <li>AI center of excellence</li>
+              </ul>
+            </div>
+            <div>
+              <a href="/services/ai-security-governance/" class="ftr__head">AI security &amp; governance</a>
+              <ul>
+                <li>Agent security &amp; permissions review</li>
+                <li><a href="/services/ai-penetration-testing/">AI penetration testing</a></li>
+                <li>AI governance council setup</li>
+              </ul>
+            </div>
+            <div>
+              <a href="/services/product-engineering/" class="ftr__head">Product &amp; engineering transformation</a>
+              <ul>
+                <li>Product AI strategy</li>
+                <li>Rapid prototype sprint</li>
+                <li>AI-enabled SDLC redesign</li>
+                <li>Legacy SaaS modernization</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="ftr__offices">
+          <div>
+            <span class="eyebrow">USA</span>
+            <p>Placeholder — confirm from tkxel.com footer</p>
+          </div>
+          <div>
+            <span class="eyebrow">Saudi Arabia</span>
+            <p>Placeholder — confirm from tkxel.com footer</p>
+          </div>
+          <div>
+            <span class="eyebrow">Portugal</span>
+            <p>Placeholder — confirm from tkxel.com footer</p>
+          </div>
+          <div>
+            <span class="eyebrow">Pakistan</span>
+            <p>Placeholder — confirm from tkxel.com footer</p>
+          </div>
+        </div>
+        <div class="ftr__legal">
+          <span>© 2026 tkxel. All rights reserved.</span>
+          <nav aria-label="Legal"><a href="https://tkxel.com/privacy-policy/">Privacy policy</a><a href="https://tkxel.com/terms-of-use/">Terms of use</a></nav>
+        </div>
+      </div>
+    </footer>
+    <script src="/assets/js/main.js" defer></script>
+  </body>
+</html>

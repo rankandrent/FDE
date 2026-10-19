@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Human-in-the-loop AI agents: a design guide | tkxel FDE</title>
+    <meta name="description" content="Human-in-the-loop design for AI agents: choosing autonomy levels per action, building review queues people actually read, and escalation paths that hold up." />
+    <link rel="canonical" href="https://fde.tkxel.com/blog/human-in-the-loop-ai-agents/" />
+    <meta property="og:title" content="Human-in-the-loop AI agents: a design guide | tkxel FDE" />
+    <meta property="og:description" content="Human-in-the-loop design for AI agents: choosing autonomy levels per action, building review queues people actually read, and escalation paths that hold up." />
+    <meta property="og:url" content="https://fde.tkxel.com/blog/human-in-the-loop-ai-agents/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://fde.tkxel.com/og-default.png" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is human-in-the-loop in AI agents?", "acceptedAnswer": {"@type": "Answer", "text": "Human-in-the-loop in AI agents is a design where a person approves, edits or rejects specific agent actions before they take effect. It keeps humans inside the decision cycle for consequential steps, such as sending customer emails or issuing refunds, while routine work runs automatically. It differs from human-on-the-loop, where people monitor a running system and intervene only after something has happened."}}, {"@type": "Question", "name": "When should an AI agent require human approval?", "acceptedAnswer": {"@type": "Answer", "text": "An AI agent should require human approval when an action is hard to reverse, reaches a customer, moves money, touches sensitive data or changes many records at once. Small, reversible actions, like tagging a ticket or drafting a document, can usually run on their own. Decide per action rather than per agent, and revisit the list as evidence about the agent’s accuracy builds up."}}, {"@type": "Question", "name": "What are the levels of autonomy for AI agents?", "acceptedAnswer": {"@type": "Answer", "text": "The levels of autonomy for AI agents usually run from suggest-only, through act-with-approval and act-and-notify, to acting within pre-set policy limits without step-by-step review. Academic frameworks describe similar tiers by the role the human plays, from operator to observer. Most enterprise agents work best in the middle levels, with different actions in the same agent sitting at different levels."}}, {"@type": "Question", "name": "How do you prevent approval fatigue in human-in-the-loop systems?", "acceptedAnswer": {"@type": "Answer", "text": "You prevent approval fatigue by sending fewer, better items to reviewers. Gate only consequential actions, show the exact proposed change with its evidence, and let reviewers edit in place. Track approval rates: if nearly everything gets approved, the gate is probably in the wrong place. When volume grows, strengthen validators and policies upstream before adding more reviewers."}}, {"@type": "Question", "name": "What is the difference between human-in-the-loop and human-on-the-loop?", "acceptedAnswer": {"@type": "Answer", "text": "Human-in-the-loop means a person must act before the agent’s step takes effect, while human-on-the-loop means the agent acts and a person monitors and can intervene. In-the-loop suits high-risk, irreversible actions. On-the-loop suits routine actions where speed matters and mistakes can be caught and undone. Most production agents use both, depending on the action."}}]}</script>
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Human-in-the-loop AI agents: autonomy levels, review queues and escalation", "description": "Human-in-the-loop design for AI agents: choosing autonomy levels per action, building review queues people actually read, and escalation paths that hold up.", "author": {"@type": "Organization", "name": "tkxel"}, "publisher": {"@type": "Organization", "name": "tkxel"}, "datePublished": "2026-09-17", "mainEntityOfPage": "https://fde.tkxel.com/blog/human-in-the-loop-ai-agents/"}</script>
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+  </head>
+  <body>
+                                                                                                                                                                                                                                                                    <header class="hdr" data-hdr>
+      <div class="container hdr__bar">
+        <a href="/" class="hdr__logo" aria-label="tkxel FDE home">tkxel<span>FDE</span></a>
+        <nav class="hdr__nav" aria-label="Primary">
+          <div class="hdr__mega-wrap">
+            <button class="hdr__link" aria-expanded="false" aria-controls="mega" data-mega-btn>Services</button>
+            <div class="hdr__mega" id="mega" hidden data-mega>
+              <div class="container hdr__mega-grid">
+                <div>
+                  <a href="/services/ai-strategy-readiness/" class="hdr__mega-title">AI strategy &amp; readiness</a>
+                  <ul>
+                    <li><a href="/services/ai-readiness-assessment/">AI maturity assessment</a></li>
+                    <li>Process mapping &amp; use-case prioritization</li>
+                    <li>Use-case portfolio &amp; ROI tracking</li>
+                    <li>Data readiness audit</li>
+                  </ul>
+                </div>
+                <div>
+                  <a href="/services/fde-pods/" class="hdr__mega-title">FDE pods</a>
+                  <ul>
+                    <li><a href="/services/full-stack-fde-pod/">Full-stack FDE pod</a></li>
+                    <li><a href="/services/agentic-fde-pod/">Agentic FDE pod</a></li>
+                    <li><a href="/services/data-engineering-fde-pod/">Data engineering FDE pod</a></li>
+                    <li><a href="/services/integration-legacy-modernization-pod/">Integration &amp; legacy modernization pod</a></li>
+                  </ul>
+                </div>
+                <div>
+                  <a href="/services/agentic-platforms/" class="hdr__mega-title"
+                    >Agentic platforms &amp; integrations</a
+                  <ul>
+                    <li><a href="/services/mcp-enterprise-integrations/">Enterprise connectors &amp; MCP integrations</a></li>
+                    <li><a href="/services/enterprise-knowledge-assistant/">Enterprise knowledge assistant</a></li>
+                    <li><a href="/services/workflow-agentification/">Workflow agentification</a></li>
+                    <li>Managed AI operations</li>
+                  </ul>
+                </div>
+                <div>
+                  <a href="/services/adoption-enablement/" class="hdr__mega-title">Adoption &amp; enablement</a>
+                  <ul>
+                    <li>Role-based AI training</li>
+                    <li>AI champions program</li>
+                    <li>Train-the-trainer</li>
+                    <li>AI center of excellence</li>
+                  </ul>
+                </div>
+                <div>
+                  <a href="/services/ai-security-governance/" class="hdr__mega-title">AI security &amp; governance</a>
+                  <ul>
+                    <li>Agent security &amp; permissions review</li>
+                    <li><a href="/services/ai-penetration-testing/">AI penetration testing</a></li>
+                    <li>AI governance council setup</li>
+                  </ul>
+                </div>
+                <div>
+                  <a href="/services/product-engineering/" class="hdr__mega-title"
+                    >Product &amp; engineering transformation</a
+                  <ul>
+                    <li>Product AI strategy</li>
+                    <li>Rapid prototype sprint</li>
+                    <li>AI-enabled SDLC redesign</li>
+                    <li>Legacy SaaS modernization</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        <a href="/services/fde-pods/" class="hdr__link">FDE pods</a><a href="/industries/" class="hdr__link">Industries</a><a href="/case-studies/" class="hdr__link">Case studies</a><a href="/blog/" class="hdr__link">Resources</a>
+      </nav>
+        <a href="#cta-form" class="btn btn--invert hdr__cta">Book discovery call</a>
+        <button class="hdr__burger" aria-label="Open menu" aria-expanded="false" data-burger>
+          <span></span><span></span>
+        </button>
+      </div>
+    </header>
+    <main id="main">
+      <section class="art__hero section--gradient on-dark" data-hero>
+        <div class="container art__narrow">
+          <span class="eyebrow">Article</span>
+          <h1 class="display art__h1">Human-in-the-loop AI agents: autonomy levels, review queues and escalation</h1>
+          <p class="caption art__meta">17 September 2026 · 8 min read</p>
+        </div>
+      </section>
+      <article class="section">
+        <div class="container art__layout">
+          <nav class="art__toc" aria-label="Contents"><span class="eyebrow">Contents</span><ol><li><a href="#what-human-in-the-loop-means-for-ai-agents">What human-in-the-loop means for AI agents</a></li><li><a href="#set-autonomy-per-action-not-per-agent">Set autonomy per action, not per agent</a></li><li><a href="#decide-what-needs-approval">Decide what needs approval</a></li><li><a href="#design-review-queues-people-actually-read">Design review queues people actually read</a></li><li><a href="#build-escalation-paths-for-the-edge-cases">Build escalation paths for the edge cases</a></li><li><a href="#state-context-and-audit-trail">State, context and audit trail</a></li><li><a href="#be-careful-with-confidence-thresholds">Be careful with confidence thresholds</a></li><li><a href="#widen-autonomy-as-trust-builds">Widen autonomy as trust builds</a></li></ol></nav>
+          <div class="art__body">
+          <p class="art__lede">Human-in-the-loop AI agents keep a person inside the decision cycle for actions that matter. You set autonomy per action based on reversibility and cost of error, route risky steps to a review queue with enough context to decide, and define escalation paths for anything outside the agent’s scope. Routine, reversible work runs on its own.</p>
+          <h2 class="art__h2" id="what-human-in-the-loop-means-for-ai-agents">What human-in-the-loop means for AI agents</h2>
+          <p>Human-in-the-loop means a person approves, edits or rejects certain agent actions before they take effect. It differs from human-on-the-loop, where people monitor a running system and step in after the fact.</p>
+          <p>For agents, the distinction matters because agents act: they send emails, update records and move money. A chatbot that drafts an answer is low risk. An agent that issues the refund is not, and the design has to reflect that difference.</p>
+          <p>Human-in-the-loop is not a sign that the agent is weak. It is how you put an agent into production while you gather evidence about its accuracy, and how you keep accountability with a named person for decisions the business cares about.</p>
+          <h2 class="art__h2" id="set-autonomy-per-action-not-per-agent">Set autonomy per action, not per agent</h2>
+          <p>The right autonomy level depends on the action, not on how smart the agent is. One agent can draft freely, update a CRM field on its own, and still need sign-off before sending a quote.</p>
+          <p>Research and practitioner frameworks describe levels from operator, where the human does the work with suggestions, up to observer, where the agent acts and humans watch. The middle levels are where most enterprise agents should live.</p>
+          <p>Write the level for each action into the agent’s configuration, not only into a design document. That way a change in autonomy is a reviewed code change with an owner and a date, rather than a quiet prompt edit.</p>
+          <div class="ct__scroll" tabindex="0" role="region" aria-label="Autonomy levels for agent actions"><table class="ct art__table"><caption class="sr-only">Autonomy levels for agent actions</caption><thead><tr><th scope="col">Level</th><th scope="col">What the agent does</th><th scope="col">Example actions</th></tr></thead><tbody><tr><th scope="row">Suggest</th><td>Proposes; a human acts</td><td>Draft a reply, recommend a next step</td></tr><tr><th scope="row">Act with approval</th><td>Prepares the action; a human approves</td><td>Send a customer email, issue a credit</td></tr><tr><th scope="row">Act and notify</th><td>Acts, then logs and notifies</td><td>Update a ticket status, tag a record</td></tr><tr><th scope="row">Act within policy</th><td>Acts inside pre-set limits without step review</td><td>Refunds under a set value, routine data fixes</td></tr></tbody></table></div>
+          <h2 class="art__h2" id="decide-what-needs-approval">Decide what needs approval</h2>
+          <p>Gate actions by consequence: reversibility, who it reaches, and how much it costs if wrong. A useful test is whether you could undo the action quietly in five minutes; if not, it probably needs a human.</p>
+          <p>Write this list with the business owner and your risk or compliance lead, not only with engineers. They know which mistakes are tolerable and which ones end up in front of a regulator or a key customer.</p>
+          <p>Revisit the list every quarter. As edit rates fall and validators improve, some actions can move down a tier, while new tools or new customer segments may need tighter gates than before.</p>
+          <ul><li>Anything that reaches a customer, supplier or regulator.</li><li>Anything that moves money or changes pricing.</li><li>Bulk changes to many records at once.</li><li>Access to sensitive personal or financial data.</li><li>Actions that cannot be undone, such as deletions or contract submissions.</li></ul>
+          <h2 class="art__h2" id="design-review-queues-people-actually-read">Design review queues people actually read</h2>
+          <p>A review queue is an operational system, not a stream of notifications. If every item looks equally urgent, reviewers start approving without reading, and the human becomes a rubber stamp rather than a safeguard.</p>
+          <p>Each queue item should show the proposed action itself, not a model-written summary of it, plus the evidence the agent used and the risk tier. Give the queue an owner, a target time to decision and a fallback when that time passes.</p>
+          <h3 class="art__h3">Show the real action</h3>
+          <p>Display the exact email, record change or payment, with a diff where possible, so the reviewer judges what will happen rather than a description.</p>
+          <h3 class="art__h3">Include the evidence</h3>
+          <p>Link the source documents, prior messages or data the agent relied on, so the reviewer can check reasoning in seconds.</p>
+          <h3 class="art__h3">Make edit as easy as approve</h3>
+          <p>Let reviewers correct the draft in place. Edits are your best training signal for tightening prompts and policies.</p>
+          <h3 class="art__h3">Track queue health</h3>
+          <p>Watch arrival rate, backlog depth and time in queue. An approval rate near 100% usually means the gate is in the wrong place.</p>
+          <h2 class="art__h2" id="build-escalation-paths-for-the-edge-cases">Build escalation paths for the edge cases</h2>
+          <p>Escalation covers what approval cannot: cases the agent should not attempt at all. Define explicit triggers, such as ambiguous intent, missing data, a customer asking for a person, or policy conflicts, and route each to a named team.</p>
+          <p>The agent should hand over with full context so the person does not start from zero. That means the conversation so far, what the agent tried, and why it stopped.</p>
+          <p>Escalation also needs a destination that is staffed. Agree service hours and response targets with the receiving team before launch, and decide what the agent tells the customer while it waits, so a handover never feels like a dead end.</p>
+          <ul><li>Write escalation criteria down and test them with real cases.</li><li>Use a template so every handover carries the same fields.</li><li>Log every escalation and review patterns weekly to find gaps in policy or tooling.</li></ul>
+          <h2 class="art__h2" id="state-context-and-audit-trail">State, context and audit trail</h2>
+          <p>Pausing an agent for approval is harder than it looks. The agent’s progress has to be saved while it waits, sometimes for hours, and resumed cleanly whether the reviewer approves, edits or rejects.</p>
+          <p>Record who approved what, when, and what they changed. That audit trail answers compliance questions, settles disputes with customers and shows you where the agent keeps getting things wrong.</p>
+          <ul><li>Persist agent state outside the model session so approvals survive restarts.</li><li>Expire stale approvals when the underlying data has changed since the request.</li><li>Keep separation of duties: an agent must never approve its own action.</li><li>Log the reviewer, decision, edits and time to decision for every item.</li></ul>
+          <h2 class="art__h2" id="be-careful-with-confidence-thresholds">Be careful with confidence thresholds</h2>
+          <p>Auto-approving above a confidence score sounds tidy but can let the worst mistakes through. Models are often most confident when they have misunderstood the request, so a high score is not proof of a correct action.</p>
+          <p>Combine confidence with rules you control: action type, value, customer segment and whether validators passed. Treat the model’s own score as one signal among several, never the only gate.</p>
+          <p>If you do use a threshold, calibrate it on your own data. Sample auto-approved items every week and have a person check them, so you find out whether the score still matches reality as inputs drift.</p>
+          <h2 class="art__h2" id="widen-autonomy-as-trust-builds">Widen autonomy as trust builds</h2>
+          <p>Start narrow and earn autonomy with evidence. Our pods typically launch agents in suggest or approval mode, measure how often reviewers change the output, and move an action up a level only when edit rates stay low over a defined period.</p>
+          <p>The trade-off is speed. Human review adds latency and staffing cost, and if volume outgrows reviewers, the queue becomes the bottleneck. The fix is usually better upstream validation and tighter policy on what needs eyes, not more reviewers.</p>
+          <p>Expect the first month to feel slow. That is the cost of building the evidence you need to hand the agent more autonomy safely, and it is far cheaper than recovering from an unreviewed mistake that reached a customer.</p>
+          <aside class="art__related"><span class="eyebrow">Related</span><ul><li><a href="/services/agentic-fde-pod/" class="link-arrow">Agentic FDE pod</a></li><li><a href="/services/ai-security-governance/" class="link-arrow">AI security and governance</a></li><li><a href="/services/adoption-enablement/" class="link-arrow">Adoption and enablement</a></li></ul></aside>
+          </div>
+        </div>
+      </article>
+      <section class="icb section--gradient on-dark">
+        <div class="container icb__row">
+          <h2 class="h2">Design approval gates your reviewers will actually use</h2>
+          <div class="icb__right">
+            <p>We map each agent action to an autonomy level and build the queue around it.</p>
+            <a href="#cta-form" class="btn btn--invert">Map your agent actions</a>
+          </div>
+        </div>
+      </section>
+      <section class="section" id="faq">
+        <div class="container faq">
+          <h2 class="h2 reveal">Frequently asked questions</h2>
+          <div>
+            <details class="faq__item" open>
+              <summary><span>What is human-in-the-loop in AI agents?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>Human-in-the-loop in AI agents is a design where a person approves, edits or rejects specific agent actions before they take effect. It keeps humans inside the decision cycle for consequential steps, such as sending customer emails or issuing refunds, while routine work runs automatically. It differs from human-on-the-loop, where people monitor a running system and intervene only after something has happened.</p>
+            </details>
+            <details class="faq__item">
+              <summary><span>When should an AI agent require human approval?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>An AI agent should require human approval when an action is hard to reverse, reaches a customer, moves money, touches sensitive data or changes many records at once. Small, reversible actions, like tagging a ticket or drafting a document, can usually run on their own. Decide per action rather than per agent, and revisit the list as evidence about the agent’s accuracy builds up.</p>
+            </details>
+            <details class="faq__item">
+              <summary><span>What are the levels of autonomy for AI agents?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>The levels of autonomy for AI agents usually run from suggest-only, through act-with-approval and act-and-notify, to acting within pre-set policy limits without step-by-step review. Academic frameworks describe similar tiers by the role the human plays, from operator to observer. Most enterprise agents work best in the middle levels, with different actions in the same agent sitting at different levels.</p>
+            </details>
+            <details class="faq__item">
+              <summary><span>How do you prevent approval fatigue in human-in-the-loop systems?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>You prevent approval fatigue by sending fewer, better items to reviewers. Gate only consequential actions, show the exact proposed change with its evidence, and let reviewers edit in place. Track approval rates: if nearly everything gets approved, the gate is probably in the wrong place. When volume grows, strengthen validators and policies upstream before adding more reviewers.</p>
+            </details>
+            <details class="faq__item">
+              <summary><span>What is the difference between human-in-the-loop and human-on-the-loop?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>Human-in-the-loop means a person must act before the agent’s step takes effect, while human-on-the-loop means the agent acts and a person monitors and can intervene. In-the-loop suits high-risk, irreversible actions. On-the-loop suits routine actions where speed matters and mistakes can be caught and undone. Most production agents use both, depending on the action.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+            <section class="section section--dark on-dark" id="cta-form">
+        <div class="container fc">
+          <div class="fc__left">
+            <h2 class="h2">Give your agents the right amount of autonomy from day one</h2>
+            <div class="fc__clutch">
+              <span class="eyebrow">Clutch</span
+              ><span class="caption">[Placeholder] Clutch badge and rating — add the official widget</span>
+            </div>
+            <blockquote class="fc__quote">
+              “Placeholder testimonial — replace with the global set from tkxel.com.”
+              <footer class="caption">— Knowles</footer>
+            </blockquote>
+            <blockquote class="fc__quote">
+              “Placeholder testimonial — replace with the global set from tkxel.com.”
+              <footer class="caption">— Sterne Kessler</footer>
+            </blockquote>
+          </div>
+          <form class="fc__form" method="post" action="/api/lead" data-lead-form>
+            <label class="fc__full"
+              >I'm interested in
+              <select name="interest" required>
+                <option>FDE pod</option>
+                <option>AI strategy &amp; readiness</option>
+                <option>Agentic platforms &amp; integrations</option>
+                <option>Adoption &amp; enablement</option>
+                <option>AI security &amp; governance</option>
+                <option>Product &amp; engineering transformation</option>
+                <option>Something else</option>
+              </select>
+            </label>
+            <label>First name*<input name="first_name" required autocomplete="given-name" /></label>
+            <label>Last name*<input name="last_name" required autocomplete="family-name" /></label>
+            <label>Work email*<input name="email" type="email" required autocomplete="email" /></label>
+            <label>Job title*<input name="job_title" required autocomplete="organization-title" /></label>
+            <label class="fc__full">Phone<input name="phone" type="tel" autocomplete="tel" /></label>
+            <label class="fc__full">Project description<textarea name="message" rows="4"></textarea></label>
+            <label class="fc__check fc__full"
+              ><input type="checkbox" name="marketing_consent" /> I agree to receive marketing communications from
+              tkxel.</label
+            >
+            <label class="fc__check fc__full"
+              ><input type="checkbox" name="sms_consent" /> I agree to receive SMS messages from tkxel.</label
+            >
+            <button class="btn btn--invert fc__full" type="submit">Book discovery call</button>
+            <p class="caption fc__full">
+              By submitting, you agree to our <a href="https://tkxel.com/terms-of-use/">Terms</a> and
+              <a href="https://tkxel.com/privacy-policy/">Privacy policy</a>.
+            </p>
+            <p class="fc__status fc__full" role="status" data-lead-status></p>
+          </form>
+        </div>
+      </section>
+    </main>
+                                                                                                                                    <footer class="ftr">
+      <div class="container">
+        <div class="ftr__top">
+          <div class="ftr__brand">
+            <a href="/" class="ftr__logo">tkxel<span>FDE</span></a>
+            <p class="ftr__tag">
+              Forward deployed engineering teams that build production AI inside your environment, then hand it over to
+              your team.
+            </p>
+            <a href="https://tkxel.com" class="ftr__main">Visit tkxel.com →</a>
+          </div>
+          <div class="ftr__cols">
+            <div>
+              <a href="/services/ai-strategy-readiness/" class="ftr__head">AI strategy &amp; readiness</a>
+              <ul>
+                <li><a href="/services/ai-readiness-assessment/">AI maturity assessment</a></li>
+                <li>Process mapping &amp; use-case prioritization</li>
+                <li>Use-case portfolio &amp; ROI tracking</li>
+                <li>Data readiness audit</li>
+              </ul>
+            </div>
+            <div>
+              <a href="/services/fde-pods/" class="ftr__head">FDE pods</a>
+              <ul>
+                <li><a href="/services/full-stack-fde-pod/">Full-stack FDE pod</a></li>
+                <li><a href="/services/agentic-fde-pod/">Agentic FDE pod</a></li>
+                <li><a href="/services/data-engineering-fde-pod/">Data engineering FDE pod</a></li>
+                <li><a href="/services/integration-legacy-modernization-pod/">Integration &amp; legacy modernization pod</a></li>
+              </ul>
+            </div>
+            <div>
+              <a href="/services/agentic-platforms/" class="ftr__head">Agentic platforms &amp; integrations</a>
+              <ul>
+                <li><a href="/services/mcp-enterprise-integrations/">Enterprise connectors &amp; MCP integrations</a></li>
+                <li><a href="/services/enterprise-knowledge-assistant/">Enterprise knowledge assistant</a></li>
+                <li><a href="/services/workflow-agentification/">Workflow agentification</a></li>
+                <li>Managed AI operations</li>
+              </ul>
+            </div>
+            <div>
+              <a href="/services/adoption-enablement/" class="ftr__head">Adoption &amp; enablement</a>
+              <ul>
+                <li>Role-based AI training</li>
+                <li>AI champions program</li>
+                <li>Train-the-trainer</li>
+                <li>AI center of excellence</li>
+              </ul>
+            </div>
+            <div>
+              <a href="/services/ai-security-governance/" class="ftr__head">AI security &amp; governance</a>
+              <ul>
+                <li>Agent security &amp; permissions review</li>
+                <li><a href="/services/ai-penetration-testing/">AI penetration testing</a></li>
+                <li>AI governance council setup</li>
+              </ul>
+            </div>
+            <div>
+              <a href="/services/product-engineering/" class="ftr__head">Product &amp; engineering transformation</a>
+              <ul>
+                <li>Product AI strategy</li>
+                <li>Rapid prototype sprint</li>
+                <li>AI-enabled SDLC redesign</li>
+                <li>Legacy SaaS modernization</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="ftr__offices">
+          <div>
+            <span class="eyebrow">USA</span>
+            <p>Placeholder — confirm from tkxel.com footer</p>
+          </div>
+          <div>
+            <span class="eyebrow">Saudi Arabia</span>
+            <p>Placeholder — confirm from tkxel.com footer</p>
+          </div>
+          <div>
+            <span class="eyebrow">Portugal</span>
+            <p>Placeholder — confirm from tkxel.com footer</p>
+          </div>
+          <div>
+            <span class="eyebrow">Pakistan</span>
+            <p>Placeholder — confirm from tkxel.com footer</p>
+          </div>
+        </div>
+        <div class="ftr__legal">
+          <span>© 2026 tkxel. All rights reserved.</span>
+          <nav aria-label="Legal"><a href="https://tkxel.com/privacy-policy/">Privacy policy</a><a href="https://tkxel.com/terms-of-use/">Terms of use</a></nav>
+        </div>
+      </div>
+    </footer>
+    <script src="/assets/js/main.js" defer></script>
+  </body>
+</html>

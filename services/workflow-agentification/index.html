@@ -1,0 +1,565 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI Workflow Automation with Agents | tkxel</title>
+    <meta name="description" content="AI workflow automation with agents: a tkxel FDE pod rebuilds your manual multi-step workflow as an evaluated, human-approved agent running in production." />
+    <link rel="canonical" href="https://fde.tkxel.com/services/workflow-agentification/" />
+    <meta property="og:title" content="AI Workflow Automation with Agents | tkxel" />
+    <meta property="og:description" content="AI workflow automation with agents: a tkxel FDE pod rebuilds your manual multi-step workflow as an evaluated, human-approved agent running in production." />
+    <meta property="og:url" content="https://fde.tkxel.com/services/workflow-agentification/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://fde.tkxel.com/og-default.png" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is AI workflow automation with agents?", "acceptedAnswer": {"@type": "Answer", "text": "AI workflow automation with agents means a language-model-driven agent carries out a multi-step business process by reading inputs, deciding the next step and calling your systems through defined tools. Unlike rule-based automation, it can handle emails, documents and exceptions that don’t match a fixed template. In a tkxel engagement, the agent runs inside your environment with scoped permissions, human approval on consequential actions and an evaluation suite that tests it against your historical cases before and after launch."}}, {"@type": "Question", "name": "How is an AI agent different from RPA or Zapier-style automation?", "acceptedAnswer": {"@type": "Answer", "text": "An AI agent chooses its next step at runtime, while RPA and tools like Zapier or n8n follow paths you define in advance. That makes agents better for workflows with variable inputs and judgment calls, and rule-based tools better for stable, high-volume steps with fixed formats. Most of our builds combine both: deterministic code for the steps that never change, and the agent for reading, classifying, drafting and deciding where to route a case."}}, {"@type": "Question", "name": "Which workflows are good candidates for agentification?", "acceptedAnswer": {"@type": "Answer", "text": "The best candidates are frequent, multi-step workflows where people spend most of their time reading, checking and copying information between systems. Examples include invoice and claims intake, vendor onboarding, order exception handling, support triage and contract review preparation. Poor candidates are rare processes, workflows with no historical cases to test against, or decisions your organisation isn’t willing to let software draft. We assess this in the first two weeks before committing to a build."}}, {"@type": "Question", "name": "How do you make sure the agent doesn’t take the wrong action?", "acceptedAnswer": {"@type": "Answer", "text": "We limit what the agent can do, test it before release and require approval where mistakes are costly. Each system is exposed as a narrow tool with scoped credentials, so the agent physically can’t perform actions outside the workflow. A golden dataset of real cases scores every change, and actions with financial, legal or customer impact pause for a human decision. Every run is logged, so any outcome can be traced back to its inputs and approvals."}}, {"@type": "Question", "name": "How long does it take to get an agent into production?", "acceptedAnswer": {"@type": "Answer", "text": "A single workflow typically takes about 7 to 12 weeks from mapping to handover with a tkxel FDE pod. Discovery and case sampling take one to two weeks, building and evaluation three to five, and a supervised production rollout two to three. The biggest variable is usually access: how quickly we get credentials to source systems, a security review slot and a decision on what the agent may do without approval."}}, {"@type": "Question", "name": "Will an agent replace the people who run this workflow today?", "acceptedAnswer": {"@type": "Answer", "text": "No, and we don’t design for that. Agents remove the repetitive reading, lookup and data entry, while people keep the approvals, exceptions and customer conversations. The trade-off is that someone must own the agent: reviewing flagged cases, maintaining the evaluation set and deciding when to widen its autonomy. If no one on your side can take that role, the agent will drift as your systems and policies change, and we’ll tell you that during scoping."}}, {"@type": "Question", "name": "Which models and frameworks do you use?", "acceptedAnswer": {"@type": "Answer", "text": "We pick the model and framework that fit your data residency, security and cost constraints, rather than a fixed stack. We work with commercial models such as Claude, GPT and Gemini through your cloud provider, and with open-weight models where data can’t leave your environment. Agent orchestration is written as maintainable code in your repositories, so you can switch models later and rerun the evaluation suite to compare results."}}]}</script>
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Service", "name": "Workflow agentification", "description": "Workflow agentification is AI workflow automation with agents: an embedded tkxel pod maps one manual process, rebuilds it as an agent that calls your systems, adds human approval at risky steps, tests it against real cases, and runs it in production.", "provider": {"@type": "Organization", "name": "tkxel", "url": "https://tkxel.com"}, "url": "https://fde.tkxel.com/services/workflow-agentification/"}</script>
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+  </head>
+  <body>
+                                                                                                                                                                                                                                                                    <header class="hdr" data-hdr>
+      <div class="container hdr__bar">
+        <a href="/" class="hdr__logo" aria-label="tkxel FDE home">tkxel<span>FDE</span></a>
+        <nav class="hdr__nav" aria-label="Primary">
+          <div class="hdr__mega-wrap">
+            <button class="hdr__link" aria-expanded="false" aria-controls="mega" data-mega-btn>Services</button>
+            <div class="hdr__mega" id="mega" hidden data-mega>
+              <div class="container hdr__mega-grid">
+                <div>
+                  <a href="/services/ai-strategy-readiness/" class="hdr__mega-title">AI strategy &amp; readiness</a>
+                  <ul>
+                    <li><a href="/services/ai-readiness-assessment/">AI maturity assessment</a></li>
+                    <li>Process mapping &amp; use-case prioritization</li>
+                    <li>Use-case portfolio &amp; ROI tracking</li>
+                    <li>Data readiness audit</li>
+                  </ul>
+                </div>
+                <div>
+                  <a href="/services/fde-pods/" class="hdr__mega-title">FDE pods</a>
+                  <ul>
+                    <li><a href="/services/full-stack-fde-pod/">Full-stack FDE pod</a></li>
+                    <li><a href="/services/agentic-fde-pod/">Agentic FDE pod</a></li>
+                    <li><a href="/services/data-engineering-fde-pod/">Data engineering FDE pod</a></li>
+                    <li><a href="/services/integration-legacy-modernization-pod/">Integration &amp; legacy modernization pod</a></li>
+                  </ul>
+                </div>
+                <div>
+                  <a href="/services/agentic-platforms/" class="hdr__mega-title"
+                    >Agentic platforms &amp; integrations</a
+                  <ul>
+                    <li><a href="/services/mcp-enterprise-integrations/">Enterprise connectors &amp; MCP integrations</a></li>
+                    <li><a href="/services/enterprise-knowledge-assistant/">Enterprise knowledge assistant</a></li>
+                    <li><a href="/services/workflow-agentification/">Workflow agentification</a></li>
+                    <li>Managed AI operations</li>
+                  </ul>
+                </div>
+                <div>
+                  <a href="/services/adoption-enablement/" class="hdr__mega-title">Adoption &amp; enablement</a>
+                  <ul>
+                    <li>Role-based AI training</li>
+                    <li>AI champions program</li>
+                    <li>Train-the-trainer</li>
+                    <li>AI center of excellence</li>
+                  </ul>
+                </div>
+                <div>
+                  <a href="/services/ai-security-governance/" class="hdr__mega-title">AI security &amp; governance</a>
+                  <ul>
+                    <li>Agent security &amp; permissions review</li>
+                    <li><a href="/services/ai-penetration-testing/">AI penetration testing</a></li>
+                    <li>AI governance council setup</li>
+                  </ul>
+                </div>
+                <div>
+                  <a href="/services/product-engineering/" class="hdr__mega-title"
+                    >Product &amp; engineering transformation</a
+                  <ul>
+                    <li>Product AI strategy</li>
+                    <li>Rapid prototype sprint</li>
+                    <li>AI-enabled SDLC redesign</li>
+                    <li>Legacy SaaS modernization</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        <a href="/services/fde-pods/" class="hdr__link">FDE pods</a><a href="/industries/" class="hdr__link">Industries</a><a href="/case-studies/" class="hdr__link">Case studies</a><a href="/blog/" class="hdr__link">Resources</a>
+      </nav>
+        <a href="#cta-form" class="btn btn--invert hdr__cta">Book discovery call</a>
+        <button class="hdr__burger" aria-label="Open menu" aria-expanded="false" data-burger>
+          <span></span><span></span>
+        </button>
+      </div>
+    </header>
+    <main id="main">
+      <section class="hero section--gradient on-dark" data-hero>
+        <div class="container hero__inner">
+          <div class="hero__copy">
+            <span class="eyebrow">Workflow agentification</span>
+            <h1 class="display">Turn manual multi-step workflows<span class="br"><br /></span> into production AI agents</h1>
+            <p class="hero__sub">Workflow agentification is AI workflow automation with agents: an embedded tkxel pod maps one manual process, rebuilds it as an agent that calls your systems, adds human approval at risky steps, tests it against real cases, and runs it in production.</p>
+            <a href="#cta-form" class="btn btn--invert">Book discovery call</a>
+          </div>
+          <svg class="hero__graphic" viewBox="0 0 400 400" aria-hidden="true"><g fill="none" stroke="rgba(255,255,255,.35)" stroke-width="1.5"><rect x="60" y="60" width="110" height="60"/><rect x="170" y="170" width="110" height="60"/><rect x="280" y="280" width="100" height="60"/><path d="M115 120 V200 H170"/><path d="M225 230 V310 H280"/><rect x="40" y="40" width="320" height="320"/></g><rect x="280" y="280" width="100" height="60" fill="rgba(255,255,255,.12)" stroke="#fff" stroke-width="1.5"/><circle cx="380" cy="310" r="7" fill="#fff"/></svg>
+        </div>
+        <div class="container hero__logos">
+          <span class="eyebrow">Our clients</span>
+          <div class="hero__marquee"><div class="hero__track"><span class="hero__logo">Knowles</span><span class="hero__logo">Sterne Kessler</span><span class="hero__logo">Replenium</span><span class="hero__logo">ABB</span><span class="hero__logo">Client five</span><span class="hero__logo">Client six</span><span class="hero__logo">Client seven</span><span class="hero__logo">Client eight</span><span class="hero__logo" aria-hidden="true">Knowles</span><span class="hero__logo" aria-hidden="true">Sterne Kessler</span><span class="hero__logo" aria-hidden="true">Replenium</span><span class="hero__logo" aria-hidden="true">ABB</span><span class="hero__logo" aria-hidden="true">Client five</span><span class="hero__logo" aria-hidden="true">Client six</span><span class="hero__logo" aria-hidden="true">Client seven</span><span class="hero__logo" aria-hidden="true">Client eight</span></div></div>
+        </div>
+      </section>
+      <nav class="snav" aria-label="On this page" data-snav>
+        <div class="container snav__row"><a href="#challenges" data-anchor="challenges">Challenges</a><a href="#services" data-anchor="services">Services</a><a href="#process" data-anchor="process">Process</a><a href="#benefits" data-anchor="benefits">Benefits</a><a href="#comparison" data-anchor="comparison">Comparison</a><a href="#case-studies" data-anchor="case-studies">Case studies</a><a href="#why-tkxel" data-anchor="why-tkxel">Why tkxel</a><a href="#faq" data-anchor="faq">FAQ</a></div>
+      </nav>
+      <section class="section" id="challenges">
+        <div class="container">
+          <div class="section-head reveal"><h2 class="h2">Why do your automation pilots<span class="br"><br /></span> stall before production?</h2></div>
+          <div class="cp" style="--n: 4">
+            <div class="cp__item reveal">
+              <h3 class="cp__title">Your process breaks rule-based automation</h3>
+              <p class="muted">Inputs arrive as emails, PDFs and free text, so fixed if-then flows fail on every exception and people end up doing the work anyway.</p>
+            </div>
+            <div class="cp__item reveal">
+              <h3 class="cp__title">You can’t prove the agent is reliable</h3>
+              <p class="muted">A demo works on five examples, but nobody can show how it behaves on the hundreds of edge cases your team handles each month.</p>
+            </div>
+            <div class="cp__item reveal">
+              <h3 class="cp__title">Risk owners won’t sign off</h3>
+              <p class="muted">Security and compliance ask what the agent can change, who approves it and where the audit trail lives, and the pilot has no answers.</p>
+            </div>
+            <div class="cp__item reveal">
+              <h3 class="cp__title">Nobody owns it after the vendor leaves</h3>
+              <p class="muted">The prototype lives in a notebook or a vendor tool your engineers can’t maintain, so it decays the first time a system changes.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="section sg" id="services">
+        <div class="container sg__head">
+          <div class="section-head reveal"><h2 class="h2">What we build<span class="br"><br /></span> for your workflow</h2></div>
+          <div class="sg__arrows">
+            <button aria-label="Previous" data-sg-prev>←</button>
+            <button aria-label="Next" data-sg-next>→</button>
+          </div>
+        </div>
+        <div class="sg__row" data-sg-row tabindex="0" aria-label="What we build for your workflow">
+          <article class="sg__card" tabindex="0">
+            <span class="eyebrow">Workflow agentification</span>
+            <h3 class="sg__title">Process map and agent design</h3>
+            <p class="sg__body">We shadow the people who run the workflow today and document every step, decision, exception and system touched. The output is an agent design that marks which steps the model decides, which stay deterministic and which need a human.</p>
+            <span class="sg__icon" aria-hidden="true"></span>
+          </article>
+          <article class="sg__card" tabindex="0">
+            <span class="eyebrow">Workflow agentification</span>
+            <h3 class="sg__title">Tool layer to your systems</h3>
+            <p class="sg__body">We wrap your ERP, CRM, ticketing and document systems as narrow, typed tools the agent can call. Each tool has scoped credentials, input validation and rate limits, so the agent can only do what the workflow actually requires.</p>
+            <span class="sg__icon" aria-hidden="true"></span>
+          </article>
+          <article class="sg__card" tabindex="0">
+            <span class="eyebrow">Workflow agentification</span>
+            <h3 class="sg__title">Golden dataset and evaluation suite</h3>
+            <p class="sg__body">We build a test set from your historical cases, including the awkward ones, and score the agent automatically on every change. A prompt or model update that breaks earlier cases is caught before it reaches production.</p>
+            <span class="sg__icon" aria-hidden="true"></span>
+          </article>
+          <article class="sg__card" tabindex="0">
+            <span class="eyebrow">Workflow agentification</span>
+            <h3 class="sg__title">Human approval gates</h3>
+            <p class="sg__body">Steps with financial, legal or customer impact pause for review in the tools your team already uses, such as Slack, Teams or email. The workflow saves its state, waits for a decision and resumes with the reviewer’s input recorded.</p>
+            <span class="sg__icon" aria-hidden="true"></span>
+          </article>
+          <article class="sg__card" tabindex="0">
+            <span class="eyebrow">Workflow agentification</span>
+            <h3 class="sg__title">Guardrails and action limits</h3>
+            <p class="sg__body">We set spend caps, iteration limits, allowed actions and escalation rules before go-live. When the agent is uncertain or a policy check fails, it routes the case to a person with its reasoning and the data it used.</p>
+            <span class="sg__icon" aria-hidden="true"></span>
+          </article>
+          <article class="sg__card" tabindex="0">
+            <span class="eyebrow">Workflow agentification</span>
+            <h3 class="sg__title">Observability and audit trail</h3>
+            <p class="sg__body">Every run logs the inputs, tool calls, model outputs, approvals and final actions. Your team gets dashboards for volume, exception rate, cost per run and review time, plus traces to debug any single case.</p>
+            <span class="sg__icon" aria-hidden="true"></span>
+          </article>
+          <article class="sg__card" tabindex="0">
+            <span class="eyebrow">Workflow agentification</span>
+            <h3 class="sg__title">Runbooks and handover</h3>
+            <p class="sg__body">We write runbooks for failures, model changes and new exception types, then pair with your engineers until they have shipped changes on their own. The code, prompts and evaluation suite live in your repositories.</p>
+            <span class="sg__icon" aria-hidden="true"></span>
+          </article>
+        </div>
+      </section>
+      <section class="icb section--gradient on-dark">
+        <div class="container icb__row">
+          <h2 class="h2">Have a workflow your team rebuilds by hand every week?</h2>
+          <div class="icb__right">
+            <p>Send us the steps and we’ll tell you which parts an agent should own.</p>
+            <a href="#cta-form" class="btn btn--invert">Book a workflow review</a>
+          </div>
+        </div>
+      </section>
+      <section class="section pt" id="process" data-pt>
+        <div class="container">
+          <div class="section-head reveal"><h2 class="h2">How a pod takes one workflow<span class="br"><br /></span> from manual to production</h2></div>
+          <div class="pt__grid">
+            <div class="pt__left" aria-hidden="true">
+              <span class="pt__num" data-pt-num>01</span>
+              <svg viewBox="0 0 300 260" class="pt__stack"><polygon data-pt-layer="0" class="pt__layer is-active" points="150,148 280,188 150,228 20,188"></polygon><polygon data-pt-layer="1" class="pt__layer" points="150,112 280,152 150,192 20,152"></polygon><polygon data-pt-layer="2" class="pt__layer" points="150,76 280,116 150,156 20,116"></polygon><polygon data-pt-layer="3" class="pt__layer" points="150,40 280,80 150,120 20,80"></polygon></svg>
+            </div>
+            <ol class="pt__list">
+              <li class="pt__step is-active" data-pt-step="0">
+                <button class="pt__btn" aria-expanded="true">
+                  <span class="pt__n">01</span><span class="pt__title">Map the workflow</span>
+                  <span class="caption pt__time">1–2 weeks</span>
+                </button>
+                <div class="pt__body">
+                  <p>We sit with the people who run the process and pull a sample of real cases from your systems. We agree on the outcome metric, the approval points and what the agent must never do.</p>
+                  <p class="caption"><strong>Deliverables:</strong> process map, case sample, success criteria, risk register</p>
+                </div>
+              </li>
+              <li class="pt__step" data-pt-step="1">
+                <button class="pt__btn" aria-expanded="false">
+                  <span class="pt__n">02</span><span class="pt__title">Build and evaluate</span>
+                  <span class="caption pt__time">3–5 weeks</span>
+                </button>
+                <div class="pt__body">
+                  <p>We build the tool layer and agent inside your environment and score it against the golden dataset each day. You review failure cases with us and decide which ones block launch.</p>
+                  <p class="caption"><strong>Deliverables:</strong> tool layer, agent code, golden dataset, evaluation report</p>
+                </div>
+              </li>
+              <li class="pt__step" data-pt-step="2">
+                <button class="pt__btn" aria-expanded="false">
+                  <span class="pt__n">03</span><span class="pt__title">Ship with approvals</span>
+                  <span class="caption pt__time">2–3 weeks</span>
+                </button>
+                <div class="pt__body">
+                  <p>The agent runs on live work with human approval on every consequential action, then on a narrower set as evidence builds. We monitor exceptions and fix what the logs show.</p>
+                  <p class="caption"><strong>Deliverables:</strong> production deployment, approval gates, monitoring dashboards, audit log</p>
+                </div>
+              </li>
+              <li class="pt__step" data-pt-step="3">
+                <button class="pt__btn" aria-expanded="false">
+                  <span class="pt__n">04</span><span class="pt__title">Hand over</span>
+                  <span class="caption pt__time">1–2 weeks</span>
+                </button>
+                <div class="pt__body">
+                  <p>Your engineers take ownership of changes while we review their work. We close with documentation and a backlog of the next workflows worth agentifying.</p>
+                  <p class="caption"><strong>Deliverables:</strong> runbooks, architecture notes, trained team, next-workflow backlog</p>
+                </div>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </section>
+      <section class="section section--gradient on-dark" id="benefits">
+        <div class="container">
+          <div class="section-head reveal"><h2 class="h2">What changes when the agent<span class="br"><br /></span> owns the routine steps</h2></div>
+          <div class="bl">
+            <div class="bl__box reveal"><svg class="bl__check" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12l5 5L20 6" fill="none" stroke="#3DDC84" stroke-width="2.5"></path></svg>
+              <h3 class="h4 bl__title">Clear the exception backlog</h3>
+              <p class="bl__body">The agent reads unstructured inputs and handles the variants that rule-based flows reject, so fewer cases fall back to manual work.</p>
+            </div>
+            <div class="bl__box reveal"><svg class="bl__check" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12l5 5L20 6" fill="none" stroke="#3DDC84" stroke-width="2.5"></path></svg>
+              <h3 class="h4 bl__title">Keep people on the decisions that matter</h3>
+              <p class="bl__body">Approval gates route only consequential or low-confidence cases to reviewers, with the agent’s draft and evidence attached.</p>
+            </div>
+            <div class="bl__box reveal"><svg class="bl__check" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12l5 5L20 6" fill="none" stroke="#3DDC84" stroke-width="2.5"></path></svg>
+              <h3 class="h4 bl__title">Change models without fear</h3>
+              <p class="bl__body">The evaluation suite reruns on every prompt or model change, so you see regressions before your customers do.</p>
+            </div>
+            <div class="bl__box reveal"><svg class="bl__check" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12l5 5L20 6" fill="none" stroke="#3DDC84" stroke-width="2.5"></path></svg>
+              <h3 class="h4 bl__title">Pass security and audit review</h3>
+              <p class="bl__body">Scoped tool credentials and a complete run log show exactly what the agent touched, when and on whose approval.</p>
+            </div>
+            <div class="bl__box reveal"><svg class="bl__check" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12l5 5L20 6" fill="none" stroke="#3DDC84" stroke-width="2.5"></path></svg>
+              <h3 class="h4 bl__title">Own the system yourself</h3>
+              <p class="bl__body">Code, prompts and tests live in your repositories, and your engineers have already shipped changes before we leave.</p>
+            </div>
+            <div class="bl__cta reveal">
+              <p class="h4 bl__title">Ready to see this in your own workflows?</p>
+              <a href="#cta-form" class="btn btn--invert">Book discovery call</a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="section section--alt" id="comparison">
+        <div class="container">
+          <div class="section-head reveal"><h2 class="h2">Three ways to automate<span class="br"><br /></span> a multi-step workflow</h2><p class="muted">Each approach suits a different kind of process, so compare them against how much variation and risk your workflow carries.</p></div>
+          <div class="ct__scroll reveal" tabindex="0" role="region" aria-label="Comparison table">
+            <table class="ct">
+              <thead><tr><th scope="col"><span class="sr-only">Criterion</span></th><th scope="col">RPA or rule-based tools</th><th scope="col">Agent platform, self-built</th><th scope="col" class="is-hl">tkxel FDE pod</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Handles unstructured inputs</th><td>Poorly, needs fixed formats</td><td>Yes, if you build it</td><td class="is-hl">Yes, tested on your cases</td></tr>
+                <tr><th scope="row">Evaluation before release</th><td>Script testing only</td><td>Depends on your team</td><td class="is-hl">Golden dataset on every change</td></tr>
+                <tr><th scope="row">Human approval design</th><td>Manual queue workarounds</td><td>Platform features, you configure</td><td class="is-hl">Designed per risky step</td></tr>
+                <tr><th scope="row">Time to production</th><td>Weeks for stable processes</td><td>Varies with internal capacity</td><td class="is-hl">Roughly 7–12 weeks</td></tr>
+                <tr><th scope="row">Who maintains it</th><td>RPA team</td><td>Your team</td><td class="is-hl">Your team after handover</td></tr>
+                <tr><th scope="row">Fails when</th><td>Inputs or screens change</td><td>No one owns evaluation</td><td class="is-hl">Process owners aren’t available</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+      <section class="section" id="case-studies">
+        <div class="container">
+          <div class="csc__head reveal"><h2 class="h2">Featured success stories</h2></div>
+          <div class="csc">
+            <article class="csc__card reveal">
+              <div class="csc__tags"><span class="eyebrow">Industry</span><span class="eyebrow">Workflow agentification</span></div>
+              <h3 class="csc__result">[Placeholder] First case study headline that leads with the metric, then the mechanism.</h3>
+              <blockquote class="csc__quote">“Placeholder quote — replace with a real client quote.”<footer class="caption">— Chief Operating Officer</footer></blockquote>
+            </article>
+            <article class="csc__card reveal">
+              <div class="csc__tags"><span class="eyebrow">Industry</span><span class="eyebrow">Workflow agentification</span></div>
+              <h3 class="csc__result">[Placeholder] Second case study headline that leads with the metric, then the mechanism.</h3>
+              <blockquote class="csc__quote">“Placeholder quote — replace with a real client quote.”<footer class="caption">— VP Engineering</footer></blockquote>
+            </article>
+            <article class="csc__card reveal">
+              <div class="csc__tags"><span class="eyebrow">Industry</span><span class="eyebrow">Workflow agentification</span></div>
+              <h3 class="csc__result">[Placeholder] Third case study headline that leads with the metric, then the mechanism.</h3>
+              <blockquote class="csc__quote">“Placeholder quote — replace with a real client quote.”<footer class="caption">— Head of Data</footer></blockquote>
+            </article>
+          </div>
+        </div>
+      </section>
+            <section class="section section--gradient on-dark" id="why-tkxel">
+        <div class="container">
+          <div class="df__head reveal">
+            <h2 class="h2">
+              Engineers who ship inside your systems,<span class="br"><br /></span> not isolated AI demos
+            </h2>
+            <a href="#cta-form" class="btn btn--invert">Talk to an FDE lead</a>
+          </div>
+          <div class="df">
+            <div class="df__card reveal">
+              <h3 class="df__title">Production from the first sprint</h3>
+              <p>
+                We build in your repositories and environments from day one, so there is no separate rebuild between
+                proof of concept and release.
+              </p>
+            </div>
+            <div class="df__card reveal">
+              <h3 class="df__title">Senior pods, not rotating benches</h3>
+              <p>
+                Each pod is led by an engineer who has shipped AI systems before, drawn from tkxel’s team of around 150
+                AI professionals. The same people stay through delivery.
+              </p>
+            </div>
+            <div class="df__card reveal">
+              <h3 class="df__title">Governance built in, not bolted on</h3>
+              <p>
+                Autonomy matrices, audit trails, and human review are designed with your risk and security teams before
+                release, backed by ISO 27001 controls.
+              </p>
+            </div>
+            <div class="df__card reveal">
+              <h3 class="df__title">Measured against your metrics</h3>
+              <p>
+                Every engagement starts with agreed business metrics and evaluation sets. We report against them
+                throughout, and the pod exits when your team can run the system.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+            <section class="section aw">
+        <div class="container">
+          <h2 class="h2 aw__h reveal">We've been recognized by the best, year after year</h2>
+          <ul class="aw__list">
+            <li class="aw__badge"><span class="aw__dot" aria-hidden="true"></span>Inc. 5000</li>
+            <li class="aw__badge"><span class="aw__dot" aria-hidden="true"></span>Top 15 Inspiring Workplaces</li>
+            <li class="aw__badge">
+              <span class="aw__dot" aria-hidden="true"></span>Titan Business Platinum (AI &amp; Automation)
+            </li>
+            <li class="aw__badge"><span class="aw__dot" aria-hidden="true"></span>Financial Times</li>
+            <li class="aw__badge"><span class="aw__dot" aria-hidden="true"></span>Mogul People Leader</li>
+            <li class="aw__badge"><span class="aw__dot" aria-hidden="true"></span>Forbes Coaches Council</li>
+            <li class="aw__badge"><span class="aw__dot" aria-hidden="true"></span>ISO 27001</li>
+            <li class="aw__badge"><span class="aw__dot" aria-hidden="true"></span>ISO 20000</li>
+            <li class="aw__badge"><span class="aw__dot" aria-hidden="true"></span>ISO 9001</li>
+            <li class="aw__badge"><span class="aw__dot" aria-hidden="true"></span>CMMI DEV 3</li>
+          </ul>
+        </div>
+      </section>
+            <section class="section section--dark on-dark" id="cta-form">
+        <div class="container fc">
+          <div class="fc__left">
+            <h2 class="h2">Tell us which workflow you’d hand to an agent first</h2>
+            <div class="fc__clutch">
+              <span class="eyebrow">Clutch</span
+              ><span class="caption">[Placeholder] Clutch badge and rating — add the official widget</span>
+            </div>
+            <blockquote class="fc__quote">
+              “Placeholder testimonial — replace with the global set from tkxel.com.”
+              <footer class="caption">— Knowles</footer>
+            </blockquote>
+            <blockquote class="fc__quote">
+              “Placeholder testimonial — replace with the global set from tkxel.com.”
+              <footer class="caption">— Sterne Kessler</footer>
+            </blockquote>
+          </div>
+          <form class="fc__form" method="post" action="/api/lead" data-lead-form>
+            <label class="fc__full"
+              >I'm interested in
+              <select name="interest" required>
+                <option>FDE pod</option>
+                <option>AI strategy &amp; readiness</option>
+                <option>Agentic platforms &amp; integrations</option>
+                <option>Adoption &amp; enablement</option>
+                <option>AI security &amp; governance</option>
+                <option>Product &amp; engineering transformation</option>
+                <option>Something else</option>
+              </select>
+            </label>
+            <label>First name*<input name="first_name" required autocomplete="given-name" /></label>
+            <label>Last name*<input name="last_name" required autocomplete="family-name" /></label>
+            <label>Work email*<input name="email" type="email" required autocomplete="email" /></label>
+            <label>Job title*<input name="job_title" required autocomplete="organization-title" /></label>
+            <label class="fc__full">Phone<input name="phone" type="tel" autocomplete="tel" /></label>
+            <label class="fc__full">Project description<textarea name="message" rows="4"></textarea></label>
+            <label class="fc__check fc__full"
+              ><input type="checkbox" name="marketing_consent" /> I agree to receive marketing communications from
+              tkxel.</label
+            >
+            <label class="fc__check fc__full"
+              ><input type="checkbox" name="sms_consent" /> I agree to receive SMS messages from tkxel.</label
+            >
+            <button class="btn btn--invert fc__full" type="submit">Book discovery call</button>
+            <p class="caption fc__full">
+              By submitting, you agree to our <a href="https://tkxel.com/terms-of-use/">Terms</a> and
+              <a href="https://tkxel.com/privacy-policy/">Privacy policy</a>.
+            </p>
+            <p class="fc__status fc__full" role="status" data-lead-status></p>
+          </form>
+        </div>
+      </section>
+      <section class="section" id="faq">
+        <div class="container faq">
+          <h2 class="h2 reveal">Frequently asked questions</h2>
+          <div>
+            <details class="faq__item" open>
+              <summary><span>What is AI workflow automation with agents?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>AI workflow automation with agents means a language-model-driven agent carries out a multi-step business process by reading inputs, deciding the next step and calling your systems through defined tools. Unlike rule-based automation, it can handle emails, documents and exceptions that don’t match a fixed template. In a tkxel engagement, the agent runs inside your environment with scoped permissions, human approval on consequential actions and an evaluation suite that tests it against your historical cases before and after launch.</p>
+            </details>
+            <details class="faq__item">
+              <summary><span>How is an AI agent different from RPA or Zapier-style automation?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>An AI agent chooses its next step at runtime, while RPA and tools like Zapier or n8n follow paths you define in advance. That makes agents better for workflows with variable inputs and judgment calls, and rule-based tools better for stable, high-volume steps with fixed formats. Most of our builds combine both: deterministic code for the steps that never change, and the agent for reading, classifying, drafting and deciding where to route a case.</p>
+            </details>
+            <details class="faq__item">
+              <summary><span>Which workflows are good candidates for agentification?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>The best candidates are frequent, multi-step workflows where people spend most of their time reading, checking and copying information between systems. Examples include invoice and claims intake, vendor onboarding, order exception handling, support triage and contract review preparation. Poor candidates are rare processes, workflows with no historical cases to test against, or decisions your organisation isn’t willing to let software draft. We assess this in the first two weeks before committing to a build.</p>
+            </details>
+            <details class="faq__item">
+              <summary><span>How do you make sure the agent doesn’t take the wrong action?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>We limit what the agent can do, test it before release and require approval where mistakes are costly. Each system is exposed as a narrow tool with scoped credentials, so the agent physically can’t perform actions outside the workflow. A golden dataset of real cases scores every change, and actions with financial, legal or customer impact pause for a human decision. Every run is logged, so any outcome can be traced back to its inputs and approvals.</p>
+            </details>
+            <details class="faq__item">
+              <summary><span>How long does it take to get an agent into production?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>A single workflow typically takes about 7 to 12 weeks from mapping to handover with a tkxel FDE pod. Discovery and case sampling take one to two weeks, building and evaluation three to five, and a supervised production rollout two to three. The biggest variable is usually access: how quickly we get credentials to source systems, a security review slot and a decision on what the agent may do without approval.</p>
+            </details>
+            <details class="faq__item">
+              <summary><span>Will an agent replace the people who run this workflow today?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>No, and we don’t design for that. Agents remove the repetitive reading, lookup and data entry, while people keep the approvals, exceptions and customer conversations. The trade-off is that someone must own the agent: reviewing flagged cases, maintaining the evaluation set and deciding when to widen its autonomy. If no one on your side can take that role, the agent will drift as your systems and policies change, and we’ll tell you that during scoping.</p>
+            </details>
+            <details class="faq__item">
+              <summary><span>Which models and frameworks do you use?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>We pick the model and framework that fit your data residency, security and cost constraints, rather than a fixed stack. We work with commercial models such as Claude, GPT and Gemini through your cloud provider, and with open-weight models where data can’t leave your environment. Agent orchestration is written as maintainable code in your repositories, so you can switch models later and rerun the evaluation suite to compare results.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+    </main>
+                                                                                                                                    <footer class="ftr">
+      <div class="container">
+        <div class="ftr__top">
+          <div class="ftr__brand">
+            <a href="/" class="ftr__logo">tkxel<span>FDE</span></a>
+            <p class="ftr__tag">
+              Forward deployed engineering teams that build production AI inside your environment, then hand it over to
+              your team.
+            </p>
+            <a href="https://tkxel.com" class="ftr__main">Visit tkxel.com →</a>
+          </div>
+          <div class="ftr__cols">
+            <div>
+              <a href="/services/ai-strategy-readiness/" class="ftr__head">AI strategy &amp; readiness</a>
+              <ul>
+                <li><a href="/services/ai-readiness-assessment/">AI maturity assessment</a></li>
+                <li>Process mapping &amp; use-case prioritization</li>
+                <li>Use-case portfolio &amp; ROI tracking</li>
+                <li>Data readiness audit</li>
+              </ul>
+            </div>
+            <div>
+              <a href="/services/fde-pods/" class="ftr__head">FDE pods</a>
+              <ul>
+                <li><a href="/services/full-stack-fde-pod/">Full-stack FDE pod</a></li>
+                <li><a href="/services/agentic-fde-pod/">Agentic FDE pod</a></li>
+                <li><a href="/services/data-engineering-fde-pod/">Data engineering FDE pod</a></li>
+                <li><a href="/services/integration-legacy-modernization-pod/">Integration &amp; legacy modernization pod</a></li>
+              </ul>
+            </div>
+            <div>
+              <a href="/services/agentic-platforms/" class="ftr__head">Agentic platforms &amp; integrations</a>
+              <ul>
+                <li><a href="/services/mcp-enterprise-integrations/">Enterprise connectors &amp; MCP integrations</a></li>
+                <li><a href="/services/enterprise-knowledge-assistant/">Enterprise knowledge assistant</a></li>
+                <li><a href="/services/workflow-agentification/">Workflow agentification</a></li>
+                <li>Managed AI operations</li>
+              </ul>
+            </div>
+            <div>
+              <a href="/services/adoption-enablement/" class="ftr__head">Adoption &amp; enablement</a>
+              <ul>
+                <li>Role-based AI training</li>
+                <li>AI champions program</li>
+                <li>Train-the-trainer</li>
+                <li>AI center of excellence</li>
+              </ul>
+            </div>
+            <div>
+              <a href="/services/ai-security-governance/" class="ftr__head">AI security &amp; governance</a>
+              <ul>
+                <li>Agent security &amp; permissions review</li>
+                <li><a href="/services/ai-penetration-testing/">AI penetration testing</a></li>
+                <li>AI governance council setup</li>
+              </ul>
+            </div>
+            <div>
+              <a href="/services/product-engineering/" class="ftr__head">Product &amp; engineering transformation</a>
+              <ul>
+                <li>Product AI strategy</li>
+                <li>Rapid prototype sprint</li>
+                <li>AI-enabled SDLC redesign</li>
+                <li>Legacy SaaS modernization</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="ftr__offices">
+          <div>
+            <span class="eyebrow">USA</span>
+            <p>Placeholder — confirm from tkxel.com footer</p>
+          </div>
+          <div>
+            <span class="eyebrow">Saudi Arabia</span>
+            <p>Placeholder — confirm from tkxel.com footer</p>
+          </div>
+          <div>
+            <span class="eyebrow">Portugal</span>
+            <p>Placeholder — confirm from tkxel.com footer</p>
+          </div>
+          <div>
+            <span class="eyebrow">Pakistan</span>
+            <p>Placeholder — confirm from tkxel.com footer</p>
+          </div>
+        </div>
+        <div class="ftr__legal">
+          <span>© 2026 tkxel. All rights reserved.</span>
+          <nav aria-label="Legal"><a href="https://tkxel.com/privacy-policy/">Privacy policy</a><a href="https://tkxel.com/terms-of-use/">Terms of use</a></nav>
+        </div>
+      </div>
+    </footer>
+    <script src="/assets/js/main.js" defer></script>
+  </body>
+</html>

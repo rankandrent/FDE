@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>How to hire forward deployed engineers | tkxel FDE</title>
+    <meta name="description" content="How to hire forward deployed engineers: in-house versus partner pods, the skills that matter, interview signals to test for, and the mistakes that cost months." />
+    <link rel="canonical" href="https://fde.tkxel.com/blog/how-to-hire-forward-deployed-engineers/" />
+    <meta property="og:title" content="How to hire forward deployed engineers | tkxel FDE" />
+    <meta property="og:description" content="How to hire forward deployed engineers: in-house versus partner pods, the skills that matter, interview signals to test for, and the mistakes that cost months." />
+    <meta property="og:url" content="https://fde.tkxel.com/blog/how-to-hire-forward-deployed-engineers/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://fde.tkxel.com/og-default.png" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How do you hire a forward deployed engineer?", "acceptedAnswer": {"@type": "Answer", "text": "You hire a forward deployed engineer by defining which kind of FDE you need, then testing for production skill and customer judgment together. Write a job description that names the deployment context, run a loop with a deployment walkthrough, a live scoping exercise and a customer roleplay, and move quickly. If you need results before a search can finish, a partner pod is a practical alternative."}}, {"@type": "Question", "name": "What skills does a forward deployed engineer need?", "acceptedAnswer": {"@type": "Answer", "text": "A forward deployed engineer needs senior full-stack engineering skill, applied AI fluency, integration experience and strong communication. In practice that means building APIs and data pipelines, working with retrieval and tool-calling agents, connecting to legacy systems, and turning a vague business request into a testable specification. Ownership matters as much as any technical skill, because the FDE is accountable for production results."}}, {"@type": "Question", "name": "Is a forward deployed engineer the same as a solutions engineer?", "acceptedAnswer": {"@type": "Answer", "text": "No, a forward deployed engineer builds and ships production software, while a solutions engineer usually supports the sale with demos and technical answers. Some solutions engineers make good FDEs, but you should test whether a candidate has shipped and maintained real systems. Hiring a strong presenter who has never owned production code is one of the most common FDE hiring mistakes."}}, {"@type": "Question", "name": "How long does it take to hire a forward deployed engineer?", "acceptedAnswer": {"@type": "Answer", "text": "Hiring a forward deployed engineer often takes two to three months. Paraform’s guide estimates 8 to 12 weeks for a full search, and slow interview loops make it longer because strong candidates accept other offers. A contractor or partner pod can usually start in weeks, which is why many companies use one to deliver the first project while the permanent search runs."}}, {"@type": "Question", "name": "Should I hire FDEs in-house or use a partner?", "acceptedAnswer": {"@type": "Answer", "text": "You should hire in-house when forward deployment is an ongoing part of your business, and use a partner when you need a defined outcome delivered and handed over. In-house teams give long-term control but take time to staff. A partner pod gives you a full team quickly, with the trade-off that you must plan the handover to your own engineers."}}, {"@type": "Question", "name": "What questions should I ask in an FDE interview?", "acceptedAnswer": {"@type": "Answer", "text": "Ask questions that show deployment judgment. Good examples are “Walk me through the architecture of your last customer deployment and what broke after launch,” “How would you scope this request with incomplete data?” and “Tell me about a time a client changed requirements midway.” Listen for trade-offs, clarifying questions before design, and clear ownership of results."}}]}</script>
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "How to hire forward deployed engineers without wasting a quarter", "description": "How to hire forward deployed engineers: in-house versus partner pods, the skills that matter, interview signals to test for, and the mistakes that cost months.", "author": {"@type": "Organization", "name": "tkxel"}, "publisher": {"@type": "Organization", "name": "tkxel"}, "datePublished": "2026-09-03", "mainEntityOfPage": "https://fde.tkxel.com/blog/how-to-hire-forward-deployed-engineers/"}</script>
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+  </head>
+  <body>
+                                                                                                                                                                                                                                                                    <header class="hdr" data-hdr>
+      <div class="container hdr__bar">
+        <a href="/" class="hdr__logo" aria-label="tkxel FDE home">tkxel<span>FDE</span></a>
+        <nav class="hdr__nav" aria-label="Primary">
+          <div class="hdr__mega-wrap">
+            <button class="hdr__link" aria-expanded="false" aria-controls="mega" data-mega-btn>Services</button>
+            <div class="hdr__mega" id="mega" hidden data-mega>
+              <div class="container hdr__mega-grid">
+                <div>
+                  <a href="/services/ai-strategy-readiness/" class="hdr__mega-title">AI strategy &amp; readiness</a>
+                  <ul>
+                    <li><a href="/services/ai-readiness-assessment/">AI maturity assessment</a></li>
+                    <li>Process mapping &amp; use-case prioritization</li>
+                    <li>Use-case portfolio &amp; ROI tracking</li>
+                    <li>Data readiness audit</li>
+                  </ul>
+                </div>
+                <div>
+                  <a href="/services/fde-pods/" class="hdr__mega-title">FDE pods</a>
+                  <ul>
+                    <li><a href="/services/full-stack-fde-pod/">Full-stack FDE pod</a></li>
+                    <li><a href="/services/agentic-fde-pod/">Agentic FDE pod</a></li>
+                    <li><a href="/services/data-engineering-fde-pod/">Data engineering FDE pod</a></li>
+                    <li><a href="/services/integration-legacy-modernization-pod/">Integration &amp; legacy modernization pod</a></li>
+                  </ul>
+                </div>
+                <div>
+                  <a href="/services/agentic-platforms/" class="hdr__mega-title"
+                    >Agentic platforms &amp; integrations</a
+                  <ul>
+                    <li><a href="/services/mcp-enterprise-integrations/">Enterprise connectors &amp; MCP integrations</a></li>
+                    <li><a href="/services/enterprise-knowledge-assistant/">Enterprise knowledge assistant</a></li>
+                    <li><a href="/services/workflow-agentification/">Workflow agentification</a></li>
+                    <li>Managed AI operations</li>
+                  </ul>
+                </div>
+                <div>
+                  <a href="/services/adoption-enablement/" class="hdr__mega-title">Adoption &amp; enablement</a>
+                  <ul>
+                    <li>Role-based AI training</li>
+                    <li>AI champions program</li>
+                    <li>Train-the-trainer</li>
+                    <li>AI center of excellence</li>
+                  </ul>
+                </div>
+                <div>
+                  <a href="/services/ai-security-governance/" class="hdr__mega-title">AI security &amp; governance</a>
+                  <ul>
+                    <li>Agent security &amp; permissions review</li>
+                    <li><a href="/services/ai-penetration-testing/">AI penetration testing</a></li>
+                    <li>AI governance council setup</li>
+                  </ul>
+                </div>
+                <div>
+                  <a href="/services/product-engineering/" class="hdr__mega-title"
+                    >Product &amp; engineering transformation</a
+                  <ul>
+                    <li>Product AI strategy</li>
+                    <li>Rapid prototype sprint</li>
+                    <li>AI-enabled SDLC redesign</li>
+                    <li>Legacy SaaS modernization</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        <a href="/services/fde-pods/" class="hdr__link">FDE pods</a><a href="/industries/" class="hdr__link">Industries</a><a href="/case-studies/" class="hdr__link">Case studies</a><a href="/blog/" class="hdr__link">Resources</a>
+      </nav>
+        <a href="#cta-form" class="btn btn--invert hdr__cta">Book discovery call</a>
+        <button class="hdr__burger" aria-label="Open menu" aria-expanded="false" data-burger>
+          <span></span><span></span>
+        </button>
+      </div>
+    </header>
+    <main id="main">
+      <section class="art__hero section--gradient on-dark" data-hero>
+        <div class="container art__narrow">
+          <span class="eyebrow">Article</span>
+          <h1 class="display art__h1">How to hire forward deployed engineers without wasting a quarter</h1>
+          <p class="caption art__meta">3 September 2026 · 8 min read</p>
+        </div>
+      </section>
+      <article class="section">
+        <div class="container art__layout">
+          <nav class="art__toc" aria-label="Contents"><span class="eyebrow">Contents</span><ol><li><a href="#what-a-forward-deployed-engineer-actually-does">What a forward deployed engineer actually does</a></li><li><a href="#in-house-hire-contractor-or-partner-pod">In-house hire, contractor or partner pod</a></li><li><a href="#skills-to-look-for-in-an-fde">Skills to look for in an FDE</a></li><li><a href="#interview-signals-that-predict-success">Interview signals that predict success</a></li><li><a href="#writing-a-job-description-that-attracts-real-fde">Writing a job description that attracts real FDEs</a></li><li><a href="#common-hiring-mistakes">Common hiring mistakes</a></li><li><a href="#how-a-partner-pod-changes-the-hiring-problem">How a partner pod changes the hiring problem</a></li></ol></nav>
+          <div class="art__body">
+          <p class="art__lede">Hiring forward deployed engineers means finding people who can ship production code inside a customer’s systems and also run the conversation with that customer. You can hire them in-house, contract individuals, or bring in a partner pod. The right route depends on how soon you need results and whether the work is ongoing.</p>
+          <h2 class="art__h2" id="what-a-forward-deployed-engineer-actually-does">What a forward deployed engineer actually does</h2>
+          <p>A forward deployed engineer (FDE) is a senior engineer who works inside a customer’s environment to scope, build and ship working software against a real business outcome. The role sits between a software engineer, who builds for a product roadmap, and a solutions engineer, who demonstrates a product before the sale.</p>
+          <p>Most hiring problems start here. Paraform’s hiring guide says the most common reason searches fail is misalignment on which kind of FDE you need, and it separates enterprise integration specialists, post-sales AI implementation engineers and product-embedded FDEs into three distinct roles. If your job description blurs them, the wrong people apply and the right ones skip it.</p>
+          <ul><li>Integration-heavy FDE: connects your platform or agent to ERPs, CRMs, data warehouses and identity systems.</li><li>AI implementation FDE: builds agents, retrieval pipelines and evaluation suites on top of a customer’s data.</li><li>Product-embedded FDE: works with one customer but feeds reusable patterns back into your core product.</li></ul>
+          <h2 class="art__h2" id="in-house-hire-contractor-or-partner-pod">In-house hire, contractor or partner pod</h2>
+          <p>You have three realistic ways to get FDE capacity: build an in-house team, contract individual engineers, or engage a partner that supplies a full pod. Each trades speed against long-term control.</p>
+          <p>An in-house team makes sense when forward deployment is part of your business model, such as a software company that deploys into every customer. A partner pod makes more sense when you need one or two production systems built inside your own company and then handed to your internal team.</p>
+          <p>Individual contractors sit in between. They can be a good fit for a narrow build, but one person rarely covers AI, data, integration and stakeholder work at once, and the knowledge leaves when the contract ends unless you plan for it.</p>
+          <div class="ct__scroll" tabindex="0" role="region" aria-label="Comparison of FDE sourcing options"><table class="ct art__table"><caption class="sr-only">Comparison of FDE sourcing options</caption><thead><tr><th scope="col">Option</th><th scope="col">Time to first engineer</th><th scope="col">Best for</th><th scope="col">Main trade-off</th></tr></thead><tbody><tr><th scope="row">In-house hire</th><td>Paraform estimates 8 to 12 weeks per search</td><td>Ongoing deployment across many customers</td><td>Slow to staff and hard to scale down</td></tr><tr><th scope="row">Individual contractor</th><td>Days to weeks</td><td>Narrow, well-defined build</td><td>One person carries every skill and all the risk</td></tr><tr><th scope="row">Partner pod (3 to 5 engineers)</th><td>Usually weeks</td><td>A defined outcome with a handover date</td><td>You depend on the partner’s bench and must plan the handover</td></tr></tbody></table></div>
+          <h2 class="art__h2" id="skills-to-look-for-in-an-fde">Skills to look for in an FDE</h2>
+          <p>The FDE skill set is production engineering plus customer judgment, and you need both in the same person. A strong coder who will not talk to stakeholders fails in the field, and so does a consultant who cannot ship.</p>
+          <p>Weigh evidence of past deployments over pedigree. A candidate who has stood up a system in a messy client environment, with partial documentation and changing requirements, has already passed the hardest part of the job.</p>
+          <ul><li>Full-stack production skill: APIs, data pipelines, cloud infrastructure and enough front end to ship a usable tool.</li><li>Applied AI fluency: retrieval, tool calling, prompt and context design, and how to evaluate model output.</li><li>Integration experience: authentication, rate limits, data mapping and working with legacy systems.</li><li>Discovery skill: turning a vague request into a scoped, testable specification.</li><li>Written and spoken communication with non-technical stakeholders.</li><li>Ownership: comfort being the person accountable for whether the system works in production.</li></ul>
+          <h2 class="art__h2" id="interview-signals-that-predict-success">Interview signals that predict success</h2>
+          <p>The best FDE interview tests deployment judgment, not algorithm puzzles. Several hiring guides warn that a standard software engineering loop misses the signal, because it never tests customer communication or tolerance for ambiguity.</p>
+          <p>Build your loop around realistic work. Ask candidates to explain a past deployment from end to end, then give them a scoping exercise with incomplete information and watch how they ask questions before they design.</p>
+          <h3 class="art__h3">Deployment walkthrough</h3>
+          <p>Ask the candidate to explain the architecture of a recent customer deployment. Listen for trade-offs they chose, constraints they worked around, and what broke after launch. Vague answers about “the team” usually mean they were not hands-on.</p>
+          <h3 class="art__h3">Live scoping exercise</h3>
+          <p>Give a brief such as triaging a large backlog of support tickets with messy data that contains personal information. Strong candidates ask about data access, privacy and success metrics before proposing a model.</p>
+          <h3 class="art__h3">Customer roleplay</h3>
+          <p>Have an interviewer play a stakeholder who changes a requirement halfway through. You are testing whether the candidate can push back clearly, reset scope and keep trust.</p>
+          <h3 class="art__h3">Paid trial sprint</h3>
+          <p>For senior hires, a short paid trial on a real but contained problem shows more than any interview. Treat it as a two-way test of fit.</p>
+          <h2 class="art__h2" id="writing-a-job-description-that-attracts-real-fde">Writing a job description that attracts real FDEs</h2>
+          <p>A good FDE job description describes the deployments the person will own, not a generic list of languages. Strong candidates want to know whose systems they will work in, what outcome they will be measured on and how much travel or on-site time is involved.</p>
+          <p>State the seniority plainly and say who owns generalisation. One job description template warns that without an owner for turning field work into reusable product, you have written a consulting role with an engineering title, and experienced FDEs notice.</p>
+          <ul><li>The deployment context: industries, typical systems and data types.</li><li>The outcome the role is measured on, such as systems shipped to production.</li><li>Expected time with customers, on site or remote.</li><li>The team around the role, including who handles sales and support.</li><li>How field learnings flow back into the product or internal platform.</li></ul>
+          <h2 class="art__h2" id="common-hiring-mistakes">Common hiring mistakes</h2>
+          <p>Most failed FDE searches repeat a handful of mistakes, and each one is avoidable. The cost is usually months of pipeline, not just one bad hire.</p>
+          <ul><li>Posting the role at junior or mid level when it needs senior judgment.</li><li>Hiring a pre-sales engineer who demos well but has never shipped to production.</li><li>Running slow interview loops; Paraform notes that top candidates accept faster offers elsewhere.</li><li>Skipping agreement on system access, code ownership and handover before the engineer starts.</li><li>Leaving no internal owner, so the system has nobody to maintain it after the FDE moves on.</li></ul>
+          <h2 class="art__h2" id="how-a-partner-pod-changes-the-hiring-problem">How a partner pod changes the hiring problem</h2>
+          <p>A partner pod replaces several individual hires with one accountable team. At tkxel, an FDE pod is three to five engineers, typically a lead, applied AI and data engineers, and an integration specialist, who work inside your environment against an agreed outcome and then hand over code, runbooks and evaluation suites.</p>
+          <p>The honest trade-off is that you do not build permanent headcount. If forward deployment is your core business, you will still need your own team, and a pod is best used to ship the first systems while you hire. If you need one production agent or integration delivered and owned internally, a pod is usually faster than a search.</p>
+          <p>Whichever route you choose, set up the first weeks properly. Give engineers access to systems and data before day one, name the internal owner who will run the system afterwards, and agree the production success metric in writing. Most delays in early FDE work come from waiting on access, not from engineering.</p>
+          <aside class="art__related"><span class="eyebrow">Related</span><ul><li><a href="/what-is-forward-deployed-engineering/" class="link-arrow">What is forward deployed engineering?</a></li><li><a href="/fde-vs-staff-augmentation-vs-consulting/" class="link-arrow">FDE vs staff augmentation vs consulting</a></li><li><a href="/services/fde-pods/" class="link-arrow">FDE pods</a></li></ul></aside>
+          </div>
+        </div>
+      </article>
+      <section class="icb section--gradient on-dark">
+        <div class="container icb__row">
+          <h2 class="h2">Need FDE capacity before your next hire lands?</h2>
+          <div class="icb__right">
+            <p>A tkxel pod can start inside your environment within weeks and hand over cleanly.</p>
+            <a href="#cta-form" class="btn btn--invert">Talk to an FDE lead</a>
+          </div>
+        </div>
+      </section>
+      <section class="section" id="faq">
+        <div class="container faq">
+          <h2 class="h2 reveal">Frequently asked questions</h2>
+          <div>
+            <details class="faq__item" open>
+              <summary><span>How do you hire a forward deployed engineer?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>You hire a forward deployed engineer by defining which kind of FDE you need, then testing for production skill and customer judgment together. Write a job description that names the deployment context, run a loop with a deployment walkthrough, a live scoping exercise and a customer roleplay, and move quickly. If you need results before a search can finish, a partner pod is a practical alternative.</p>
+            </details>
+            <details class="faq__item">
+              <summary><span>What skills does a forward deployed engineer need?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>A forward deployed engineer needs senior full-stack engineering skill, applied AI fluency, integration experience and strong communication. In practice that means building APIs and data pipelines, working with retrieval and tool-calling agents, connecting to legacy systems, and turning a vague business request into a testable specification. Ownership matters as much as any technical skill, because the FDE is accountable for production results.</p>
+            </details>
+            <details class="faq__item">
+              <summary><span>Is a forward deployed engineer the same as a solutions engineer?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>No, a forward deployed engineer builds and ships production software, while a solutions engineer usually supports the sale with demos and technical answers. Some solutions engineers make good FDEs, but you should test whether a candidate has shipped and maintained real systems. Hiring a strong presenter who has never owned production code is one of the most common FDE hiring mistakes.</p>
+            </details>
+            <details class="faq__item">
+              <summary><span>How long does it take to hire a forward deployed engineer?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>Hiring a forward deployed engineer often takes two to three months. Paraform’s guide estimates 8 to 12 weeks for a full search, and slow interview loops make it longer because strong candidates accept other offers. A contractor or partner pod can usually start in weeks, which is why many companies use one to deliver the first project while the permanent search runs.</p>
+            </details>
+            <details class="faq__item">
+              <summary><span>Should I hire FDEs in-house or use a partner?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>You should hire in-house when forward deployment is an ongoing part of your business, and use a partner when you need a defined outcome delivered and handed over. In-house teams give long-term control but take time to staff. A partner pod gives you a full team quickly, with the trade-off that you must plan the handover to your own engineers.</p>
+            </details>
+            <details class="faq__item">
+              <summary><span>What questions should I ask in an FDE interview?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>Ask questions that show deployment judgment. Good examples are “Walk me through the architecture of your last customer deployment and what broke after launch,” “How would you scope this request with incomplete data?” and “Tell me about a time a client changed requirements midway.” Listen for trade-offs, clarifying questions before design, and clear ownership of results.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+            <section class="section section--dark on-dark" id="cta-form">
+        <div class="container fc">
+          <div class="fc__left">
+            <h2 class="h2">Get your first production system shipped while you build the team</h2>
+            <div class="fc__clutch">
+              <span class="eyebrow">Clutch</span
+              ><span class="caption">[Placeholder] Clutch badge and rating — add the official widget</span>
+            </div>
+            <blockquote class="fc__quote">
+              “Placeholder testimonial — replace with the global set from tkxel.com.”
+              <footer class="caption">— Knowles</footer>
+            </blockquote>
+            <blockquote class="fc__quote">
+              “Placeholder testimonial — replace with the global set from tkxel.com.”
+              <footer class="caption">— Sterne Kessler</footer>
+            </blockquote>
+          </div>
+          <form class="fc__form" method="post" action="/api/lead" data-lead-form>
+            <label class="fc__full"
+              >I'm interested in
+              <select name="interest" required>
+                <option>FDE pod</option>
+                <option>AI strategy &amp; readiness</option>
+                <option>Agentic platforms &amp; integrations</option>
+                <option>Adoption &amp; enablement</option>
+                <option>AI security &amp; governance</option>
+                <option>Product &amp; engineering transformation</option>
+                <option>Something else</option>
+              </select>
+            </label>
+            <label>First name*<input name="first_name" required autocomplete="given-name" /></label>
+            <label>Last name*<input name="last_name" required autocomplete="family-name" /></label>
+            <label>Work email*<input name="email" type="email" required autocomplete="email" /></label>
+            <label>Job title*<input name="job_title" required autocomplete="organization-title" /></label>
+            <label class="fc__full">Phone<input name="phone" type="tel" autocomplete="tel" /></label>
+            <label class="fc__full">Project description<textarea name="message" rows="4"></textarea></label>
+            <label class="fc__check fc__full"
+              ><input type="checkbox" name="marketing_consent" /> I agree to receive marketing communications from
+              tkxel.</label
+            >
+            <label class="fc__check fc__full"
+              ><input type="checkbox" name="sms_consent" /> I agree to receive SMS messages from tkxel.</label
+            >
+            <button class="btn btn--invert fc__full" type="submit">Book discovery call</button>
+            <p class="caption fc__full">
+              By submitting, you agree to our <a href="https://tkxel.com/terms-of-use/">Terms</a> and
+              <a href="https://tkxel.com/privacy-policy/">Privacy policy</a>.
+            </p>
+            <p class="fc__status fc__full" role="status" data-lead-status></p>
+          </form>
+        </div>
+      </section>
+    </main>
+                                                                                                                                    <footer class="ftr">
+      <div class="container">
+        <div class="ftr__top">
+          <div class="ftr__brand">
+            <a href="/" class="ftr__logo">tkxel<span>FDE</span></a>
+            <p class="ftr__tag">
+              Forward deployed engineering teams that build production AI inside your environment, then hand it over to
+              your team.
+            </p>
+            <a href="https://tkxel.com" class="ftr__main">Visit tkxel.com →</a>
+          </div>
+          <div class="ftr__cols">
+            <div>
+              <a href="/services/ai-strategy-readiness/" class="ftr__head">AI strategy &amp; readiness</a>
+              <ul>
+                <li><a href="/services/ai-readiness-assessment/">AI maturity assessment</a></li>
+                <li>Process mapping &amp; use-case prioritization</li>
+                <li>Use-case portfolio &amp; ROI tracking</li>
+                <li>Data readiness audit</li>
+              </ul>
+            </div>
+            <div>
+              <a href="/services/fde-pods/" class="ftr__head">FDE pods</a>
+              <ul>
+                <li><a href="/services/full-stack-fde-pod/">Full-stack FDE pod</a></li>
+                <li><a href="/services/agentic-fde-pod/">Agentic FDE pod</a></li>
+                <li><a href="/services/data-engineering-fde-pod/">Data engineering FDE pod</a></li>
+                <li><a href="/services/integration-legacy-modernization-pod/">Integration &amp; legacy modernization pod</a></li>
+              </ul>
+            </div>
+            <div>
+              <a href="/services/agentic-platforms/" class="ftr__head">Agentic platforms &amp; integrations</a>
+              <ul>
+                <li><a href="/services/mcp-enterprise-integrations/">Enterprise connectors &amp; MCP integrations</a></li>
+                <li><a href="/services/enterprise-knowledge-assistant/">Enterprise knowledge assistant</a></li>
+                <li><a href="/services/workflow-agentification/">Workflow agentification</a></li>
+                <li>Managed AI operations</li>
+              </ul>
+            </div>
+            <div>
+              <a href="/services/adoption-enablement/" class="ftr__head">Adoption &amp; enablement</a>
+              <ul>
+                <li>Role-based AI training</li>
+                <li>AI champions program</li>
+                <li>Train-the-trainer</li>
+                <li>AI center of excellence</li>
+              </ul>
+            </div>
+            <div>
+              <a href="/services/ai-security-governance/" class="ftr__head">AI security &amp; governance</a>
+              <ul>
+                <li>Agent security &amp; permissions review</li>
+                <li><a href="/services/ai-penetration-testing/">AI penetration testing</a></li>
+                <li>AI governance council setup</li>
+              </ul>
+            </div>
+            <div>
+              <a href="/services/product-engineering/" class="ftr__head">Product &amp; engineering transformation</a>
+              <ul>
+                <li>Product AI strategy</li>
+                <li>Rapid prototype sprint</li>
+                <li>AI-enabled SDLC redesign</li>
+                <li>Legacy SaaS modernization</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="ftr__offices">
+          <div>
+            <span class="eyebrow">USA</span>
+            <p>Placeholder — confirm from tkxel.com footer</p>
+          </div>
+          <div>
+            <span class="eyebrow">Saudi Arabia</span>
+            <p>Placeholder — confirm from tkxel.com footer</p>
+          </div>
+          <div>
+            <span class="eyebrow">Portugal</span>
+            <p>Placeholder — confirm from tkxel.com footer</p>
+          </div>
+          <div>
+            <span class="eyebrow">Pakistan</span>
+            <p>Placeholder — confirm from tkxel.com footer</p>
+          </div>
+        </div>
+        <div class="ftr__legal">
+          <span>© 2026 tkxel. All rights reserved.</span>
+          <nav aria-label="Legal"><a href="https://tkxel.com/privacy-policy/">Privacy policy</a><a href="https://tkxel.com/terms-of-use/">Terms of use</a></nav>
+        </div>
+      </div>
+    </footer>
+    <script src="/assets/js/main.js" defer></script>
+  </body>
+</html>

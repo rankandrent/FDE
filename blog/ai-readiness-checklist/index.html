@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI readiness checklist: 5 areas to check | tkxel FDE</title>
+    <meta name="description" content="An AI readiness checklist across strategy, data, people, governance and infrastructure, with pass or fail checks to run before you fund your next AI project." />
+    <link rel="canonical" href="https://fde.tkxel.com/blog/ai-readiness-checklist/" />
+    <meta property="og:title" content="AI readiness checklist: 5 areas to check | tkxel FDE" />
+    <meta property="og:description" content="An AI readiness checklist across strategy, data, people, governance and infrastructure, with pass or fail checks to run before you fund your next AI project." />
+    <meta property="og:url" content="https://fde.tkxel.com/blog/ai-readiness-checklist/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://fde.tkxel.com/og-default.png" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is an AI readiness checklist?", "acceptedAnswer": {"@type": "Answer", "text": "An AI readiness checklist is a set of pass-or-fail checks that shows whether an organisation can take an AI use case to production. It usually covers strategy, data, people, governance and infrastructure. The most useful checklists are applied to one specific use case, so each gap becomes a concrete action rather than a general score."}}, {"@type": "Question", "name": "How do you assess AI readiness?", "acceptedAnswer": {"@type": "Answer", "text": "You assess AI readiness by choosing one use case and checking it against strategy, data, people, governance and infrastructure criteria. Score each item as pass or fail, then turn every fail into an owned action. Confirm the most important checks, especially data access and quality, with hands-on testing rather than relying on interviews alone."}}, {"@type": "Question", "name": "What are the pillars of AI readiness?", "acceptedAnswer": {"@type": "Answer", "text": "The main pillars of AI readiness are strategy, data, people, governance and infrastructure. Some frameworks add culture or security as separate pillars. Whatever the structure, the areas that most often block progress are data access and quality, a clear success metric, and named owners for the system after launch. Check those three first."}}, {"@type": "Question", "name": "How long does an AI readiness assessment take?", "acceptedAnswer": {"@type": "Answer", "text": "An AI readiness assessment for a single use case usually takes a few weeks. A desk-based checklist can be completed in a day, but checking data access, quality and integration routes properly takes longer because engineers need to work with real systems. Organisation-wide assessments take longer and can delay action if they are too broad."}}, {"@type": "Question", "name": "Do you need perfect data to start with AI?", "acceptedAnswer": {"@type": "Answer", "text": "No, you do not need perfect data to start with AI, but you need data that is accessible and good enough for the specific use case. Check quality on a real sample, including edge cases, and fix the issues that affect the use case first. Waiting for organisation-wide data perfection usually means never starting."}}]}</script>
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "AI readiness checklist: strategy, data, people, governance and infrastructure", "description": "An AI readiness checklist across strategy, data, people, governance and infrastructure, with pass or fail checks to run before you fund your next AI project.", "author": {"@type": "Organization", "name": "tkxel"}, "publisher": {"@type": "Organization", "name": "tkxel"}, "datePublished": "2026-10-08", "mainEntityOfPage": "https://fde.tkxel.com/blog/ai-readiness-checklist/"}</script>
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+  </head>
+  <body>
+                                                                                                                                                                                                                                                                    <header class="hdr" data-hdr>
+      <div class="container hdr__bar">
+        <a href="/" class="hdr__logo" aria-label="tkxel FDE home">tkxel<span>FDE</span></a>
+        <nav class="hdr__nav" aria-label="Primary">
+          <div class="hdr__mega-wrap">
+            <button class="hdr__link" aria-expanded="false" aria-controls="mega" data-mega-btn>Services</button>
+            <div class="hdr__mega" id="mega" hidden data-mega>
+              <div class="container hdr__mega-grid">
+                <div>
+                  <a href="/services/ai-strategy-readiness/" class="hdr__mega-title">AI strategy &amp; readiness</a>
+                  <ul>
+                    <li><a href="/services/ai-readiness-assessment/">AI maturity assessment</a></li>
+                    <li>Process mapping &amp; use-case prioritization</li>
+                    <li>Use-case portfolio &amp; ROI tracking</li>
+                    <li>Data readiness audit</li>
+                  </ul>
+                </div>
+                <div>
+                  <a href="/services/fde-pods/" class="hdr__mega-title">FDE pods</a>
+                  <ul>
+                    <li><a href="/services/full-stack-fde-pod/">Full-stack FDE pod</a></li>
+                    <li><a href="/services/agentic-fde-pod/">Agentic FDE pod</a></li>
+                    <li><a href="/services/data-engineering-fde-pod/">Data engineering FDE pod</a></li>
+                    <li><a href="/services/integration-legacy-modernization-pod/">Integration &amp; legacy modernization pod</a></li>
+                  </ul>
+                </div>
+                <div>
+                  <a href="/services/agentic-platforms/" class="hdr__mega-title"
+                    >Agentic platforms &amp; integrations</a
+                  <ul>
+                    <li><a href="/services/mcp-enterprise-integrations/">Enterprise connectors &amp; MCP integrations</a></li>
+                    <li><a href="/services/enterprise-knowledge-assistant/">Enterprise knowledge assistant</a></li>
+                    <li><a href="/services/workflow-agentification/">Workflow agentification</a></li>
+                    <li>Managed AI operations</li>
+                  </ul>
+                </div>
+                <div>
+                  <a href="/services/adoption-enablement/" class="hdr__mega-title">Adoption &amp; enablement</a>
+                  <ul>
+                    <li>Role-based AI training</li>
+                    <li>AI champions program</li>
+                    <li>Train-the-trainer</li>
+                    <li>AI center of excellence</li>
+                  </ul>
+                </div>
+                <div>
+                  <a href="/services/ai-security-governance/" class="hdr__mega-title">AI security &amp; governance</a>
+                  <ul>
+                    <li>Agent security &amp; permissions review</li>
+                    <li><a href="/services/ai-penetration-testing/">AI penetration testing</a></li>
+                    <li>AI governance council setup</li>
+                  </ul>
+                </div>
+                <div>
+                  <a href="/services/product-engineering/" class="hdr__mega-title"
+                    >Product &amp; engineering transformation</a
+                  <ul>
+                    <li>Product AI strategy</li>
+                    <li>Rapid prototype sprint</li>
+                    <li>AI-enabled SDLC redesign</li>
+                    <li>Legacy SaaS modernization</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        <a href="/services/fde-pods/" class="hdr__link">FDE pods</a><a href="/industries/" class="hdr__link">Industries</a><a href="/case-studies/" class="hdr__link">Case studies</a><a href="/blog/" class="hdr__link">Resources</a>
+      </nav>
+        <a href="#cta-form" class="btn btn--invert hdr__cta">Book discovery call</a>
+        <button class="hdr__burger" aria-label="Open menu" aria-expanded="false" data-burger>
+          <span></span><span></span>
+        </button>
+      </div>
+    </header>
+    <main id="main">
+      <section class="art__hero section--gradient on-dark" data-hero>
+        <div class="container art__narrow">
+          <span class="eyebrow">Article</span>
+          <h1 class="display art__h1">AI readiness checklist: strategy, data, people, governance and infrastructure</h1>
+          <p class="caption art__meta">8 October 2026 · 8 min read</p>
+        </div>
+      </section>
+      <article class="section">
+        <div class="container art__layout">
+          <nav class="art__toc" aria-label="Contents"><span class="eyebrow">Contents</span><ol><li><a href="#how-to-use-this-ai-readiness-checklist">How to use this AI readiness checklist</a></li><li><a href="#strategy-readiness">Strategy readiness</a></li><li><a href="#data-readiness">Data readiness</a></li><li><a href="#people-readiness">People readiness</a></li><li><a href="#governance-readiness">Governance readiness</a></li><li><a href="#infrastructure-readiness">Infrastructure readiness</a></li><li><a href="#common-readiness-gaps-and-how-to-close-them">Common readiness gaps and how to close them</a></li><li><a href="#what-to-do-with-your-results">What to do with your results</a></li></ol></nav>
+          <div class="art__body">
+          <p class="art__lede">An AI readiness checklist tests whether your organisation can take an AI use case to production, not just whether it wants to. It covers five areas: strategy, data, people, governance and infrastructure. Each check should have a clear pass or fail, so gaps turn into specific actions before you fund a build.</p>
+          <h2 class="art__h2" id="how-to-use-this-ai-readiness-checklist">How to use this AI readiness checklist</h2>
+          <p>Use this checklist against one specific use case, not your whole organisation in the abstract. Readiness for an invoice-processing agent looks different from readiness for a customer-facing assistant, and a general score hides that.</p>
+          <p>Score each item as pass or fail. Structured frameworks such as 8th Light’s AI readiness checklist use a similar approach, scoring each yes-or-no question as one or zero across areas including strategic alignment, data infrastructure and security. A fail is not a stop sign; it is the next task.</p>
+          <p>Involve the people who will build and run the system, not only leadership. Business leaders tend to rate strategy highly and data poorly, while engineers often see the reverse, and the truth usually sits in the specific systems the use case touches.</p>
+          <h2 class="art__h2" id="strategy-readiness">Strategy readiness</h2>
+          <p>Strategy readiness means you know which problem AI should solve and how you will measure success. Without that, projects drift into demos that nobody funds.</p>
+          <p>A strong strategy check names one workflow, not a department. “Reduce invoice exception handling time by a third” passes; “use AI in finance” does not, because nobody can test it or tell when it is done.</p>
+          <ul><li>A named use case is tied to a business goal and a single accountable owner.</li><li>The success metric and target are written down, such as handling time or error rate.</li><li>You know today’s baseline for that metric.</li><li>A budget exists for production, not only for a pilot.</li><li>Leaders agree what happens if the pilot meets, or misses, its target.</li></ul>
+          <h2 class="art__h2" id="data-readiness">Data readiness</h2>
+          <p>Data readiness means the data the use case needs exists, is reachable and is good enough to act on. This is where most readiness assessments find their biggest gaps.</p>
+          <p>Do not stop at a survey answer. Ask an engineer to pull a real sample from each source and look at it. Missing fields, inconsistent formats and unclear ownership show up in an afternoon of hands-on work, and they rarely show up in interviews.</p>
+          <ul><li>You can name the systems that hold the data the use case needs.</li><li>Engineers can get access within days, not months, with approvals agreed.</li><li>Data quality has been checked on a real sample, including edge cases.</li><li>Sensitive data is classified, and you know what may be sent to which model.</li><li>There is an owner for each key data source who can answer questions.</li></ul>
+          <h2 class="art__h2" id="people-readiness">People readiness</h2>
+          <p>People readiness means you have the skills to build and run the system, and the users are ready to change how they work. Assessments often treat this area loosely, so make the checks concrete.</p>
+          <p>The most common people gap is expert time. An AI system needs domain experts to define good output, label examples and review results, and if their calendars are full, the project slows down regardless of how good the engineering team is.</p>
+          <ul><li>Subject-matter experts have protected time to define good results and review output.</li><li>Someone can own the system technically after launch.</li><li>Users affected by the change have been involved in the design.</li><li>There is a plan to train users and collect their feedback.</li><li>You know which skills you will build internally and which you will bring in.</li></ul>
+          <h2 class="art__h2" id="governance-readiness">Governance readiness</h2>
+          <p>Governance readiness means you know who decides, what is allowed and how you will catch problems. It is the area most often left until after a pilot, which is exactly when it causes the longest delays.</p>
+          <p>You do not need a complete enterprise AI governance programme to start. You need clear answers for this use case: what data it may use, where a human approves, how quality is checked and who responds when something goes wrong.</p>
+          <ul><li>An AI use policy exists and covers approved tools and data handling.</li><li>Security and compliance reviewers are involved at design stage.</li><li>You have defined where a human must approve an AI action.</li><li>There is an agreed way to evaluate quality before release.</li><li>Incidents have an owner, a log and a rollback plan.</li></ul>
+          <h2 class="art__h2" id="infrastructure-readiness">Infrastructure readiness</h2>
+          <p>Infrastructure readiness means your platforms can host, connect and monitor an AI system securely. You do not need a new platform for a first use case, but you do need the basics.</p>
+          <p>Integration is usually the deciding factor. An agent that can read and write in the systems people already use gets adopted; one that sits in a separate window usually does not, however good its answers are.</p>
+          <ul><li>There is an approved environment for model access, in the cloud or on-premise.</li><li>Integration routes exist to the systems the AI must read from or write to.</li><li>Identity and access controls can be applied to agents and service accounts.</li><li>Logging and monitoring can capture model inputs, outputs and tool calls.</li><li>Costs can be tracked per use case.</li></ul>
+          <h2 class="art__h2" id="common-readiness-gaps-and-how-to-close-them">Common readiness gaps and how to close them</h2>
+          <p>The same few gaps appear in most readiness reviews, and each has a practical fix. None of them requires a large programme before you can start one well-chosen use case.</p>
+          <ul><li>No baseline for the success metric: measure the current process for two to four weeks before building.</li><li>Slow data access: agree a named approver and a standard access request for AI projects.</li><li>No owner after launch: assign a business owner and a technical owner before funding the build.</li><li>Security brought in late: invite reviewers to the first design session, not the demo.</li><li>Users left out: include two or three daily users in discovery and testing.</li></ul>
+          <h2 class="art__h2" id="what-to-do-with-your-results">What to do with your results</h2>
+          <p>Turn every fail into a dated action with an owner, then decide whether the remaining gaps block a pilot or only block scale. Data access and an agreed success metric usually block everything; a full governance framework usually does not need to be complete before a contained first build.</p>
+          <p>Repeat the checklist when you move from one use case to several. The gaps change: a first project often stalls on data access, while a portfolio of projects tends to stall on shared infrastructure, governance and the number of people who can own systems after launch.</p>
+          <h3 class="art__h3">The limitation of any checklist</h3>
+          <p>A checklist shows where you stand, but it cannot tell you whether a use case is worth doing, or what it will return. Some gaps only appear once engineers touch real data. That is why tkxel’s AI strategy and readiness work pairs the assessment with hands-on discovery in your environment, so the plan is based on what the systems actually allow.</p>
+          <div class="ct__scroll" tabindex="0" role="region" aria-label="Readiness results and next steps"><table class="ct art__table"><caption class="sr-only">Readiness results and next steps</caption><thead><tr><th scope="col">Result</th><th scope="col">What it means</th><th scope="col">Next step</th></tr></thead><tbody><tr><th scope="row">Mostly passes</th><td>Ready to build one production use case</td><td>Scope a build phase with a clear metric</td></tr><tr><th scope="row">Gaps in data or people</th><td>A build would stall on access or ownership</td><td>Fix access and name owners before building</td></tr><tr><th scope="row">Gaps in strategy</th><td>No agreed problem or metric yet</td><td>Run a short discovery to choose the use case</td></tr><tr><th scope="row">Gaps in governance</th><td>Risk of late security blockers</td><td>Bring security into design now</td></tr></tbody></table></div>
+          <aside class="art__related"><span class="eyebrow">Related</span><ul><li><a href="/services/ai-strategy-readiness/" class="link-arrow">AI strategy and readiness</a></li><li><a href="/services/ai-security-governance/" class="link-arrow">AI security and governance</a></li><li><a href="/services/adoption-enablement/" class="link-arrow">Adoption and enablement</a></li></ul></aside>
+          </div>
+        </div>
+      </article>
+      <section class="icb section--gradient on-dark">
+        <div class="container icb__row">
+          <h2 class="h2">Find out if your AI use case is ready</h2>
+          <div class="icb__right">
+            <p>Run a readiness discovery against one use case and leave with a build plan.</p>
+            <a href="#cta-form" class="btn btn--invert">Assess my readiness</a>
+          </div>
+        </div>
+      </section>
+      <section class="section" id="faq">
+        <div class="container faq">
+          <h2 class="h2 reveal">Frequently asked questions</h2>
+          <div>
+            <details class="faq__item" open>
+              <summary><span>What is an AI readiness checklist?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>An AI readiness checklist is a set of pass-or-fail checks that shows whether an organisation can take an AI use case to production. It usually covers strategy, data, people, governance and infrastructure. The most useful checklists are applied to one specific use case, so each gap becomes a concrete action rather than a general score.</p>
+            </details>
+            <details class="faq__item">
+              <summary><span>How do you assess AI readiness?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>You assess AI readiness by choosing one use case and checking it against strategy, data, people, governance and infrastructure criteria. Score each item as pass or fail, then turn every fail into an owned action. Confirm the most important checks, especially data access and quality, with hands-on testing rather than relying on interviews alone.</p>
+            </details>
+            <details class="faq__item">
+              <summary><span>What are the pillars of AI readiness?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>The main pillars of AI readiness are strategy, data, people, governance and infrastructure. Some frameworks add culture or security as separate pillars. Whatever the structure, the areas that most often block progress are data access and quality, a clear success metric, and named owners for the system after launch. Check those three first.</p>
+            </details>
+            <details class="faq__item">
+              <summary><span>How long does an AI readiness assessment take?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>An AI readiness assessment for a single use case usually takes a few weeks. A desk-based checklist can be completed in a day, but checking data access, quality and integration routes properly takes longer because engineers need to work with real systems. Organisation-wide assessments take longer and can delay action if they are too broad.</p>
+            </details>
+            <details class="faq__item">
+              <summary><span>Do you need perfect data to start with AI?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>No, you do not need perfect data to start with AI, but you need data that is accessible and good enough for the specific use case. Check quality on a real sample, including edge cases, and fix the issues that affect the use case first. Waiting for organisation-wide data perfection usually means never starting.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+            <section class="section section--dark on-dark" id="cta-form">
+        <div class="container fc">
+          <div class="fc__left">
+            <h2 class="h2">Start your next AI project with a plan your systems can support</h2>
+            <div class="fc__clutch">
+              <span class="eyebrow">Clutch</span
+              ><span class="caption">[Placeholder] Clutch badge and rating — add the official widget</span>
+            </div>
+            <blockquote class="fc__quote">
+              “Placeholder testimonial — replace with the global set from tkxel.com.”
+              <footer class="caption">— Knowles</footer>
+            </blockquote>
+            <blockquote class="fc__quote">
+              “Placeholder testimonial — replace with the global set from tkxel.com.”
+              <footer class="caption">— Sterne Kessler</footer>
+            </blockquote>
+          </div>
+          <form class="fc__form" method="post" action="/api/lead" data-lead-form>
+            <label class="fc__full"
+              >I'm interested in
+              <select name="interest" required>
+                <option>FDE pod</option>
+                <option>AI strategy &amp; readiness</option>
+                <option>Agentic platforms &amp; integrations</option>
+                <option>Adoption &amp; enablement</option>
+                <option>AI security &amp; governance</option>
+                <option>Product &amp; engineering transformation</option>
+                <option>Something else</option>
+              </select>
+            </label>
+            <label>First name*<input name="first_name" required autocomplete="given-name" /></label>
+            <label>Last name*<input name="last_name" required autocomplete="family-name" /></label>
+            <label>Work email*<input name="email" type="email" required autocomplete="email" /></label>
+            <label>Job title*<input name="job_title" required autocomplete="organization-title" /></label>
+            <label class="fc__full">Phone<input name="phone" type="tel" autocomplete="tel" /></label>
+            <label class="fc__full">Project description<textarea name="message" rows="4"></textarea></label>
+            <label class="fc__check fc__full"
+              ><input type="checkbox" name="marketing_consent" /> I agree to receive marketing communications from
+              tkxel.</label
+            >
+            <label class="fc__check fc__full"
+              ><input type="checkbox" name="sms_consent" /> I agree to receive SMS messages from tkxel.</label
+            >
+            <button class="btn btn--invert fc__full" type="submit">Book discovery call</button>
+            <p class="caption fc__full">
+              By submitting, you agree to our <a href="https://tkxel.com/terms-of-use/">Terms</a> and
+              <a href="https://tkxel.com/privacy-policy/">Privacy policy</a>.
+            </p>
+            <p class="fc__status fc__full" role="status" data-lead-status></p>
+          </form>
+        </div>
+      </section>
+    </main>
+                                                                                                                                    <footer class="ftr">
+      <div class="container">
+        <div class="ftr__top">
+          <div class="ftr__brand">
+            <a href="/" class="ftr__logo">tkxel<span>FDE</span></a>
+            <p class="ftr__tag">
+              Forward deployed engineering teams that build production AI inside your environment, then hand it over to
+              your team.
+            </p>
+            <a href="https://tkxel.com" class="ftr__main">Visit tkxel.com →</a>
+          </div>
+          <div class="ftr__cols">
+            <div>
+              <a href="/services/ai-strategy-readiness/" class="ftr__head">AI strategy &amp; readiness</a>
+              <ul>
+                <li><a href="/services/ai-readiness-assessment/">AI maturity assessment</a></li>
+                <li>Process mapping &amp; use-case prioritization</li>
+                <li>Use-case portfolio &amp; ROI tracking</li>
+                <li>Data readiness audit</li>
+              </ul>
+            </div>
+            <div>
+              <a href="/services/fde-pods/" class="ftr__head">FDE pods</a>
+              <ul>
+                <li><a href="/services/full-stack-fde-pod/">Full-stack FDE pod</a></li>
+                <li><a href="/services/agentic-fde-pod/">Agentic FDE pod</a></li>
+                <li><a href="/services/data-engineering-fde-pod/">Data engineering FDE pod</a></li>
+                <li><a href="/services/integration-legacy-modernization-pod/">Integration &amp; legacy modernization pod</a></li>
+              </ul>
+            </div>
+            <div>
+              <a href="/services/agentic-platforms/" class="ftr__head">Agentic platforms &amp; integrations</a>
+              <ul>
+                <li><a href="/services/mcp-enterprise-integrations/">Enterprise connectors &amp; MCP integrations</a></li>
+                <li><a href="/services/enterprise-knowledge-assistant/">Enterprise knowledge assistant</a></li>
+                <li><a href="/services/workflow-agentification/">Workflow agentification</a></li>
+                <li>Managed AI operations</li>
+              </ul>
+            </div>
+            <div>
+              <a href="/services/adoption-enablement/" class="ftr__head">Adoption &amp; enablement</a>
+              <ul>
+                <li>Role-based AI training</li>
+                <li>AI champions program</li>
+                <li>Train-the-trainer</li>
+                <li>AI center of excellence</li>
+              </ul>
+            </div>
+            <div>
+              <a href="/services/ai-security-governance/" class="ftr__head">AI security &amp; governance</a>
+              <ul>
+                <li>Agent security &amp; permissions review</li>
+                <li><a href="/services/ai-penetration-testing/">AI penetration testing</a></li>
+                <li>AI governance council setup</li>
+              </ul>
+            </div>
+            <div>
+              <a href="/services/product-engineering/" class="ftr__head">Product &amp; engineering transformation</a>
+              <ul>
+                <li>Product AI strategy</li>
+                <li>Rapid prototype sprint</li>
+                <li>AI-enabled SDLC redesign</li>
+                <li>Legacy SaaS modernization</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="ftr__offices">
+          <div>
+            <span class="eyebrow">USA</span>
+            <p>Placeholder — confirm from tkxel.com footer</p>
+          </div>
+          <div>
+            <span class="eyebrow">Saudi Arabia</span>
+            <p>Placeholder — confirm from tkxel.com footer</p>
+          </div>
+          <div>
+            <span class="eyebrow">Portugal</span>
+            <p>Placeholder — confirm from tkxel.com footer</p>
+          </div>
+          <div>
+            <span class="eyebrow">Pakistan</span>
+            <p>Placeholder — confirm from tkxel.com footer</p>
+          </div>
+        </div>
+        <div class="ftr__legal">
+          <span>© 2026 tkxel. All rights reserved.</span>
+          <nav aria-label="Legal"><a href="https://tkxel.com/privacy-policy/">Privacy policy</a><a href="https://tkxel.com/terms-of-use/">Terms of use</a></nav>
+        </div>
+      </div>
+    </footer>
+    <script src="/assets/js/main.js" defer></script>
+  </body>
+</html>

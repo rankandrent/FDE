@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FDE vs staff augmentation vs consulting compared | tkxel FDE</title>
+    <meta name="description" content="FDE vs staff augmentation vs consulting: compare accountability, pricing, team size, knowledge transfer and failure modes to pick the right delivery model." />
+    <link rel="canonical" href="https://fde.tkxel.com/fde-vs-staff-augmentation-vs-consulting/" />
+    <meta property="og:title" content="FDE vs staff augmentation vs consulting compared | tkxel FDE" />
+    <meta property="og:description" content="FDE vs staff augmentation vs consulting: compare accountability, pricing, team size, knowledge transfer and failure modes to pick the right delivery model." />
+    <meta property="og:url" content="https://fde.tkxel.com/fde-vs-staff-augmentation-vs-consulting/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://fde.tkxel.com/og-default.png" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is the difference between FDE and staff augmentation?", "acceptedAnswer": {"@type": "Answer", "text": "The difference is who owns the outcome. Staff augmentation gives you engineers who work under your direction on tasks you define, so delivery risk stays with you. Forward deployed engineering gives you a self-directed pod that owns one agreed outcome, scopes the work, ships it to production and hands it over. Staff augmentation is usually billed by time; FDE is usually priced by phase or outcome. Augmentation suits clear roadmaps, while FDE suits outcomes that have to be figured out while building."}}, {"@type": "Question", "name": "Is forward deployed engineering more expensive than consulting?", "acceptedAnswer": {"@type": "Answer", "text": "Forward deployed engineering can cost more per week than advisory consulting, but you are buying a different thing. A consulting engagement typically ends with recommendations, and you still have to pay someone to implement them. An FDE pod ends with a running system and a handover. When you compare total cost to a live result, the gap is often smaller than the day rates suggest. If you only need a decision or a strategy, consulting is the cheaper and more honest choice."}}, {"@type": "Question", "name": "When should I use staff augmentation instead of an FDE team?", "acceptedAnswer": {"@type": "Answer", "text": "Use staff augmentation when your requirements are clear and you have managers and product owners ready to direct extra engineers. It works well for extending an existing product, clearing a known backlog or covering a skills gap for a set period. If you do not have that leadership capacity, or the work needs discovery and cross-system integration, an FDE pod that brings its own technical lead is usually the safer option."}}, {"@type": "Question", "name": "Do forward deployed engineers replace consultants?", "acceptedAnswer": {"@type": "Answer", "text": "No, forward deployed engineers do not replace consultants, but they cover much of the implementation work consultants hand back. Strategy, investment cases and organisational change still benefit from advisory work. FDEs take over at the point where a decision needs to become running software. Many companies use a short assessment to shape the problem and then an FDE pod to deliver it, which keeps advice and execution connected."}}, {"@type": "Question", "name": "How is an FDE engagement priced?", "acceptedAnswer": {"@type": "Answer", "text": "An FDE engagement is usually priced per phase or per outcome rather than purely by the hour. At tkxel, discovery is a fixed-price assessment of two to four weeks, and pod work is scoped around one outcome with a defined team and timeframe. That gives you cost predictability while leaving room for the pod to adapt. Time-and-materials billing is more typical of staff augmentation."}}, {"@type": "Question", "name": "What happens when an FDE engagement ends?", "acceptedAnswer": {"@type": "Answer", "text": "When an FDE engagement ends, the pod hands over the running system, the code, documentation, runbooks and the operating knowledge your team needs. A good handover includes paired working sessions so your engineers have already operated the system before the pod leaves. You can then run it yourself, bring the pod back for a second outcome or move to managed operations if you would rather not staff it internally."}}]}</script>
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "FDE vs staff augmentation vs consulting: which delivery model fits your project", "description": "FDE vs staff augmentation vs consulting: compare accountability, pricing, team size, knowledge transfer and failure modes to pick the right delivery model.", "author": {"@type": "Organization", "name": "tkxel"}, "publisher": {"@type": "Organization", "name": "tkxel"}, "datePublished": "2026-10-19", "mainEntityOfPage": "https://fde.tkxel.com/fde-vs-staff-augmentation-vs-consulting/"}</script>
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+  </head>
+  <body>
+                                                                                                                                                                                                                                                                    <header class="hdr" data-hdr>
+      <div class="container hdr__bar">
+        <a href="/" class="hdr__logo" aria-label="tkxel FDE home">tkxel<span>FDE</span></a>
+        <nav class="hdr__nav" aria-label="Primary">
+          <div class="hdr__mega-wrap">
+            <button class="hdr__link" aria-expanded="false" aria-controls="mega" data-mega-btn>Services</button>
+            <div class="hdr__mega" id="mega" hidden data-mega>
+              <div class="container hdr__mega-grid">
+                <div>
+                  <a href="/services/ai-strategy-readiness/" class="hdr__mega-title">AI strategy &amp; readiness</a>
+                  <ul>
+                    <li><a href="/services/ai-readiness-assessment/">AI maturity assessment</a></li>
+                    <li>Process mapping &amp; use-case prioritization</li>
+                    <li>Use-case portfolio &amp; ROI tracking</li>
+                    <li>Data readiness audit</li>
+                  </ul>
+                </div>
+                <div>
+                  <a href="/services/fde-pods/" class="hdr__mega-title">FDE pods</a>
+                  <ul>
+                    <li><a href="/services/full-stack-fde-pod/">Full-stack FDE pod</a></li>
+                    <li><a href="/services/agentic-fde-pod/">Agentic FDE pod</a></li>
+                    <li><a href="/services/data-engineering-fde-pod/">Data engineering FDE pod</a></li>
+                    <li><a href="/services/integration-legacy-modernization-pod/">Integration &amp; legacy modernization pod</a></li>
+                  </ul>
+                </div>
+                <div>
+                  <a href="/services/agentic-platforms/" class="hdr__mega-title"
+                    >Agentic platforms &amp; integrations</a
+                  <ul>
+                    <li><a href="/services/mcp-enterprise-integrations/">Enterprise connectors &amp; MCP integrations</a></li>
+                    <li><a href="/services/enterprise-knowledge-assistant/">Enterprise knowledge assistant</a></li>
+                    <li><a href="/services/workflow-agentification/">Workflow agentification</a></li>
+                    <li>Managed AI operations</li>
+                  </ul>
+                </div>
+                <div>
+                  <a href="/services/adoption-enablement/" class="hdr__mega-title">Adoption &amp; enablement</a>
+                  <ul>
+                    <li>Role-based AI training</li>
+                    <li>AI champions program</li>
+                    <li>Train-the-trainer</li>
+                    <li>AI center of excellence</li>
+                  </ul>
+                </div>
+                <div>
+                  <a href="/services/ai-security-governance/" class="hdr__mega-title">AI security &amp; governance</a>
+                  <ul>
+                    <li>Agent security &amp; permissions review</li>
+                    <li><a href="/services/ai-penetration-testing/">AI penetration testing</a></li>
+                    <li>AI governance council setup</li>
+                  </ul>
+                </div>
+                <div>
+                  <a href="/services/product-engineering/" class="hdr__mega-title"
+                    >Product &amp; engineering transformation</a
+                  <ul>
+                    <li>Product AI strategy</li>
+                    <li>Rapid prototype sprint</li>
+                    <li>AI-enabled SDLC redesign</li>
+                    <li>Legacy SaaS modernization</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        <a href="/services/fde-pods/" class="hdr__link">FDE pods</a><a href="/industries/" class="hdr__link">Industries</a><a href="/case-studies/" class="hdr__link">Case studies</a><a href="/blog/" class="hdr__link">Resources</a>
+      </nav>
+        <a href="#cta-form" class="btn btn--invert hdr__cta">Book discovery call</a>
+        <button class="hdr__burger" aria-label="Open menu" aria-expanded="false" data-burger>
+          <span></span><span></span>
+        </button>
+      </div>
+    </header>
+    <main id="main">
+      <section class="art__hero section--gradient on-dark" data-hero>
+        <div class="container art__narrow">
+          <span class="eyebrow">Comparison</span>
+          <h1 class="display art__h1">FDE vs staff augmentation vs consulting: which delivery model fits your project</h1>
+          <p class="caption art__meta">October 19, 2026 · 9 min read</p>
+        </div>
+      </section>
+      <article class="section">
+        <div class="container art__layout">
+          <nav class="art__toc" aria-label="Contents"><span class="eyebrow">Contents</span><ol><li><a href="#the-short-answer">The short answer</a></li><li><a href="#what-each-model-actually-is">What each model actually is</a></li><li><a href="#fde-vs-staff-augmentation-vs-consulting-compared">FDE vs staff augmentation vs consulting compared</a></li><li><a href="#when-forward-deployed-engineering-is-the-right-c">When forward deployed engineering is the right choice</a></li><li><a href="#when-staff-augmentation-or-consulting-is-the-bet">When staff augmentation or consulting is the better fit</a></li><li><a href="#trade-offs-to-weigh-before-you-choose">Trade-offs to weigh before you choose</a></li><li><a href="#how-cost-and-risk-differ-across-the-three-models">How cost and risk differ across the three models</a></li><li><a href="#questions-to-ask-before-you-choose">Questions to ask before you choose</a></li><li><a href="#can-you-combine-the-models">Can you combine the models?</a></li></ol></nav>
+          <div class="art__body">
+          <p class="art__lede">FDE vs staff augmentation vs consulting comes down to who owns the outcome. Consulting gives you a recommendation, staff augmentation gives you engineering capacity you direct, and forward deployed engineering gives you an embedded team that owns one result until it runs in production. The right choice depends on how clear your problem is and who should carry delivery risk.</p>
+          <h2 class="art__h2" id="the-short-answer">The short answer</h2>
+          <p>Choose consulting when the problem is unclear, staff augmentation when the roadmap is clear and you need hands, and forward deployed engineering when the solution has to be built and adapted inside your environment. That rule of thumb appears across most comparisons of the three models, and it holds up well in practice.</p>
+          <p>The deeper difference is accountability. With consulting, you own implementation. With staff augmentation, you own direction and delivery. With an FDE pod, the partner owns a defined outcome, and you own the decisions only you can make.</p>
+          <p>None of the three is better in general. Each one is the cheapest, fastest route for a particular kind of problem, and the expensive mistakes happen when a company uses one model for a problem shaped for another.</p>
+          <h2 class="art__h2" id="what-each-model-actually-is">What each model actually is</h2>
+          <p>Each model sells something different: advice, capacity or outcomes. Being precise about that avoids the most common buying mistake, which is paying for one and expecting another.</p>
+          <h3 class="art__h3">Consulting</h3>
+          <p>Consultants assess your situation and recommend what to do. The typical deliverable is a strategy, architecture, roadmap or business case, followed by a handoff. Some firms also implement, but the core product is judgement, and success is usually measured by the quality and adoption of the recommendation.</p>
+          <h3 class="art__h3">Staff augmentation</h3>
+          <p>Staff augmentation adds individual engineers to your team. They work under your managers, inside your process, on backlog items you define. You get flexible capacity without the cost and delay of hiring, and you keep full control of what gets built, which also means you keep full responsibility for whether it works.</p>
+          <h3 class="art__h3">Forward deployed engineering</h3>
+          <p>Forward deployed engineering embeds a small, self-directed team in your environment to own one outcome. The pod scopes, builds, deploys and hands over, and it is judged on whether the system works in production and gets used. It brings its own technical leadership, so it asks for decisions from you rather than daily direction.</p>
+          <h2 class="art__h2" id="fde-vs-staff-augmentation-vs-consulting-compared">FDE vs staff augmentation vs consulting compared</h2>
+          <p>The table below compares the three models across the questions buyers ask most. Treat it as a general pattern, because individual vendors blur these lines: some consultancies build, and some augmentation firms supply team leads. Ask any partner which column they really sit in.</p>
+          <div class="ct__scroll" tabindex="0" role="region" aria-label="Forward deployed engineering vs staff augmentation vs consulting"><table class="ct art__table"><caption class="sr-only">Forward deployed engineering vs staff augmentation vs consulting</caption><thead><tr><th scope="col"></th><th scope="col">Forward deployed engineering</th><th scope="col">Staff augmentation</th><th scope="col">Consulting</th></tr></thead><tbody><tr><th scope="row">Accountability</th><td>Partner owns a defined production outcome</td><td>You own the outcome; partner supplies people</td><td>Partner owns the quality of advice; you own execution</td></tr><tr><th scope="row">Pricing model</th><td>Fixed price per phase or outcome-scoped pod fee</td><td>Time and materials, per person per month or hour</td><td>Fixed fee per engagement or daily rates</td></tr><tr><th scope="row">Who directs work</th><td>The pod, against an agreed goal, with your sign-off</td><td>Your managers and product owners</td><td>Consultants direct the analysis; you direct follow-through</td></tr><tr><th scope="row">Team size</th><td>3–5 engineers in one cross-functional pod</td><td>One to many individuals, added as needed</td><td>Small advisory team, often senior-heavy</td></tr><tr><th scope="row">Knowledge transfer</th><td>Planned handover with code, runbooks and pairing</td><td>Knowledge stays with your team if you manage it</td><td>Reports and roadmaps; little running code</td></tr><tr><th scope="row">Best for</th><td>Getting one AI or integration outcome into production fast</td><td>Known roadmaps that need more capacity</td><td>Unclear problems, strategy and investment decisions</td></tr><tr><th scope="row">Fails when</th><td>Engineers lack access to data, systems or decision-makers</td><td>You lack the management bandwidth to direct them</td><td>Recommendations meet real constraints nobody tested</td></tr></tbody></table></div>
+          <h2 class="art__h2" id="when-forward-deployed-engineering-is-the-right-c">When forward deployed engineering is the right choice</h2>
+          <p>Forward deployed engineering is the right choice when you know the outcome you want but the path runs through messy data, legacy systems and changing requirements. In that situation, a spec written up front will be wrong, and you need a team that can learn and adjust while it builds.</p>
+          <p>It also fits when your own engineers are fully committed. A pod brings its own leadership, so it does not draw heavily on your managers’ time, and it leaves behind documented, running software rather than headcount you have to keep directing.</p>
+          <p>AI work is a common example. A model that performs well on a test set still has to be connected to live data, wrapped in permissions and monitoring, and placed into a workflow people will actually use. Those steps are where an embedded pod earns its cost.</p>
+          <ul><li>An AI pilot has worked in a sandbox but not in production.</li><li>The outcome crosses data, application and infrastructure work.</li><li>You want one partner accountable for the result.</li></ul>
+          <h2 class="art__h2" id="when-staff-augmentation-or-consulting-is-the-bet">When staff augmentation or consulting is the better fit</h2>
+          <p>Staff augmentation is the better fit when your backlog is well defined and your team has the leadership to direct more people. It is usually the cheapest way to add capacity, and you keep every architectural decision in house. It also works well for filling a specific skills gap, such as a data engineer for six months, inside a team that already runs smoothly.</p>
+          <p>Consulting is the better fit when you have not yet decided what to build or whether to build at all. If you need an AI strategy, a business case or a vendor selection, paying an embedded engineering team to answer that question is expensive. A short advisory or readiness engagement is the honest answer there, and an FDE pod can follow once the outcome is clear.</p>
+          <h2 class="art__h2" id="trade-offs-to-weigh-before-you-choose">Trade-offs to weigh before you choose</h2>
+          <p>Every model has a cost, and FDE is no exception. A pod concentrates knowledge in a few people, so if handover is not a named deliverable, you can end up dependent on the partner. FDE also needs real access to systems and stakeholders, which some security and procurement processes make slow.</p>
+          <p>Staff augmentation’s main risk is hidden management cost: you are buying hours, and if nobody is steering them, output drifts. Consulting’s main risk is the gap between recommendation and reality, because advice that has not been tested against your systems may not survive implementation.</p>
+          <h2 class="art__h2" id="how-cost-and-risk-differ-across-the-three-models">How cost and risk differ across the three models</h2>
+          <p>The three models put cost and risk in different places, and that matters more than the headline rate. Staff augmentation often has the lowest rate per person, but you absorb the cost of direction, coordination and rework. Consulting can look contained, yet the implementation bill arrives later and is rarely in the original budget.</p>
+          <p>An FDE pod usually costs more per week than a single augmented engineer, because you are paying for a whole team with its own lead. In exchange, scope is tied to one outcome and priced by phase, so the partner carries more of the delivery risk. The fair comparison is total cost to a running system, including your own management time, not the day rate alone.</p>
+          <ul><li>Staff augmentation: low rate, high internal management cost, risk stays with you.</li><li>Consulting: contained fee, implementation cost comes later, risk moves to whoever builds.</li><li>FDE: higher weekly cost, outcome-scoped, delivery risk shared with the partner.</li></ul>
+          <h2 class="art__h2" id="questions-to-ask-before-you-choose">Questions to ask before you choose</h2>
+          <p>The right model usually becomes obvious once you answer a few questions honestly. Work through them with the people who will sponsor and run the work, not just procurement. If the answers point in different directions, that is often a sign to start with a short assessment before committing to a build.</p>
+          <ul><li>Do we know exactly what to build, or do we first need to find out?</li><li>Do we have managers and product owners with time to direct extra engineers?</li><li>Who should carry the risk if the system does not work in production?</li><li>Can an outside team get access to our data, systems and decision-makers within weeks?</li><li>Who will own and operate the result after the partner leaves?</li><li>Are we buying a decision, more capacity or a working outcome?</li><li>How soon do we need results in production, and what happens if we miss that date?</li></ul>
+          <h2 class="art__h2" id="can-you-combine-the-models">Can you combine the models?</h2>
+          <p>Yes, and many companies do. A common sequence is a short readiness assessment to define the outcome, an FDE pod to get it into production, and then either your own team or a smaller augmented team to extend it.</p>
+          <p>tkxel supports that sequence directly. We run fixed-price assessments, outcome-owned FDE pods and managed AI operations, and we can embed individual FDE engineers in your team when you need capacity rather than a full pod. Our engagement models page sets out how each step is priced and what you get.</p>
+          <p>The key when combining models is to be explicit about where accountability changes hands. Write down who owns the outcome at each stage, what the handover looks like and which documents, code and access move with it. Most problems in mixed engagements come from assuming the next team inherited responsibility that nobody actually passed on.</p>
+          <aside class="art__related"><span class="eyebrow">Related</span><ul><li><a href="/what-is-forward-deployed-engineering/" class="link-arrow">What is forward deployed engineering?</a></li><li><a href="/engagement-models/" class="link-arrow">Engagement models</a></li><li><a href="/services/fde-pods/" class="link-arrow">FDE pods</a></li><li><a href="/services/ai-strategy-readiness/" class="link-arrow">AI strategy and readiness</a></li></ul></aside>
+          </div>
+        </div>
+      </article>
+      <section class="icb section--gradient on-dark">
+        <div class="container icb__row">
+          <h2 class="h2">Not sure which model fits? Get a straight answer</h2>
+          <div class="icb__right">
+            <p>Share your goal and constraints. We’ll tell you which model fits, even if it isn’t ours.</p>
+            <a href="#cta-form" class="btn btn--invert">Compare models with us</a>
+          </div>
+        </div>
+      </section>
+      <section class="section" id="faq">
+        <div class="container faq">
+          <h2 class="h2 reveal">Frequently asked questions</h2>
+          <div>
+            <details class="faq__item" open>
+              <summary><span>What is the difference between FDE and staff augmentation?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>The difference is who owns the outcome. Staff augmentation gives you engineers who work under your direction on tasks you define, so delivery risk stays with you. Forward deployed engineering gives you a self-directed pod that owns one agreed outcome, scopes the work, ships it to production and hands it over. Staff augmentation is usually billed by time; FDE is usually priced by phase or outcome. Augmentation suits clear roadmaps, while FDE suits outcomes that have to be figured out while building.</p>
+            </details>
+            <details class="faq__item">
+              <summary><span>Is forward deployed engineering more expensive than consulting?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>Forward deployed engineering can cost more per week than advisory consulting, but you are buying a different thing. A consulting engagement typically ends with recommendations, and you still have to pay someone to implement them. An FDE pod ends with a running system and a handover. When you compare total cost to a live result, the gap is often smaller than the day rates suggest. If you only need a decision or a strategy, consulting is the cheaper and more honest choice.</p>
+            </details>
+            <details class="faq__item">
+              <summary><span>When should I use staff augmentation instead of an FDE team?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>Use staff augmentation when your requirements are clear and you have managers and product owners ready to direct extra engineers. It works well for extending an existing product, clearing a known backlog or covering a skills gap for a set period. If you do not have that leadership capacity, or the work needs discovery and cross-system integration, an FDE pod that brings its own technical lead is usually the safer option.</p>
+            </details>
+            <details class="faq__item">
+              <summary><span>Do forward deployed engineers replace consultants?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>No, forward deployed engineers do not replace consultants, but they cover much of the implementation work consultants hand back. Strategy, investment cases and organisational change still benefit from advisory work. FDEs take over at the point where a decision needs to become running software. Many companies use a short assessment to shape the problem and then an FDE pod to deliver it, which keeps advice and execution connected.</p>
+            </details>
+            <details class="faq__item">
+              <summary><span>How is an FDE engagement priced?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>An FDE engagement is usually priced per phase or per outcome rather than purely by the hour. At tkxel, discovery is a fixed-price assessment of two to four weeks, and pod work is scoped around one outcome with a defined team and timeframe. That gives you cost predictability while leaving room for the pod to adapt. Time-and-materials billing is more typical of staff augmentation.</p>
+            </details>
+            <details class="faq__item">
+              <summary><span>What happens when an FDE engagement ends?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>When an FDE engagement ends, the pod hands over the running system, the code, documentation, runbooks and the operating knowledge your team needs. A good handover includes paired working sessions so your engineers have already operated the system before the pod leaves. You can then run it yourself, bring the pod back for a second outcome or move to managed operations if you would rather not staff it internally.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+            <section class="section section--dark on-dark" id="cta-form">
+        <div class="container fc">
+          <div class="fc__left">
+            <h2 class="h2">Let’s choose the delivery model that gets your outcome live</h2>
+            <div class="fc__clutch">
+              <span class="eyebrow">Clutch</span
+              ><span class="caption">[Placeholder] Clutch badge and rating — add the official widget</span>
+            </div>
+            <blockquote class="fc__quote">
+              “Placeholder testimonial — replace with the global set from tkxel.com.”
+              <footer class="caption">— Knowles</footer>
+            </blockquote>
+            <blockquote class="fc__quote">
+              “Placeholder testimonial — replace with the global set from tkxel.com.”
+              <footer class="caption">— Sterne Kessler</footer>
+            </blockquote>
+          </div>
+          <form class="fc__form" method="post" action="/api/lead" data-lead-form>
+            <label class="fc__full"
+              >I'm interested in
+              <select name="interest" required>
+                <option>FDE pod</option>
+                <option>AI strategy &amp; readiness</option>
+                <option>Agentic platforms &amp; integrations</option>
+                <option>Adoption &amp; enablement</option>
+                <option>AI security &amp; governance</option>
+                <option>Product &amp; engineering transformation</option>
+                <option>Something else</option>
+              </select>
+            </label>
+            <label>First name*<input name="first_name" required autocomplete="given-name" /></label>
+            <label>Last name*<input name="last_name" required autocomplete="family-name" /></label>
+            <label>Work email*<input name="email" type="email" required autocomplete="email" /></label>
+            <label>Job title*<input name="job_title" required autocomplete="organization-title" /></label>
+            <label class="fc__full">Phone<input name="phone" type="tel" autocomplete="tel" /></label>
+            <label class="fc__full">Project description<textarea name="message" rows="4"></textarea></label>
+            <label class="fc__check fc__full"
+              ><input type="checkbox" name="marketing_consent" /> I agree to receive marketing communications from
+              tkxel.</label
+            >
+            <label class="fc__check fc__full"
+              ><input type="checkbox" name="sms_consent" /> I agree to receive SMS messages from tkxel.</label
+            >
+            <button class="btn btn--invert fc__full" type="submit">Book discovery call</button>
+            <p class="caption fc__full">
+              By submitting, you agree to our <a href="https://tkxel.com/terms-of-use/">Terms</a> and
+              <a href="https://tkxel.com/privacy-policy/">Privacy policy</a>.
+            </p>
+            <p class="fc__status fc__full" role="status" data-lead-status></p>
+          </form>
+        </div>
+      </section>
+    </main>
+                                                                                                                                    <footer class="ftr">
+      <div class="container">
+        <div class="ftr__top">
+          <div class="ftr__brand">
+            <a href="/" class="ftr__logo">tkxel<span>FDE</span></a>
+            <p class="ftr__tag">
+              Forward deployed engineering teams that build production AI inside your environment, then hand it over to
+              your team.
+            </p>
+            <a href="https://tkxel.com" class="ftr__main">Visit tkxel.com →</a>
+          </div>
+          <div class="ftr__cols">
+            <div>
+              <a href="/services/ai-strategy-readiness/" class="ftr__head">AI strategy &amp; readiness</a>
+              <ul>
+                <li><a href="/services/ai-readiness-assessment/">AI maturity assessment</a></li>
+                <li>Process mapping &amp; use-case prioritization</li>
+                <li>Use-case portfolio &amp; ROI tracking</li>
+                <li>Data readiness audit</li>
+              </ul>
+            </div>
+            <div>
+              <a href="/services/fde-pods/" class="ftr__head">FDE pods</a>
+              <ul>
+                <li><a href="/services/full-stack-fde-pod/">Full-stack FDE pod</a></li>
+                <li><a href="/services/agentic-fde-pod/">Agentic FDE pod</a></li>
+                <li><a href="/services/data-engineering-fde-pod/">Data engineering FDE pod</a></li>
+                <li><a href="/services/integration-legacy-modernization-pod/">Integration &amp; legacy modernization pod</a></li>
+              </ul>
+            </div>
+            <div>
+              <a href="/services/agentic-platforms/" class="ftr__head">Agentic platforms &amp; integrations</a>
+              <ul>
+                <li><a href="/services/mcp-enterprise-integrations/">Enterprise connectors &amp; MCP integrations</a></li>
+                <li><a href="/services/enterprise-knowledge-assistant/">Enterprise knowledge assistant</a></li>
+                <li><a href="/services/workflow-agentification/">Workflow agentification</a></li>
+                <li>Managed AI operations</li>
+              </ul>
+            </div>
+            <div>
+              <a href="/services/adoption-enablement/" class="ftr__head">Adoption &amp; enablement</a>
+              <ul>
+                <li>Role-based AI training</li>
+                <li>AI champions program</li>
+                <li>Train-the-trainer</li>
+                <li>AI center of excellence</li>
+              </ul>
+            </div>
+            <div>
+              <a href="/services/ai-security-governance/" class="ftr__head">AI security &amp; governance</a>
+              <ul>
+                <li>Agent security &amp; permissions review</li>
+                <li><a href="/services/ai-penetration-testing/">AI penetration testing</a></li>
+                <li>AI governance council setup</li>
+              </ul>
+            </div>
+            <div>
+              <a href="/services/product-engineering/" class="ftr__head">Product &amp; engineering transformation</a>
+              <ul>
+                <li>Product AI strategy</li>
+                <li>Rapid prototype sprint</li>
+                <li>AI-enabled SDLC redesign</li>
+                <li>Legacy SaaS modernization</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="ftr__offices">
+          <div>
+            <span class="eyebrow">USA</span>
+            <p>Placeholder — confirm from tkxel.com footer</p>
+          </div>
+          <div>
+            <span class="eyebrow">Saudi Arabia</span>
+            <p>Placeholder — confirm from tkxel.com footer</p>
+          </div>
+          <div>
+            <span class="eyebrow">Portugal</span>
+            <p>Placeholder — confirm from tkxel.com footer</p>
+          </div>
+          <div>
+            <span class="eyebrow">Pakistan</span>
+            <p>Placeholder — confirm from tkxel.com footer</p>
+          </div>
+        </div>
+        <div class="ftr__legal">
+          <span>© 2026 tkxel. All rights reserved.</span>
+          <nav aria-label="Legal"><a href="https://tkxel.com/privacy-policy/">Privacy policy</a><a href="https://tkxel.com/terms-of-use/">Terms of use</a></nav>
+        </div>
+      </div>
+    </footer>
+    <script src="/assets/js/main.js" defer></script>
+  </body>
+</html>

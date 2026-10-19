@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Why AI pilots fail to reach production | tkxel FDE</title>
+    <meta name="description" content="Why AI pilots fail to reach production: no success metric, curated data, no owner, skipped integration and monitoring, plus a practical path to a live system." />
+    <link rel="canonical" href="https://fde.tkxel.com/blog/why-ai-pilots-fail-to-reach-production/" />
+    <meta property="og:title" content="Why AI pilots fail to reach production | tkxel FDE" />
+    <meta property="og:description" content="Why AI pilots fail to reach production: no success metric, curated data, no owner, skipped integration and monitoring, plus a practical path to a live system." />
+    <meta property="og:url" content="https://fde.tkxel.com/blog/why-ai-pilots-fail-to-reach-production/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://fde.tkxel.com/og-default.png" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Why do most AI pilots fail?", "acceptedAnswer": {"@type": "Answer", "text": "Most AI pilots fail because of missing business metrics, unrepresentative data and unclear ownership, not weak models. RAND found that more than 80% of AI projects fail. Pilots are often built to demonstrate what is possible, then lack the integration, security review and monitoring needed to run safely in production, so nobody is willing to fund or own the next step."}}, {"@type": "Question", "name": "What percentage of AI pilots make it to production?", "acceptedAnswer": {"@type": "Answer", "text": "Only a small share of AI pilots make it to production with measurable value. MIT’s NANDA initiative reported in 2025 that about 95% of enterprise generative AI pilots delivered no measurable profit-and-loss impact. Definitions vary between studies, so treat the exact number with care, but every major source points to a large gap between pilots and production."}}, {"@type": "Question", "name": "How do you move an AI project from pilot to production?", "acceptedAnswer": {"@type": "Answer", "text": "You move an AI project from pilot to production by setting a business metric, naming owners and building on real data and integrations from the start. Add an evaluation suite, bring security in during design, and launch with monitoring and a support runbook. Scale only after the system meets its metric on live inputs."}}, {"@type": "Question", "name": "What is pilot purgatory in AI?", "acceptedAnswer": {"@type": "Answer", "text": "Pilot purgatory is when an AI project keeps running as an experiment but never gets funded or approved for production. It usually happens because the pilot cannot show a business result, has no owner, or fails security review late. The fix is to define production criteria at the start so the pilot either earns its way to production or stops."}}, {"@type": "Question", "name": "How long should an AI pilot take?", "acceptedAnswer": {"@type": "Answer", "text": "An AI pilot should usually take weeks, not quarters, if the scope is one workflow with accessible data. Long pilots are often a sign of unclear goals or blocked data access. A better approach is a short discovery to remove those blockers, then a build phase aimed at production rather than a demo."}}]}</script>
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Why AI pilots fail to reach production, and how to get yours over the line", "description": "Why AI pilots fail to reach production: no success metric, curated data, no owner, skipped integration and monitoring, plus a practical path to a live system.", "author": {"@type": "Organization", "name": "tkxel"}, "publisher": {"@type": "Organization", "name": "tkxel"}, "datePublished": "2026-09-17", "mainEntityOfPage": "https://fde.tkxel.com/blog/why-ai-pilots-fail-to-reach-production/"}</script>
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+  </head>
+  <body>
+                                                                                                                                                                                                                                                                    <header class="hdr" data-hdr>
+      <div class="container hdr__bar">
+        <a href="/" class="hdr__logo" aria-label="tkxel FDE home">tkxel<span>FDE</span></a>
+        <nav class="hdr__nav" aria-label="Primary">
+          <div class="hdr__mega-wrap">
+            <button class="hdr__link" aria-expanded="false" aria-controls="mega" data-mega-btn>Services</button>
+            <div class="hdr__mega" id="mega" hidden data-mega>
+              <div class="container hdr__mega-grid">
+                <div>
+                  <a href="/services/ai-strategy-readiness/" class="hdr__mega-title">AI strategy &amp; readiness</a>
+                  <ul>
+                    <li><a href="/services/ai-readiness-assessment/">AI maturity assessment</a></li>
+                    <li>Process mapping &amp; use-case prioritization</li>
+                    <li>Use-case portfolio &amp; ROI tracking</li>
+                    <li>Data readiness audit</li>
+                  </ul>
+                </div>
+                <div>
+                  <a href="/services/fde-pods/" class="hdr__mega-title">FDE pods</a>
+                  <ul>
+                    <li><a href="/services/full-stack-fde-pod/">Full-stack FDE pod</a></li>
+                    <li><a href="/services/agentic-fde-pod/">Agentic FDE pod</a></li>
+                    <li><a href="/services/data-engineering-fde-pod/">Data engineering FDE pod</a></li>
+                    <li><a href="/services/integration-legacy-modernization-pod/">Integration &amp; legacy modernization pod</a></li>
+                  </ul>
+                </div>
+                <div>
+                  <a href="/services/agentic-platforms/" class="hdr__mega-title"
+                    >Agentic platforms &amp; integrations</a
+                  <ul>
+                    <li><a href="/services/mcp-enterprise-integrations/">Enterprise connectors &amp; MCP integrations</a></li>
+                    <li><a href="/services/enterprise-knowledge-assistant/">Enterprise knowledge assistant</a></li>
+                    <li><a href="/services/workflow-agentification/">Workflow agentification</a></li>
+                    <li>Managed AI operations</li>
+                  </ul>
+                </div>
+                <div>
+                  <a href="/services/adoption-enablement/" class="hdr__mega-title">Adoption &amp; enablement</a>
+                  <ul>
+                    <li>Role-based AI training</li>
+                    <li>AI champions program</li>
+                    <li>Train-the-trainer</li>
+                    <li>AI center of excellence</li>
+                  </ul>
+                </div>
+                <div>
+                  <a href="/services/ai-security-governance/" class="hdr__mega-title">AI security &amp; governance</a>
+                  <ul>
+                    <li>Agent security &amp; permissions review</li>
+                    <li><a href="/services/ai-penetration-testing/">AI penetration testing</a></li>
+                    <li>AI governance council setup</li>
+                  </ul>
+                </div>
+                <div>
+                  <a href="/services/product-engineering/" class="hdr__mega-title"
+                    >Product &amp; engineering transformation</a
+                  <ul>
+                    <li>Product AI strategy</li>
+                    <li>Rapid prototype sprint</li>
+                    <li>AI-enabled SDLC redesign</li>
+                    <li>Legacy SaaS modernization</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        <a href="/services/fde-pods/" class="hdr__link">FDE pods</a><a href="/industries/" class="hdr__link">Industries</a><a href="/case-studies/" class="hdr__link">Case studies</a><a href="/blog/" class="hdr__link">Resources</a>
+      </nav>
+        <a href="#cta-form" class="btn btn--invert hdr__cta">Book discovery call</a>
+        <button class="hdr__burger" aria-label="Open menu" aria-expanded="false" data-burger>
+          <span></span><span></span>
+        </button>
+      </div>
+    </header>
+    <main id="main">
+      <section class="art__hero section--gradient on-dark" data-hero>
+        <div class="container art__narrow">
+          <span class="eyebrow">Article</span>
+          <h1 class="display art__h1">Why AI pilots fail to reach production, and how to get yours over the line</h1>
+          <p class="caption art__meta">17 September 2026 · 8 min read</p>
+        </div>
+      </section>
+      <article class="section">
+        <div class="container art__layout">
+          <nav class="art__toc" aria-label="Contents"><span class="eyebrow">Contents</span><ol><li><a href="#how-often-ai-pilots-stall">How often AI pilots stall</a></li><li><a href="#what-the-projects-that-ship-do-differently">What the projects that ship do differently</a></li><li><a href="#the-six-reasons-pilots-never-ship">The six reasons pilots never ship</a></li><li><a href="#pilot-thinking-versus-production-thinking">Pilot thinking versus production thinking</a></li><li><a href="#how-to-get-an-ai-pilot-into-production">How to get an AI pilot into production</a></li><li><a href="#where-forward-deployed-engineers-help">Where forward deployed engineers help</a></li><li><a href="#signs-your-pilot-is-ready-to-scale">Signs your pilot is ready to scale</a></li></ol></nav>
+          <div class="art__body">
+          <p class="art__lede">AI pilots fail to reach production mainly because they are built to impress, not to operate. They run on curated data, lack a production success metric, have no owner after launch, and skip integration, security and monitoring work. Fixing those gaps before the build starts matters more than choosing a better model.</p>
+          <h2 class="art__h2" id="how-often-ai-pilots-stall">How often AI pilots stall</h2>
+          <p>AI pilots stall far more often than they ship. RAND’s research on AI projects found that more than 80% fail, roughly twice the failure rate of IT projects that do not involve AI.</p>
+          <p>The figure most often quoted for generative AI comes from MIT’s NANDA initiative, whose 2025 report found that about 95% of enterprise generative AI pilots delivered no measurable impact on profit and loss. Treat these as directional, since definitions of failure differ, but the pattern is consistent: the model is rarely the problem.</p>
+          <p>Summaries of the MIT NANDA report describe the cause as a learning gap: generic tools that never integrate with company systems or adapt to real workflows. That is an engineering and operating problem, which is good news, because it is one you can fix.</p>
+          <h2 class="art__h2" id="what-the-projects-that-ship-do-differently">What the projects that ship do differently</h2>
+          <p>Projects that reach production tend to start narrow, sit inside an existing workflow and have a clear owner. They aim at a process with a measurable cost rather than at a broad ambition such as “use AI in customer service”.</p>
+          <p>Secondary summaries of the MIT NANDA report also say that companies buying from specialised partners succeeded far more often than those building alone, and that back-office automation produced stronger returns than the sales and marketing uses that attracted most budgets. Vendors, tkxel included, have an interest in that finding, so weigh it alongside your own team’s capacity.</p>
+          <h2 class="art__h2" id="the-six-reasons-pilots-never-ship">The six reasons pilots never ship</h2>
+          <p>Most stalled pilots fail for the same organisational and engineering reasons. You can usually spot them in the first week if you know what to look for.</p>
+          <h3 class="art__h3">No production success metric</h3>
+          <p>The pilot is judged on whether the demo looks good, not on a business number such as handling time or error rate. Without that metric, nobody can make the case to fund production, and the pilot keeps running as an experiment with no decision date.</p>
+          <h3 class="art__h3">Curated data</h3>
+          <p>Pilots often run on a clean sample. Real inputs are messier, and problems that were invisible in the pilot become systematic failures at scale.</p>
+          <h3 class="art__h3">No owner after launch</h3>
+          <p>Nobody is accountable for running the system, fixing errors or deciding what happens when the AI is wrong. When it errs, it gets switched off.</p>
+          <h3 class="art__h3">Skipped integration</h3>
+          <p>The pilot sits beside the real workflow instead of inside it. Users must copy and paste between tools, so adoption fades. A system that is not part of daily work never builds the usage data needed to justify scaling it.</p>
+          <h3 class="art__h3">Security and governance arrive late</h3>
+          <p>Security review starts after the pilot succeeds, then finds issues with data access, logging or approvals that take months to resolve.</p>
+          <h3 class="art__h3">No evaluation or monitoring</h3>
+          <p>There is no test suite to prove quality and no monitoring to catch drift, so leaders cannot trust the system enough to scale it.</p>
+          <h2 class="art__h2" id="pilot-thinking-versus-production-thinking">Pilot thinking versus production thinking</h2>
+          <p>The difference between a pilot and a production system is the work around the model. A pilot proves something is possible; production proves it is reliable, secure and owned.</p>
+          <p>That surrounding work is often larger than the model work itself. Plan for it in the budget and timeline from the start, so success in the pilot does not trigger a second, unplanned project.</p>
+          <div class="ct__scroll" tabindex="0" role="region" aria-label="How pilot and production approaches differ"><table class="ct art__table"><caption class="sr-only">How pilot and production approaches differ</caption><thead><tr><th scope="col">Area</th><th scope="col">Typical pilot</th><th scope="col">Production-ready approach</th></tr></thead><tbody><tr><th scope="row">Success measure</th><td>Demo impresses a committee</td><td>A business metric agreed before build</td></tr><tr><th scope="row">Data</th><td>Curated sample</td><td>Live data with access controls and edge cases</td></tr><tr><th scope="row">Integration</th><td>Stand-alone tool</td><td>Inside the systems people already use</td></tr><tr><th scope="row">Quality</th><td>Spot checks</td><td>Evaluation suite run on every change</td></tr><tr><th scope="row">Ownership</th><td>Innovation team</td><td>Named business and technical owners</td></tr><tr><th scope="row">Operations</th><td>None</td><td>Monitoring, alerting and a support runbook</td></tr></tbody></table></div>
+          <h2 class="art__h2" id="how-to-get-an-ai-pilot-into-production">How to get an AI pilot into production</h2>
+          <p>You get an AI pilot into production by treating it as a production project from the first day. That means defining the outcome, the owner and the operating standards before writing any code.</p>
+          <p>If you already have a stalled pilot, do not start again from scratch. Review it against the steps below, keep what works, and close the gaps in order: metric and owner first, then data and integration, then evaluation and monitoring.</p>
+          <ul><li>Pick one workflow with a measurable cost, such as invoice exceptions or support triage.</li><li>Agree the success metric and the threshold that justifies production spend.</li><li>Name a business owner and a technical owner who will run the system after launch.</li><li>Build against production-like data and real integrations, not a sandbox.</li><li>Bring security and compliance in during design, not after the demo.</li><li>Build an evaluation suite alongside the agent and run it on every change.</li><li>Launch with monitoring, alerting and a support runbook already in place.</li><li>Plan adoption: train users, collect feedback and adjust the workflow.</li></ul>
+          <h2 class="art__h2" id="where-forward-deployed-engineers-help">Where forward deployed engineers help</h2>
+          <p>Forward deployed engineers close the gap between a working demo and a working system because they build inside your environment. They deal with your real data, your identity provider and your approval process from the start, so the hard problems surface early.</p>
+          <p>tkxel’s FDE pods are designed for this stage: a small team embeds with your people, ships one production workflow against an agreed metric, and hands over the code, evaluation suite and runbooks. The trade-off is that embedded work needs real access and time from your subject-matter experts. If you cannot give that, no outside team will get the system to production.</p>
+          <p>Handover is the other half of the job. An FDE pod should leave your team able to run, change and improve the system without the pod, which means documentation, runbooks, evaluation suites and time spent pairing with the engineers who will own it.</p>
+          <h2 class="art__h2" id="signs-your-pilot-is-ready-to-scale">Signs your pilot is ready to scale</h2>
+          <p>A pilot is ready to scale when it meets its agreed metric on real data and someone is ready to own it. If any of the checks below fail, fix that first rather than adding more users.</p>
+          <p>Scale in stages even when every check passes. Expand to one more team or a larger share of traffic, watch the metrics for a few weeks, then expand again. Staged rollout keeps a surprise from becoming an incident.</p>
+          <p>Keep the original process available during early rollout so users have a fallback. Remove it only when the new system has met its metric for long enough that the business owner is confident signing off, and record that decision so the next project can follow the same path.</p>
+          <ul><li>It beats the agreed metric on a representative sample of live inputs.</li><li>It passes its evaluation suite, and the suite runs automatically.</li><li>Security has approved data access, logging and human review points.</li><li>A named owner has a runbook and knows how to roll back.</li><li>Users are using it inside their normal tools, not in a separate demo.</li></ul>
+          <aside class="art__related"><span class="eyebrow">Related</span><ul><li><a href="/services/agentic-fde-pod/" class="link-arrow">Agentic FDE pod</a></li><li><a href="/services/ai-strategy-readiness/" class="link-arrow">AI strategy and readiness</a></li><li><a href="/services/adoption-enablement/" class="link-arrow">Adoption and enablement</a></li></ul></aside>
+          </div>
+        </div>
+      </article>
+      <section class="icb section--gradient on-dark">
+        <div class="container icb__row">
+          <h2 class="h2">Move your stalled AI pilot into production</h2>
+          <div class="icb__right">
+            <p>An FDE pod embeds with your team and ships one workflow against a real metric.</p>
+            <a href="#cta-form" class="btn btn--invert">Review my pilot</a>
+          </div>
+        </div>
+      </section>
+      <section class="section" id="faq">
+        <div class="container faq">
+          <h2 class="h2 reveal">Frequently asked questions</h2>
+          <div>
+            <details class="faq__item" open>
+              <summary><span>Why do most AI pilots fail?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>Most AI pilots fail because of missing business metrics, unrepresentative data and unclear ownership, not weak models. RAND found that more than 80% of AI projects fail. Pilots are often built to demonstrate what is possible, then lack the integration, security review and monitoring needed to run safely in production, so nobody is willing to fund or own the next step.</p>
+            </details>
+            <details class="faq__item">
+              <summary><span>What percentage of AI pilots make it to production?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>Only a small share of AI pilots make it to production with measurable value. MIT’s NANDA initiative reported in 2025 that about 95% of enterprise generative AI pilots delivered no measurable profit-and-loss impact. Definitions vary between studies, so treat the exact number with care, but every major source points to a large gap between pilots and production.</p>
+            </details>
+            <details class="faq__item">
+              <summary><span>How do you move an AI project from pilot to production?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>You move an AI project from pilot to production by setting a business metric, naming owners and building on real data and integrations from the start. Add an evaluation suite, bring security in during design, and launch with monitoring and a support runbook. Scale only after the system meets its metric on live inputs.</p>
+            </details>
+            <details class="faq__item">
+              <summary><span>What is pilot purgatory in AI?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>Pilot purgatory is when an AI project keeps running as an experiment but never gets funded or approved for production. It usually happens because the pilot cannot show a business result, has no owner, or fails security review late. The fix is to define production criteria at the start so the pilot either earns its way to production or stops.</p>
+            </details>
+            <details class="faq__item">
+              <summary><span>How long should an AI pilot take?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>An AI pilot should usually take weeks, not quarters, if the scope is one workflow with accessible data. Long pilots are often a sign of unclear goals or blocked data access. A better approach is a short discovery to remove those blockers, then a build phase aimed at production rather than a demo.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+            <section class="section section--dark on-dark" id="cta-form">
+        <div class="container fc">
+          <div class="fc__left">
+            <h2 class="h2">Turn your next AI pilot into a system your team runs every day</h2>
+            <div class="fc__clutch">
+              <span class="eyebrow">Clutch</span
+              ><span class="caption">[Placeholder] Clutch badge and rating — add the official widget</span>
+            </div>
+            <blockquote class="fc__quote">
+              “Placeholder testimonial — replace with the global set from tkxel.com.”
+              <footer class="caption">— Knowles</footer>
+            </blockquote>
+            <blockquote class="fc__quote">
+              “Placeholder testimonial — replace with the global set from tkxel.com.”
+              <footer class="caption">— Sterne Kessler</footer>
+            </blockquote>
+          </div>
+          <form class="fc__form" method="post" action="/api/lead" data-lead-form>
+            <label class="fc__full"
+              >I'm interested in
+              <select name="interest" required>
+                <option>FDE pod</option>
+                <option>AI strategy &amp; readiness</option>
+                <option>Agentic platforms &amp; integrations</option>
+                <option>Adoption &amp; enablement</option>
+                <option>AI security &amp; governance</option>
+                <option>Product &amp; engineering transformation</option>
+                <option>Something else</option>
+              </select>
+            </label>
+            <label>First name*<input name="first_name" required autocomplete="given-name" /></label>
+            <label>Last name*<input name="last_name" required autocomplete="family-name" /></label>
+            <label>Work email*<input name="email" type="email" required autocomplete="email" /></label>
+            <label>Job title*<input name="job_title" required autocomplete="organization-title" /></label>
+            <label class="fc__full">Phone<input name="phone" type="tel" autocomplete="tel" /></label>
+            <label class="fc__full">Project description<textarea name="message" rows="4"></textarea></label>
+            <label class="fc__check fc__full"
+              ><input type="checkbox" name="marketing_consent" /> I agree to receive marketing communications from
+              tkxel.</label
+            >
+            <label class="fc__check fc__full"
+              ><input type="checkbox" name="sms_consent" /> I agree to receive SMS messages from tkxel.</label
+            >
+            <button class="btn btn--invert fc__full" type="submit">Book discovery call</button>
+            <p class="caption fc__full">
+              By submitting, you agree to our <a href="https://tkxel.com/terms-of-use/">Terms</a> and
+              <a href="https://tkxel.com/privacy-policy/">Privacy policy</a>.
+            </p>
+            <p class="fc__status fc__full" role="status" data-lead-status></p>
+          </form>
+        </div>
+      </section>
+    </main>
+                                                                                                                                    <footer class="ftr">
+      <div class="container">
+        <div class="ftr__top">
+          <div class="ftr__brand">
+            <a href="/" class="ftr__logo">tkxel<span>FDE</span></a>
+            <p class="ftr__tag">
+              Forward deployed engineering teams that build production AI inside your environment, then hand it over to
+              your team.
+            </p>
+            <a href="https://tkxel.com" class="ftr__main">Visit tkxel.com →</a>
+          </div>
+          <div class="ftr__cols">
+            <div>
+              <a href="/services/ai-strategy-readiness/" class="ftr__head">AI strategy &amp; readiness</a>
+              <ul>
+                <li><a href="/services/ai-readiness-assessment/">AI maturity assessment</a></li>
+                <li>Process mapping &amp; use-case prioritization</li>
+                <li>Use-case portfolio &amp; ROI tracking</li>
+                <li>Data readiness audit</li>
+              </ul>
+            </div>
+            <div>
+              <a href="/services/fde-pods/" class="ftr__head">FDE pods</a>
+              <ul>
+                <li><a href="/services/full-stack-fde-pod/">Full-stack FDE pod</a></li>
+                <li><a href="/services/agentic-fde-pod/">Agentic FDE pod</a></li>
+                <li><a href="/services/data-engineering-fde-pod/">Data engineering FDE pod</a></li>
+                <li><a href="/services/integration-legacy-modernization-pod/">Integration &amp; legacy modernization pod</a></li>
+              </ul>
+            </div>
+            <div>
+              <a href="/services/agentic-platforms/" class="ftr__head">Agentic platforms &amp; integrations</a>
+              <ul>
+                <li><a href="/services/mcp-enterprise-integrations/">Enterprise connectors &amp; MCP integrations</a></li>
+                <li><a href="/services/enterprise-knowledge-assistant/">Enterprise knowledge assistant</a></li>
+                <li><a href="/services/workflow-agentification/">Workflow agentification</a></li>
+                <li>Managed AI operations</li>
+              </ul>
+            </div>
+            <div>
+              <a href="/services/adoption-enablement/" class="ftr__head">Adoption &amp; enablement</a>
+              <ul>
+                <li>Role-based AI training</li>
+                <li>AI champions program</li>
+                <li>Train-the-trainer</li>
+                <li>AI center of excellence</li>
+              </ul>
+            </div>
+            <div>
+              <a href="/services/ai-security-governance/" class="ftr__head">AI security &amp; governance</a>
+              <ul>
+                <li>Agent security &amp; permissions review</li>
+                <li><a href="/services/ai-penetration-testing/">AI penetration testing</a></li>
+                <li>AI governance council setup</li>
+              </ul>
+            </div>
+            <div>
+              <a href="/services/product-engineering/" class="ftr__head">Product &amp; engineering transformation</a>
+              <ul>
+                <li>Product AI strategy</li>
+                <li>Rapid prototype sprint</li>
+                <li>AI-enabled SDLC redesign</li>
+                <li>Legacy SaaS modernization</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="ftr__offices">
+          <div>
+            <span class="eyebrow">USA</span>
+            <p>Placeholder — confirm from tkxel.com footer</p>
+          </div>
+          <div>
+            <span class="eyebrow">Saudi Arabia</span>
+            <p>Placeholder — confirm from tkxel.com footer</p>
+          </div>
+          <div>
+            <span class="eyebrow">Portugal</span>
+            <p>Placeholder — confirm from tkxel.com footer</p>
+          </div>
+          <div>
+            <span class="eyebrow">Pakistan</span>
+            <p>Placeholder — confirm from tkxel.com footer</p>
+          </div>
+        </div>
+        <div class="ftr__legal">
+          <span>© 2026 tkxel. All rights reserved.</span>
+          <nav aria-label="Legal"><a href="https://tkxel.com/privacy-policy/">Privacy policy</a><a href="https://tkxel.com/terms-of-use/">Terms of use</a></nav>
+        </div>
+      </div>
+    </footer>
+    <script src="/assets/js/main.js" defer></script>
+  </body>
+</html>

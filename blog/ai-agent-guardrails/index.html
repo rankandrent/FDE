@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI agent guardrails for production systems | tkxel FDE</title>
+    <meta name="description" content="AI agent guardrails for production: input and output validation, scoped tool permissions, policy checks in code, monitoring and kill switches that hold up." />
+    <link rel="canonical" href="https://fde.tkxel.com/blog/ai-agent-guardrails/" />
+    <meta property="og:title" content="AI agent guardrails for production systems | tkxel FDE" />
+    <meta property="og:description" content="AI agent guardrails for production: input and output validation, scoped tool permissions, policy checks in code, monitoring and kill switches that hold up." />
+    <meta property="og:url" content="https://fde.tkxel.com/blog/ai-agent-guardrails/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://fde.tkxel.com/og-default.png" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What are guardrails for AI agents?", "acceptedAnswer": {"@type": "Answer", "text": "Guardrails for AI agents are controls outside the model that limit what the agent can receive, do and return. They include input checks for prompt injection and sensitive data, tool allowlists and argument validation, business-policy checks in code, output schema and safety checks, and runtime limits such as rate caps and kill switches. Unlike prompt instructions, guardrails are enforced by code the model cannot override."}}, {"@type": "Question", "name": "What is the difference between guardrails and prompt engineering?", "acceptedAnswer": {"@type": "Answer", "text": "Guardrails enforce rules in code, while prompt engineering asks the model to follow rules. A prompt can tell an agent never to issue refunds over a set value, but the model may still try under the right input. A guardrail checks the refund amount before the tool runs and blocks it. Use prompts to guide behaviour and guardrails to guarantee the limits that matter."}}, {"@type": "Question", "name": "How do you implement guardrails for LLM agents in production?", "acceptedAnswer": {"@type": "Answer", "text": "You implement guardrails for LLM agents in layers. Validate inputs for injection and sensitive data, scope each agent’s tools and credentials to the minimum, validate tool arguments, express business policies as code checks, validate outputs against schemas and data rules, and add runtime limits and monitoring. Start new actions in observe-only mode and tune thresholds against a test set before enabling them."}}, {"@type": "Question", "name": "Do guardrails slow down AI agents?", "acceptedAnswer": {"@type": "Answer", "text": "Guardrails add some latency and cost, but usually far less than the risk they remove. Simple checks like schema validation, allowlists and policy lookups take milliseconds. Model-based classifiers add more, so run them only where needed, such as on untrusted input or high-risk actions. Measure guardrail latency and false-block rates as part of your evaluation so you can trade speed against safety deliberately."}}, {"@type": "Question", "name": "What tools are used for LLM guardrails?", "acceptedAnswer": {"@type": "Answer", "text": "Common tools for LLM guardrails include open-source libraries such as NeMo Guardrails, Guardrails AI, LLM Guard and LlamaFirewall, alongside cloud provider safety filters. Most production set-ups combine more than one, because no single tool covers input, output, tool permissions and policy. Action-level controls, like scoped credentials and authorisation in downstream systems, are often custom code specific to your environment."}}]}</script>
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "AI agent guardrails: how to run agents safely in production", "description": "AI agent guardrails for production: input and output validation, scoped tool permissions, policy checks in code, monitoring and kill switches that hold up.", "author": {"@type": "Organization", "name": "tkxel"}, "publisher": {"@type": "Organization", "name": "tkxel"}, "datePublished": "2026-10-01", "mainEntityOfPage": "https://fde.tkxel.com/blog/ai-agent-guardrails/"}</script>
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+  </head>
+  <body>
+                                                                                                                                                                                                                                                                    <header class="hdr" data-hdr>
+      <div class="container hdr__bar">
+        <a href="/" class="hdr__logo" aria-label="tkxel FDE home">tkxel<span>FDE</span></a>
+        <nav class="hdr__nav" aria-label="Primary">
+          <div class="hdr__mega-wrap">
+            <button class="hdr__link" aria-expanded="false" aria-controls="mega" data-mega-btn>Services</button>
+            <div class="hdr__mega" id="mega" hidden data-mega>
+              <div class="container hdr__mega-grid">
+                <div>
+                  <a href="/services/ai-strategy-readiness/" class="hdr__mega-title">AI strategy &amp; readiness</a>
+                  <ul>
+                    <li><a href="/services/ai-readiness-assessment/">AI maturity assessment</a></li>
+                    <li>Process mapping &amp; use-case prioritization</li>
+                    <li>Use-case portfolio &amp; ROI tracking</li>
+                    <li>Data readiness audit</li>
+                  </ul>
+                </div>
+                <div>
+                  <a href="/services/fde-pods/" class="hdr__mega-title">FDE pods</a>
+                  <ul>
+                    <li><a href="/services/full-stack-fde-pod/">Full-stack FDE pod</a></li>
+                    <li><a href="/services/agentic-fde-pod/">Agentic FDE pod</a></li>
+                    <li><a href="/services/data-engineering-fde-pod/">Data engineering FDE pod</a></li>
+                    <li><a href="/services/integration-legacy-modernization-pod/">Integration &amp; legacy modernization pod</a></li>
+                  </ul>
+                </div>
+                <div>
+                  <a href="/services/agentic-platforms/" class="hdr__mega-title"
+                    >Agentic platforms &amp; integrations</a
+                  <ul>
+                    <li><a href="/services/mcp-enterprise-integrations/">Enterprise connectors &amp; MCP integrations</a></li>
+                    <li><a href="/services/enterprise-knowledge-assistant/">Enterprise knowledge assistant</a></li>
+                    <li><a href="/services/workflow-agentification/">Workflow agentification</a></li>
+                    <li>Managed AI operations</li>
+                  </ul>
+                </div>
+                <div>
+                  <a href="/services/adoption-enablement/" class="hdr__mega-title">Adoption &amp; enablement</a>
+                  <ul>
+                    <li>Role-based AI training</li>
+                    <li>AI champions program</li>
+                    <li>Train-the-trainer</li>
+                    <li>AI center of excellence</li>
+                  </ul>
+                </div>
+                <div>
+                  <a href="/services/ai-security-governance/" class="hdr__mega-title">AI security &amp; governance</a>
+                  <ul>
+                    <li>Agent security &amp; permissions review</li>
+                    <li><a href="/services/ai-penetration-testing/">AI penetration testing</a></li>
+                    <li>AI governance council setup</li>
+                  </ul>
+                </div>
+                <div>
+                  <a href="/services/product-engineering/" class="hdr__mega-title"
+                    >Product &amp; engineering transformation</a
+                  <ul>
+                    <li>Product AI strategy</li>
+                    <li>Rapid prototype sprint</li>
+                    <li>AI-enabled SDLC redesign</li>
+                    <li>Legacy SaaS modernization</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        <a href="/services/fde-pods/" class="hdr__link">FDE pods</a><a href="/industries/" class="hdr__link">Industries</a><a href="/case-studies/" class="hdr__link">Case studies</a><a href="/blog/" class="hdr__link">Resources</a>
+      </nav>
+        <a href="#cta-form" class="btn btn--invert hdr__cta">Book discovery call</a>
+        <button class="hdr__burger" aria-label="Open menu" aria-expanded="false" data-burger>
+          <span></span><span></span>
+        </button>
+      </div>
+    </header>
+    <main id="main">
+      <section class="art__hero section--gradient on-dark" data-hero>
+        <div class="container art__narrow">
+          <span class="eyebrow">Article</span>
+          <h1 class="display art__h1">AI agent guardrails: how to run agents safely in production</h1>
+          <p class="caption art__meta">1 October 2026 · 8 min read</p>
+        </div>
+      </section>
+      <article class="section">
+        <div class="container art__layout">
+          <nav class="art__toc" aria-label="Contents"><span class="eyebrow">Contents</span><ol><li><a href="#what-ai-agent-guardrails-are">What AI agent guardrails are</a></li><li><a href="#guardrails-work-in-layers">Guardrails work in layers</a></li><li><a href="#input-and-output-validation">Input and output validation</a></li><li><a href="#scope-tool-permissions-tightly">Scope tool permissions tightly</a></li><li><a href="#turn-policy-into-checks-in-code">Turn policy into checks in code</a></li><li><a href="#design-guardrails-into-the-build-not-after-it">Design guardrails into the build, not after it</a></li><li><a href="#monitor-agents-and-keep-a-kill-switch">Monitor agents and keep a kill switch</a></li><li><a href="#trade-offs-to-plan-for">Trade-offs to plan for</a></li></ol></nav>
+          <div class="art__body">
+          <p class="art__lede">AI agent guardrails are controls that sit outside the model and limit what an agent can receive, do and return. In production that means validating inputs and outputs, scoping tool permissions, checking each action against policy in code, and monitoring behaviour with a kill switch ready. Layered guardrails catch what a single filter misses.</p>
+          <h2 class="art__h2" id="what-ai-agent-guardrails-are">What AI agent guardrails are</h2>
+          <p>AI agent guardrails are enforcement code around the model that decides what goes in, what actions are allowed and what comes out. They are separate from the prompt, because a prompt is a request the model may ignore, while a guardrail is a check it cannot argue with.</p>
+          <p>Agents need more than chatbot guardrails because they act. Text filters help with what an agent says; action-level controls decide what it is allowed to do in your systems, and that is where most production risk sits.</p>
+          <p>Think of guardrails the way you think of controls around a new employee. You do not rely on a promise to follow policy; you give scoped system access, approval limits and an audit trail, and you widen them as trust builds.</p>
+          <h2 class="art__h2" id="guardrails-work-in-layers">Guardrails work in layers</h2>
+          <p>Production guardrails run before, during and after each model step. No single layer is enough, so you design them to overlap.</p>
+          <p>The order matters. Cheap checks that reject obvious problems should run first, action checks should run immediately before any tool executes, and output checks should run before anything reaches a person or another system.</p>
+          <p>Each layer should fail closed for high-risk actions and fail open, with logging, only where a blocked request would cost more than a mistake. Decide this per action and write it down.</p>
+          <div class="ct__scroll" tabindex="0" role="region" aria-label="Guardrail layers for production agents"><table class="ct art__table"><caption class="sr-only">Guardrail layers for production agents</caption><thead><tr><th scope="col">Layer</th><th scope="col">Typical checks</th><th scope="col">Example</th></tr></thead><tbody><tr><th scope="row">Input</th><td>Injection patterns, PII, scope, size limits</td><td>Reject an upload with hidden instructions</td></tr><tr><th scope="row">Tool and action</th><td>Allowlists, argument validation, permissions, budgets</td><td>Block a refund above the agent’s limit</td></tr><tr><th scope="row">Policy</th><td>Business rules expressed in code</td><td>No discounts for accounts in collections</td></tr><tr><th scope="row">Output</th><td>Schema, safety, data leakage, grounding</td><td>Strip an account number from a reply</td></tr><tr><th scope="row">Runtime</th><td>Rate limits, loop detection, cost caps, kill switch</td><td>Pause an agent making repeated failed calls</td></tr></tbody></table></div>
+          <h2 class="art__h2" id="input-and-output-validation">Input and output validation</h2>
+          <p>Input validation screens what reaches the model; output validation checks what leaves it. On the way in, check for prompt injection patterns, sensitive data that should not be sent to a model, out-of-scope requests and oversized inputs.</p>
+          <p>On the way out, enforce a schema for anything a system will consume, check for leaked personal or confidential data, and for knowledge tasks, check that claims trace back to retrieved sources. Reject and retry on failure rather than passing malformed output downstream.</p>
+          <p>Run cheap, deterministic checks first and model-based classifiers only where they add value. A regular expression or schema check costs almost nothing, while a second model call on every request adds latency and spend.</p>
+          <p>Validation should also cover what the agent reads mid-task, not just the first user message. Tool results, search results and retrieved files can all carry injected instructions or unexpected data, so check them before they go back into the model.</p>
+          <ul><li>Use typed schemas for structured output and validate them strictly.</li><li>Redact or block personal data in both directions, based on your data policy.</li><li>Treat retrieved documents, emails and web content as untrusted input too.</li></ul>
+          <h2 class="art__h2" id="scope-tool-permissions-tightly">Scope tool permissions tightly</h2>
+          <p>Tool permissions are the most important guardrail for agents. OWASP lists excessive agency, giving a model more functions, permissions or autonomy than its task needs, as one of its top LLM risks, and many agents still run with the same broad credentials as the application around them.</p>
+          <p>Give each agent its own identity with the narrowest scopes that work. Prefer specific tools, such as “create draft reply”, over open-ended ones, such as “run any API call”, and validate arguments before execution.</p>
+          <p>Review permissions whenever you add a tool. Agents tend to gain capabilities one convenient addition at a time, and a quarterly access review catches scopes nobody remembers granting.</p>
+          <ul><li>Allowlist the tools each agent can call; deny everything else.</li><li>Validate arguments: record IDs, amounts and recipients within expected ranges.</li><li>Set per-action and per-day limits on value and volume.</li><li>Enforce authorisation in the downstream system, not only in the agent.</li></ul>
+          <h2 class="art__h2" id="turn-policy-into-checks-in-code">Turn policy into checks in code</h2>
+          <p>Written policies only protect you once they are machine-checkable. Translate each rule that matters into a check that runs before the action, using data the agent cannot change.</p>
+          <p>A policy like “never offer a discount to accounts in collections” becomes a lookup against the billing system before any discount tool runs. The model can still suggest the discount; the check blocks it and logs why, and high-risk actions route to a human for approval.</p>
+          <p>Keep policy rules in a place the business can read, such as a versioned rules file or policy engine, rather than buried in agent code. When a rule changes, the business owner approves the change and the test set confirms it behaves as intended.</p>
+          <h2 class="art__h2" id="design-guardrails-into-the-build-not-after-it">Design guardrails into the build, not after it</h2>
+          <p>Guardrails are far cheaper to design in than to bolt on. When you list an agent’s tools during design, list the limits for each one at the same time: who it acts as, what values are allowed and when a human must approve.</p>
+          <p>Build a test set that includes adversarial cases from day one: injected documents, out-of-range amounts, requests for other customers’ data. Run it on every change, the same way you run unit tests, so a prompt tweak cannot quietly remove a protection.</p>
+          <p>Agree ownership early. Security usually owns the guardrail framework and the logs, the business owns the policy rules, and the engineering team owns the code that enforces them. Unowned guardrails go stale fast.</p>
+          <h2 class="art__h2" id="monitor-agents-and-keep-a-kill-switch">Monitor agents and keep a kill switch</h2>
+          <p>Guardrails are not finished at launch; you need to see what they catch. Log every tool call, guardrail decision and escalation with enough context to replay it, and review blocked actions weekly to find new attack patterns and over-strict rules.</p>
+          <p>Make the logs useful for people outside engineering. A compliance reviewer should be able to see, for a given customer or date, what the agent did, which checks ran and who approved any high-risk step.</p>
+          <ul><li>Start new actions in observe-only mode before enabling them.</li><li>Alert on spikes in blocked actions, cost, error rates or loops.</li><li>Keep a kill switch that disables tools without taking the whole service down.</li><li>Re-run evaluation and red-team tests after model, prompt or tool changes.</li></ul>
+          <h2 class="art__h2" id="trade-offs-to-plan-for">Trade-offs to plan for</h2>
+          <p>Every guardrail adds latency, cost and the chance of blocking a legitimate request. Classifier-based checks can also be wrong in both directions, and over-strict rules push users to work around the agent entirely.</p>
+          <p>Our pods tune guardrails against a test set of real and adversarial cases, so you can see the false-block rate before launch. Expect to adjust thresholds in the first weeks of production; Gartner predicted in June 2025 that over 40% of agentic AI projects will be cancelled by the end of 2027, citing costs, unclear value and inadequate risk controls, and guardrails you can measure are part of avoiding that list.</p>
+          <aside class="art__related"><span class="eyebrow">Related</span><ul><li><a href="/services/ai-security-governance/" class="link-arrow">AI security and governance</a></li><li><a href="/services/agentic-platforms/" class="link-arrow">Agentic platforms</a></li><li><a href="/services/agentic-fde-pod/" class="link-arrow">Agentic FDE pod</a></li></ul></aside>
+          </div>
+        </div>
+      </article>
+      <section class="icb section--gradient on-dark">
+        <div class="container icb__row">
+          <h2 class="h2">Put measurable guardrails around your production agents</h2>
+          <div class="icb__right">
+            <p>A pod adds permissions, policy checks and monitoring inside your environment.</p>
+            <a href="#cta-form" class="btn btn--invert">Scope your guardrails</a>
+          </div>
+        </div>
+      </section>
+      <section class="section" id="faq">
+        <div class="container faq">
+          <h2 class="h2 reveal">Frequently asked questions</h2>
+          <div>
+            <details class="faq__item" open>
+              <summary><span>What are guardrails for AI agents?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>Guardrails for AI agents are controls outside the model that limit what the agent can receive, do and return. They include input checks for prompt injection and sensitive data, tool allowlists and argument validation, business-policy checks in code, output schema and safety checks, and runtime limits such as rate caps and kill switches. Unlike prompt instructions, guardrails are enforced by code the model cannot override.</p>
+            </details>
+            <details class="faq__item">
+              <summary><span>What is the difference between guardrails and prompt engineering?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>Guardrails enforce rules in code, while prompt engineering asks the model to follow rules. A prompt can tell an agent never to issue refunds over a set value, but the model may still try under the right input. A guardrail checks the refund amount before the tool runs and blocks it. Use prompts to guide behaviour and guardrails to guarantee the limits that matter.</p>
+            </details>
+            <details class="faq__item">
+              <summary><span>How do you implement guardrails for LLM agents in production?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>You implement guardrails for LLM agents in layers. Validate inputs for injection and sensitive data, scope each agent’s tools and credentials to the minimum, validate tool arguments, express business policies as code checks, validate outputs against schemas and data rules, and add runtime limits and monitoring. Start new actions in observe-only mode and tune thresholds against a test set before enabling them.</p>
+            </details>
+            <details class="faq__item">
+              <summary><span>Do guardrails slow down AI agents?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>Guardrails add some latency and cost, but usually far less than the risk they remove. Simple checks like schema validation, allowlists and policy lookups take milliseconds. Model-based classifiers add more, so run them only where needed, such as on untrusted input or high-risk actions. Measure guardrail latency and false-block rates as part of your evaluation so you can trade speed against safety deliberately.</p>
+            </details>
+            <details class="faq__item">
+              <summary><span>What tools are used for LLM guardrails?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>Common tools for LLM guardrails include open-source libraries such as NeMo Guardrails, Guardrails AI, LLM Guard and LlamaFirewall, alongside cloud provider safety filters. Most production set-ups combine more than one, because no single tool covers input, output, tool permissions and policy. Action-level controls, like scoped credentials and authorisation in downstream systems, are often custom code specific to your environment.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+            <section class="section section--dark on-dark" id="cta-form">
+        <div class="container fc">
+          <div class="fc__left">
+            <h2 class="h2">Run agents in production with controls you can prove</h2>
+            <div class="fc__clutch">
+              <span class="eyebrow">Clutch</span
+              ><span class="caption">[Placeholder] Clutch badge and rating — add the official widget</span>
+            </div>
+            <blockquote class="fc__quote">
+              “Placeholder testimonial — replace with the global set from tkxel.com.”
+              <footer class="caption">— Knowles</footer>
+            </blockquote>
+            <blockquote class="fc__quote">
+              “Placeholder testimonial — replace with the global set from tkxel.com.”
+              <footer class="caption">— Sterne Kessler</footer>
+            </blockquote>
+          </div>
+          <form class="fc__form" method="post" action="/api/lead" data-lead-form>
+            <label class="fc__full"
+              >I'm interested in
+              <select name="interest" required>
+                <option>FDE pod</option>
+                <option>AI strategy &amp; readiness</option>
+                <option>Agentic platforms &amp; integrations</option>
+                <option>Adoption &amp; enablement</option>
+                <option>AI security &amp; governance</option>
+                <option>Product &amp; engineering transformation</option>
+                <option>Something else</option>
+              </select>
+            </label>
+            <label>First name*<input name="first_name" required autocomplete="given-name" /></label>
+            <label>Last name*<input name="last_name" required autocomplete="family-name" /></label>
+            <label>Work email*<input name="email" type="email" required autocomplete="email" /></label>
+            <label>Job title*<input name="job_title" required autocomplete="organization-title" /></label>
+            <label class="fc__full">Phone<input name="phone" type="tel" autocomplete="tel" /></label>
+            <label class="fc__full">Project description<textarea name="message" rows="4"></textarea></label>
+            <label class="fc__check fc__full"
+              ><input type="checkbox" name="marketing_consent" /> I agree to receive marketing communications from
+              tkxel.</label
+            >
+            <label class="fc__check fc__full"
+              ><input type="checkbox" name="sms_consent" /> I agree to receive SMS messages from tkxel.</label
+            >
+            <button class="btn btn--invert fc__full" type="submit">Book discovery call</button>
+            <p class="caption fc__full">
+              By submitting, you agree to our <a href="https://tkxel.com/terms-of-use/">Terms</a> and
+              <a href="https://tkxel.com/privacy-policy/">Privacy policy</a>.
+            </p>
+            <p class="fc__status fc__full" role="status" data-lead-status></p>
+          </form>
+        </div>
+      </section>
+    </main>
+                                                                                                                                    <footer class="ftr">
+      <div class="container">
+        <div class="ftr__top">
+          <div class="ftr__brand">
+            <a href="/" class="ftr__logo">tkxel<span>FDE</span></a>
+            <p class="ftr__tag">
+              Forward deployed engineering teams that build production AI inside your environment, then hand it over to
+              your team.
+            </p>
+            <a href="https://tkxel.com" class="ftr__main">Visit tkxel.com →</a>
+          </div>
+          <div class="ftr__cols">
+            <div>
+              <a href="/services/ai-strategy-readiness/" class="ftr__head">AI strategy &amp; readiness</a>
+              <ul>
+                <li><a href="/services/ai-readiness-assessment/">AI maturity assessment</a></li>
+                <li>Process mapping &amp; use-case prioritization</li>
+                <li>Use-case portfolio &amp; ROI tracking</li>
+                <li>Data readiness audit</li>
+              </ul>
+            </div>
+            <div>
+              <a href="/services/fde-pods/" class="ftr__head">FDE pods</a>
+              <ul>
+                <li><a href="/services/full-stack-fde-pod/">Full-stack FDE pod</a></li>
+                <li><a href="/services/agentic-fde-pod/">Agentic FDE pod</a></li>
+                <li><a href="/services/data-engineering-fde-pod/">Data engineering FDE pod</a></li>
+                <li><a href="/services/integration-legacy-modernization-pod/">Integration &amp; legacy modernization pod</a></li>
+              </ul>
+            </div>
+            <div>
+              <a href="/services/agentic-platforms/" class="ftr__head">Agentic platforms &amp; integrations</a>
+              <ul>
+                <li><a href="/services/mcp-enterprise-integrations/">Enterprise connectors &amp; MCP integrations</a></li>
+                <li><a href="/services/enterprise-knowledge-assistant/">Enterprise knowledge assistant</a></li>
+                <li><a href="/services/workflow-agentification/">Workflow agentification</a></li>
+                <li>Managed AI operations</li>
+              </ul>
+            </div>
+            <div>
+              <a href="/services/adoption-enablement/" class="ftr__head">Adoption &amp; enablement</a>
+              <ul>
+                <li>Role-based AI training</li>
+                <li>AI champions program</li>
+                <li>Train-the-trainer</li>
+                <li>AI center of excellence</li>
+              </ul>
+            </div>
+            <div>
+              <a href="/services/ai-security-governance/" class="ftr__head">AI security &amp; governance</a>
+              <ul>
+                <li>Agent security &amp; permissions review</li>
+                <li><a href="/services/ai-penetration-testing/">AI penetration testing</a></li>
+                <li>AI governance council setup</li>
+              </ul>
+            </div>
+            <div>
+              <a href="/services/product-engineering/" class="ftr__head">Product &amp; engineering transformation</a>
+              <ul>
+                <li>Product AI strategy</li>
+                <li>Rapid prototype sprint</li>
+                <li>AI-enabled SDLC redesign</li>
+                <li>Legacy SaaS modernization</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="ftr__offices">
+          <div>
+            <span class="eyebrow">USA</span>
+            <p>Placeholder — confirm from tkxel.com footer</p>
+          </div>
+          <div>
+            <span class="eyebrow">Saudi Arabia</span>
+            <p>Placeholder — confirm from tkxel.com footer</p>
+          </div>
+          <div>
+            <span class="eyebrow">Portugal</span>
+            <p>Placeholder — confirm from tkxel.com footer</p>
+          </div>
+          <div>
+            <span class="eyebrow">Pakistan</span>
+            <p>Placeholder — confirm from tkxel.com footer</p>
+          </div>
+        </div>
+        <div class="ftr__legal">
+          <span>© 2026 tkxel. All rights reserved.</span>
+          <nav aria-label="Legal"><a href="https://tkxel.com/privacy-policy/">Privacy policy</a><a href="https://tkxel.com/terms-of-use/">Terms of use</a></nav>
+        </div>
+      </div>
+    </footer>
+    <script src="/assets/js/main.js" defer></script>
+  </body>
+</html>
