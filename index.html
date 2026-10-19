@@ -1,0 +1,744 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Forward deployed engineering for AI | tkxel FDE</title>
+    <meta
+      name="description"
+      content="tkxel forward deployed engineering teams embed with your organisation to take AI from strategy to production, then hand working systems to your team."
+    />
+    <link rel="canonical" href="https://fde.tkxel.com/" />
+    <meta property="og:title" content="Forward deployed engineering for AI | tkxel FDE" />
+    <meta
+      property="og:description"
+      content="tkxel forward deployed engineering teams embed with your organisation to take AI from strategy to production, then hand working systems to your team."
+    />
+    <meta property="og:url" content="https://fde.tkxel.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://fde.tkxel.com/og-default.png" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "tkxel",
+        "url": "https://fde.tkxel.com",
+        "parentOrganization": { "@type": "Organization", "name": "tkxel", "url": "https://tkxel.com" }
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What does forward deployed engineering mean?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Forward deployed engineering puts engineers inside the client’s environment instead of delivering from a distance. They work in your repositories, with your data, and alongside the people who run the workflow. The approach suits AI work because most of the difficulty sits in integration, edge cases, and adoption rather than in the model itself."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Why a separate FDE site instead of tkxel.com?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "tkxel.com covers the full range of tkxel services. This site focuses on one delivery model: embedded engineering teams that take AI from strategy to production. Both are run by the same company, teams, and certifications."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Where do I start if I have no AI use cases defined yet?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Start with the AI strategy and readiness assessment. In two to four weeks it maps your workflows, ranks use cases by value and feasibility, and checks whether your data can support them. Many clients move straight from that roadmap into an FDE pod for the top-ranked use case."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do you work only with Claude, or with other models too?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "We work with the models your organisation has approved, including Claude, GPT, and Gemini, through direct APIs or through Amazon Bedrock, Google Vertex AI, and Azure. Model choice is made per workflow based on accuracy, cost, and data residency requirements."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is forward deployed engineering right for every company?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Not always. If your need is a standard capability that an off-the-shelf product already covers well, a licence is usually cheaper and faster. FDE pays back when workflows are specific to your business, span several internal systems, or carry risk that needs custom controls. We will say so on the discovery call if a product fits better."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Which regions do you cover?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "tkxel has offices in the USA, Saudi Arabia, Portugal, and Pakistan. Pods work on-site, remote, or hybrid, and we align working hours with your core team’s time zone."
+            }
+          }
+        ]
+      }
+    </script>
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+  </head>
+  <body>
+    <header class="hdr" data-hdr>
+      <div class="container hdr__bar">
+        <a href="/" class="hdr__logo" aria-label="tkxel FDE home">tkxel<span>FDE</span></a>
+        <nav class="hdr__nav" aria-label="Primary">
+          <div class="hdr__mega-wrap">
+            <button class="hdr__link" aria-expanded="false" aria-controls="mega" data-mega-btn>Services</button>
+            <div class="hdr__mega" id="mega" hidden data-mega>
+              <div class="container hdr__mega-grid">
+                <div>
+                  <a href="/services/ai-strategy-readiness/" class="hdr__mega-title">AI strategy &amp; readiness</a>
+                  <ul>
+                    <li>AI maturity assessment</li>
+                    <li>Process mapping &amp; use-case prioritization</li>
+                    <li>Use-case portfolio &amp; ROI tracking</li>
+                    <li>Data readiness audit</li>
+                  </ul>
+                </div>
+                <div>
+                  <a href="/services/fde-pods/" class="hdr__mega-title">FDE pods</a>
+                  <ul>
+                    <li>Full-stack FDE pod</li>
+                    <li>Agentic FDE pod</li>
+                    <li>Data engineering FDE pod</li>
+                    <li>Integration &amp; legacy modernization pod</li>
+                  </ul>
+                </div>
+                <div>
+                  <a href="/services/agentic-platforms/" class="hdr__mega-title"
+                    >Agentic platforms &amp; integrations</a
+                  >
+                  <ul>
+                    <li>Enterprise connectors &amp; MCP integrations</li>
+                    <li>Enterprise knowledge assistant</li>
+                    <li>Workflow agentification</li>
+                    <li>Managed AI operations</li>
+                  </ul>
+                </div>
+                <div>
+                  <a href="/services/adoption-enablement/" class="hdr__mega-title">Adoption &amp; enablement</a>
+                  <ul>
+                    <li>Role-based AI training</li>
+                    <li>AI champions program</li>
+                    <li>Train-the-trainer</li>
+                    <li>AI center of excellence</li>
+                  </ul>
+                </div>
+                <div>
+                  <a href="/services/ai-security-governance/" class="hdr__mega-title">AI security &amp; governance</a>
+                  <ul>
+                    <li>Agent security &amp; permissions review</li>
+                    <li>AI penetration testing</li>
+                    <li>AI governance council setup</li>
+                  </ul>
+                </div>
+                <div>
+                  <a href="/services/product-engineering/" class="hdr__mega-title"
+                    >Product &amp; engineering transformation</a
+                  >
+                  <ul>
+                    <li>Product AI strategy</li>
+                    <li>Rapid prototype sprint</li>
+                    <li>AI-enabled SDLC redesign</li>
+                    <li>Legacy SaaS modernization</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <a href="/services/fde-pods/" class="hdr__link">FDE pods</a
+          ><a href="/industries/" class="hdr__link">Industries</a
+          ><a href="/case-studies/" class="hdr__link">Case studies</a><a href="/blog/" class="hdr__link">Resources</a>
+        </nav>
+        <a href="#cta-form" class="btn btn--invert hdr__cta">Book discovery call</a>
+        <button class="hdr__burger" aria-label="Open menu" aria-expanded="false" data-burger>
+          <span></span><span></span>
+        </button>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero section--gradient on-dark" data-hero>
+        <div class="container hero__inner">
+          <div class="hero__copy">
+            <span class="eyebrow">Forward deployed engineering</span>
+            <h1 class="display">
+              AI engineers who work inside your business<span class="br"><br /></span> until the system runs without us
+            </h1>
+            <p class="hero__sub">
+              tkxel embeds small engineering pods in your teams to scope, build, and govern production AI. You get
+              working agents, data systems, and the internal capability to run them.
+            </p>
+            <a href="#cta-form" class="btn btn--invert">Book discovery call</a>
+          </div>
+          <svg class="hero__graphic" viewBox="0 0 400 400" aria-hidden="true">
+            <g fill="none" stroke="rgba(255,255,255,.35)" stroke-width="1.5">
+              <rect x="60" y="60" width="200" height="200"></rect>
+              <rect x="100" y="100" width="200" height="200"></rect>
+              <rect x="140" y="140" width="200" height="200" fill="rgba(255,255,255,.12)" stroke="#fff"></rect>
+              <line x1="60" y1="60" x2="140" y2="140"></line>
+              <line x1="260" y1="60" x2="340" y2="140"></line>
+              <line x1="60" y1="260" x2="140" y2="340"></line>
+              <line x1="260" y1="260" x2="340" y2="340"></line>
+            </g>
+            <circle cx="340" cy="140" r="6" fill="#fff"></circle>
+          </svg>
+        </div>
+        <div class="container hero__logos">
+          <span class="eyebrow">Our clients</span>
+          <div class="hero__marquee">
+            <div class="hero__track">
+              <span class="hero__logo">Knowles</span><span class="hero__logo">Sterne Kessler</span
+              ><span class="hero__logo">Replenium</span><span class="hero__logo">ABB</span
+              ><span class="hero__logo">Client five</span><span class="hero__logo">Client six</span
+              ><span class="hero__logo">Client seven</span><span class="hero__logo">Client eight</span
+              ><span class="hero__logo" aria-hidden="true">Knowles</span
+              ><span class="hero__logo" aria-hidden="true">Sterne Kessler</span
+              ><span class="hero__logo" aria-hidden="true">Replenium</span
+              ><span class="hero__logo" aria-hidden="true">ABB</span
+              ><span class="hero__logo" aria-hidden="true">Client five</span
+              ><span class="hero__logo" aria-hidden="true">Client six</span
+              ><span class="hero__logo" aria-hidden="true">Client seven</span
+              ><span class="hero__logo" aria-hidden="true">Client eight</span>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="section sg" id="services">
+        <div class="container sg__head">
+          <div class="section-head reveal">
+            <h2 class="h2">
+              Six ways we take AI<span class="br"><br /></span> from plan to production
+            </h2>
+          </div>
+          <div class="sg__arrows">
+            <button aria-label="Previous" data-sg-prev>←</button>
+            <button aria-label="Next" data-sg-next>→</button>
+          </div>
+        </div>
+        <div class="sg__row" data-sg-row tabindex="0" aria-label="Six ways we take AI from plan to production">
+          <a class="sg__card" href="/services/ai-strategy-readiness/">
+            <span class="eyebrow">Forward deployed engineering</span>
+            <h3 class="sg__title">AI strategy and readiness</h3>
+            <p class="sg__body">
+              Maturity assessment, process mapping, and a ranked use-case portfolio with business cases. You leave with
+              a sequenced roadmap and a clear view of whether your data can support it.
+            </p>
+            <span class="sg__icon" aria-hidden="true"></span> </a
+          ><a class="sg__card" href="/services/fde-pods/">
+            <span class="eyebrow">Forward deployed engineering</span>
+            <h3 class="sg__title">FDE pods</h3>
+            <p class="sg__body">
+              Small embedded teams for full-stack, agentic, data engineering, and integration work. Each pod owns an
+              outcome, ships it in your environment, and hands it over to your engineers.
+            </p>
+            <span class="sg__icon" aria-hidden="true"></span> </a
+          ><a class="sg__card" href="/services/agentic-platforms/">
+            <span class="eyebrow">Forward deployed engineering</span>
+            <h3 class="sg__title">Agentic platforms and integrations</h3>
+            <p class="sg__body">
+              Governed connectors to your enterprise systems, knowledge assistants that cite their sources, and manual
+              workflows rebuilt as reviewed, production-grade agents with cost controls.
+            </p>
+            <span class="sg__icon" aria-hidden="true"></span> </a
+          ><a class="sg__card" href="/services/adoption-enablement/">
+            <span class="eyebrow">Forward deployed engineering</span>
+            <h3 class="sg__title">Adoption and enablement</h3>
+            <p class="sg__body">
+              Role-based training, internal champion networks, and train-the-trainer programmes. Adoption is measured
+              with usage and literacy metrics so you can see which teams need support.
+            </p>
+            <span class="sg__icon" aria-hidden="true"></span> </a
+          ><a class="sg__card" href="/services/ai-security-governance/">
+            <span class="eyebrow">Forward deployed engineering</span>
+            <h3 class="sg__title">AI security and governance</h3>
+            <p class="sg__body">
+              Agent permission reviews, adversarial testing of AI systems, and governance councils that decide which AI
+              investments move forward and under what controls.
+            </p>
+            <span class="sg__icon" aria-hidden="true"></span> </a
+          ><a class="sg__card" href="/services/product-engineering/">
+            <span class="eyebrow">Forward deployed engineering</span>
+            <h3 class="sg__title">Product and engineering transformation</h3>
+            <p class="sg__body">
+              AI product strategy, rapid prototype sprints, SDLC redesign for AI-assisted delivery, and incremental
+              modernization of legacy SaaS without a multi-year rewrite.
+            </p>
+            <span class="sg__icon" aria-hidden="true"></span>
+          </a>
+        </div>
+      </section>
+
+      <section class="icb section--gradient on-dark">
+        <div class="container icb__row">
+          <h2 class="h2">Not sure which engagement fits your situation?</h2>
+          <div class="icb__right">
+            <p>A 30-minute discovery call is enough to point you to the right starting point.</p>
+            <a href="#cta-form" class="btn btn--invert">Book discovery call</a>
+          </div>
+        </div>
+      </section>
+      <section class="section" id="challenges">
+        <div class="container">
+          <div class="section-head reveal">
+            <h2 class="h2">
+              Does your AI programme look<span class="br"><br /></span> like this right now?
+            </h2>
+          </div>
+          <div class="cp" style="--n: 4">
+            <div class="cp__item reveal">
+              <h3 class="cp__title">Pilots everywhere, production nowhere</h3>
+              <p class="muted">
+                Several teams have prototypes, but none has passed security review or reached real users.
+              </p>
+            </div>
+            <div class="cp__item reveal">
+              <h3 class="cp__title">Strategy decks with no one to build</h3>
+              <p class="muted">
+                The roadmap is approved, yet internal engineers are fully booked on the existing product.
+              </p>
+            </div>
+            <div class="cp__item reveal">
+              <h3 class="cp__title">Licences bought, usage flat</h3>
+              <p class="muted">Teams have AI tools but few changed how they work, and nobody measures adoption.</p>
+            </div>
+            <div class="cp__item reveal">
+              <h3 class="cp__title">Risk teams say no by default</h3>
+              <p class="muted">
+                Without audit trails and clear autonomy limits, security has no basis to approve agents.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="section pt" id="process" data-pt>
+        <div class="container">
+          <div class="section-head reveal">
+            <h2 class="h2">
+              How an FDE engagement<span class="br"><br /></span> runs from first call to handover
+            </h2>
+          </div>
+          <div class="pt__grid">
+            <div class="pt__left" aria-hidden="true">
+              <span class="pt__num" data-pt-num>01</span>
+              <svg viewBox="0 0 300 260" class="pt__stack">
+                <polygon
+                  data-pt-layer="0"
+                  class="pt__layer is-active"
+                  points="150,184 280,224 150,264 20,224"
+                ></polygon>
+                <polygon data-pt-layer="1" class="pt__layer" points="150,148 280,188 150,228 20,188"></polygon>
+                <polygon data-pt-layer="2" class="pt__layer" points="150,112 280,152 150,192 20,152"></polygon>
+                <polygon data-pt-layer="3" class="pt__layer" points="150,76 280,116 150,156 20,116"></polygon>
+                <polygon data-pt-layer="4" class="pt__layer" points="150,40 280,80 150,120 20,80"></polygon>
+              </svg>
+            </div>
+            <ol class="pt__list">
+              <li class="pt__step is-active" data-pt-step="0">
+                <button class="pt__btn" aria-expanded="true">
+                  <span class="pt__n">01</span><span class="pt__title">Assess and prioritize</span>
+                  <span class="caption pt__time">2–4 weeks</span>
+                </button>
+                <div class="pt__body">
+                  <p>
+                    We map workflows, check data readiness, and rank use cases by value and feasibility with your
+                    business owners.
+                  </p>
+                  <p class="caption">
+                    <strong>Deliverables:</strong> Readiness scorecard, ranked use-case portfolio, roadmap
+                  </p>
+                </div>
+              </li>
+              <li class="pt__step" data-pt-step="1">
+                <button class="pt__btn" aria-expanded="false">
+                  <span class="pt__n">02</span><span class="pt__title">Embed the pod</span>
+                  <span class="caption pt__time">1 week</span>
+                </button>
+                <div class="pt__body">
+                  <p>
+                    A pod of three to five engineers joins your tools, ceremonies, and access controls, paired with the
+                    engineers who will own the result.
+                  </p>
+                  <p class="caption"><strong>Deliverables:</strong> Team charter, access plan, success metrics</p>
+                </div>
+              </li>
+              <li class="pt__step" data-pt-step="2">
+                <button class="pt__btn" aria-expanded="false">
+                  <span class="pt__n">03</span><span class="pt__title">Build and evaluate</span>
+                  <span class="caption pt__time">4–8 weeks</span>
+                </button>
+                <div class="pt__body">
+                  <p>
+                    The pod ships the first use case in your environment, scored against evaluation sets drawn from real
+                    work.
+                  </p>
+                  <p class="caption">
+                    <strong>Deliverables:</strong> Production-ready system, evaluation report, architecture records
+                  </p>
+                </div>
+              </li>
+              <li class="pt__step" data-pt-step="3">
+                <button class="pt__btn" aria-expanded="false">
+                  <span class="pt__n">04</span><span class="pt__title">Govern and release</span>
+                  <span class="caption pt__time">2–4 weeks</span>
+                </button>
+                <div class="pt__body">
+                  <p>
+                    Guardrails, review queues, monitoring, and cost controls go live with a limited user group before
+                    wider rollout.
+                  </p>
+                  <p class="caption"><strong>Deliverables:</strong> Release plan, dashboards, runbooks</p>
+                </div>
+              </li>
+              <li class="pt__step" data-pt-step="4">
+                <button class="pt__btn" aria-expanded="false">
+                  <span class="pt__n">05</span><span class="pt__title">Transfer ownership</span>
+                  <span class="caption pt__time">Ongoing, staged per system</span>
+                </button>
+                <div class="pt__body">
+                  <p>
+                    Your engineers take over in stages while the pod moves to the next use case or steps out entirely.
+                  </p>
+                  <p class="caption"><strong>Deliverables:</strong> Ownership transfer plan, enablement sessions</p>
+                </div>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="case-studies">
+        <div class="container">
+          <div class="csc__head reveal">
+            <h2 class="h2">Featured success stories</h2>
+            <a href="/case-studies/" class="link-arrow">All case studies</a>
+          </div>
+          <div class="csc">
+            <article class="csc__card reveal">
+              <div class="csc__tags"><span class="eyebrow">Industry</span><span class="eyebrow">FDE pod</span></div>
+              <h3 class="csc__result">
+                [Placeholder] Metric-led result for a forward deployed engagement, then the mechanism.
+              </h3>
+              <blockquote class="csc__quote">
+                “Placeholder quote — replace with a real client quote.”
+                <footer class="caption">— Chief Operating Officer</footer>
+              </blockquote>
+            </article>
+            <article class="csc__card reveal">
+              <div class="csc__tags">
+                <span class="eyebrow">Industry</span><span class="eyebrow">AI readiness</span>
+              </div>
+              <h3 class="csc__result">[Placeholder] Second case study headline leading with the metric.</h3>
+              <blockquote class="csc__quote">
+                “Placeholder quote — replace with a real client quote.”
+                <footer class="caption">— Head of Data</footer>
+              </blockquote>
+            </article>
+            <article class="csc__card reveal">
+              <div class="csc__tags">
+                <span class="eyebrow">Industry</span><span class="eyebrow">Legacy modernization</span>
+              </div>
+              <h3 class="csc__result">[Placeholder] Third case study headline leading with the metric.</h3>
+              <blockquote class="csc__quote">
+                “Placeholder quote — replace with a real client quote.”
+                <footer class="caption">— VP Engineering</footer>
+              </blockquote>
+            </article>
+          </div>
+        </div>
+      </section>
+      <section class="section section--gradient on-dark" id="why-tkxel">
+        <div class="container">
+          <div class="df__head reveal">
+            <h2 class="h2">
+              Engineers who ship inside your systems,<span class="br"><br /></span> not isolated AI demos
+            </h2>
+            <a href="#cta-form" class="btn btn--invert">Talk to an FDE lead</a>
+          </div>
+          <div class="df">
+            <div class="df__card reveal">
+              <h3 class="df__title">Production from the first sprint</h3>
+              <p>
+                We build in your repositories and environments from day one, so there is no separate rebuild between
+                proof of concept and release.
+              </p>
+            </div>
+            <div class="df__card reveal">
+              <h3 class="df__title">Senior pods, not rotating benches</h3>
+              <p>
+                Each pod is led by an engineer who has shipped AI systems before, drawn from tkxel’s team of around 150
+                AI professionals. The same people stay through delivery.
+              </p>
+            </div>
+            <div class="df__card reveal">
+              <h3 class="df__title">Governance built in, not bolted on</h3>
+              <p>
+                Autonomy matrices, audit trails, and human review are designed with your risk and security teams before
+                release, backed by ISO 27001 controls.
+              </p>
+            </div>
+            <div class="df__card reveal">
+              <h3 class="df__title">Measured against your metrics</h3>
+              <p>
+                Every engagement starts with agreed business metrics and evaluation sets. We report against them
+                throughout, and the pod exits when your team can run the system.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="section aw">
+        <div class="container">
+          <h2 class="h2 aw__h reveal">We've been recognized by the best, year after year</h2>
+          <ul class="aw__list">
+            <li class="aw__badge"><span class="aw__dot" aria-hidden="true"></span>Inc. 5000</li>
+            <li class="aw__badge"><span class="aw__dot" aria-hidden="true"></span>Top 15 Inspiring Workplaces</li>
+            <li class="aw__badge">
+              <span class="aw__dot" aria-hidden="true"></span>Titan Business Platinum (AI &amp; Automation)
+            </li>
+            <li class="aw__badge"><span class="aw__dot" aria-hidden="true"></span>Financial Times</li>
+            <li class="aw__badge"><span class="aw__dot" aria-hidden="true"></span>Mogul People Leader</li>
+            <li class="aw__badge"><span class="aw__dot" aria-hidden="true"></span>Forbes Coaches Council</li>
+            <li class="aw__badge"><span class="aw__dot" aria-hidden="true"></span>ISO 27001</li>
+            <li class="aw__badge"><span class="aw__dot" aria-hidden="true"></span>ISO 20000</li>
+            <li class="aw__badge"><span class="aw__dot" aria-hidden="true"></span>ISO 9001</li>
+            <li class="aw__badge"><span class="aw__dot" aria-hidden="true"></span>CMMI DEV 3</li>
+          </ul>
+        </div>
+      </section>
+      <section class="section section--dark on-dark" id="cta-form">
+        <div class="container fc">
+          <div class="fc__left">
+            <h2 class="h2">Tell us about the workflow you want AI to handle</h2>
+            <div class="fc__clutch">
+              <span class="eyebrow">Clutch</span
+              ><span class="caption">[Placeholder] Clutch badge and rating — add the official widget</span>
+            </div>
+            <blockquote class="fc__quote">
+              “Placeholder testimonial — replace with the global set from tkxel.com.”
+              <footer class="caption">— Knowles</footer>
+            </blockquote>
+            <blockquote class="fc__quote">
+              “Placeholder testimonial — replace with the global set from tkxel.com.”
+              <footer class="caption">— Sterne Kessler</footer>
+            </blockquote>
+          </div>
+          <form class="fc__form" method="post" action="/api/lead" data-lead-form>
+            <label class="fc__full"
+              >I'm interested in
+              <select name="interest" required>
+                <option>FDE pod</option>
+                <option>AI strategy &amp; readiness</option>
+                <option>Agentic platforms &amp; integrations</option>
+                <option>Adoption &amp; enablement</option>
+                <option>AI security &amp; governance</option>
+                <option>Product &amp; engineering transformation</option>
+                <option>Something else</option>
+              </select>
+            </label>
+            <label>First name*<input name="first_name" required autocomplete="given-name" /></label>
+            <label>Last name*<input name="last_name" required autocomplete="family-name" /></label>
+            <label>Work email*<input name="email" type="email" required autocomplete="email" /></label>
+            <label>Job title*<input name="job_title" required autocomplete="organization-title" /></label>
+            <label class="fc__full">Phone<input name="phone" type="tel" autocomplete="tel" /></label>
+            <label class="fc__full">Project description<textarea name="message" rows="4"></textarea></label>
+            <label class="fc__check fc__full"
+              ><input type="checkbox" name="marketing_consent" /> I agree to receive marketing communications from
+              tkxel.</label
+            >
+            <label class="fc__check fc__full"
+              ><input type="checkbox" name="sms_consent" /> I agree to receive SMS messages from tkxel.</label
+            >
+            <button class="btn btn--invert fc__full" type="submit">Book discovery call</button>
+            <p class="caption fc__full">
+              By submitting, you agree to our <a href="/terms/">Terms</a> and
+              <a href="/privacy-policy/">Privacy policy</a>.
+            </p>
+            <p class="fc__status fc__full" role="status" data-lead-status></p>
+          </form>
+        </div>
+      </section>
+
+      <section class="section" id="faq">
+        <div class="container faq">
+          <h2 class="h2 reveal">Frequently asked questions</h2>
+          <div>
+            <details class="faq__item" open>
+              <summary>
+                <span>What does forward deployed engineering mean?</span
+                ><span class="faq__icon" aria-hidden="true"></span>
+              </summary>
+              <p>
+                Forward deployed engineering puts engineers inside the client’s environment instead of delivering from a
+                distance. They work in your repositories, with your data, and alongside the people who run the workflow.
+                The approach suits AI work because most of the difficulty sits in integration, edge cases, and adoption
+                rather than in the model itself.
+              </p>
+            </details>
+            <details class="faq__item">
+              <summary>
+                <span>Why a separate FDE site instead of tkxel.com?</span
+                ><span class="faq__icon" aria-hidden="true"></span>
+              </summary>
+              <p>
+                tkxel.com covers the full range of tkxel services. This site focuses on one delivery model: embedded
+                engineering teams that take AI from strategy to production. Both are run by the same company, teams, and
+                certifications.
+              </p>
+            </details>
+            <details class="faq__item">
+              <summary>
+                <span>Where do I start if I have no AI use cases defined yet?</span
+                ><span class="faq__icon" aria-hidden="true"></span>
+              </summary>
+              <p>
+                Start with the AI strategy and readiness assessment. In two to four weeks it maps your workflows, ranks
+                use cases by value and feasibility, and checks whether your data can support them. Many clients move
+                straight from that roadmap into an FDE pod for the top-ranked use case.
+              </p>
+            </details>
+            <details class="faq__item">
+              <summary>
+                <span>Do you work only with Claude, or with other models too?</span
+                ><span class="faq__icon" aria-hidden="true"></span>
+              </summary>
+              <p>
+                We work with the models your organisation has approved, including Claude, GPT, and Gemini, through
+                direct APIs or through Amazon Bedrock, Google Vertex AI, and Azure. Model choice is made per workflow
+                based on accuracy, cost, and data residency requirements.
+              </p>
+            </details>
+            <details class="faq__item">
+              <summary>
+                <span>Is forward deployed engineering right for every company?</span
+                ><span class="faq__icon" aria-hidden="true"></span>
+              </summary>
+              <p>
+                Not always. If your need is a standard capability that an off-the-shelf product already covers well, a
+                licence is usually cheaper and faster. FDE pays back when workflows are specific to your business, span
+                several internal systems, or carry risk that needs custom controls. We will say so on the discovery call
+                if a product fits better.
+              </p>
+            </details>
+            <details class="faq__item">
+              <summary>
+                <span>Which regions do you cover?</span><span class="faq__icon" aria-hidden="true"></span>
+              </summary>
+              <p>
+                tkxel has offices in the USA, Saudi Arabia, Portugal, and Pakistan. Pods work on-site, remote, or
+                hybrid, and we align working hours with your core team’s time zone.
+              </p>
+            </details>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="ftr">
+      <div class="container">
+        <div class="ftr__top">
+          <div class="ftr__brand">
+            <a href="/" class="ftr__logo">tkxel<span>FDE</span></a>
+            <p class="ftr__tag">
+              Forward deployed engineering teams that build production AI inside your environment, then hand it over to
+              your team.
+            </p>
+            <a href="https://tkxel.com" class="ftr__main">Visit tkxel.com →</a>
+          </div>
+          <div class="ftr__cols">
+            <div>
+              <a href="/services/ai-strategy-readiness/" class="ftr__head">AI strategy &amp; readiness</a>
+              <ul>
+                <li>AI maturity assessment</li>
+                <li>Process mapping &amp; use-case prioritization</li>
+                <li>Use-case portfolio &amp; ROI tracking</li>
+                <li>Data readiness audit</li>
+              </ul>
+            </div>
+            <div>
+              <a href="/services/fde-pods/" class="ftr__head">FDE pods</a>
+              <ul>
+                <li>Full-stack FDE pod</li>
+                <li>Agentic FDE pod</li>
+                <li>Data engineering FDE pod</li>
+                <li>Integration &amp; legacy modernization pod</li>
+              </ul>
+            </div>
+            <div>
+              <a href="/services/agentic-platforms/" class="ftr__head">Agentic platforms &amp; integrations</a>
+              <ul>
+                <li>Enterprise connectors &amp; MCP integrations</li>
+                <li>Enterprise knowledge assistant</li>
+                <li>Workflow agentification</li>
+                <li>Managed AI operations</li>
+              </ul>
+            </div>
+            <div>
+              <a href="/services/adoption-enablement/" class="ftr__head">Adoption &amp; enablement</a>
+              <ul>
+                <li>Role-based AI training</li>
+                <li>AI champions program</li>
+                <li>Train-the-trainer</li>
+                <li>AI center of excellence</li>
+              </ul>
+            </div>
+            <div>
+              <a href="/services/ai-security-governance/" class="ftr__head">AI security &amp; governance</a>
+              <ul>
+                <li>Agent security &amp; permissions review</li>
+                <li>AI penetration testing</li>
+                <li>AI governance council setup</li>
+              </ul>
+            </div>
+            <div>
+              <a href="/services/product-engineering/" class="ftr__head">Product &amp; engineering transformation</a>
+              <ul>
+                <li>Product AI strategy</li>
+                <li>Rapid prototype sprint</li>
+                <li>AI-enabled SDLC redesign</li>
+                <li>Legacy SaaS modernization</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="ftr__offices">
+          <div>
+            <span class="eyebrow">USA</span>
+            <p>Placeholder — confirm from tkxel.com footer</p>
+          </div>
+          <div>
+            <span class="eyebrow">Saudi Arabia</span>
+            <p>Placeholder — confirm from tkxel.com footer</p>
+          </div>
+          <div>
+            <span class="eyebrow">Portugal</span>
+            <p>Placeholder — confirm from tkxel.com footer</p>
+          </div>
+          <div>
+            <span class="eyebrow">Pakistan</span>
+            <p>Placeholder — confirm from tkxel.com footer</p>
+          </div>
+        </div>
+        <div class="ftr__legal">
+          <span>© 2026 tkxel. All rights reserved.</span>
+          <nav aria-label="Legal"><a href="/privacy-policy/">Privacy policy</a><a href="/terms/">Terms of use</a></nav>
+        </div>
+      </div>
+    </footer>
+
+    <script src="/assets/js/main.js" defer></script>
+  </body>
+</html>
