@@ -41,6 +41,10 @@ for page in sorted(ROOT.rglob('*.html')):
     text = re.sub(r'<[^>]+>', ' ', re.sub(r'<script.*?</script>', '', h, flags=re.S))
     for w in set(x.group(0).lower() for x in BAN.finditer(text)):
         errors.append(f'{rel}: banned word "{w}"')
+    if str(rel).startswith('blog/') and rel.name == 'index.html' and rel.parent.name != 'blog':
+        body = h.split('class="art__body"')[-1].split('id="sources"')[0]
+        if len(re.findall(r'<a href="/[^"]*">', body)) < 2:
+            errors.append(f'{rel}: fewer than 2 in-text internal links (mention more related topics)')
     for href in set(re.findall(r'href="(/[^"#?]*)', h)):
         target = ROOT / href.lstrip('/')
         if not (target.is_file() or (target / 'index.html').is_file()):

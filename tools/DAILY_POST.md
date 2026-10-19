@@ -29,6 +29,10 @@ Copy the shape of an existing file such as `tools/posts/how-to-evaluate-ai-agent
 - `form_h`: forward-looking headline
 - `research`: `{ "primary", "secondary": [...], "top_urls": [...], "gaps" }`
 
+### Linking
+- Internal links are added automatically by `tools/build.py` on the first mention of related topics (see `INTERNAL_LINKS` in build.py). Mention at least 3 related topics naturally (for example FDE pods, AI agents, guardrails, evaluation, human review, RAG, MCP integrations, AI governance). `check.py` fails a post with fewer than 2 in-text internal links.
+- External links: official sources (OWASP, NIST AI RMF, Model Context Protocol, EU AI Act, ISO/IEC 42001, MITRE ATLAS, HIPAA) are linked automatically on first mention. For every statistic, add its source to an optional `sources` list: `[["Source name and title", "https://..."]]`. These appear under "Sources and further reading".
+
 ### Voice (design system §1.2)
 - Sentence case headings. Second person ("your team"). Plain verbs: assess, build, connect, govern.
 - Outcome-anchored and specific. Describe mechanisms rather than superlatives.

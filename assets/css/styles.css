@@ -1170,3 +1170,6 @@ p {
 .art__cover { width: 100%; height: auto; border: 1px solid rgba(255, 255, 255, 0.25); }
 .idx__thumb { width: calc(100% + 64px); max-width: none; height: auto; aspect-ratio: 1200 / 630; margin: -32px -32px 8px; display: block; }
 @media (max-width: 1023px) { .art__hero-grid { grid-template-columns: 1fr; gap: 32px; } }
+/* In-text links and sources in articles */
+.art__body p a, .art__body li a { color: var(--tk-accent); text-decoration: underline; text-underline-offset: 3px; }
+.art__sources { font-size: 15px; overflow-wrap: anywhere; }

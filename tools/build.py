@@ -357,17 +357,91 @@ def service(p):
               'url': f"https://fde.tkxel.com{p['path']}"}]
     write(p['path'], body, p['title'], p['desc'], schema)
 
+
+# In-text linking for articles: first mention of a phrase links once per article.
+INTERNAL_LINKS = [
+  (r'forward deployed engineering', '/what-is-forward-deployed-engineering/'),
+  (r'staff augmentation', '/fde-vs-staff-augmentation-vs-consulting/'),
+  (r'FDE pods?', '/services/fde-pods/'),
+  (r'agentic FDE pod', '/services/agentic-fde-pod/'),
+  (r'AI readiness assessment', '/services/ai-readiness-assessment/'),
+  (r'AI (?:penetration testing|red teaming)', '/services/ai-penetration-testing/'),
+  (r'knowledge assistant', '/services/enterprise-knowledge-assistant/'),
+  (r'workflow (?:automation|agentification)', '/services/workflow-agentification/'),
+  (r'MCP (?:servers?|integrations?)', '/services/mcp-enterprise-integrations/'),
+  (r'data engineering', '/services/data-engineering-fde-pod/'),
+  (r'legacy (?:system )?modernization', '/services/integration-legacy-modernization-pod/'),
+  (r'AI governance', '/services/ai-security-governance/'),
+  (r'engagement models?', '/engagement-models/'),
+  (r'AI strategy', '/services/ai-strategy-readiness/'),
+  (r'(?:AI )?training programmes?|AI literacy', '/services/adoption-enablement/'),
+  (r'AI agents?', '/services/agentic-fde-pod/'),
+  (r'guardrails', '/blog/ai-agent-guardrails/'),
+  (r'evaluation sets?|golden datasets?|evals|evaluation', '/blog/how-to-evaluate-ai-agents/'),
+  (r'human[- ]in[- ]the[- ]loop|human review', '/blog/human-in-the-loop-ai-agents/'),
+  (r'prompt injection', '/blog/prompt-injection-explained/'),
+  (r'retrieval[- ]augmented generation|RAG', '/blog/rag-vs-fine-tuning/'),
+  (r'fine[- ]tuning', '/blog/rag-vs-fine-tuning/'),
+  (r'AI pilots?|proofs? of concept', '/blog/why-ai-pilots-fail-to-reach-production/'),
+  (r'readiness checklist|AI readiness', '/blog/ai-readiness-checklist/'),
+  (r'build (?:vs\.?|versus|or) buy', '/blog/build-vs-buy-ai-agents/'),
+  (r'security reviews?', '/services/ai-security-governance/'),
+  (r'team structure|pod structure', '/blog/fde-team-structure/'),
+  (r'hiring forward deployed engineers|hire forward deployed engineers', '/blog/how-to-hire-forward-deployed-engineers/'),
+  (r'integrations?', '/services/mcp-enterprise-integrations/'),
+  (r'review queues?', '/services/workflow-agentification/'),
+  (r'vector (?:databases?|stores?|search|index(?:es)?)', '/services/enterprise-knowledge-assistant/'),
+  (r'permissions?', '/services/ai-security-governance/'),
+  (r'autonomy', '/blog/ai-agent-guardrails/'),
+  (r'agents', '/services/agentic-fde-pod/'),
+]
+EXTERNAL_LINKS = [
+  (r'OWASP', 'https://genai.owasp.org/', 'OWASP GenAI Security Project'),
+  (r'NIST AI (?:RMF|Risk Management Framework)', 'https://www.nist.gov/itl/ai-risk-management-framework', 'NIST AI Risk Management Framework'),
+  (r'Model Context Protocol', 'https://modelcontextprotocol.io/', 'Model Context Protocol documentation'),
+  (r'EU AI Act', 'https://eur-lex.europa.eu/eli/reg/2024/1689/oj', 'EU AI Act (Regulation 2024/1689)'),
+  (r'ISO/IEC 42001|ISO 42001', 'https://www.iso.org/standard/81230.html', 'ISO/IEC 42001'),
+  (r'MITRE ATLAS', 'https://atlas.mitre.org/', 'MITRE ATLAS'),
+  (r'HIPAA', 'https://www.hhs.gov/hipaa/index.html', 'HHS: HIPAA'),
+]
+MAX_INTERNAL = 6
+
+class Linker:
+    def __init__(self, self_path):
+        self.self_path, self.done, self.internal, self.cited = self_path, set(), 0, []
+    def __call__(self, text):
+        out = e(text)
+        for pat, href in INTERNAL_LINKS:
+            if href == self.self_path or href in self.done or self.internal >= MAX_INTERNAL:
+                continue
+            m = re.search(rf'(?<![\w>/])({pat})(?![\w<])', out, re.I)
+            if m and not self._inside_link(out, m.start()):
+                out = out[:m.start()] + f'<a href="{href}">{m.group(1)}</a>' + out[m.end():]
+                self.done.add(href); self.internal += 1
+        for pat, href, label in EXTERNAL_LINKS:
+            if href in self.done:
+                continue
+            m = re.search(rf'(?<![\w>/])({pat})(?![\w<])', out)
+            if m and not self._inside_link(out, m.start()):
+                out = out[:m.start()] + f'<a href="{href}" target="_blank" rel="noopener">{m.group(1)}</a>' + out[m.end():]
+                self.done.add(href); self.cited.append((label, href))
+        return out
+    @staticmethod
+    def _inside_link(html_text, pos):
+        return html_text.rfind('<a ', 0, pos) > html_text.rfind('</a>', 0, pos)
+
 def article(p):
     """Guide / blog article layout. New template (design system §7): tokens only, standard section skeleton."""
+    L = Linker(p['path'])
     parts = []
     for s in p['sections']:
         sid = re.sub(r'[^a-z0-9]+', '-', s['h2'].lower()).strip('-')[:48]
         chunk = f'\n          <h2 class="art__h2" id="{sid}">{e(s["h2"])}</h2>'
-        chunk += ''.join(f'\n          <p>{e(x)}</p>' for x in s.get('paras', []))
+        chunk += ''.join(f'\n          <p>{L(x)}</p>' for x in s.get('paras', []))
         if s.get('bullets'):
-            chunk += '\n          <ul>' + ''.join(f'<li>{e(b)}</li>' for b in s['bullets']) + '</ul>'
+            chunk += '\n          <ul>' + ''.join(f'<li>{L(b)}</li>' for b in s['bullets']) + '</ul>'
         for h3, para in s.get('h3s', []):
-            chunk += f'\n          <h3 class="art__h3">{e(h3)}</h3>\n          <p>{e(para)}</p>'
+            chunk += f'\n          <h3 class="art__h3">{e(h3)}</h3>\n          <p>{L(para)}</p>'
         if s.get('table'):
             cap, heads, rows = s['table']
             chunk += (f'\n          <div class="ct__scroll" tabindex="0" role="region" aria-label="{e(cap)}"><table class="ct art__table"><caption class="sr-only">{e(cap)}</caption><thead><tr>'
@@ -375,6 +449,12 @@ def article(p):
                       + ''.join('<tr><th scope="row">' + e(r[0]) + '</th>' + ''.join(f'<td>{e(c)}</td>' for c in r[1:]) + '</tr>' for r in rows)
                       + '</tbody></table></div>')
         parts.append(chunk)
+    refs = list(dict.fromkeys([tuple(x) for x in p.get('sources', [])] + L.cited))
+    reading = [u for u in p.get('research', {}).get('top_urls', []) if u.startswith('http') and u not in {h for _, h in refs}][:4]
+    if refs or reading:
+        items = ''.join(f'<li><a href="{h}" target="_blank" rel="noopener">{e(l)}</a></li>' for l, h in refs)
+        items += ''.join(f'<li><a href="{u}" target="_blank" rel="noopener nofollow">{e(re.sub(r"^https?://(www\\.)?", "", u).rstrip("/"))}</a></li>' for u in reading)
+        parts.append(f'\n          <h2 class="art__h2" id="sources">Sources and further reading</h2>\n          <ul class="art__sources">{items}</ul>')
     toc = ''.join(f'<li><a href="#{re.sub(r"[^a-z0-9]+", "-", s["h2"].lower()).strip("-")[:48]}">{e(s["h2"])}</a></li>' for s in p['sections'])
     links = [tuple(x) for x in p.get('related', [])]
     same = [q for q in POSTS if q['path'] != p['path'] and set(q.get('tags', [])) & set(p.get('tags', []))][:3]
