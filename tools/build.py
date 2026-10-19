@@ -430,6 +430,37 @@ class Linker:
     def _inside_link(html_text, pos):
         return html_text.rfind('<a ', 0, pos) > html_text.rfind('</a>', 0, pos)
 
+
+def _domain(url):
+    return re.sub(r'^https?://(www\.)?', '', url).split('/')[0]
+
+def _title_from_url(url):
+    """Readable title from a URL slug, e.g. .../mcp-security-governance-enterprise/ -> 'Mcp security governance enterprise'."""
+    path = [x for x in re.sub(r'^https?://[^/]+', '', url).split('/') if x and not x.startswith('?')]
+    slug = re.sub(r'\.(html?|php|md)$', '', path[-1]) if path else _domain(url)
+    words = re.sub(r'[-_]+', ' ', slug).strip()
+    if not words or words.isdigit():
+        return _domain(url)
+    words = words[:1].upper() + words[1:]
+    return re.sub(r'\b(mcp|ai|rag|llms?|fde|api|saas|owasp|nist|crm|erp|roi|faq)\b', lambda m: m.group(1).upper(), words, flags=re.I)
+
+def sources_block(refs, reading):
+    def item(title, url, rel):
+        return (f'<li><a href="{url}" target="_blank" rel="{rel}" class="src__link">'
+                f'<span class="src__title">{e(title)}</span><span class="src__domain">{e(_domain(url))}</span>'
+                f'<span class="src__arrow" aria-hidden="true">↗</span></a></li>')
+    groups = ''
+    if refs:
+        groups += '<div class="src__group"><span class="eyebrow">Cited sources</span><ol class="src__list">' + ''.join(item(l, h, 'noopener') for l, h in refs) + '</ol></div>'
+    if reading:
+        groups += '<div class="src__group"><span class="eyebrow">Further reading</span><ol class="src__list">' + ''.join(item(_title_from_url(u), u, 'noopener nofollow') for u in reading) + '</ol></div>'
+    return f'''
+          <section class="src" aria-labelledby="sources">
+            <h2 class="art__h2 src__h" id="sources">Sources and further reading</h2>
+            <p class="caption">External pages open in a new tab. tkxel is not responsible for their content.</p>
+            {groups}
+          </section>'''
+
 def article(p):
     """Guide / blog article layout. New template (design system §7): tokens only, standard section skeleton."""
     L = Linker(p['path'])
@@ -452,9 +483,7 @@ def article(p):
     refs = list(dict.fromkeys([tuple(x) for x in p.get('sources', [])] + L.cited))
     reading = [u for u in p.get('research', {}).get('top_urls', []) if u.startswith('http') and u not in {h for _, h in refs}][:4]
     if refs or reading:
-        items = ''.join(f'<li><a href="{h}" target="_blank" rel="noopener">{e(l)}</a></li>' for l, h in refs)
-        items += ''.join(f'<li><a href="{u}" target="_blank" rel="noopener nofollow">{e(re.sub(r"^https?://(www\\.)?", "", u).rstrip("/"))}</a></li>' for u in reading)
-        parts.append(f'\n          <h2 class="art__h2" id="sources">Sources and further reading</h2>\n          <ul class="art__sources">{items}</ul>')
+        parts.append(sources_block(refs, reading))
     toc = ''.join(f'<li><a href="#{re.sub(r"[^a-z0-9]+", "-", s["h2"].lower()).strip("-")[:48]}">{e(s["h2"])}</a></li>' for s in p['sections'])
     links = [tuple(x) for x in p.get('related', [])]
     same = [q for q in POSTS if q['path'] != p['path'] and set(q.get('tags', [])) & set(p.get('tags', []))][:3]
@@ -615,7 +644,7 @@ if __name__ == '__main__':
     # Assign covers oldest-first so existing posts keep their art when new posts are added.
     COVERS, recent = {}, []
     for q in sorted(POSTS, key=lambda q: (q['date'], q['path'])):
-        COVERS[q['path']] = ART.cover_svg(q['path'].strip('/').split('/')[-1], q.get('tags'), avoid=recent[-6:])
+        COVERS[q['path']] = ART.cover_svg(q['path'].strip('/').split('/')[-1], q.get('tags'), avoid=recent[-6:], title=q.get('h1', ''))
         recent.append(ART.cover_svg.last)
     CASES[:] = load('case_studies', 'CASES')
     written = []

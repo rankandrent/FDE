@@ -1,7 +1,7 @@
 """Per-page hero illustrations. One shared line style (white strokes, one highlighted
 shape, one solid dot) so every page is distinct but on-brand. Variation is seeded by
 the page path, so two pages with the same motif still differ."""
-import hashlib, math, random
+import hashlib, math, random, re
 
 LINE = 'fill="none" stroke="rgba(255,255,255,.35)" stroke-width="1.5"'
 HI = 'fill="rgba(255,255,255,.12)" stroke="#fff" stroke-width="1.5"'
@@ -233,17 +233,52 @@ COVER_MOTIFS = {
     'Strategy': [bars, gauge, milestones, quad], 'FDE': [pod, cycle, rings, stack3],
 }
 
-def cover_svg(slug, tags, avoid=()):
-    """avoid: motif names used by the most recent posts, so neighbouring cards differ."""
+def cover_svg(slug, tags, avoid=(), title=''):
+    """Editorial blog cover (1200x630): gradient, soft glows, dot grid, a frosted panel holding the
+    topic motif in heavier strokes, and a topic label. avoid: motif names used by recent posts."""
     r = _rng('/blog/' + slug)
     pool = [m for t in (tags or ['FDE']) for m in COVER_MOTIFS.get(t, [])] or [cube]
     r.shuffle(pool)
     every = [m for ms in COVER_MOTIFS.values() for m in ms]
     motif = next((m for m in pool + every if m.__name__ not in avoid), pool[0])
     cover_svg.last = motif.__name__
-    gx, gy = r.choice([(10, 0), (90, 0), (10, 100), (50, 0)])
-    return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Illustration">'
-            f'<defs><radialGradient id="g" cx="{gx}%" cy="{gy}%" r="140%"><stop offset="0" stop-color="#10347E"/><stop offset="1" stop-color="#0755E9"/></radialGradient></defs>'
-            f'<rect width="1200" height="630" fill="url(#g)"/>'
-            f'<g stroke="rgba(255,255,255,.06)" stroke-width="1">' + ''.join(f'<line x1="{x}" y1="0" x2="{x}" y2="630"/>' for x in range(0, 1200, 60)) + ''.join(f'<line x1="0" y1="{y}" x2="1200" y2="{y}"/>' for y in range(0, 630, 60)) + '</g>'
-            f'<g transform="translate(330 45) scale(1.35)">{motif(r)}</g></svg>')
+    label = ' · '.join(t.upper() for t in (tags or ['FDE'])[:2])
+    g1 = (r.randint(60, 340), r.randint(40, 200))
+    g2 = (r.randint(820, 1140), r.randint(380, 600))
+    side = r.choice(['right', 'left'])
+    px = 680 if side == 'right' else 80
+    tx = 80 if side == 'right' else 600
+    # Post title (part before a colon), wrapped to at most 4 lines of ~16 characters (fits a 520px column).
+    short = (re.split(r'[:,]', title)[0] if title else slug.replace('-', ' ')).strip()
+    lines, cur = [], ''
+    for w in short.split():
+        if len(cur) + len(w) + 1 > 16 and cur:
+            lines.append(cur); cur = w
+        else:
+            cur = (cur + ' ' + w).strip()
+    lines.append(cur)
+    if len(lines) > 4:
+        lines = lines[:4]; lines[-1] = lines[-1].rstrip('.,') + '…'
+    esc = lambda t: t.replace('&', '&amp;').replace('<', '&lt;')
+    deco = ''.join(f'<text x="{tx}" y="{262 + i * 64}" font-family="Plus Jakarta Sans, Helvetica, Arial, sans-serif" font-size="50" font-weight="800" fill="#fff">{esc(l)}</text>' for i, l in enumerate(lines))
+    deco += f'<rect x="{tx}" y="{262 + len(lines) * 64 - 18}" width="72" height="5" fill="#fff"/>'
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="{label} illustration">
+<defs>
+<radialGradient id="bg" cx="10%" cy="0%" r="140%"><stop offset="0" stop-color="#10347E"/><stop offset="1" stop-color="#0755E9"/></radialGradient>
+<radialGradient id="glow"><stop offset="0" stop-color="#fff" stop-opacity=".28"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+<pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.4" fill="rgba(255,255,255,.16)"/></pattern>
+<style>.m * {{ stroke-width: 3px; }} .m [fill="rgba(255,255,255,.12)"] {{ fill: rgba(255,255,255,.22); }}</style>
+</defs>
+<rect width="1200" height="630" fill="url(#bg)"/>
+<circle cx="{g1[0]}" cy="{g1[1]}" r="320" fill="url(#glow)"/>
+<circle cx="{g2[0]}" cy="{g2[1]}" r="260" fill="url(#glow)"/>
+<rect width="1200" height="630" fill="url(#dots)"/>
+<rect x="{px + 18}" y="78" width="440" height="440" fill="rgba(4,24,77,.35)"/>
+<rect x="{px}" y="60" width="440" height="440" fill="rgba(255,255,255,.10)" stroke="rgba(255,255,255,.45)" stroke-width="2"/>
+<g class="m" transform="translate({px + 30} 90) scale(0.95)">{motif(r)}</g>
+{deco}
+<rect x="{tx}" y="72" width="{24 + len(label) * 15}" height="40" fill="#fff"/>
+<text x="{tx + 12}" y="98" font-family="IBM Plex Mono, Menlo, Consolas, monospace" font-size="18" letter-spacing="2" fill="#0B2A6B">{label}</text>
+<text x="{tx}" y="186" font-family="Plus Jakarta Sans, Helvetica, Arial, sans-serif" font-size="30" font-weight="700" fill="rgba(255,255,255,.9)">tkxel</text>
+<text x="{tx + 96}" y="186" font-family="IBM Plex Mono, Menlo, monospace" font-size="16" fill="rgba(255,255,255,.75)">FDE INSIGHTS</text>
+</svg>'''
