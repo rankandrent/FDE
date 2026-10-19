@@ -23,6 +23,16 @@ HEADER = re.sub(r'(</div>\s*</div>\s*</div>)\s*<a href="/services/fde-pods/".*?(
                 r'\1\n        <a href="/services/fde-pods/" class="hdr__link">FDE pods</a><a href="/industries/" class="hdr__link">Industries</a><a href="/case-studies/" class="hdr__link">Case studies</a><a href="/blog/" class="hdr__link">Resources</a>\n      \2',
                 HEADER, count=1, flags=re.S)
 
+# Brand logo (official tkxel SVGs in assets/img): white on dark surfaces, blue on light ones.
+HDR_LOGO = ('<a href="/" class="hdr__logo" aria-label="tkxel FDE home">'
+            '<img class="logo--on-dark" src="/assets/img/tkxel-logo-dark-bg.svg" alt="tkxel" width="84" height="30" />'
+            '<img class="logo--on-light" src="/assets/img/tkxel-logo-light-bg.svg" alt="" width="84" height="30" />'
+            '<span>FDE</span></a>')
+FTR_LOGO = ('<a href="/" class="ftr__logo" aria-label="tkxel FDE home">'
+            '<img src="/assets/img/tkxel-logo-dark-bg.svg" alt="tkxel" width="98" height="35" /><span>FDE</span></a>')
+HEADER = re.sub(r'<a href="/" class="hdr__logo"[^>]*>.*?</a>', lambda m: HDR_LOGO, HEADER, count=1, flags=re.S)
+FOOTER = re.sub(r'<a href="/" class="ftr__logo"[^>]*>.*?</a>', lambda m: FTR_LOGO, FOOTER, count=1, flags=re.S)
+
 # Mega menu and footer sub-service items link to their pages where one exists.
 CHILD_LINKS = {
   'Full-stack FDE pod': '/services/full-stack-fde-pod/',

@@ -1189,3 +1189,11 @@ p {
 .src__link:hover .src__arrow { transform: translate(2px, -2px); }
 .art__sources { display: none; }
 @media (max-width: 767px) { .src { padding: 24px 20px; } }
+/* Official logo: white over the dark hero, blue once the header turns solid */
+.hdr__logo, .ftr__logo { display: inline-flex; align-items: center; gap: 10px; }
+.hdr__logo img, .ftr__logo img { display: block; height: 30px; width: auto; }
+.ftr__logo img { height: 35px; }
+.hdr__logo span, .ftr__logo span { margin-left: 0; }
+.hdr .logo--on-light { display: none; }
+.hdr.is-solid .logo--on-dark, .hdr.is-open .logo--on-dark { display: none; }
+.hdr.is-solid .logo--on-light, .hdr.is-open .logo--on-light { display: block; }

@@ -1,7 +1,7 @@
 """Per-page hero illustrations. One shared line style (white strokes, one highlighted
 shape, one solid dot) so every page is distinct but on-brand. Variation is seeded by
 the page path, so two pages with the same motif still differ."""
-import hashlib, math, random, re
+import hashlib, math, pathlib, random, re
 
 LINE = 'fill="none" stroke="rgba(255,255,255,.35)" stroke-width="1.5"'
 HI = 'fill="rgba(255,255,255,.12)" stroke="#fff" stroke-width="1.5"'
@@ -226,6 +226,11 @@ def svg_for(path):
     fn = next((f for key, f in RULES if key in path), network if path == '/' else cube)
     return f'<svg class="hero__graphic" viewBox="0 0 400 400" aria-hidden="true">{fn(_rng(path))}</svg>'
 
+# Official white tkxel logo, embedded in covers.
+_logo = (pathlib.Path(__file__).resolve().parent.parent / 'assets/img/tkxel-logo-dark-bg.svg').read_text()
+LOGO_VIEWBOX = re.search(r'viewBox="([^"]+)"', _logo).group(1)
+LOGO_BODY = re.search(r'(<style>.*?</style>.*)</svg>', _logo, re.S).group(1).replace('.st0', '.lg0').replace('.st1', '.lg1').replace('class="st0"', 'class="lg0"').replace('class="st1"', 'class="lg1"')
+
 # Blog cover images: standalone SVG (gradient background + topic motif), one per post.
 COVER_MOTIFS = {
     'Agents': [network, hierarchy, flow, platform], 'Governance': [shield, target, ledger],
@@ -279,6 +284,6 @@ def cover_svg(slug, tags, avoid=(), title=''):
 {deco}
 <rect x="{tx}" y="72" width="{24 + len(label) * 15}" height="40" fill="#fff"/>
 <text x="{tx + 12}" y="98" font-family="IBM Plex Mono, Menlo, Consolas, monospace" font-size="18" letter-spacing="2" fill="#0B2A6B">{label}</text>
-<text x="{tx}" y="186" font-family="Plus Jakarta Sans, Helvetica, Arial, sans-serif" font-size="30" font-weight="700" fill="rgba(255,255,255,.9)">tkxel</text>
+<svg x="{tx}" y="158" width="84" height="30" viewBox="{LOGO_VIEWBOX}">{LOGO_BODY}</svg>
 <text x="{tx + 96}" y="186" font-family="IBM Plex Mono, Menlo, monospace" font-size="16" fill="rgba(255,255,255,.75)">FDE INSIGHTS</text>
 </svg>'''
