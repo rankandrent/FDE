@@ -48,4 +48,9 @@ Fix every problem `check.py` reports, then re-run both until it prints `OK`.
 - Change the topic line to `- [x]`.
 - Branch `blog/<slug>`, commit everything (post JSON, regenerated HTML, sitemap, rss, topics.md).
 - Open a PR to `main` titled `Blog: <h1>`. In the body list: primary keyword, top URLs, whether WebFetch worked, every statistic with its source, and anything a reviewer should verify.
+  GitHub GraphQL is blocked in these sessions, so `gh pr create` fails. Use the REST API instead:
+  ```
+  gh api repos/rankandrent/FDE/pulls -f title="Blog: <h1>" -f head="blog/<slug>" -f base=main -F body=@/tmp/pr-body.md
+  ```
+  Failure issues the same way: `gh api repos/rankandrent/FDE/issues -f title="..." -F body=@/tmp/issue.md`
 - The site goes live only when the PR is merged.
