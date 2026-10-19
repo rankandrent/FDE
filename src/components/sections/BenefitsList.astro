@@ -1,0 +1,33 @@
+---
+import Headline from './Headline.astro';
+interface Props { id?: string; headline: string; benefits: { title: string; body: string }[]; cta_label: string; cta_target?: string }
+const { id = 'benefits', headline, benefits, cta_label, cta_target = '#cta-form' } = Astro.props;
+---
+<section class="section section--gradient on-dark" id={id}>
+  <div class="container">
+    <div class="section-head reveal"><Headline text={headline} /></div>
+    <div class="bl">
+      {benefits.map((b) => (
+        <div class="bl__box reveal">
+          <svg class="bl__check" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12l5 5L20 6" fill="none" stroke="#3DDC84" stroke-width="2.5" /></svg>
+          <h3 class="h4 bl__title">{b.title}</h3>
+          <p class="bl__body">{b.body}</p>
+        </div>
+      ))}
+      <div class="bl__cta reveal">
+        <p class="h4 bl__title">Ready to see this in your own workflows?</p>
+        <a href={cta_target} class="btn btn--invert">{cta_label}</a>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+  .bl { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .bl__box { border: 1px solid rgba(255,255,255,.25); padding: 32px; }
+  .bl__check { width: 28px; height: 28px; margin-bottom: 20px; }
+  .bl__title { font-weight: 600; }
+  .bl__body { margin-top: 12px; color: rgba(255,255,255,.72); font-size: 16px; }
+  .bl__cta { padding: 32px; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 24px; }
+  @media (max-width: 1023px) { .bl { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 767px) { .bl { grid-template-columns: 1fr; } }
+</style>

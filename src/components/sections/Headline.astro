@@ -1,0 +1,7 @@
+---
+// Renders a headline with an optional soft break marked by " | " (§2.2). Break collapses on mobile.
+interface Props { text: string; as?: 'h1' | 'h2' | 'h3'; class?: string; id?: string }
+const { text, as: Tag = 'h2', class: cls = 'h2', id } = Astro.props;
+const parts = text.split(' | ');
+---
+<Tag class={cls} id={id}>{parts.map((p, i) => <>{p}{i < parts.length - 1 && <><span class="br"><br /></span>{" "}</>}</>)}</Tag>

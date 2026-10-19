@@ -1,0 +1,67 @@
+---
+import Headline from './Headline.astro';
+interface Props { headline: string }
+const { headline } = Astro.props;
+const interests = ['FDE pod', 'AI strategy & readiness', 'Agentic platforms & integrations', 'Adoption & enablement', 'AI security & governance', 'Product & engineering transformation', 'Something else'];
+const testimonials = [
+  { quote: 'Placeholder testimonial — replace with the global set from tkxel.com.', who: 'Knowles' },
+  { quote: 'Placeholder testimonial — replace with the global set from tkxel.com.', who: 'Sterne Kessler' },
+];
+---
+<section class="section section--dark on-dark" id="cta-form">
+  <div class="container fc">
+    <div class="fc__left">
+      <Headline text={headline} />
+      <div class="fc__clutch"><span class="eyebrow">Clutch</span><span class="caption">[Placeholder] Clutch badge and rating — add the official widget</span></div>
+      {testimonials.map((t) => <blockquote class="fc__quote">“{t.quote}”<footer class="caption">— {t.who}</footer></blockquote>)}
+    </div>
+    <form class="fc__form" method="post" action="/api/lead" data-lead-form>
+      <label class="fc__full">I'm interested in
+        <select name="interest" required>{interests.map((i) => <option>{i}</option>)}</select>
+      </label>
+      <label>First name*<input name="first_name" required autocomplete="given-name" /></label>
+      <label>Last name*<input name="last_name" required autocomplete="family-name" /></label>
+      <label>Work email*<input name="email" type="email" required autocomplete="email" /></label>
+      <label>Job title*<input name="job_title" required autocomplete="organization-title" /></label>
+      <label class="fc__full">Phone<input name="phone" type="tel" autocomplete="tel" /></label>
+      <label class="fc__full">Project description<textarea name="message" rows="4"></textarea></label>
+      <label class="fc__check fc__full"><input type="checkbox" name="marketing_consent" /> I agree to receive marketing communications from tkxel.</label>
+      <label class="fc__check fc__full"><input type="checkbox" name="sms_consent" /> I agree to receive SMS messages from tkxel.</label>
+      <button class="btn btn--invert fc__full" type="submit">Book discovery call</button>
+      <p class="caption fc__full">By submitting, you agree to our <a href="/terms/">Terms</a> and <a href="/privacy-policy/">Privacy policy</a>.</p>
+      <p class="fc__status fc__full" role="status" data-lead-status></p>
+    </form>
+  </div>
+</section>
+<style>
+  .fc { display: grid; grid-template-columns: 1fr 1.1fr; gap: 64px; }
+  .fc__clutch { display: flex; align-items: center; gap: 12px; margin: 32px 0; }
+  .fc__quote { margin: 0 0 24px; color: rgba(255,255,255,.8); font-size: 16px; border-left: 3px solid var(--tk-accent); padding-left: 20px; }
+  .fc__form { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .fc__full { grid-column: 1 / -1; }
+  .fc__form label { display: flex; flex-direction: column; gap: 8px; font-size: 14px; color: rgba(255,255,255,.8); }
+  .fc__form input:not([type=checkbox]), .fc__form select, .fc__form textarea { height: 48px; padding: 0 14px; font: 16px var(--tk-sans); border: 1px solid rgba(255,255,255,.25); background: rgba(255,255,255,.06); color: var(--tk-white); }
+  .fc__form textarea { height: auto; padding: 12px 14px; }
+  .fc__form option { color: var(--tk-text); }
+  .fc__form .fc__check { flex-direction: row; align-items: flex-start; gap: 10px; }
+  .fc__form .caption { color: rgba(255,255,255,.55); }
+  @media (max-width: 1023px) { .fc { grid-template-columns: 1fr; } }
+  @media (max-width: 767px) { .fc__form { grid-template-columns: 1fr; } }
+</style>
+<script>
+  document.querySelectorAll<HTMLFormElement>('[data-lead-form]').forEach((form) => {
+    const status = form.querySelector<HTMLElement>('[data-lead-status]')!;
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      status.textContent = 'Sending…';
+      try {
+        const res = await fetch(form.action, { method: 'POST', body: new FormData(form) });
+        if (!res.ok) throw new Error();
+        form.reset();
+        status.textContent = 'Thanks — we will be in touch within one business day.';
+      } catch {
+        status.textContent = 'Something went wrong. Please email us instead.';
+      }
+    });
+  });
+</script>

@@ -1,0 +1,28 @@
+---
+import Headline from './Headline.astro';
+interface Props { id?: string; headline: string; intro?: string; challenges: { title: string; body: string }[] }
+const { id = 'challenges', headline, intro, challenges } = Astro.props;
+---
+<section class="section" id={id}>
+  <div class="container">
+    <div class="section-head reveal">
+      <Headline text={headline} />
+      {intro && <p class="muted">{intro}</p>}
+    </div>
+    <div class="cp" style={`--n:${challenges.length}`}>
+      {challenges.map((c) => (
+        <div class="cp__item reveal">
+          <h3 class="cp__title">{c.title}</h3>
+          <p class="muted">{c.body}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+<style>
+  .cp { display: grid; grid-template-columns: repeat(var(--n), 1fr); gap: 40px; }
+  .cp__item { border-top: 3px solid var(--tk-accent); padding-top: 28px; }
+  .cp__title { font-size: 22px; font-weight: 700; margin-bottom: 12px; }
+  @media (max-width: 1023px) { .cp { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 767px) { .cp { grid-template-columns: 1fr; } }
+</style>

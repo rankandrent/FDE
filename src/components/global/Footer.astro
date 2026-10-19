@@ -1,0 +1,49 @@
+---
+import { pillars, offices } from '../../data/site';
+const year = new Date().getFullYear();
+---
+<footer class="ftr">
+  <div class="container">
+    <div class="ftr__top">
+      <div class="ftr__brand">
+        <a href="/" class="ftr__logo">tkxel<span>FDE</span></a>
+        <p class="ftr__tag">Forward deployed engineering teams that build production AI inside your environment, then hand it over to your team.</p>
+        <a href="https://tkxel.com" class="ftr__main">Visit tkxel.com →</a>
+      </div>
+      <div class="ftr__cols">
+        {pillars.map((p) => (
+          <div>
+            <a href={p.href} class="ftr__head">{p.title}</a>
+            <ul>{p.children.map((c) => <li>{c}</li>)}</ul>
+          </div>
+        ))}
+      </div>
+    </div>
+    <div class="ftr__offices">
+      {offices.map((o) => <div><span class="eyebrow">{o.region}</span><p>{o.address}</p></div>)}
+    </div>
+    <div class="ftr__legal">
+      <span>© {year} tkxel. All rights reserved.</span>
+      <nav aria-label="Legal"><a href="/privacy-policy/">Privacy policy</a><a href="/terms/">Terms of use</a></nav>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .ftr { background: var(--tk-dark); color: rgba(255,255,255,.75); padding: 80px 0 32px; font-size: 15px; }
+  .ftr__top { display: grid; grid-template-columns: 1fr 2.4fr; gap: 64px; }
+  .ftr__logo { color: var(--tk-white); font-weight: 800; font-size: 26px; text-decoration: none; }
+  .ftr__logo span { font-family: var(--tk-mono); font-size: 13px; font-weight: 500; margin-left: 8px; padding: 3px 7px; border: 1px solid currentColor; vertical-align: middle; }
+  .ftr__tag { margin: 20px 0; max-width: 320px; }
+  .ftr__main { color: var(--tk-white); text-decoration: none; font-weight: 600; }
+  .ftr__cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+  .ftr__head { color: var(--tk-white); font-weight: 700; text-decoration: none; }
+  .ftr ul { list-style: none; padding: 0; margin: 12px 0 0; display: grid; gap: 6px; }
+  .ftr__offices { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; margin-top: 64px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,.12); }
+  .ftr__offices .eyebrow { color: rgba(255,255,255,.5); margin-bottom: 8px; }
+  .ftr__legal { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-top: 48px; font-size: 14px; color: rgba(255,255,255,.5); }
+  .ftr__legal nav { display: flex; gap: 24px; }
+  .ftr__legal a { text-decoration: none; }
+  @media (max-width: 1023px) { .ftr__top { grid-template-columns: 1fr; } .ftr__offices { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 767px) { .ftr__cols, .ftr__offices { grid-template-columns: 1fr; } }
+</style>

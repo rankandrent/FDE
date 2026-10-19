@@ -1,0 +1,52 @@
+---
+import Headline from './Headline.astro';
+interface Props {
+  eyebrow: string; headline: string; subhead: string;
+  cta_label: string; cta_target?: string;
+  logos_label?: string; logos: string[];
+}
+const { eyebrow, headline, subhead, cta_label, cta_target = '#cta-form', logos_label = 'Our clients', logos } = Astro.props;
+---
+<section class="hero section--gradient on-dark" data-hero>
+  <div class="container hero__inner">
+    <div class="hero__copy">
+      <span class="eyebrow">{eyebrow}</span>
+      <Headline text={headline} as="h1" class="display" />
+      <p class="hero__sub">{subhead}</p>
+      <a href={cta_target} class="btn btn--invert">{cta_label}</a>
+    </div>
+    <svg class="hero__graphic" viewBox="0 0 400 400" aria-hidden="true">
+      <g fill="none" stroke="rgba(255,255,255,.35)" stroke-width="1.5">
+        <rect x="60" y="60" width="200" height="200" />
+        <rect x="100" y="100" width="200" height="200" />
+        <rect x="140" y="140" width="200" height="200" fill="rgba(255,255,255,.12)" stroke="#fff" />
+        <line x1="60" y1="60" x2="140" y2="140" /><line x1="260" y1="60" x2="340" y2="140" />
+        <line x1="60" y1="260" x2="140" y2="340" /><line x1="260" y1="260" x2="340" y2="340" />
+      </g>
+      <circle cx="340" cy="140" r="6" fill="#fff" />
+    </svg>
+  </div>
+  <div class="container hero__logos">
+    <span class="eyebrow">{logos_label}</span>
+    <div class="hero__marquee">
+      <div class="hero__track">
+        {[...logos, ...logos].map((l, i) => <span class="hero__logo" aria-hidden={i >= logos.length ? 'true' : undefined}>{l}</span>)}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 120px 0 40px; }
+  .hero__inner { display: grid; grid-template-columns: 1.3fr 1fr; gap: 48px; align-items: center; flex: 1; }
+  .hero__copy .eyebrow { margin-bottom: 20px; }
+  .hero__sub { margin: 24px 0 36px; max-width: 620px; color: rgba(255,255,255,.85); }
+  .hero__graphic { width: 100%; max-width: 420px; justify-self: end; }
+  .hero__logos { margin-top: 56px; width: 100%; }
+  .hero__logos .eyebrow { margin-bottom: 20px; }
+  .hero__marquee { overflow: hidden; mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); }
+  .hero__track { display: flex; gap: 64px; width: max-content; animation: marquee 40s linear infinite; }
+  .hero__logo { font-weight: 800; font-size: 22px; opacity: .55; white-space: nowrap; height: 32px; display: flex; align-items: center; }
+  @keyframes marquee { to { transform: translateX(-50%); } }
+  @media (max-width: 1023px) { .hero__inner { grid-template-columns: 1fr; } .hero__graphic { display: none; } }
+</style>

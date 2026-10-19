@@ -1,0 +1,57 @@
+---
+import Headline from './Headline.astro';
+interface Props { id?: string; headline: string; intro?: string; services: { eyebrow: string; title: string; body: string; href?: string }[] }
+const { id = 'services', headline, intro, services } = Astro.props;
+---
+<section class="section sg" id={id}>
+  <div class="container sg__head">
+    <div class="section-head reveal">
+      <Headline text={headline} />
+      {intro && <p class="muted">{intro}</p>}
+    </div>
+    <div class="sg__arrows">
+      <button aria-label="Previous" data-sg-prev>←</button>
+      <button aria-label="Next" data-sg-next>→</button>
+    </div>
+  </div>
+  <div class="sg__row" data-sg-row tabindex="0" aria-label={headline.replace(' | ', ' ')}>
+    {services.map((s) => {
+      const Tag = s.href ? 'a' : 'article';
+      return (
+        <Tag class="sg__card" href={s.href} tabindex={s.href ? undefined : 0}>
+          <span class="eyebrow">{s.eyebrow}</span>
+          <h3 class="sg__title">{s.title}</h3>
+          <p class="sg__body">{s.body}</p>
+          <span class="sg__icon" aria-hidden="true"></span>
+        </Tag>
+      );
+    })}
+  </div>
+</section>
+<style>
+  .sg__head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; }
+  .sg__arrows { display: flex; gap: 8px; margin-bottom: 56px; }
+  .sg__arrows button { width: 48px; height: 48px; border: 1px solid var(--tk-border); background: var(--tk-white); cursor: pointer; font-size: 18px; }
+  .sg__row { display: flex; gap: 24px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;
+    padding-left: max(var(--tk-gutter), calc((100vw - var(--tk-max)) / 2)); padding-right: 0; scroll-padding-left: max(var(--tk-gutter), calc((100vw - var(--tk-max)) / 2)); }
+  .sg__card { position: relative; flex: 0 0 360px; height: 420px; padding: 32px; border: 1px solid var(--tk-border); background: var(--tk-white);
+    display: flex; flex-direction: column; text-decoration: none; color: var(--tk-text); scroll-snap-align: start; transition: background .3s, color .3s; }
+  .sg__title { font-size: 28px; font-weight: 700; margin-top: 20px; }
+  .sg__body { margin-top: auto; padding-bottom: 40px; font-size: 16px; opacity: 0; transition: opacity .3s; }
+  .sg__icon { position: absolute; right: 24px; bottom: 24px; width: 32px; height: 32px; }
+  .sg__icon::before { content: '↑'; font-size: 22px; color: var(--tk-accent); }
+  .sg__card:hover, .sg__card:focus-visible { background: var(--tk-gradient); color: var(--tk-white); border-color: transparent; }
+  .sg__card:hover .eyebrow, .sg__card:focus-visible .eyebrow { color: rgba(255,255,255,.75); }
+  .sg__card:hover .sg__body, .sg__card:focus-visible .sg__body { opacity: 1; }
+  .sg__card:hover .sg__icon::before, .sg__card:focus-visible .sg__icon::before { content: '↓'; color: var(--tk-white); }
+  @media (hover: none) { .sg__body { opacity: 1; } }
+  @media (max-width: 767px) { .sg__card { flex-basis: 300px; height: 440px; } .sg__arrows { display: none; } }
+</style>
+<script>
+  document.querySelectorAll<HTMLElement>('.sg').forEach((sec) => {
+    const row = sec.querySelector<HTMLElement>('[data-sg-row]')!;
+    const step = () => (row.querySelector<HTMLElement>('.sg__card')?.offsetWidth ?? 360) + 24;
+    sec.querySelector('[data-sg-prev]')?.addEventListener('click', () => row.scrollBy({ left: -step(), behavior: 'smooth' }));
+    sec.querySelector('[data-sg-next]')?.addEventListener('click', () => row.scrollBy({ left: step(), behavior: 'smooth' }));
+  });
+</script>

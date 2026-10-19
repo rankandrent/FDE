@@ -1,0 +1,24 @@
+---
+interface Props { items: { label: string; anchor: string }[] }
+const { items } = Astro.props;
+---
+<nav class="snav" aria-label="On this page" data-snav>
+  <div class="container snav__row">
+    {items.map((i) => <a href={`#${i.anchor}`} data-anchor={i.anchor}>{i.label}</a>)}
+  </div>
+</nav>
+<style>
+  .snav { position: sticky; top: 80px; z-index: 40; background: var(--tk-white); border-bottom: 1px solid var(--tk-border); }
+  .snav__row { display: flex; gap: 40px; overflow-x: auto; scrollbar-width: none; }
+  .snav a { font-family: var(--tk-mono); font-size: 14px; text-transform: uppercase; letter-spacing: .08em; color: var(--tk-text-muted); text-decoration: none; padding: 20px 0; white-space: nowrap; border-bottom: 2px solid transparent; }
+  .snav a.is-active { color: var(--tk-accent); border-color: var(--tk-accent); }
+</style>
+<script>
+  const links = [...document.querySelectorAll<HTMLAnchorElement>('[data-snav] a')];
+  const io = new IntersectionObserver((entries) => {
+    for (const e of entries) if (e.isIntersecting) {
+      links.forEach((l) => l.classList.toggle('is-active', l.dataset.anchor === e.target.id));
+    }
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  links.forEach((l) => { const t = document.getElementById(l.dataset.anchor!); if (t) io.observe(t); });
+</script>

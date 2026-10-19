@@ -1,0 +1,34 @@
+---
+import Headline from './Headline.astro';
+interface Case { result_headline: string; tags: string[]; quote: string; attributor_role: string; href?: string }
+interface Props { id?: string; headline: string; cases: Case[] }
+const { id = 'case-studies', headline, cases } = Astro.props;
+---
+<section class="section" id={id}>
+  <div class="container">
+    <div class="csc__head reveal">
+      <Headline text={headline} />
+      <a href="/case-studies/" class="link-arrow">All case studies</a>
+    </div>
+    <div class="csc">
+      {cases.map((c) => (
+        <article class="csc__card reveal">
+          <div class="csc__tags">{c.tags.map((t) => <span class="eyebrow">{t}</span>)}</div>
+          <h3 class="csc__result">{c.result_headline}</h3>
+          <blockquote class="csc__quote">“{c.quote}”<footer class="caption">— {c.attributor_role}</footer></blockquote>
+          {c.href && <a href={c.href} class="link-arrow">Read case study</a>}
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+<style>
+  .csc__head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: 56px; }
+  .csc { display: flex; gap: 24px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: thin; padding-bottom: 8px; }
+  .csc__card { flex: 0 0 min(560px, 88%); scroll-snap-align: start; border: 1px solid var(--tk-border); padding: 40px; display: flex; flex-direction: column; gap: 24px; }
+  .csc__tags { display: flex; gap: 16px; flex-wrap: wrap; }
+  .csc__result { font-size: 26px; font-weight: 700; line-height: 1.3; }
+  .csc__quote { margin: 0; color: var(--tk-text-muted); font-size: 16px; border-left: 3px solid var(--tk-accent); padding-left: 20px; }
+  .csc__quote footer { margin-top: 12px; }
+  @media (max-width: 767px) { .csc__head { flex-direction: column; align-items: flex-start; } .csc__card { padding: 28px; } }
+</style>
