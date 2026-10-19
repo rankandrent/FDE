@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://fde.tkxel.com/</loc></url>
+  <url><loc>https://fde.tkxel.com/services/fde-pods/</loc></url>
   <url><loc>https://fde.tkxel.com/services/agentic-fde-pod/</loc></url>
+  <url><loc>https://fde.tkxel.com/services/ai-strategy-readiness/</loc></url>
+  <url><loc>https://fde.tkxel.com/services/agentic-platforms/</loc></url>
+  <url><loc>https://fde.tkxel.com/services/adoption-enablement/</loc></url>
+  <url><loc>https://fde.tkxel.com/services/ai-security-governance/</loc></url>
+  <url><loc>https://fde.tkxel.com/services/product-engineering/</loc></url>
 </urlset>
